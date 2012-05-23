@@ -81,8 +81,17 @@ List all tables
 
   \dt
 
- List user and permissions
-===========================
+
+Describe table
+==============
+
+.. code-block:: bash
+
+  \d+ table
+
+
+List user and permissions
+==========================
 
 .. code-block:: bash
 
