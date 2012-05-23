@@ -2,7 +2,7 @@
 Postgres
 ########
 
-Create a database 
+Create a database
 ==================
 
 .. code-block:: bash
@@ -18,7 +18,7 @@ Create a database
 * By default this will copy template1 db
 
 
-Create a user 
+Create a user
 ==============
 
 .. code-block:: bash
@@ -32,21 +32,21 @@ Create a user
   CREATE USER myuser WITH password 'secret';
 
 
-Change user password 
+Change user password
 =====================
 
 .. code-block:: bash
 
   ALTER USER myuser WITH PASSWORD 'moresecret';
 
-Change user permissions 
+Change user permissions
 ========================
 
 .. code-block:: bash
 
   ALTER USER myuser CREATEDB;
 
-Delete user 
+Delete user
 ============
 
 .. code-block:: bash
@@ -60,30 +60,46 @@ Delete user
 
   DROP USER myuser
 
-List databases 
+List databases
 ===============
 
 .. code-block:: bash
 
   \l
 
-Connect to a database 
+Connect to a database
 ======================
 
 .. code-block:: bash
 
   \c <db>
 
-List all tables 
+List all tables
 ================
 
 .. code-block:: bash
 
   \dt
 
- List user and permissions 
+ List user and permissions
 ===========================
 
 .. code-block:: bash
 
   \du
+
+
+Export select as CSV
+====================
+
+.. code-block:: bash
+
+  copy(select * from table) to '/some/file' with csv header;
+
+
+Import CSV
+==========
+
+.. code-block:: bash
+
+  copy table from '/some'file' with csv header;
