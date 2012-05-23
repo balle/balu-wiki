@@ -3,7 +3,7 @@ Nginx
 #####
 
 
-Check config 
+Check config
 =============
 
 .. code-block:: bash
@@ -11,19 +11,24 @@ Check config
   nginx -t
 
 
-Gzip compression 
+Gzip compression
 ================
 
 .. code-block:: bash
 
+  gzip  on;
+  gzip_comp_level 3;
+  gzip_proxied any;
+  # what mimetypes to gzip? otherwise only html gets zipped
+  gzip_types      text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript image/png image/gif image/jpeg image/x-icon image/bmp;
   gzip_disable "MSIE [1-6]\.";
-  gzip_comp_level 9;    # 9 is best compression
   gzip_min_length 1400; # in bytes
   gzip_vary  on;        # allow the client to cache it
-  gzip_types text/plain text/css text/xml;
+
+* If nginx is requested a foo.jpg and finds a foo.jpg.gz it will send that file instead of zipping foo.jpg
 
 
-Keep-alive 
+Keep-alive
 ===========
 
 .. code-block:: bash
@@ -33,7 +38,7 @@ Keep-alive
   keepalive_timeout 60;
 
 
-Htaccess 
+Htaccess
 =========
 
 .. code-block:: bash
@@ -42,7 +47,7 @@ Htaccess
   auth_basic_user_file   /etc/nginx/htpasswd;
 
 
-SSL config 
+SSL config
 ==========
 
 .. code-block:: bash
@@ -60,7 +65,7 @@ SSL config
   ssl_session_timeout  10m;
 
 
-Redirect 
+Redirect
 =========
 
 .. code-block:: bash
@@ -70,7 +75,7 @@ Redirect
   }
 
 
-Rewrite 
+Rewrite
 ========
 
 .. code-block:: bash
@@ -80,7 +85,7 @@ Rewrite
   }
 
 
-Security tricks 
+Security tricks
 ===============
 
 * Dont serve version control files, sql / json dumps
@@ -92,7 +97,7 @@ Security tricks
      return 404;
   }
 
-* Dont serve password files 
+* Dont serve password files
 
 .. code-block:: bash
 
@@ -132,14 +137,14 @@ Security tricks
 
 .. code-block:: bash
 
-  http { 
+  http {
      server_tokens off;
   }
 
 * Web Application Firewall: http://code.google.com/p/naxsi/
 
 
-Load-Balancing 
+Load-Balancing
 ===============
 
 .. code-block:: bash
@@ -156,7 +161,7 @@ Load-Balancing
   }
 
 
-Traffic shaping 
+Traffic shaping
 ================
 
 .. code-block:: bash
@@ -165,16 +170,16 @@ Traffic shaping
     limit_rate       50k;
 
 
-Debugging 
+Debugging
 ==========
 
 .. code-block:: bash
 
-  # [ debug | info | notice | warn | error | crit ] 
+  # [ debug | info | notice | warn | error | crit ]
   error_log  /var/log/nginx.error_log  debug
 
 
-uWSGI Virtualhost for serving Django 
+uWSGI Virtualhost for serving Django
 =====================================
 
 .. code-block:: bash
@@ -205,7 +210,7 @@ uWSGI Virtualhost for serving Django
     }
 
 
-uwsgi.params 
+uwsgi.params
 =============
 
 .. code-block:: bash
@@ -214,19 +219,19 @@ uwsgi.params
   uwsgi_param  REQUEST_METHOD     $request_method;
   uwsgi_param  CONTENT_TYPE       $content_type;
   uwsgi_param  CONTENT_LENGTH     $content_length;
-  
+
   uwsgi_param  REQUEST_URI        $request_uri;
   uwsgi_param  PATH_INFO          $document_uri;
   uwsgi_param  DOCUMENT_ROOT      $document_root;
   uwsgi_param  SERVER_PROTOCOL    $server_protocol;
-  
+
   uwsgi_param  REMOTE_ADDR        $remote_addr;
   uwsgi_param  REMOTE_PORT        $remote_port;
   uwsgi_param  SERVER_PORT        $server_port;
   uwsgi_param  SERVER_NAME        $server_name;
 
 
-PHP 
+PHP
 ====
 
 * Install php-fpm and start server
