@@ -5,7 +5,7 @@ Python
 .. toctree::
    :maxdepth: 1
 
-   python/pip 
+   python/pip
    python/pygraphviz
    python/pylint
    python/date
@@ -20,6 +20,7 @@ Python
    python/metaprogramming
    python/misc
    python/multiprocessing
+   python/performance
    python/shell
    python/soap
    python/string
