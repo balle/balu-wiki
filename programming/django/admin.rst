@@ -2,6 +2,16 @@
 Admin
 ######
 
+Prefill an admin field
+=======================
+
+* In ModelAdmin do
+
+.. code-block:: python
+
+prepopulated_fields = {"slug": ("title",)}
+
+
 WYSIWYG-TextField-Editor
 ========================
 
