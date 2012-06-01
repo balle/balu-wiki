@@ -4,6 +4,16 @@ Security
 
 * http://pypi.python.org/pypi/django-passwords/
 
+=================
+Create a new user
+=================
+
+.. code-block:: python
+
+from django.contrib.auth.models import User
+user = User.objects.create_user('bart', 'bart@simpsons.com', 'eatmyshorts')
+
+
 =============
 User profile
 =============
