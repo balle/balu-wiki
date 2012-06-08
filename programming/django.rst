@@ -7,6 +7,7 @@ Django
 
    django/admin
    django/ajax
+   django/cms
    django/forms
    django/misc
    django/model
