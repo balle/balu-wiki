@@ -49,7 +49,7 @@ AUTH_PROFILE_MODULE = "member.UserProfile"
 
 
 ===========================
-Edir user profile in admin
+Edit user profile in admin
 ===========================
 
 * member/admin.py
@@ -68,3 +68,23 @@ class UserAdmin(AuthUserAdmin):
 admin.site.unregister(User)
 # register new user admin
 admin.site.register(User, UserAdmin)
+
+
+=============
+Custom Login
+=============
+
+* urls.py
+
+.. code-block:: python
+from django.contrib.auth.views import login, logout
+
+    url(r'member/login/$', login, name="login"),
+    url(r'member/logout/$', logout, {"template_name": "mymodule/logout.html"}, name="logout"),
+
+* settings.py
+
+.. code-block:: python
+
+LOGIN_REDIRECT_URL = "/secure"
+LOGOUT_REDIRECT_URL="/"
