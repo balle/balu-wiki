@@ -2,18 +2,17 @@
 Introspection
 ##############
 
-* type() gibt die Klasse eines Objekts aus
-* dir() zeigt alle Attribute
-* hasattr() / getattr() / setattr zum Abfragen / Lesen / Schreiben eines Attributes
-* issubclass() 
-* dynamische instanz einer klasse
+* type() returns the class of an object
+* dir() shows all available properties
+* hasattr() / getattr() / setattr to query / get / set a property
+* issubclass()
+* dynamically create a new class
 
-.. code-block:: python 
+.. code-block:: python
 
-  classobj = getattr('modulename', 'classname')
+  classobj = type("MyClass", (object,), {})
+* Show all attributes and their values of an Python object
 
-* Alle Attribute samt Werte eines Python Objects ausgeben
-  
-.. code-block:: python 
+.. code-block:: python
 
-  for (n, v) in u.__dict__.items(): print "%s: %s" % (n, v)
+  for (n, v) in myobj.__dict__.items(): print "%s: %s" % (n, v)
