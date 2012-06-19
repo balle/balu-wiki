@@ -41,7 +41,7 @@ Introspection
 
 .. code-block:: python
 
-  isinstance(field, models.ForeignKey) 
+  isinstance(field, models.ForeignKey)
 
 * Where is the foreign key pointing to?
 
@@ -55,9 +55,6 @@ Introspection
 
 .. code-block:: python
 
-  variable_column = 'name'
-  search_type = 'contains'
-  filter = variable_column + '__' + search_type
-  model.filter(**{ filter: search_string })
-
-
+  search_column = "name_" + lang
+  search_value = self.kwargs.get("category")
+  Category.objects.filter(**{ search_column: search_value })
