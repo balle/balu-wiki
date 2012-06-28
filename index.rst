@@ -74,6 +74,7 @@ Programming
 
    programming/django
    programming/elisp
+   programming/lisp
    programming/functional
    programming/git
    programming/jenkins
@@ -96,4 +97,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
