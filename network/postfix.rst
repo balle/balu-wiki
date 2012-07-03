@@ -2,7 +2,7 @@
 Postfix
 #######
 
-Masquerade Domain 
+Masquerade Domain
 ==================
 
 .. code-block:: bash
@@ -10,7 +10,24 @@ Masquerade Domain
   masquerade_domains = foo.example.com
 
 
-=== Delete all mails in queue ===
+Rewrite an email address
+========================
+
+* /etc/postfix/main.cf
+
+.. code-block:: bash
+
+  relocated_maps = hash:/etc/postfix/relocated
+
+* /etc/postfix/relocated
+
+.. code-block:: bash
+
+  username@example.com      otheruser@elsewhere.tld
+
+
+Delete all mails in queue
+==========================
 
 .. code-block:: bash
 
