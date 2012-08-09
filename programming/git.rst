@@ -3,10 +3,10 @@ Git
 ###
 
 
-Repository 
+Repository
 ===========
 
-* Normal 
+* Normal
 
 .. code-block:: bash
 
@@ -18,8 +18,8 @@ Repository
 
   git init --bare
 
- 
-Commit 
+
+Commit
 =======
 
 * Append to last commit
@@ -34,8 +34,8 @@ Commit
 
   git revert <version>
 
- 
-Logging 
+
+Logging
 ========
 
 * Show changes
@@ -68,8 +68,15 @@ Logging
 .. code-block:: bash
 
   git log origin..
- 
-Branching 
+
+* Show log for one file
+
+.. code-block:: bash
+
+  git log -- [filename]
+
+
+Branching
 ==========
 
 * Create branch
@@ -104,8 +111,8 @@ Branching
 .. code-block:: bash
 
   git remote show origin
- 
-Merging 
+
+Merging
 ========
 
 * Merge everything
@@ -123,8 +130,8 @@ Merging
 
   git cherry-pick <commit-id>
 
- 
-Tagging 
+
+Tagging
 ========
 
 * Create a tag
@@ -133,7 +140,7 @@ Tagging
 
   git tag <tag_name>
 
-* Create a tag with a comment 
+* Create a tag with a comment
 
 .. code-block:: bash
 
@@ -157,8 +164,8 @@ Tagging
 
   git tag -d <tag_name>
 
- 
-Working with older versions 
+
+Working with older versions
 ============================
 
 * Get latest version of one file
@@ -185,8 +192,8 @@ Working with older versions
 
   git reset --hard <version>
 
- 
-Using the stash 
+
+Using the stash
 ================
 
 * Save changes to the stash
@@ -211,7 +218,7 @@ Using the stash
 
 .. code-block:: bash
 
-  git stash pop 
+  git stash pop
 
 * Apply a specific stash without deleting it
 
@@ -231,8 +238,8 @@ Using the stash
 
   git stash clear
 
- 
-Handling remote repositories 
+
+Handling remote repositories
 =============================
 
 * Add a remote
@@ -248,8 +255,8 @@ Handling remote repositories
   git remote show
   git remote show origin
 
- 
-Subversion over git 
+
+Subversion over git
 ====================
 
 * You can use a subversion repo like a remote git repo
@@ -266,8 +273,8 @@ Subversion over git
   git pull origin master
   git svn push origin master
 
- 
-Misc 
+
+Misc
 =====
 
 * Diff with meld http://nathanhoad.net/how-to-meld-for-git-diffs-in-ubuntu-hardy

@@ -98,6 +98,14 @@ List user and permissions
   \du
 
 
+Show active connections
+=======================
+
+.. code-block:: bash
+
+  SELECT * FROM pg_stat_activity;
+
+
 Export select as CSV
 ====================
 

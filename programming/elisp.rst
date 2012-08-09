@@ -2,74 +2,20 @@
 Elisp
 #####
 
-Basics 
+Basics
 =======
 
 * (message "hello world")
 
-* setzt globale variable name
 
-.. code-block:: lisp
-
-  (setq name "balle")
-  (message "hello %s" name)
-
-* (setq name "balle") ist das selbe wie (set 'name "balle")
-
-* local variables
-
-.. code-block:: lisp
-
-  (let ((var1 value) (var2 value2) do-something)
-
-* var - liefert den wert einer variablen
-* 'var - liefert den namen (var) einer variablen
-
-
-listen 
+listen
 =======
 
 * jeder listen eintrag besteht aus 1. car (das element) 2. cdr (pointer auf das nächste element)
 * der . in einer liste trennt car und cdr
-* listen indiziert man mit (nth 2 (1 2 3 4 5)) -> 3
-* an listen anhängen geht mit append
-* pop liefert und entfernt das erste element
-* push fügt vorne an die list an
-* range bekommt man mit (number-sequence 1 9)
-
-arrays 
-=======
-
-* array und list sind nicht das selbe! arrays sind strings, vectors, bool-vectors, char-tables
-* text properties: #("muh" 0 3 (face bold))
-* ein vector steht in [ ]
-* length liefert die länge einer liste / array
-* arrays indiziert man mit aref (aref [1 2 3] 1) -> 2
 
 
-hashes 
-=======
-
-* #s(hash-table size 30 data (key1 val1 key2 300))
-* gethash key table &optional default
-* puthash key value table
-
-functions 
-==========
-
-.. code-block:: lisp
-
-  (defun balle-flyspell-add-word (&optional param)
-  "doku"
-  (interactive)
-  )
-
-* mit lamda macht man anonyme funktionen
-* ein macro ist eine lambda function in einem symbol gespeichert
-* let macht eine variable lokal
-
-
-vergleiche 
+vergleiche
 ===========
 
 * equal prüft auf gleichheit eq auf identität
@@ -79,7 +25,7 @@ vergleiche
 * boolean prüft man mit t
 
 
-kontrollstrukturen 
+kontrollstrukturen
 ===================
 
 * switch case wird durch cond eingeleitet
@@ -108,7 +54,7 @@ kontrollstrukturen
   )
 
 
-schleifen 
+schleifen
 ==========
 
 .. code-block:: lisp
@@ -118,14 +64,14 @@ schleifen
   )
 
 
-Nützliche Objekte 
+Nützliche Objekte
 ==================
 
 * current-buffer
 * point
 
 
-Nützliche Funktionen 
+Nützliche Funktionen
 =====================
 
 *  restore point and mark after executing do-something
@@ -149,7 +95,7 @@ Nützliche Funktionen
   (interactive "fFilename:")
 
 
-Misc 
+Misc
 =====
 
 * http://www.emacswiki.org/emacs/ElispCookbook
@@ -157,4 +103,3 @@ Misc
 * symbols, die mit : beginnen sind keywords / constants
 * nil und () sind das selbe (leere liste)
 * mit type-of erfährt man den typ eines objects (type-of 23)
-
