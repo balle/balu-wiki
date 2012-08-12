@@ -81,13 +81,13 @@ Programming
    programming/python
 
 
-Music
+Msic
 ===========
 
 .. toctree::
    :maxdepth: 1
 
-   music/netlabels
+   misc/netlabels
 
 
 
