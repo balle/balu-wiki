@@ -81,13 +81,14 @@ Programming
    programming/python
 
 
-Msic
+Misc
 ===========
 
 .. toctree::
    :maxdepth: 1
 
    misc/netlabels
+   misc/search_techniques
 
 
 
