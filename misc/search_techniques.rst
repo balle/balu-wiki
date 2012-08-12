@@ -45,3 +45,161 @@ Google Suchtechniken - Advanced
 * kann man jetzt auch in den erweiterten Optionen links in normalem Datumsformat angeben
 * http://www.googleguide.com/advanced_operators_reference.html
 
+Google Hacking Database
+-----------------------
+
+* http://www.hackersforcharity.org/ghdb/
+
+Andere Suchmaschinen
+--------------------
+* Webkatalog
+** Dmoz
+** web.de
+* Volltextsuche
+** Bing
+** Yahoo (sucht mittlerweile über Bing)
+** altavista (sucht über yahoo)
+** lycos
+** fireball (sucht über lycos)
+** web.de
+** ask.com
+** T-Online (sucht über Google)
+* Meta-Searchengines
+** Metager
+** Metacrawler
+** Yooci.com
+
+Spezialisierte Suchmaschinen
+----------------------------
+
+* Begriffe
+** www.wikipedia.org
+* Nachrichten
+** wikinews.org
+** paperball.de
+** news.google.com
+* Blogs
+** technorati.com
+** blogsearch.google.com
+** bloglines.com
+** blogsearchengine.com
+* Wikis
+** wikia.com
+* RSS Feeds
+** www.rss-verzeichnis.de
+** www.rss-nachrichten.de
+* Podcasts
+** podcast.de
+** podster.de
+* Open Source Software
+** freshmeat.net
+** sourceforge.net
+* Linux Howtos und Tutorials
+** howtoforge.net
+** tldp.org
+* Orte, Geschäfte, Restaurants
+** maps.google.com
+** de.local.yahoo.com
+** map24.de
+** gelbeseiten.de
+* Rezepte
+** suche-rezepte.de
+** rezeptewiki.org
+** www.chefkoch.de
+* Telefonnummern
+** www.telefonbuch.de
+** www.das-oertliche.de
+* Personen
+** Suche auf Sozialen Netzen wie Facebook und StudiVZ
+** yasni.com
+** 123people.com
+** email-verzeichnis.de
+* Produkte und Schnäppchen
+** ebay.de
+** geizkragen.de
+** yoodo.eu
+** www.guenstiger.de
+* Bilder und Fotos
+** flickr.com
+** images.google.com
+** picsearch.de
+**  www.piqs.de (alle Fotos unter CC-BY)
+** www.deviantart.com
+* Bücher
+** books.google.com
+** theeuropeanlibrary.org
+** http://digital.library.upenn.edu/books/search.html
+* Bittorrent
+** torrent.to
+** bitreactor.to
+* IRC / XDCC
+** irc.netsplit.de
+** searchirc.com
+** xdccing.com
+** ircdig.com
+* Usenet
+** groups.google.com
+** groups.yahoo.com
+** binsearch.info
+* Dateien
+** filestube.com (sucht über Rapidshare u.a.)
+** filesearch.ru
+* Videos
+** youtube.com
+** clipfish.de
+** vimeo.com
+* Freie Musik
+** jamendo.com
+** starfrosh.ch
+** archive.org
+* Dj Mixes
+** mixdepot.net
+** dj-mixes.com
+* Radiosender
+** shoutcast.com
+** freie-radios.net
+* Börseninformationen
+** finance.google.com
+** finance.yahoo.com
+* Bildung und Forschung
+** bildungsserver.de
+** forschungsportal.net (Forschungsergebnisse)
+* Exploits und Sicherheitslücken
+** securityfocus.com
+** packetstormsecurity.net
+** osvdb.org
+* Source Code
+** code.google.com
+** koders.com
+** krugle.com
+* Computer
+** shodanhq.com (sucht nach Computern mit bestimmten offenen Ports / Software oder von einem bestimmten Typ wie z.B. Router oder nach SNMP Informationen)
+* Deutsche Gesetze
+** juris.de
+* Statistiken
+** destatis.de (Statistisches Bundesamt Deutschland)
+** statista.com
+* Sterne / Galaxien und Planeten
+** nasaimages.org
+** www.google.com/sky
+* Immobilien
+**  www.immopool.de
+**  www.immonet.de
+**  www.immobilienscout24.de
+
+Andere Suchtechniken
+--------------------
+
+* Archie (Suche über FTP Server)
+* P2P Netzwerke wie eMule
+* YaCy
+* Maltego - Datamining Tool
+
+Weiterführende Links
+--------------------
+
+* fravia.com
+* suchfibel.de
+* suchlexikon.de
+* googlelabs.com
+
