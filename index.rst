@@ -72,15 +72,22 @@ Programming
 .. toctree::
    :maxdepth: 1
 
-   programming/css3
+
+   programming/python
    programming/django
+
+   programming/html5
+   programming/css3
+
+   programming/git
+   programming/jenkins
+
+   programming/lisp
    programming/elisp
    programming/functional
-   programming/git
-   programming/html5
-   programming/jenkins
-   programming/lisp
-   programming/python
+
+
+   
 
 
 Misc
