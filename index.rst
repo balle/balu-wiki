@@ -72,6 +72,7 @@ Programming
 .. toctree::
    :maxdepth: 1
 
+   programming/css3
    programming/django
    programming/elisp
    programming/functional
