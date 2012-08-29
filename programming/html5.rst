@@ -49,3 +49,23 @@ Forms
         <p><input type="color" placeholder="color" autofocus /></p>
       </fieldset>
     </form>
+
+
+Audio
+=====
+
+.. code-block:: html5
+
+  <audio controls>
+    <source src="track.mp3" type="audio/mpeg" />
+  </audio>
+
+
+Video
+=====
+
+.. code-block:: html5
+
+  <video controls>
+    <source src="movie.mp4" />
+  </video>
