@@ -7,24 +7,24 @@ Basics
 
 .. code-block:: html5
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>HTML5 / CSS3 Spielplatz</title>
-  </head>
-  <body>
-    <header>Dies ist die &UUml;berschrift</header>
-    <nav><a>Link1|</a><a>Link2</a></nav>
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>HTML5 / CSS3 Spielplatz</title>
+    </head>
+    <body>
+      <header>Dies ist die &UUml;berschrift</header>
+      <nav><a>Link1|</a><a>Link2</a></nav>
     
-    <section>
-      <header>Artikel&uuml;berschrift</header>
-      <p>Ganz viel tolles Bla Bla</p>
-      <aside>Eine Randnotiz</aside>
-    </section>
+      <section>
+        <header>Artikel&uuml;berschrift</header>
+        <p>Ganz viel tolles Bla Bla</p>
+        <aside>Eine Randnotiz</aside>
+      </section>
 
-    <footer>Dies ist die Fussnote</footer>
-  </body>
-</html>
+      <footer>Dies ist die Fussnote</footer>
+    </body>
+  </html>
 
 
 Forms
