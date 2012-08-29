@@ -74,10 +74,11 @@ Programming
 
    programming/django
    programming/elisp
-   programming/lisp
    programming/functional
    programming/git
+   programming/html5
    programming/jenkins
+   programming/lisp
    programming/python
 
 
