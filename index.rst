@@ -20,6 +20,7 @@ Linux
    linux/smartmon
    linux/tmux
    linux/virtualbox
+   linux/libvirt
    linux/xorg
    linux/zsh
 
