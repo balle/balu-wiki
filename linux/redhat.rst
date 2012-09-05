@@ -32,6 +32,26 @@ Firewall Config
 * /etc/sysconfig/iptables
 
 
+Bridged interface
+=================
+
+* /etc/sysconfig/network-scripts/ifcfg-br0
+
+.. code-block:: bash
+
+  DEVICE=br0
+  TYPE=Bridge
+  BOOTPROTO=dhcp
+  ONBOOT=yes
+  DELAY=0
+
+* /etc/sysconfig/network-scripts/ifcfg-eth0
+
+.. code-block:: bash
+
+  BRIDGE=br0
+
+  
 Gnome-Keyring
 =============
 
