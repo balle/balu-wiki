@@ -18,6 +18,13 @@ Headless Server
 * http://0x7e.org/blog/2011/10/15/virtualbox-on-a-headless-server/
 
 
+PXE Boot
+=========
+
+* Needs extenstions
+* On older versions only via bridged network support
+
+
 Automation
 ==========
 
