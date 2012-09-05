@@ -31,3 +31,12 @@ Firewall Config
 
 * /etc/sysconfig/iptables
 
+
+Gnome-Keyring
+=============
+
+* To reset Gnome-Keyring passwords run
+
+.. code-block:: bash
+
+  rm ~/.gnome2/keyrings/*
