@@ -48,3 +48,9 @@ Check config for errors
 .. code-block:: bash
 
   nagios -v /etc/nagios/nagios.cfg
+
+
+Nagios statistical graphs
+=========================
+
+* http://www.pnp4nagios.org/
