@@ -51,6 +51,12 @@ Bridged interface
 
   BRIDGE=br0
 
+
+Kickstart
+=========
+
+* The kickstart file used to setup the system can be found in /root/anaconda-ks.cfg
+
   
 Gnome-Keyring
 =============
