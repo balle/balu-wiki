@@ -31,4 +31,24 @@ Disable boot logo
 
 .. code-block:: bash
 
-  plymouth-set-default-theme text
+  plymouth-set-default-theme details
+
+
+Gnome3 settings
+===============
+
+* Install gnome-tweak-tool
+* Install gconf-editor
+
+
+Changing keyboard shortcuts
+===========================
+
+* Applications -> System Tools -> System Settings -> Keyboard
+
+
+Default shortcuts
+=================
+
+* Alt+F1 - Switch between overview and desktop view
+* Alt+F2 - Launch command
