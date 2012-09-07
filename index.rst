@@ -18,6 +18,7 @@ Linux
    linux/pandora
    linux/screen
    linux/shell
+   linux/systemd
    linux/smartmon
    liinux/tmux
    linux/virtualbox
