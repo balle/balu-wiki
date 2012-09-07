@@ -30,7 +30,7 @@ Disable boot logo
 
 .. code-block:: bash
 
-  plymouth-set-default-theme details
+  plymouth-set-default-theme details -R
 
 
 Gnome3 settings
