@@ -11,7 +11,7 @@ Restart network
 i
 
 Allow SELinux exception
-=============l==========
+=======================
 
 * Click on selinux alert in bottom right corner
 * Click on Troubleshoot
