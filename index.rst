@@ -12,6 +12,7 @@ Linux
    linux/arch
    linux/debian
    linux/redhat
+   linux/fedora
    linux/emacs
    linux/memory_management
    linux/pandora

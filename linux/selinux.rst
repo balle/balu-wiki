@@ -1,7 +1,9 @@
+#######
 SELinux
-=======
+#######
 
-* Update policy
+Update policy
+=============
 
 .. code-block:: bash
 
