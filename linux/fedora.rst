@@ -8,7 +8,6 @@ Restart network
 .. code-block:: bash
  
   systemctl restart NetworkManager.service
-i
 
 Allow SELinux exception
 =======================
