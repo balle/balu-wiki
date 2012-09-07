@@ -51,3 +51,9 @@ Default shortcuts
 
 * Alt+F1 - Switch between overview and desktop view
 * Alt+F2 - Launch command
+
+
+Change login background
+=======================
+
+* Edit /usr/share/backgrounds/beefy-miracle/default/beefy-miracle.xml
