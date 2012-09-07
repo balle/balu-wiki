@@ -18,9 +18,10 @@ Linux
    linux/screen
    linux/shell
    linux/smartmon
-   linux/tmux
+   liinux/tmux
    linux/virtualbox
    linux/libvirt
+   linux/selinux
    linux/xorg
    linux/zsh
 
