@@ -38,6 +38,7 @@ Network
    network/iptables
    network/pf
 
+   network/pxe
    network/gns3
    network/irssi
    network/mdns
@@ -92,7 +93,7 @@ Programming
    programming/functional
 
 
-   
+
 
 
 Misc
