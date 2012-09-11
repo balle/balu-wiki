@@ -41,3 +41,9 @@ Enable a service at boot time
 .. code-block:: bash
 
   systemctl enable test.service
+
+
+Chrooting
+=========
+
+* http://0pointer.de/blog/projects/changing-roots
