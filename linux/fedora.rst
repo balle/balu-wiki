@@ -39,6 +39,13 @@ Gnome3 settings
 * Install gnome-tweak-tool
 * Install gconf-editor
 
+Non blank screensaver
+=====================
+
+* killall gnome-screensaver
+* yum install xscreensaver
+* xscreensaver-demo
+
 
 Changing keyboard shortcuts
 ===========================
