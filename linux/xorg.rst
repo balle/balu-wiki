@@ -2,6 +2,19 @@
 Xorg
 ####
 
+Dual View
+=========
+
+.. code-block:: bash
+
+  Section "ServerLayout"
+	Identifier     "X.org Configured"
+	Screen      0  "Screen0" 0 0
+	Screen      1  "Screen1" RightOf "Screen0"
+        Option         "Xinerama" "true"
+  EndSection
+
+  
 Change Keyboardlayout
 ======================
 
