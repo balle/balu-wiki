@@ -23,3 +23,11 @@ How to build a deb package
 * Move debian/init.d.ex to debian/myprogram.init and maybe edit it
 * dpkg-buildpackage -rfakeroot -b
 
+
+Setting up a chroot environment
+===============================
+
+.. code-block:: bash
+
+  debootstrap unstable /data/debian-tree
+  

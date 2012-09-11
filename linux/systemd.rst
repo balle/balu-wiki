@@ -46,4 +46,18 @@ Enable a service at boot time
 Chrooting
 =========
 
-* http://0pointer.de/blog/projects/changing-roots
+* Set up chroot environment with yum or debootstrap or whatever
+* Old school with chroot()
+
+.. code-block:: bash
+
+  [Service]
+  RootDirectory=/srv/chroot/foobar
+
+* New age with kernel namespaces
+
+.. code-block:: bash
+
+  systemd-nspawn -D <chroot_dir> <command>
+
+* For more see http://0pointer.de/blog/projects/changing-roots

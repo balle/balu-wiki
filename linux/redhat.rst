@@ -66,3 +66,14 @@ Gnome-Keyring
 .. code-block:: bash
 
   rm ~/.gnome2/keyrings/*
+
+
+Setting up a chroot environment
+===============================
+
+.. code-block:: bash
+
+  mkdir -p /data/redhat/var/cache/yum/x64_64/\$releaseserver
+  cp /etc/yum.repos.d/redhat.repo /data/redhat/var/cache/yum/x64_64/\$releaseserver
+  yum --disablerepo=* --enablerepo=redhat --disableplugin=* --installroot=/data/redhat install bash
+  
