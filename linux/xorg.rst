@@ -14,7 +14,15 @@ Dual View
         Option         "Xinerama" "true"
   EndSection
 
-  
+
+Nvidia Xorg config
+==================
+
+* Install nvidia driver and tools
+* Use nvidia-xconfig
+* Use nvidia driver not nv
+
+
 Change Keyboardlayout
 ======================
 
