@@ -13,19 +13,26 @@ Linux
    linux/debian
    linux/redhat
    linux/fedora
-   linux/emacs
-   linux/memory_management
    linux/pandora
+
+   linux/memory_management
+   linux/filesystem
+   
+   linux/emacs
    linux/screen
    linux/shell
    linux/systemd
    linux/smartmon
    liinux/tmux
+   linux/zsh
+   
    linux/virtualbox
    linux/libvirt
+   
    linux/selinux
+
    linux/xorg
-   linux/zsh
+   
 
 
 Network
