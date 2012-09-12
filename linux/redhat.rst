@@ -29,7 +29,8 @@ Service Configuration
 Firewall Config
 ===============
 
-* /etc/sysconfig/iptables
+* Prefered tool is ``system-config-firewall``
+* Script can be found under ``/etc/sysconfig/iptables``
 
 
 Bridged interface
