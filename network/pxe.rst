@@ -60,6 +60,7 @@ Setup TFTP and Syslinux
 * Create file /var/tftpboot/pxelinux.cfg/default
 
 .. code-block:: bash
+
   DEFAULT menu.c32
   PROMPT 0
   MENU TITLE Balle sein PXE Main Menu
