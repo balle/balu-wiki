@@ -30,7 +30,14 @@ Firewall Config
 ===============
 
 * Prefered tool is ``system-config-firewall``
-* Script can be found under ``/etc/sysconfig/iptables``
+* or lokkit
+
+.. code-block:: bash
+
+  lokkit -p 80:tcp
+  lokkit -s http
+
+* Script can be found under ``/etc/sysconfig/iptables`` but will be overwritten by the commands above
 
 
 Bridged interface

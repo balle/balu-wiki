@@ -64,3 +64,9 @@ Change login background
 =======================
 
 * Edit /usr/share/backgrounds/beefy-miracle/default/beefy-miracle.xml
+
+
+Upgrade system
+==============
+
+* http://fedoraproject.org/wiki/Upgrading_Fedora_using_yum
