@@ -10,6 +10,14 @@ List all services and their status
   systemctl
 
 
+Show status and ongoing log messages of a service
+=================================================
+
+.. code-block:: bash
+
+  systemctl status sshd.service -f
+
+  
 An example service
 ==================
 
@@ -43,6 +51,12 @@ Enable a service at boot time
   systemctl enable test.service
 
 
+Use systemd as inetd
+====================
+
+* http://0pointer.de/blog/projects/inetd.html
+
+
 Chrooting
 =========
 
@@ -61,3 +75,50 @@ Chrooting
   systemd-nspawn -D <chroot_dir> <command>
 
 * For more see http://0pointer.de/blog/projects/changing-roots
+
+
+More security options
+======================
+
+* Disable networking
+
+.. code-block:: bash
+
+  PrivateNetwork=yes
+
+* Isolate tmp dir
+
+.. code-block:: bash
+
+  PrivateTmp=yes
+
+* Read-only or inaccessible directories
+
+.. code-block:: bash
+
+  InaccessibleDirectories=/home
+  ReadOnlyDirectories=/var
+
+* Use capabilities (see man capabilities)
+
+.. code-block:: bash
+
+  CapabilityBoundingSet=CAP_CHOWN CAP_KILL
+
+* Use process limits
+
+.. code-block:: bash
+
+  LimitNPROC=1
+  LimitFSIZE=0
+
+* Limit device usage
+
+  DeviceAllow=/dev/null rw
+
+* Run as a specific user / group
+
+.. code-block:: bash
+
+  User=nobody
+  Group=nobody
