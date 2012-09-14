@@ -23,6 +23,7 @@ Linux
    linux/shell
    linux/systemd
    linux/smartmon
+   linux/monitoring
    liinux/tmux
    linux/zsh
    

@@ -8,7 +8,13 @@ SNMP
 
   snmpwalk -Os -c public -v 1 $host .
 
-* get a special info
+* print numeric OIDs
+
+.. code-block:: bash
+
+  snmpwalk -On -c public -v 1 $host .
+  
+* set a special info
 
 .. code-block:: bash
 
