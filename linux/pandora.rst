@@ -5,9 +5,14 @@ OpenPandora
 Firmware update 
 ================
 
-* http://boards.openpandora.org/index.php?/topic/7558-superzaxxon-beta-2-released/page__hl__%2Bbeta+%2Bfirmware__fromsearch__1
+* http://www.openpandora.org/index.php?option=com_content&view=article&id=199&Itemid=40&lang=en
 * hold right shoulder button
-* boot experimental kernel
+* boot from sd-card
+
+
+Turn wifi off
+=============
+
 * pandora-ctl stop wifi
 
 
