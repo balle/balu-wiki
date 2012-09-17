@@ -37,5 +37,14 @@ Install a new MIB file
 
 .. code-block:: bash
 
-  snmpwalk -v 1 -c public -m +MY-MIB 192.168.1.1 .
+  snmpwalk -Of -v 1 -c public -m +MY-MIB 192.168.1.1 .
+  
+Translate a MIB to its number
+=============================
+
+* maybe you need to delete the last .0
+
+.. code-block:: bash
+
+  snmptranslate -m ALL -On <mib>
   
