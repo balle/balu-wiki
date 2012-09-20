@@ -24,7 +24,7 @@ Linux
    linux/systemd
    linux/smartmon
    linux/monitoring
-   liinux/tmux
+   linux/tmux
    linux/zsh
    
    linux/virtualbox

@@ -43,7 +43,60 @@ Start or stop a machine
   virsh shutdown <machine-name>
   virsh destroy <machine-name>
 
+
+Info about a machine
+====================
+
+.. code-block:: bash
+
+  virsh dominfo <machine-name>
+
   
+Info about host system
+======================
+
+.. code-block:: bash
+
+  virsh nodeinfo
+
+  
+Configure RAM
+==============
+
+.. code-block:: bash
+
+  virsh setmem <machine-name> <kbyte>
+
+Configure number of CPUs
+========================
+
+.. code-block:: bash
+
+  virsh setvcpus <machine-name> <nr>
+
+  
+Update a machines config
+========================
+
+.. code-block:: bash
+
+  virsh edit <machine-name>
+
+  
+Live migration to another libvirtd server
+=========================================
+
+.. code-block:: bash
+
+  virsh migrate --live <machine-name> qemu://example.com/system
+
+
+Performance overview
+=====================
+
+* Use ``virt-top``
+
+
 Troubleshooting
 ===============
 
