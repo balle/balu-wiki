@@ -96,6 +96,7 @@ Collectd
   </Plugin>
 
 * Graph aggregation http://collectd.org/wiki/index.php/Plugin:Aggregation
+* Use Observium as Webfrontend http://www.observium.org/wiki/Collectd_Integration
 
 
 Cluster graphing
