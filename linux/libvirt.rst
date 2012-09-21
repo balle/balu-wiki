@@ -9,6 +9,14 @@ Installation
 
   yum install libvirt libvirtd python-virtinst qemu-kvm
 
+Connect to a remote libvirtd via ssh
+====================================
+
+.. code-block:: bash
+
+  virsh -c qemu+ssh://username@host/system
+
+  
 Create a machine
 ================
 
@@ -95,6 +103,38 @@ Performance overview
 =====================
 
 * Use ``virt-top``
+
+
+Guest filesystem administration
+===============================
+
+* You can use ``guestfish`` to access a guests filesystem
+* Mount / Umount filesystems
+* Read / Write files
+* Manage swap
+* Configure partitions
+* Execute commands on the shell etc
+
+
+Scripting with Python2
+======================
+
+.. code-block:: python
+
+  #! /usr/bin/env python2
+  # -*- coding: utf-8 -*-
+  import socket
+  import sys
+  import libvirt
+
+  if (__name__ == "__main__"):
+    conn = libvirt.open("qemu+ssh://xxx/system")
+    print "Trying to find node on xxx"
+    domains = conn.listDomainsID()
+
+    for domainID in domains:
+      domConnect = conn.lookupByID(domainID)
+      print domConnect.name()
 
 
 Troubleshooting
