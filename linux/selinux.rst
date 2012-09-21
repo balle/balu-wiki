@@ -21,3 +21,11 @@ Apache config
   setsebool -P httpd_can_network_connect 1
 
 * For more see `man httpd_selinux`
+
+
+Temporarily disable / enable SELinux
+====================================
+
+.. code-block:: bash
+
+  setenforce [0|1]
