@@ -90,9 +90,34 @@ Update a machines config
 
   virsh edit <machine-name>
 
+
+Backup
+======
+
+* Save a machines CPU, RAM states
+
+.. code-block:: bash
+
+  virsh save <machine-name> <file>
+
+* Take a snapshot (must be supported by disk image format)
+
+.. code-block:: bash
+
+  virsh snapshot-create <machine-name>
   
-Live migration to another libvirtd server
-=========================================
+* Convert disk image
+
+.. code-block:: bash
+
+  qemu-img convert -f raw -O qcow2 yourdisk.img newdisk.qcow2
+
+  
+Migration
+=========
+
+* By default, migration only transfers in-memory state of a running domain (memory, CPU state, ...). Disk images are not transferred during migration but they need to be accessible at the same path from both hosts.
+* Live migration needs shared network storage via NFS, iSCSI, GFS2 or Fibre Channel
 
 .. code-block:: bash
 
