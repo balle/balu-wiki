@@ -165,5 +165,5 @@ Scripting with Python2
 Troubleshooting
 ===============
 
-* Intel VXE support must be activated
-* Vbox modules must be unloaded
+* Intel virtualisation support must be activated in bios to use kvm
+* Maybe Vbox modules should be unloaded
