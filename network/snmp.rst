@@ -48,3 +48,40 @@ Translate a MIB to its number
 
   snmptranslate -m ALL -On <mib>
   
+
+Scripting with Perl
+===================
+
+.. code-block:: perl
+
+#!/usr/bin/perl
+
+use strict;
+use Net::SNMP;
+use Time::HiRes qw(usleep nanosleep);
+
+my $snmp_host = "127.0.0.1";
+my $snmp_version = 1;
+my $snmp_community = "public";
+
+my $oid = "";
+
+my ($snmp, $error) = Net::SNMP->session(-hostname => $snmp_host,
+                                        -version => $snmp_version,
+                                        -community => $snmp_community);
+
+die "SNMP connect to $snmp_host failed: $error\n" if $error;
+
+while (1)
+{
+    my $results = $snmp->get_request(-varbindlist => [ $oid_a_total, $oid_w_total, $oid_kwh_total, $oid_pf_total ]);
+    print join("", values(%$results)) . "\n";
+
+    # Request every millisecond
+    usleep(1);
+    
+    # Request every nanosecond
+    #nanosleep(1);
+}
+
+$snmp->close();
