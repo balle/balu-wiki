@@ -95,6 +95,7 @@ Collectd
      </Host>
   </Plugin>
 
+* Delete all ~ and other backup files in /etc/collectd.d or you get tons of "Value is too old" error messages
 * Graph aggregation http://collectd.org/wiki/index.php/Plugin:Aggregation
 * Use Observium as Webfrontend http://www.observium.org/wiki/Collectd_Integration
 
