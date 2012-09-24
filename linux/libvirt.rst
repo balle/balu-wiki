@@ -23,9 +23,18 @@ Create a machine
 * Configure bridged interface br0
 * Create a virtual machine with 20 gb disk and 512 mb ram
 
+* Via ISO file
+
+.. code-block:: bash
+
+  virt-install --name="TestVM" --os-type=linux --ram=512 --disk path=test-vm.img,size=20 --cdrom <path-to-iso-file>
+
+* Using PXE
+
 .. code-block:: bash
 
   virt-install --name="TestVM" --os-type=linux --os-variant=rhel6 --network bridge=br0,mac=aa:bb:cc:aa:bb:cc --ram=512 --disk path=test-vm.img,size=20 --pxe
+
   
 Remove a machine
 ================
