@@ -85,11 +85,12 @@ Programming
 
 .. toctree::
    :maxdepth: 1
-
-
+   
    programming/python
    programming/django
 
+   programming/perl
+   
    programming/html5
    programming/css3
 
