@@ -67,6 +67,11 @@ Info about host system
 
   virsh nodeinfo
 
+Connect to a machine
+====================
+
+* ``virt-viewer`` or ``virt-manager``
+
   
 Configure RAM
 ==============
