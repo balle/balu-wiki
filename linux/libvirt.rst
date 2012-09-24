@@ -81,6 +81,30 @@ Connect to a machine
 
 * ``virt-viewer`` or ``virt-manager``
 
+
+Attach a cdrom image
+====================
+
+.. code-block:: bash
+
+  virsh attach-disk <machine-name> <iso-file> hdc --type cdrom --mode readonly
+
+Update boot order
+=================
+
+* First dump machine settings as XML
+
+.. code-block:: bash
+
+  virsh dumpxml <machine-name> > blah.xml
+
+* Edit XML file
+* Update machine settings
+
+.. code-block:: bash
+
+  virsh define <machine-name> blah.xml
+
   
 Configure RAM
 ==============
