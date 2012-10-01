@@ -30,10 +30,10 @@ Shortcuts
 * Strg + b   w    -> show windowlist
 * Strg + b   !    -> close all window
 * Strg + b   n    -> next window
-* Strg + b   p    -> privios window
+* Strg + b   p    -> previous window
 * Strg + b   l    -> last window
 * Strg + b   ,    -> rename window
-* Strg + d        -> delete window
+* Strg + b   k    -> delete window
 * strg + b   x -> delete current pane
 * Strg + b   o    -> switch panel
 * Strg + b   [    -> switch to buffer (like emacs)
@@ -48,6 +48,21 @@ Shortcuts
 * strg + b : source-file ~/.tmux.conf -> reload config
 
 
+Scripting
+=========
+
+.. code-block:: bash
+
+  #!/bin/bash
+
+  for IP in {1..96}; do
+    tmux select-layout tiled
+    tmux split-window -h
+    tmux send-keys "ssh root@192.168.1.$IP" C-m
+    tmux send-keys "top" C-m
+  done
+
+
 Balle Config 
 =============
 
@@ -60,6 +75,9 @@ Balle Config
     unbind l
     set -g prefix C-a
     bind-key C-a last-window
+    bind-key k kill-window
+    bind-key -n M-d set-window-option synchronize-panes off
+    bind-key -n M-c set-window-option synchronize-panes on
 
     # Reload key
     bind r source-file ~/.tmux.conf
