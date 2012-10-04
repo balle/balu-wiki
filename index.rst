@@ -30,7 +30,9 @@ Linux
    linux/virtualbox
    linux/libvirt
    
+   linux/sudo
    linux/selinux
+   linux/policykit
 
    linux/xorg
 
