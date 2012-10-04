@@ -23,3 +23,11 @@ List all known actions
 
   pkaction
 
+
+Get doc
+=======
+
+.. code-block:: bash
+
+  man pklocalauthority
+  
