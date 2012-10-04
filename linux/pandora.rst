@@ -29,3 +29,9 @@ Installing software
 
 * opkg install <ipk-file>
 * Or use `Milky <http://apps.openpandora.org/cgi-bin/viewapp.pl?/Other/milkyhelper.inf>`_ (pacman for pandora)
+
+
+Setting up development environment
+===================================
+
+* http://blogs.distant-earth.com/wp/?p=90
