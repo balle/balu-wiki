@@ -52,7 +52,21 @@ Cross compile some source
   pandora-dev/sdk_utils/pnd_make.sh -p zsh.pnd -d /data/muh
 
 * pnd_make.sh must run as root
-* Maybe you have to add ``-I$PNDSDK/usr/include`` to CFLAGS in Makefile
+* Maybe you have to add ``-I$PNDSDK/usr/include`` to CFLAGS in Makefile or pandora_configure.sh
+
+
+Building PND file
+=================
+
+.. code-block:: bash
+
+  pandora-dev/sdk_utils/pnd_make.sh -p some-new-app.pnd -d /dir-to-compress
+
+* Maybe you want to edit PXML.xml to specify exec script
+
+.. code-block:: bash
+
+  <exec command="scripts/install.sh"/>
 
 
 Setting up complete development environment
