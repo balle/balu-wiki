@@ -202,3 +202,6 @@ Balle Config
     bind-key C-l resize-pane -L     # Resize window left            (Ctrl+b, l) (similar)
     bind-key C-r resize-pane -R     # Resize window right           (Ctrl+b, r) (similar)
 
+    # copy & paste
+    bind -n M-w run "tmux show-buffer | xclip -i -selection clipboard"
+    
