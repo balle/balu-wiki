@@ -10,6 +10,21 @@ Update policy
   grep qemu-system-x86 /var/log/audit/audit.log | audit2allow -M mypol
   semodule -i mypol.pp
 
+List SELinux modules
+====================
+
+.. code-block:: bash
+
+  semodule -l
+
+  
+Revoke a policy
+===============
+
+.. code-block:: bash
+
+  semodule -r <name>
+ 
 
 Apache config
 ==============
