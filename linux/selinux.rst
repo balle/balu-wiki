@@ -31,24 +31,35 @@ Security context
 
 * Context consists of user:role:type:level
 
-* For a file
+* Show for a file
 
 .. code-block:: bash
 
   ls -Z <file>
 
-* For a running process
+* Show for a running process
 
 .. code-block:: bash
 
   ps -eZ
 
-* For current user
+* Show for current user
 
 .. code-block:: bash
 
   id -Z
-  
+
+* Copy from reference to target file
+
+.. code-block:: bash
+
+  chcon --reference=some_file target_file
+
+* Restore vendor context
+
+.. code-block:: bash
+
+  restorecon reset file_or_dir
 
 Booleans
 =========
@@ -76,3 +87,9 @@ Temporarily disable / enable SELinux
 .. code-block:: bash
 
   setenforce [0|1]
+
+
+More doc
+========
+
+* http://www.selinuxproject.org/page/Recipes
