@@ -24,7 +24,17 @@ Revoke a policy
 .. code-block:: bash
 
   semodule -r <name>
- 
+
+
+Show security context for a file
+================================
+
+.. code-block:: bash
+
+  ls -Z <file>
+
+* Context consists of user:role:type:level
+
 
 Apache config
 ==============
