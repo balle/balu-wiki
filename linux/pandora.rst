@@ -2,7 +2,7 @@
 OpenPandora
 ###########
 
-Firmware update 
+Firmware update
 ================
 
 * http://www.openpandora.org/index.php?option=com_content&view=article&id=199&Itemid=40&lang=en
@@ -16,15 +16,15 @@ Turn wifi off
 * pandora-ctl stop wifi
 
 
-Handling PND Files 
+Handling PND Files
 ===================
 
-* Run in console with pnd_run 
+* Run in console with pnd_run
 * Mount PND File
-* /usr/pandora/scripts/pnd_run.sh -m -p <pnd_file> 
+* /usr/pandora/scripts/pnd_run.sh -m -p <pnd_file>
 
 
-Installing software 
+Installing software
 ====================
 
 * opkg install <ipk-file>
@@ -67,6 +67,12 @@ Building PND file
 .. code-block:: bash
 
   <exec command="scripts/install.sh"/>
+
+* To rebuild a mounted pnd on pandora use
+
+.. code-block:: bash
+
+  mksquashfs . /tmp/new.pnd ; cat PXML.xml icon.png >> /tmp/new.pnd
 
 
 Setting up complete development environment
