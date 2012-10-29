@@ -72,3 +72,58 @@ Selective backup
 .. code-block:: sql
 
   select * into dumpfile "backup.sql" from table where foo="bar";
+
+
+Create database with utf-8 charset
+==================================
+
+.. code-block:: sql
+
+  create database <db_name> default character set utf8;
+
+* Or edit my.cnf
+
+.. code-block:: bash
+
+  [mysqld]
+  default-character-set = utf8
+  
+  [mysql]
+  default-character-set = utf8
+
+Use InnoDB tables instead of MyISAM
+====================================
+
+* Edit my.cnf
+
+.. code-block:: bash
+
+  default-storage-engine=INNODB
+
+Change db charset
+=================
+
+.. code-block:: sql
+
+  alter database <db_name> character set utf8;
+  
+
+Add Foreign Key Contraint
+==========================
+
+.. code-block:: sql
+
+  alter table add constraint <contraint_name> foreign key <column> references <table> <column> on delete cascade;
+
+Add check constraint
+====================
+
+  alter table add constraint <name> CHECK (some_column > 0 and other_column != "");
+  
+Add index
+=========
+
+.. code-block:: sql
+
+  create index <name> on <table> (<column>);
+  
