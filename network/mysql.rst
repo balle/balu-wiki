@@ -118,6 +118,8 @@ Add Foreign Key Contraint
 Add check constraint
 ====================
 
+.. code-block:: sql
+
   alter table add constraint <name> CHECK (some_column > 0 and other_column != "");
   
 Add index
@@ -126,4 +128,11 @@ Add index
 .. code-block:: sql
 
   create index <name> on <table> (<column>);
+  
+Delete entries older than 30 days
+=================================
+
+.. code-block:: sql
+
+  DELETE FROM <table> WHERE DATE_SUB(CURDATE(),INTERVAL 30 DAY) <= <column>;
   

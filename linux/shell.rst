@@ -10,6 +10,14 @@ Quote Spaces in Filenames
   echo $FILE | sed 's/ /\\ /g'
 
 
+Get yesterdays date
+===================
+
+.. code-block::
+
+  date +%Y:%m:%d -d "1 day ago"
+  
+
 Get lines where the nth element is bigger than x
 =================================================
 
