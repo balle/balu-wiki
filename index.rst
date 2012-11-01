@@ -17,6 +17,7 @@ Linux
 
    linux/memory_management
    linux/filesystem
+   linux/lvm
    
    linux/emacs
    linux/screen
