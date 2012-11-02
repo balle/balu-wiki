@@ -54,3 +54,12 @@ Resize a logical device
 
 * Dont forget to do a resize of the filesystem
 * Shrinking usually requires umounting
+
+
+Create a snapshot from lvname
+=============================
+
+.. code-block:: bash
+
+  lvcreate -L 1G -n snap --snapshot /dev/vgname/lvname
+
