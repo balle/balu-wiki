@@ -80,3 +80,10 @@ Upgrade system
 ==============
 
 * http://fedoraproject.org/wiki/Upgrading_Fedora_using_yum
+
+
+Switching back to old GNOME look and feel
+=========================================
+
+* Either set "Use Fallback Mode" in System Settings -> Details -> Graphics
+* Or install Mate http://mate-desktop.org/

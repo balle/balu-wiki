@@ -50,6 +50,14 @@ Check config for errors
   nagios -v /etc/nagios/nagios.cfg
 
 
+Convert timestamps of nagios.log
+================================
+
+.. code-block:: bash
+
+  perl -pe 's/(\d+)/localtime(jumi)/e' nagios.log
+  
+
 Nagios statistical graphs
 =========================
 

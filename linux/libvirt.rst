@@ -81,6 +81,15 @@ Connect to a machine
 
 * ``virt-viewer`` or ``virt-manager``
 
+Rename a machine
+================
+
+.. code-block:: bash
+
+  virsh dumpxml <machine-name> > muh.xml
+  <edit muh.xml, change the name>
+  virsh undefine <machine-name>
+  virsh define muh.xml
 
 Attach a cdrom image
 ====================

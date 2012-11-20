@@ -22,30 +22,83 @@ Um Tmux bei starten der Shell mit zu starten, kann in die .zshrc oder die .bshrc
 Shortcuts 
 ==========
 
-* Strg + b   d    -> dettach
-* Strg + b   c    -> new window
-* Strg + b   0    -> goto window 0
-* Strg + b   "    -> split window V
-* Strg + b   %    -> split window horizontal in 2 pannel spliten 
-* Strg + b   w    -> show windowlist
-* Strg + b   !    -> close all window
-* Strg + b   n    -> next window
-* Strg + b   p    -> privios window
-* Strg + b   l    -> last window
-* Strg + b   ,    -> rename window
-* Strg + d        -> delete window
-* strg + b   x -> delete current pane
-* Strg + b   o    -> switch panel
-* Strg + b   [    -> switch to buffer (like emacs)
-* Strg + Space    -> set marker
-* Strg + w        -> cut region
+* Ctrl + b   d    -> dettach
+* Ctrl + b   c    -> new window
+* Ctrl + b   0    -> goto window 0
+* Ctrl + b   "    -> split window V
+* Ctrl + b   %    -> split window horizontal in 2 pannel spliten 
+* Ctrl + b   w    -> show windowlist
+* Ctrl + b   !    -> close all window
+* Ctrl + b   n    -> next window
+* Ctrl + b   p    -> previous window
+* Ctrl + b   l    -> last window
+* Ctrl + b   ,    -> rename window
+* Ctrl + b   k    -> delete window
+* ctrl + b   x -> delete current pane
+* Ctrl + b   o    -> switch panel
+* Ctrl + b   [    -> switch to buffer (like emacs)
+* Ctrl + Space    -> set marker
+* Ctrl + w        -> cut region
 * Alt  + w        -> copy region
 * Esc             -> leave buffer
-* Strg + b   ]    -> past copied buffer
-* strg + b : resize-pane -D 20 -> shrink down
-* strg + b : resize-pane -U 20 -> shrink up
-* strg + b : break-pane -> convert pane to window
-* strg + b : source-file ~/.tmux.conf -> reload config
+* Ctrl + b   ]    -> past copied buffer
+* ctrl + space    -> toggle different pane layouts
+* ctrl + b : resize-pane -D 20 -> shrink down
+* ctrl + b : resize-pane -U 20 -> shrink up
+* ctrl + b : break-pane -> convert pane to window
+* ctrl + b : source-file ~/.tmux.conf -> reload config
+
+
+Session handling
+================
+
+* Create a new session named muh
+
+.. code-block:: bash
+
+  tmux new -s muh
+
+* List all sessions
+
+.. code-block:: bash
+
+  tmux ls
+
+* Attach to a session
+
+.. code-block:: bash
+
+  tmux attach -t <session-name>
+
+* Detach from a session with Ctrl b + d
+
+* Kill a session
+
+.. code-block:: bash
+
+  tmux kill-session -t <name-or-number>
+  
+
+Scripting
+=========
+
+.. code-block:: bash
+
+  #!/bin/bash
+
+  for IP in {1..96}; do
+    tmux select-layout tiled
+    tmux split-window -h
+    tmux send-keys "ssh root@192.168.1.$IP" C-m
+    tmux send-keys "top" C-m
+  done
+
+
+Getting help
+============
+
+ctrl b ? - show keys
+ctrl b : list-commands
 
 
 Balle Config 
@@ -60,6 +113,9 @@ Balle Config
     unbind l
     set -g prefix C-a
     bind-key C-a last-window
+    bind-key k kill-window
+    bind-key -n M-d set-window-option synchronize-panes off
+    bind-key -n M-c set-window-option synchronize-panes on
 
     # Reload key
     bind r source-file ~/.tmux.conf
@@ -85,8 +141,8 @@ Balle Config
     set-window-option -g window-status-current-format '#[bg=blue,fg=cyan,bold]#I#[bg=blue,fg=cyan]:#[fg=white]#W#[fg=dim]#F'
 
     # Alerted window in status bar. Windows which have an alert (bell, activity or content).
-    set-window-option -g window-status-alert-fg red
-    set-window-option -g window-status-alert-bg white
+    #set-window-option -g window-status-alert-fg red
+    #set-window-option -g window-status-alert-bg white
 
     # right side of statusbar
     set -g status-right-length 50
@@ -133,6 +189,9 @@ Balle Config
     set-option -g   base-index 1
     set-option -g   default-path ""
 
+    # browsing urls
+    bind-key u capture-pane \; save-buffer /tmp/tmux-buffer \; new-window -n "urlview" '$SHELL -c "urlview < /tmp/tmux-buffer"'
+    
     # pane movement
     bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
     bind-key s command-prompt -p "send pane to:"  "join-pane -t '%%'"
@@ -143,3 +202,6 @@ Balle Config
     bind-key C-l resize-pane -L     # Resize window left            (Ctrl+b, l) (similar)
     bind-key C-r resize-pane -R     # Resize window right           (Ctrl+b, r) (similar)
 
+    # copy & paste
+    bind -n M-w run "tmux show-buffer | xclip -i -selection clipboard"
+    
