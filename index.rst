@@ -21,22 +21,17 @@ Linux
    
    linux/emacs
    linux/screen
-   linux/shell
-   linux/systemd
    linux/tmux
    linux/zsh
+   linux/shell
+   linux/systemd
 
    linux/smartmon
    linux/monitoring
    linux/rrd
 
-   
    linux/virtualbox
    linux/libvirt
-   
-   linux/sudo
-   linux/selinux
-   linux/policykit
 
    linux/xorg
 
@@ -50,13 +45,10 @@ Network
 .. toctree::
    :maxdepth: 1
 
-   network/cisco
-   network/iptables
-   network/pf
-
    network/pxe
    network/gns3
    network/irssi
+   network/ldap
    network/mdns
    network/mysql
    network/nagios
@@ -72,15 +64,28 @@ Network
 `RFC Sourcebook <http://www.networksorcery.com/enp/default1101.htm>`_
 
 
+Security
+========
+
+.. toctree::
+   :maxdepth: 1
+
+   security/crypto
+   security/cisco
+   security/iptables
+   security/openssl
+   security/pf
+   security/selinux
+
+
 Hacking
 =======
 
 .. toctree::
    :maxdepth: 1
 
-   hacking/crypto
+
    hacking/layer2
-   hacking/openssl
    hacking/scapy
    hacking/reveng
    hacking/web_security
