@@ -2,4 +2,14 @@
 Web stuff
 ##########
 
-* `Web Crawler Framework <http://scrapy.org>`_
+Share dir with simple webserver
+===============================
+
+.. code-block:: bash
+
+  python -m SimpleHTTPServer 8080
+
+Web Crawling
+============
+
+* `Scapy <http://scrapy.org>`_
