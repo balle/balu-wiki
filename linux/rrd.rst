@@ -82,3 +82,11 @@ Aggregate two graphs
 .. code-block:: bash
 
   rrdtool graph test.png --start `date +%s -d "yesterday"` --end `date +%s` DEF:load1=some.rrd:load:AVERAGE DEF:load2=another.rrd:load:AVERAGE CDEF:total=load1,load2,\+ LINE2:total#0000ff
+
+
+Export data as XML
+==================
+
+.. code-block:: bash
+
+  rrdtool xport --start `date +%s -d "yesterday"` --end `date +%s` DEF:load1=some.rrd:load:AVERAGE XPORT:load1
