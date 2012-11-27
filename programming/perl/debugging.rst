@@ -21,3 +21,20 @@ Run pdb in emacs
 
 * esc+x perldb
 
+
+Enable debugger at runtime
+==========================
+
+* cpan Enbugger
+
+.. code-block:: perl
+
+  require Enbugger;
+  Enbugger->stop;
+
+  
+REPL on fatal errors
+====================
+
+* cpan Carp::REPL
+
