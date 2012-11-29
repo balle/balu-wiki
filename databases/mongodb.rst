@@ -83,6 +83,23 @@ Iterate over all results
 
   db.<collection>.find().forEach(printjson)
 
+
+Sorting
+=======
+
+* Lowest first
+
+.. code-block:: bash
+
+  db.<collection>.find().sort({"field": 1})
+
+* Highest first
+
+.. code-block:: bash
+
+  db.<collection>.find().sort({"field": -1})
+
+
 Update data
 ===========
 
@@ -105,3 +122,11 @@ Delete data
 .. code-block:: bash
 
   db.<collection>.remove({"name": "wurst"})
+
+
+Create index
+============
+
+.. code-block:: bash
+
+  db.<collection>.ensureIndex( { myfield: 1 } );
