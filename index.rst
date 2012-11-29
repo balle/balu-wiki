@@ -18,7 +18,7 @@ Linux
    linux/memory_management
    linux/filesystem
    linux/lvm
-   
+
    linux/emacs
    linux/screen
    linux/tmux
@@ -36,7 +36,7 @@ Linux
    linux/xorg
 
    linux/debugging
-   
+
 
 
 Network
@@ -50,11 +50,9 @@ Network
    network/irssi
    network/ldap
    network/mdns
-   network/mysql
    network/nagios
    network/nginx
    network/postfix
-   network/postgres
    network/smtp
    network/snmp
    network/socket
@@ -84,7 +82,6 @@ Hacking
 .. toctree::
    :maxdepth: 1
 
-
    hacking/layer2
    hacking/scapy
    hacking/reveng
@@ -92,18 +89,27 @@ Hacking
    hacking/wireless
    hacking/wireshark
 
+Databases
+=========
+
+.. toctree::
+   :maxdepth: 1
+
+   databases/mongodb
+   databases/mysql
+   databases/postgres
 
 Programming
 ===========
 
 .. toctree::
    :maxdepth: 1
-   
+
    programming/python
    programming/django
 
    programming/perl
-   
+
    programming/html5
    programming/css3
 
