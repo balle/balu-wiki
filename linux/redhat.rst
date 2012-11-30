@@ -29,7 +29,7 @@ Building a RPM package
   URL:            https://some.url.net
   Packager:       Your name <you@somewhere.net>
 
-  Requires:       some_other_package
+  Requires:       some_other_package>=1.2.3, another_package
 
   Source:         %name-%version.tgz
 
@@ -63,6 +63,19 @@ Building a RPM package
 
 * Rebuild the package
 * The RPM should now be available in the RPM subdir
+* Only install dont recompile
+
+.. code-block:: bash
+
+  rpmbuild -bi --short-circuit SPECS/myprogram.spec
+
+* Dont want to package all installable files?
+
+.. code-block:: bash
+
+  %define _unpackaged_files_terminate_build 0
+
+* For more goto http://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html-single/RPM_Guide/index.html
 
 
 Service Configuration

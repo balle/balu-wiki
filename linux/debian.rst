@@ -2,13 +2,13 @@
 Debian
 ######
 
-How to build a deb package 
+How to build a deb package
 ==========================
 
 * Unzip archive
 * cd source
 * dh_make -e me@mail.net -f ../tar-file
-** choose single binary
+* choose single binary
 * Edit debian/control file
 * define dependency e.g.
 * libssl0.9.8 (>= 0.9.8~)
@@ -30,4 +30,4 @@ Setting up a chroot environment
 .. code-block:: bash
 
   debootstrap unstable /data/debian-tree
-  
+
