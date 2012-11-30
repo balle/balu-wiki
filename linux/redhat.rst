@@ -78,6 +78,14 @@ Building a RPM package
 * For more goto http://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html-single/RPM_Guide/index.html
 
 
+List contents of uninstalled rpm
+================================
+
+.. code-block:: bash
+
+  rpm -qlp <rpm_file>
+
+
 Service Configuration
 =====================
 
