@@ -123,6 +123,12 @@ Delete data
 
   db.<collection>.remove({"name": "wurst"})
 
+* Delete whole database
+
+.. code-block:: bash
+
+  db.dropDatabase()
+
 
 Create index
 ============
