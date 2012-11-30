@@ -2,6 +2,69 @@
 Redhat
 ######
 
+Building a RPM package
+======================
+
+* Install rpmbuild
+* Setup environment
+
+.. code-block:: bash
+
+  mkdir ~/rpmbuild
+  cd ~/rpmbuild
+  mkdir BUILD  BUILDROOT  RPMS  SOURCES  SPECS  SRPMS
+
+* Put the source archive in the SOURCES directory (e.g. myprogram-0.1.tgz)
+* Make a spec file in SPECS (e.g. myprogram.spec)
+
+.. code-block:: bash
+
+  Name:           myprogram
+  Version:        0.1
+  Release:        1
+  Summary:        A short description
+
+  Group:          System Environment/Libraries
+  License:        GPL
+  URL:            https://some.url.net
+  Packager:       Your name <you@somewhere.net>
+
+  Requires:       some_other_package
+
+  Source:         %name-%version.tgz
+
+  %description
+  Some longer description of this software package
+
+  %prep
+  %setup
+
+  %build
+  ./configure --prefix=%{buildroot}
+  make
+
+  %install
+  rm -rf %{buildroot}
+  make install
+
+* Build the package
+
+.. code-block:: bash
+
+  rpmbuild -bb SPECS/myprogram.spec
+
+* rpmbuild will complain that there are files that are not packaged. Put those into the %files section of the spec file
+
+.. code-block:: bash
+
+  %files
+  /path/to/file1
+  /path/to/file2
+
+* Rebuild the package
+* The RPM should now be available in the RPM subdir
+
+
 Service Configuration
 =====================
 
@@ -65,7 +128,7 @@ Kickstart
 
 * The kickstart file used to setup the system can be found in /root/anaconda-ks.cfg
 
-  
+
 Gnome-Keyring
 =============
 
@@ -84,4 +147,4 @@ Setting up a chroot environment
   mkdir -p /data/redhat/var/cache/yum/x64_64/\$releaseserver
   cp /etc/yum.repos.d/redhat.repo /data/redhat/var/cache/yum/x64_64/\$releaseserver
   yum --disablerepo=* --enablerepo=redhat --disableplugin=* --installroot=/data/redhat install bash
-  
+
