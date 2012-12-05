@@ -7,6 +7,7 @@ Python
 
    python/pip
    python/pygraphviz
+   python/matplotlib
    python/pylint
    python/date
    python/diff
