@@ -130,6 +130,16 @@ Delete data
   db.dropDatabase()
 
 
+Working with timestamps
+=======================
+
+* Get all entries from 1.12. till 6.12.
+
+.. code-block:: bash
+
+  db.snmp.find({'time': {'$gt': ISODate('2012-12-01T00:00:00'), '$lt': ISODate("2012-12-05T23:59:59")}})
+
+
 Create index
 ============
 
