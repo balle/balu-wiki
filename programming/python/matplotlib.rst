@@ -31,6 +31,9 @@ A bar graph
 Two bar diagrams beside
 =======================
 
+* bar(left, height, width)
+* Can be single values or arrays
+
 .. code-block:: python
 
   import numpy as np
