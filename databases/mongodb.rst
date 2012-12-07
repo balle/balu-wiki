@@ -140,9 +140,34 @@ Working with timestamps
   db.snmp.find({'time': {'$gt': ISODate('2012-12-01T00:00:00'), '$lt': ISODate("2012-12-05T23:59:59")}})
 
 
-Create index
-============
+Create index on collection field
+================================
+
+* sparse will only create index if a value for that field exists
 
 .. code-block:: bash
 
-  db.<collection>.ensureIndex( { myfield: 1 } );
+  db.<collection>.ensureIndex( { myfield: 1 }, {sparse: true, background: true} );
+
+* Unique constraint
+
+.. code-block:: bash
+
+  db.<collection>.ensureIndex( { myfield: 1 }, {unique: true} );
+
+
+Show indexes
+==========================
+
+* Of collection
+
+.. code-block:: bash
+
+  db.<collection>.getIndexes()
+
+* All
+
+.. code-block:: bash
+
+  db.system.indexes.find()
+
