@@ -6,6 +6,7 @@ Python
    :maxdepth: 1
 
    python/pip
+   python/ipython
    python/pygraphviz
    python/matplotlib
    python/pylint
