@@ -139,6 +139,13 @@ Working with timestamps
 
   db.snmp.find({'time': {'$gt': ISODate('2012-12-01T00:00:00'), '$lt': ISODate("2012-12-05T23:59:59")}})
 
+Select distinct values
+======================
+
+.. code-block:: bash
+
+  db.<collection>.distinct('field')
+
 
 Create index on collection field
 ================================
