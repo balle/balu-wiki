@@ -46,3 +46,15 @@ SSL
 .. code-block:: bash
 
   tshark -o "ssl.desegment_ssl_records: TRUE" -o "ssl.desegment_ssl_application_data: TRUE" -o "ssl.keys_list:,443,http,rsa_private.key" -o "ssl.debug_file:rsa_private.log" -r all.pcap -R "(tcp.port eq 443)" -V
+
+
+Tshark
+======
+
+* Display all payload, dont do dns, dump to all.pcap
+* -f "capture filter"
+* -R "display filter"
+
+.. code-block:: bash
+
+  tshark -S -n -w all.pcap host www.datenterrorist.de
