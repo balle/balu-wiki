@@ -51,10 +51,25 @@ SSL
 Tshark
 ======
 
-* Display all payload, dont do dns, dump to all.pcap
+* Display get requests, dont do dns, dump all packets with payload to all.pcap
 * -f "capture filter"
 * -R "display filter"
+* -S decode payload
+* -V Display complete packet
 
 .. code-block:: bash
 
-  tshark -S -n -w all.pcap host www.datenterrorist.de
+  tshark -S -n -w all.pcap -f "host www.datenterrorist.de" -R "http.request.method==GET"
+
+* Capture traffic for 10 seconds, display traffic analysis for all ips
+
+.. code-block:: bash
+
+  tshark -q -a duration:10 -z conv,ip
+
+* Sniff cookies
+
+.. code-block:: bash
+
+  tshark -T fields -e http.cookies port 80
+
