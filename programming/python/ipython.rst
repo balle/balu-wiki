@@ -96,6 +96,17 @@ Debugging
 
   run -d -b 23 file
 
+* Automatically start Ipython debugger on exception
+
+.. code-block:: bash
+
+  try:
+    ret = 1 / 0
+  except Exception, e:
+    import sys, IPython
+    IPython.Shell.IPShell(argv=[])
+    IPython.Debugger.Pdb(IPython.ipapi.get().options.colors).set_trace(sys._getframe())
+
 
 Profile
 =======
