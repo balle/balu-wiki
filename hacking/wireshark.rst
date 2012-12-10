@@ -71,5 +71,5 @@ Tshark
 
 .. code-block:: bash
 
-  tshark -T fields -e http.cookies port 80
+  tshark -T fields -e http.cookie -R "http.cookie" port 80
 
