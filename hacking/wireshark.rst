@@ -32,6 +32,13 @@ Wifi
   wlan.fc.subtype==4 or wlan.fc.subtype==5
 
 
+WEP / WPA
+=========
+
+* Decrypt WEP / WPA traffic with existing key
+* Preferences -> Protocols -> IEEE 802.11 -> Enable decryption + Add decryption keys
+
+
 SSL
 ===
 
@@ -55,6 +62,12 @@ SSL
 .. code-block:: bash
 
   tshark -o "ssl.desegment_ssl_application_data: TRUE" -o "ssl.keys_list:,443,http,rsa_private.key" -o "ssl.debug_file:rsa_private.log" -r all.pcap -R "(tcp.port eq 443)" -V
+
+
+Detect ARP storms
+=================
+
+* Preferences -> Protocols -> ARP -> Detect ARP request storms
 
 
 Macros
