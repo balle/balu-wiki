@@ -105,6 +105,22 @@ Macros
   "icmp_redir","icmp.type == 5 and ip.src != $1"
 
 
+GeoIP
+=====
+
+* Make a new dir called geoip
+* Download http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz and unzip it to that dir
+* Add the dir to Preferences -> Name Resolution -> GeoIP database directories
+* Restart wireshark
+* Statistics -> Endpoints -> IPv4 -> Map
+* Edit preferences -> protocols -> ipv4 -> enable geoip (optional to filter on geoip)
+* To filter on geoip information use
+
+.. code-block:: bash
+
+  ip.geoip.country == "China"
+
+
 Tshark
 ======
 
