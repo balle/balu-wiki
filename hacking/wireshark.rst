@@ -73,7 +73,36 @@ Detect ARP storms
 Macros
 ======
 
-* With Analyze -> Display Filter Macros you can give complex display filter strings an easy name
+* With Analyze -> Display Filter Macros you can give complex display filter strings an easy name and even use parameters
+* E.g. ICMP redirection not from gateway ip and save it under name icmp_redir
+
+.. code-block:: bash
+
+  icmp.type == 5 and ip.src != $1
+
+* $1 will get replace by specified ip
+* To use it type the following display filter
+
+.. code-block:: bash
+
+  ${icmp_redir:192.168.1.1}
+
+* Macros are stored in ~/.wireshark/profiles/$profile/dfilter_macros
+
+.. code-block:: bash
+
+  "arp_req","arp.opcode == 0x0001"
+  "arp_rep","arp.opcode == 0x0002"
+  "echo_req","icmp.type == 8"
+  "echo_rep","icmp.type == 0"
+  "ssl_handshake","ssl.record.content_type==22"
+  "nobeacons","wlan.fc.subtype != 8"
+  "ssid","wlan_mgt.ssid == \x22$1\x22"
+  "probes","wlan.fc.subtype==4 or wlan.fc.subtype==5"
+  "dns_req","dns.flags.response == 0"
+  "dns_res","dns.flags.response == 1"
+  "dns_error","dns.flags.rcode != 0"
+  "icmp_redir","icmp.type == 5 and ip.src != $1"
 
 
 Tshark
