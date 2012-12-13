@@ -32,7 +32,7 @@ Multiprocessing with Queues
         worker = Process(target=do_work, args=(work_queue,result_queue))
         worker.start()
 
-    while len(result.keys()) < len(hosts):
+    while len(result.keys()) < len(jobs):
         data = result_queue.get()
         print data
         result[data[0]] = data[1]
