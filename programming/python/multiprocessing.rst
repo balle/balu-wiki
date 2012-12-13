@@ -6,27 +6,41 @@ Multiprocessing
 
 * `Celery is an asynchronous task queue/job queue <http://celeryproject.org/>`_
 
-Multiprocessing with Queues 
+Multiprocessing with Queues
 ============================
 
 .. code-block:: python
 
   from multiprocessing import Process, Queue
-  import time
+  import commands
 
-  def f(q):
-      time.sleep(3)
-      q.put([42, None, 'hello'])
+  nr_of_threads = 4
 
-  if __name__ == '__main__':
-      q = Queue()
-      p = Process(target=f, args=(q,))
-      p.start()
-      print q.get()
-      p.join() # wait for process to terminate
+  def do_work(work_queue, result_queue):
+    job = work_queue.get()
+    result_queue.put(["what", "ever"])
+
+  def parallel_work(jobs):
+    work_queue = Queue()
+    result_queue = Queue()
+    result = {}
+
+    for job in jobs:
+        work_queue.put(job)
+
+    for i in range(nr_of_threads):
+        worker = Process(target=do_work, args=(work_queue,result_queue))
+        worker.start()
+
+    while len(result.keys()) < len(hosts):
+        data = result_queue.get()
+        print data
+        result[data[0]] = data[1]
+
+    return result
 
 
-MapReduce 
+MapReduce
 ==========
 
 * `Disco <http://discoproject.com/>`_ MapReduce Framework with Python API
