@@ -1,4 +1,4 @@
-#########
+##########
 Debugging
 ##########
 
@@ -9,7 +9,7 @@ Pdb basics
 * n - next instruction
 * <enter> - repeat previous command
 * c (<line>) - continue (to line)
-* p $var - print 
+* p $var - print
 * b - set breakpoint
 * b <condition e.g. $var eq "foo"> - conditional breakpoint
 * L - list all breakpoints
@@ -32,7 +32,7 @@ Enable debugger at runtime
   require Enbugger;
   Enbugger->stop;
 
-  
+
 REPL on fatal errors
 ====================
 
