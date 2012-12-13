@@ -20,13 +20,16 @@ Multiprocessing with Queues
     job = work_queue.get()
     result_queue.put(["what", "ever"])
 
-  def parallel_work(jobs):
+  def parallel_work(jobs, nr_of_threads):
     work_queue = Queue()
     result_queue = Queue()
     result = {}
 
     for job in jobs:
         work_queue.put(job)
+
+    if nr_of_threads > len(jobs):
+        nr_of_threads = len(jobs)
 
     for i in range(nr_of_threads):
         worker = Process(target=do_work, args=(work_queue,result_queue))
