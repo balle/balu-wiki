@@ -17,14 +17,14 @@ Multiprocessing with Queues
   nr_of_threads = 4
 
   def do_work(work_queue, result_queue):
-    job = work_queue.get()
-    result_queue.put(["what", "ever"])
+      while work_queue.qsize():
+        job = work_queue.get()
+        result_queue.put(["what", "ever"])
 
   def parallel_work(jobs, nr_of_threads):
-    while work_queue.qsize():
-      host = work_queue.get()
-      result = commands.getoutput(plugin_cmd + " -H " + host)
-      result_queue.put([host, result])
+    work_queue = Queue()
+    result_queue = Queue()
+    result = {}
 
     for job in jobs:
         work_queue.put(job)
