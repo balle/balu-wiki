@@ -28,6 +28,7 @@ Linux
 
    linux/smartmon
    linux/monitoring
+   linux/ipmi
    linux/rrd
 
    linux/virtualbox
