@@ -178,3 +178,18 @@ Show indexes
 
   db.system.indexes.find()
 
+
+Show real data size
+===================
+
+* With indizes
+
+.. code-block:: bash
+
+  db.<collection>.totalSize()
+
+* Only data
+
+.. code-block:: bash
+
+  db.<collection>.dataSize()
