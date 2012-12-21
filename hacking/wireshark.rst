@@ -121,6 +121,22 @@ Macros
   "icmp_redir","icmp.type == 5 and ip.src != $1"
 
 
+Frame filter
+============
+
+* You can filter on frame arravile time
+
+.. code-block:: bash
+
+  frame.time == "Jan 01, 2013 00:00:00"
+
+* Or on frames that took more than 1 second to the previous frame
+
+.. code-block:: bash
+
+  frame.time_delta > 1
+
+
 GeoIP
 =====
 
@@ -151,6 +167,7 @@ HTTP
   http.referer contains 
   http.content_type
   http.cookie
+  http contains "password"
 
 * Export html pages (File -> Export -> Objects -> HTTP)
 
@@ -161,8 +178,11 @@ Tshark
 * Display get requests, dont do dns, dump all packets with payload to all.pcap
 * -f "capture filter"
 * -R "display filter"
+* -s snaplen
 * -S decode payload
 * -V Display complete packet
+* -a <auto-stop-condition>
+* -t a (display absolute time)
 
 .. code-block:: bash
 
@@ -179,6 +199,24 @@ Tshark
 .. code-block:: bash
 
   tshark -T fields -e http.cookie -R "http.cookie" port 80
+
+* FTP logins
+
+.. code-block:: bash
+
+  tshark -R 'ftp.request.command == "USER" || ftp.request.command == "PASS"'
+
+* Detect FTP bounce attack
+
+.. code-block:: bash
+
+  tshark -R 'ftp.request.command == "PORT"'
+
+* POP logins
+
+.. code-block:: bash
+
+  tshark -R 'pop.request.command == "USER" || pop.request.command == "PASS"'
 
 
 Cheat Sheets
