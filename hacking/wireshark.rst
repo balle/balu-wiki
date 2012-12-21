@@ -143,6 +143,7 @@ HTTP
 * Display filter
 
 .. code-block:: bash
+
   http.response.code
   http.request.method
   http.host
