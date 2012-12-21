@@ -137,6 +137,23 @@ GeoIP
   ip.geoip.country == "China"
 
 
+HTTP
+====
+
+* Display filter
+
+.. code-block:: bash
+  http.response.code
+  http.request.method
+  http.host
+  http.user_agent
+  http.referer contains 
+  http.content_type
+  http.cookie
+
+* Export html pages (File -> Export -> Objects -> HTTP)
+
+
 Tshark
 ======
 
