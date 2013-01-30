@@ -23,6 +23,7 @@ Wifi
 
 * View -> Wireless Toolbar
 * http://sharkfest.wireshark.org/sharkfest.10/B-5_Parsons%20HANDS-ON%20LAB%20-%20WLAN%20Analysis%20with%20Wireshark%20&%20AirPcap%20Exercises.pdf
+
 * hide beacons
 
 .. code-block:: bash
@@ -35,6 +36,12 @@ Wifi
 
   wlan_mgt.ssid == "Spatula City"
 
+* filter by channel (e.g. channel 11)
+
+.. code-block:: bash
+
+  radiotap.channel.freq == 2462
+
 * only sniff data frames
 
 .. code-block:: bash
@@ -46,6 +53,12 @@ Wifi
 .. code-block:: bash
 
   wlan.fc.subtype==4 or wlan.fc.subtype==5
+
+* retransmissions
+
+.. code-block:: bash
+
+  wlan.fc.retry == 1
 
 
 WEP / WPA
