@@ -16,28 +16,30 @@ Overview
 Search for devices
 ==================
 
-* untested
-
 .. code-block:: python
 
-  from scapy.all import IP, UDP, sr1
-  payload = "M-SEARCH * HTTP/1.1\r\n"
-  r = sr1(IP(dst="239.255.255.250") / UDP(dport= 1900) / payload);
-  r.display();
+  from scapy.all import IP, UDP, send, sniff
+  payload = "M-SEARCH * HTTP/1.1\r\n" \
+  "HOST:239.255.255.250:1900\r\n" \
+  "ST:upnp:rootdevice\r\n" \
+  "MAN: \"ssdp:discover\"\r\n" \
+  "MX:2\r\n\r\n"
+
+  send(IP(dst="239.255.255.250") / UDP(sport=1900, dport= 1900) / payload)
+  sniff(filter="udp and port 1900", prn=lambda p: p["IP"].src + " " + str(p["UDP"].payload))
+
 
 
 Search for services
 ===================
 
-* untested
-
 .. code-block:: python
 
-  from scapy.all import IP, UDP, sr1
-  target = "192.168.1.1"
-  payload = "M-SEARCH * HTTP/1.1\r\nHost:%s:1900\r\nST: upnp:rootdevice\r\nMan:\"ssdp:discover\"\r\n" % target
-  r = sr1(IP(dst=target) / UDP(dport= 1900) / payload);
-  r.display();
+  from scapy.all import IP, UDP, send, sniff
+  ip = "192.168.1.1"
+  payload = "M-SEARCH * HTTP/1.1\r\nHost:%s:1900\r\nST: ssdp:all\r\nMan:\"ssdp:discover\"\r\n" % ip
+  send(IP(dst=ip) / UDP(sport=1900, dport= 1900) / payload)
+  sniff(filter="udp and port 1900", timeout=10, prn=found_service)
 
 
 Portforward
