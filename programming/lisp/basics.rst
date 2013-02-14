@@ -165,6 +165,26 @@ Store state of interpreter in file
   clisp -M foo.mem
 
 
+Scripting
+=========
+
+* SBCL
+
+.. code-block:: lisp
+
+  #!/usr/bin/sbcl --script
+
+  (require ".sbclrc")
+
+* CLISP
+
+.. code-block:: lisp
+
+  #!/usr/local/bin/clisp
+
+  (require ".clisprc.lisp")
+
+
 Installing modules
 ==================
 
@@ -173,6 +193,30 @@ Installing modules
 .. code-block:: lisp
 
   (ql:quicklib "module")
+
+
+Loading modules
+===============
+
+* load is used to load a single lisp file
+* require is used to load modules that can consist of more than one file
+
+
+Whats the difference between packages, systems and modules?
+===========================================================
+
+* http://weitz.de/packages.html
+* Packages are, loosely speaking, containers for symbols
+* A system is a bunch of code with instructions to install them plus their dependencies
+* A module is something you can load to your lisp code
+
+
+Channel
+=======
+
+* *standard-output*
+* *error-output*, *debug-io* and *trace-output*
+* *query-io* for user input
 
 
 Redirect stdout
