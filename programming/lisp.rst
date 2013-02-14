@@ -25,6 +25,9 @@ Basics
 * 'var returns a reference on var
 * ``quote`` or ``'`` can be used to bypass the evaluation of its argument
 
+* nil and () are the same
+* with type-of you get the type of an object
+
 
 Lists
 =====
@@ -68,7 +71,95 @@ functions
 * let declares a local variable
 
 
+control structures
+==================
 
+* equal check euqalness eq identity
+* (eq "abc" "abc") -> nil
+* (equal "abc" "abc") -> t
+* check numbers with =
+* (= 1 1) -> t
+
+* if else
+
+.. code-block:: lisp
+
+  (if (eq "abc" "bcd")
+    (progn do-this-if-cond-is-true)
+    (progn do-this-if-cond-is-false)
+  )
+
+
+* do switch case with cond
+
+.. code-block:: lisp
+
+  (cond ((equal var value)
+	(do-something))
+
+      ((equal var value2)
+	(do-something))
+
+      (t
+	(do-something))
+  )
+
+
+Loops
+=====
+
+.. code-block:: lisp
+
+  (while (< (count) 10)
+    do-something
+  )
+
+
+Store state of interpreter in file
+==================================
+
+* SBCL
+
+.. code-block:: lisp
+
+  (SAVE-LISP-AND-DIE "foo.core")
+
+* Load with
+
+.. code-block:: bash
+
+  sbcl --core foo.core
+
+* CLISP
+
+.. code-block:: lisp
+
+  (saveinitmem "foo.mem")
+
+* Load with
+
+.. code-block:: bash
+
+  clisp -M foo.mem
+
+
+Installing modules
+==================
+
+* Install http://www.quicklisp.org/beta/
+
+.. code-block:: lisp
+
+  (ql:quicklib "module")
+
+
+Redirect stdout
+===============
+
+.. code-block::
+
+  (let ((*standard-output* (make-broadcast-stream)))
+    (app:noisy-code))
 
 
 Links
