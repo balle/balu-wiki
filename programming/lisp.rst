@@ -108,11 +108,33 @@ control structures
 Loops
 =====
 
+* simple while
+
 .. code-block:: lisp
 
   (while (< (count) 10)
     do-something
   )
+
+* iterate each item of a list
+
+.. code-block:: lisp
+
+  (dolist (item list)
+     (print item))
+
+* or
+
+.. code-block:: lisp
+
+  (loop for i in '(1 2 3) do
+    (print i))
+
+* iterate over key, value pairs of a hash
+
+.. code-block:: lisp
+
+  (loop for k being the hash-key using (hash-value v) of h do (format t "~a ~a~%" k v))
 
 
 Store state of interpreter in file
@@ -166,3 +188,5 @@ Links
 =====
 
 * http://ghostopera.org/blog/2012/06/24/the-newbie-guide-to-common-lisp/
+* http://psg.com/~dlamkins/sl/contents.html - Successful lisp
+
