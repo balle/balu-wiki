@@ -118,7 +118,6 @@ Programming
    programming/jenkins
 
    programming/lisp
-   programming/elisp
    programming/functional
 
 
