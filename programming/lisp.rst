@@ -7,4 +7,5 @@ Lisp
 
    lisp/basics
    lisp/elisp
-
+   lisp/slime
+   
