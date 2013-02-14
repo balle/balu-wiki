@@ -1,6 +1,6 @@
-======================
-Sending mail with lisp
-======================
+====
+Mail
+====
 
 * (ql:quickload "cl-smtp")
 

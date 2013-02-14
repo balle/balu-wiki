@@ -7,6 +7,7 @@ Lisp
 
    lisp/basics
    lisp/elisp
+   lisp/input-output
    lisp/mail
    lisp/network
    lisp/slime

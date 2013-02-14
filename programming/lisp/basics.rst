@@ -23,7 +23,8 @@ Basics
 
 * var returns the value of var
 * 'var returns a reference on var
-* ``quote`` or ``'`` can be used to bypass the evaluation of its argument
+* quote or ' suspresses evaluation
+* ` suspresses evaluation for all expression but prefixed with ,
 
 * nil and () are the same
 * with type-of you get the type of an object
@@ -39,6 +40,8 @@ Lists
 * ``length`` returns the number of the lists elements
 * ``first`` or ``car`` returns the first element of the list
 * ``rest`` or ``cdr`` returns the rest of the list
+* (:muh 1 :maeh 2) is a property list
+* (getf list :keyword) returns value of keyword in list
 
 
 hashes
