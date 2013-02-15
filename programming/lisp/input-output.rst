@@ -6,6 +6,15 @@ Input / Output
 
 .. code-block:: lisp
 
+(let ((stream (open "/some/file/name.txt" :direction :output)))
+  (format stream "hello world~%")
+    (close stream))
+
+* or using a macro
+* :if-exists :supersede will override an existing file
+
+.. code-block:: lisp
+
   (with-open-file (out filename
                    :direction :output
                    :if-exists :supersede)
@@ -13,6 +22,16 @@ Input / Output
        (print *content* out))))
 
 * Read file
+
+.. code-block:: lisp
+
+  (let ((in (open "/some/file/name.txt" :if-does-not-exist nil)))
+    (when in
+      (loop for line = (read-line in nil)
+               while line do (format t "~a~%" line))
+                   (close in)))
+
+* or using a macro
 
 .. code-block:: lisp
 
