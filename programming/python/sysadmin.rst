@@ -33,5 +33,6 @@ System Administration
 
       return files
 
+* http://jessenoller.com/blog/2009/02/05/ssh-programming-with-paramiko-completely-different
 * http://plumbum.readthedocs.org
 
