@@ -8,6 +8,8 @@ Getting help
 * , help - repl commands
 * ctrl+c ctrl+d d - describe symbol
 * ctrl+c ctrl+d h - hyperspec manual
+* ctrl+c ctrl+d ctrl+z - apropos
+* ctrl+c ctrl+d ctrl+p - list symbols of package
 
 
 Evaluation
@@ -52,6 +54,10 @@ Debugger
 * (untrace)
 * (on frame in stacktrace) alt+x sldb-show-source
 * i - inspect frame
+* t - toggle details
+* v - view source
+* q - quit
+* c - continue
 
 
 Using Swank for remote lisp repl
