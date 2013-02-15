@@ -6,6 +6,7 @@ Lisp
    :maxdepth: 1
 
    lisp/basics
+   lisp/database
    lisp/elisp
    lisp/input-output
    lisp/mail
