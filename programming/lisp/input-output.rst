@@ -6,9 +6,9 @@ Input / Output
 
 .. code-block:: lisp
 
-(let ((stream (open "/some/file/name.txt" :direction :output)))
-  (format stream "hello world~%")
-    (close stream))
+  (let ((stream (open "/some/file/name.txt" :direction :output)))
+    (format stream "hello world~%")
+      (close stream))
 
 * or using a macro
 * :if-exists :supersede will override an existing file
