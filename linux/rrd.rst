@@ -38,12 +38,20 @@ Insert values
   rrdtool update some.rrd `date +%s`:`cat /proc/loadavg| cut -d " " -f 1`
 
 
-Display values from yesterday till now
-======================================
+Display values
+==============
+
+* from yesterday till now
 
 .. code-block:: bash
 
   rrdtool fetch some.rrd AVERAGE --start `date +%s -d "yesterday"` --end `date +%s`
+
+* from specific timespan
+
+.. code-block:: bash
+
+  rrdtool fetch some.rrd MAX --start `date +%s -d "2013-02-15 18:00:00"` --end `date +%s -d "2013-02-15 19:00:00"`
 
 
 Create a graph image
