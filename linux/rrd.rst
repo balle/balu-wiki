@@ -6,7 +6,7 @@ Overview
 ========
 
 * RRDs (Round Robin Databases) consist of DS (Data Source) that will be saved in RRAs (Round Robin Archives)
-* Each RRA has a fixed size of slots, that will be automatically rotated 
+* Each RRA has a fixed size of slots, that will be automatically rotated
 * Every update on a rrd triggers every RRA to be updated by a consolidation function (CF) like MIN, MAX or AVERAGE
 
 
@@ -86,6 +86,14 @@ Aggregate two graphs
 
 Export data as XML
 ==================
+
+* Everything
+
+.. code-block:: bash
+
+  rrdtool dump some.rrd
+
+* Or specific
 
 .. code-block:: bash
 
