@@ -7,7 +7,7 @@ Create new user
 
 .. code-block:: sql
 
-  grant all privileges on db.* to user@'%' identified by 'passwd'; 
+  grant all privileges on db.* to user@'%' identified by 'passwd';
 
 
 Show extended table information
@@ -24,7 +24,7 @@ Show table structure
 .. code-block:: sql
 
   describe <table>
-  
+
 
 Show indices
 ============
@@ -65,7 +65,7 @@ Backup whole database
 
   mysqldump <db> > backup.sql
 
-  
+
 Selective backup
 ================
 
@@ -87,7 +87,7 @@ Create database with utf-8 charset
 
   [mysqld]
   default-character-set = utf8
-  
+
   [mysql]
   default-character-set = utf8
 
@@ -106,7 +106,7 @@ Change db charset
 .. code-block:: sql
 
   alter database <db_name> character set utf8;
-  
+
 
 Add Foreign Key Contraint
 ==========================
@@ -121,18 +121,25 @@ Add check constraint
 .. code-block:: sql
 
   alter table add constraint <name> CHECK (some_column > 0 and other_column != "");
-  
+
 Add index
 =========
 
 .. code-block:: sql
 
   create index <name> on <table> (<column>);
-  
+
 Delete entries older than 30 days
 =================================
 
 .. code-block:: sql
 
   DELETE FROM <table> WHERE DATE_SUB(CURDATE(),INTERVAL 30 DAY) <= <column>;
-  
+
+
+Temporary tables
+================
+
+.. code-block:: sql
+
+  CREATE TEMPORARY TABLE table2 AS (SELECT * FROM table1)
