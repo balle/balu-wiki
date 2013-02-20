@@ -14,3 +14,11 @@ Shell
 .. code-block:: lisp
 
   (with-output-to-string (stream) (asdf:run-shell-command "ps ax" :output stream))
+
+* or better
+
+.. code-block:: lisp
+
+  (ql:quickload "trivial-shell")
+  (setq output (trivial-shell:shell-command "df -k"))
+

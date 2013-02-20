@@ -25,6 +25,7 @@ Overview
 * 'var returns a reference on var
 * quote or ' suspresses evaluation
 * ` suspresses evaluation for all expression but prefixed with ,
+* #' or function suspresses evaluation of functions (aka returns pointer)
 
 * nil and () are the same
 * with type-of you get the type of an object
@@ -132,6 +133,10 @@ Loops
 
   (loop for i in '(1 2 3) do
     (print i))
+
+.. code-block:: lisp
+
+  (loop for i from min to max by step)
 
 * iterate over key, value pairs of a hash
 
