@@ -2,6 +2,14 @@
 Strings
 #######
 
+Concatenate
+===========
+
+.. code-block:: lisp
+
+  (concatenate 'string "foo " bar)
+
+
 Split
 =====
 

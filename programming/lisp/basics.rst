@@ -34,7 +34,8 @@ Overview
 Lists
 =====
 
-* ``append`` adds to a list
+* ``append`` adds to a list by copying the first list
+* ``cons`` adds a element in front of list
 * ``pop`` returns and removes the first element
 * ``push`` insert an element at the beginning of the list
 * ``(number-sequence 1 9)`` returns a list with numbers from 1 to 9
