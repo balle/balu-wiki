@@ -14,4 +14,5 @@ Lisp
    lisp/shell
    lisp/strings
    lisp/slime
+   lisp/templating
    lisp/web
