@@ -11,6 +11,7 @@ Lisp
    lisp/input-output
    lisp/mail
    lisp/network
+   lisp/regexp
    lisp/shell
    lisp/strings
    lisp/slime
