@@ -61,8 +61,7 @@ functions
 
   (defun hello (name)
   "function to say hello to someone or something"
-    (print (concat "Hello " name))
-  )
+    (print (concat "Hello " name)))
   (hello "world")
 
 * parameter after ``&optional`` are optional
@@ -215,7 +214,7 @@ Whats the difference between packages, systems and modules?
 ===========================================================
 
 * http://weitz.de/packages.html
-* Packages are, loosely speaking, containers for symbols
+* Packages are namespaces (like in Perl)
 * A system is a bunch of code with instructions to install them plus their dependencies
 * A module is something you can load to your lisp code
 
@@ -231,7 +230,7 @@ Channel
 Redirect stdout
 ===============
 
-.. code-block::
+.. code-block:: lisp
 
   (let ((*standard-output* (make-broadcast-stream)))
     (app:noisy-code))
