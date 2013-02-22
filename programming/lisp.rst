@@ -8,6 +8,7 @@ Lisp
    lisp/basics
    lisp/database
    lisp/elisp
+   lisp/filesystem
    lisp/input-output
    lisp/mail
    lisp/network
