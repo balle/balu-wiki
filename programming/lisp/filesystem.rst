@@ -29,3 +29,12 @@ Parsing
 
   (pathname-name (pathname "/some/file.txt"))
   (pathname-type (pathname "/some/file.txt"))
+
+
+Test if file exists
+===================
+
+.. code-block:: lisp
+
+  (probe-file "/some/file")
+
