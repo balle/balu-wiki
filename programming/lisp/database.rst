@@ -42,3 +42,10 @@ CL-DBI
   (loop for row = (dbi:fetch result)
     while row
     do (format t "~A ~,5F~%" (getf row :|timestamp|) (getf row :|value|)))
+
+
+ORM
+===
+
+* http://common-lisp.net/project/elephant/index.html
+* http://common-lisp.net/project/cl-prevalence/

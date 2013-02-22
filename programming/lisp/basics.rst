@@ -235,6 +235,13 @@ Redirect stdout
   (let ((*standard-output* (make-broadcast-stream)))
     (app:noisy-code))
 
+Debugging
+=========
+
+* (trace) will trace function calls
+* (step) through function calls
+* (break) sets a break point
+
 
 Links
 =====
