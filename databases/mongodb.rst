@@ -67,6 +67,12 @@ Select from collection
 
   db.<collection>.find(field: /\d+/)
 
+* select specific fields
+
+.. code-block:: bash
+
+  db.<collection>.find({},{"field_to_select": 1})
+
 
 Iterate over all results
 ========================
@@ -193,3 +199,29 @@ Show real data size
 .. code-block:: bash
 
   db.<collection>.dataSize()
+
+
+Defrag
+======
+
+* Whole database
+
+.. code-block:: bash
+
+  db.repairDatabase()
+
+* Single collection
+
+.. code-block:: bash
+
+  db.<collection>.compact()
+
+
+Getting help
+============
+
+.. code-block:: bash
+
+  db.help()
+
+
