@@ -7,6 +7,7 @@ Lisp
 
    lisp/basics
    lisp/database
+   lisp/date
    lisp/elisp
    lisp/filesystem
    lisp/input-output
