@@ -9,6 +9,14 @@ List all services and their status
 
   systemctl
 
+Start / Stop service
+====================
+
+* All services can be found in `/usr/lib/systemd/system`
+
+.. code-block:: bash
+
+  systemctl [start|stop] sshd.service
 
 Show status and ongoing log messages of a service
 =================================================
@@ -17,7 +25,43 @@ Show status and ongoing log messages of a service
 
   systemctl status sshd.service -f
 
-  
+
+Filtering logs
+==============
+
+* Since last boot
+
+.. code-block:: bash
+
+  journalctl -b
+
+
+* Since today
+
+.. code-block:: bash
+
+  journalctl --since today
+
+* Or timerange
+
+.. code-block:: bash
+
+  journalctl --since=2012-10-15 --until="2011-10-16 23:59:59"
+
+* For a specific file
+
+.. code-block:: bash
+
+  journalctl /some/file
+
+
+* Tailed
+
+.. code-block:: bash
+
+  journalctl -f
+
+
 An example service
 ==================
 
@@ -34,7 +78,7 @@ An example service
   [Install]
   WantedBy=multi-user.target
 
-* Afterwards exec 
+* Afterwards exec
 
 .. code-block:: bash
 
