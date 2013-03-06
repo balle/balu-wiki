@@ -71,6 +71,7 @@ Security
 
    security/crypto
    security/cisco
+   security/honeypot
    security/iptables
    security/openssl
    security/pf
