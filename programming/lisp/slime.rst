@@ -80,3 +80,9 @@ Using Swank for remote lisp repl
   ssh -L 4005:localhost:4005 me@remote-machine
 
 * Reconnect slime with M-x slime-connect
+
+
+Swank as a daemon
+=================
+
+* https://github.com/vy/swank-daemon
