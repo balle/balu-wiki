@@ -35,6 +35,7 @@ Lists
 =====
 
 * ``append`` adds to a list by copying the first list
+* ``nconc`` adds the second, third etc list to the first
 * ``cons`` adds a element in front of list
 * ``pop`` returns and removes the first element
 * ``push`` insert an element at the beginning of the list
@@ -43,7 +44,9 @@ Lists
 * ``first`` or ``car`` returns the first element of the list
 * ``rest`` or ``cdr`` returns the rest of the list
 * (:muh 1 :maeh 2) is a property list
-* (getf list :keyword) returns value of keyword in list
+* plist (property list) is a list with (:key value) pairs
+* (getf list :keyword) returns value of keyword in a plist
+* alist is a plist where you can also lookup by value using (assoc 'what-to-find my-list)
 
 
 hashes
@@ -52,6 +55,16 @@ hashes
 * #s(hash-table size 30 data (key1 val1 key2 300))
 * gethash key table &optional default
 * puthash key value table
+
+Arrays
+======
+
+* make a resizeable array (init size is 5)
+
+.. code-block:: lisp
+
+  (make-array 5 :fill-pointer 0 :adjustable t)
+  (vector-push-extend 'new-stuff my-array)
 
 
 functions
@@ -65,6 +78,12 @@ functions
   (hello "world")
 
 * parameter after ``&optional`` are optional
+* default values for parameters
+
+.. code-block:: lisp
+
+  (defun some-func (a &optional (b 10)))
+
 * define keyword arguments
 
 .. code-block:: lisp
