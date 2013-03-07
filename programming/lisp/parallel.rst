@@ -9,7 +9,7 @@ Start thread
 
 .. code-block:: lisp
 
-  (sb-thread:make-thread (a-function) :name "a good name")
+  (sb-thread:make-thread #'(lambda () (a-function)) :name "a good name")
 
 * List all running threads
 
