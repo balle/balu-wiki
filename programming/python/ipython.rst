@@ -111,6 +111,8 @@ Debugging
 Profile
 =======
 
+* http://pynash.org/2013/03/06/timing-and-profiling.html
+
 .. code-block:: bash
 
   %time some_function
