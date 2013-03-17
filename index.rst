@@ -24,7 +24,7 @@ Linux
    linux/tmux
    linux/zsh
    linux/shell
-   linux/systemd
+   linux/firefox
 
    linux/smartmon
    linux/monitoring
@@ -34,6 +34,7 @@ Linux
    linux/virtualbox
    linux/libvirt
 
+   linux/systemd
    linux/xorg
 
    linux/debugging
