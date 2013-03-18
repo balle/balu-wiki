@@ -203,6 +203,12 @@ Scripting
 
   (require ".sbclrc")
 
+* Disable style warnings in SBCL
+
+.. code-block:: lisp
+
+  (declaim #+sbcl(sb-ext:muffle-conditions style-warning))
+
 * CLISP
 
 .. code-block:: lisp
