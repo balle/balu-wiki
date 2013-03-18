@@ -196,6 +196,13 @@ Tshark
 * -V Display complete packet
 * -a <auto-stop-condition>
 * -t a (display absolute time)
+* -o "tcp.relative_sequence_numbers:FALSE" for displaying absolute sequence numbers
+
+.. code-block:: bash
+
+  tshark -S -n -t a -o "tcp.relative_sequence_numbers:FALSE" -f "port 80"
+
+* Show http get requests
 
 .. code-block:: bash
 
