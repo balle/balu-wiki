@@ -217,6 +217,13 @@ Defrag
   db.<collection>.compact()
 
 
+Load collection into memory
+===========================
+
+.. code-block:: bash
+
+  db.runcommand({ touch: “collection_name”, data: true, index: true})
+
 Getting help
 ============
 
