@@ -22,7 +22,6 @@ Linux
    linux/smartmon
    linux/monitoring
    linux/ipmi
-   linux/rrd
 
    linux/virtualbox
    linux/libvirt
@@ -42,6 +41,7 @@ Tools
    tools/emacs
    tools/firefox
    tools/mc
+   tools/rrd
    tools/screen
    tools/tmux
    tools/zsh
