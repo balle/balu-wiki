@@ -46,6 +46,12 @@ Remote editing
     exec ssh $THEY "emacsclient /$ME:$PWD/$1"
   fi
 
+How to Write a Emacs Major Mode for Syntax Coloring
+===================================================
+
+* http://ergoemacs.org/emacs/elisp_syntax_coloring.html
+
+  
 Extensions
 ===========
 
