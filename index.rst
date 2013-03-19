@@ -36,6 +36,9 @@ Linux
 Tools
 =====
 
+.. toctree::
+   :maxdepth: 1
+
    tools/emacs
    tools/firefox
    tools/mc
