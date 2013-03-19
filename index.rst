@@ -19,13 +19,6 @@ Linux
    linux/filesystem
    linux/lvm
 
-   linux/emacs
-   linux/screen
-   linux/tmux
-   linux/zsh
-   linux/shell
-   linux/firefox
-
    linux/smartmon
    linux/monitoring
    linux/ipmi
@@ -38,6 +31,17 @@ Linux
    linux/xorg
 
    linux/debugging
+
+
+Tools
+=====
+
+   tools/emacs
+   tools/firefox
+   tools/mc
+   tools/screen
+   tools/tmux
+   tools/zsh
 
 
 
@@ -122,6 +126,7 @@ Programming
    programming/lisp
    programming/functional
 
+   programming/shell
 
 
 
