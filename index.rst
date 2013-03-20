@@ -15,15 +15,11 @@ Linux
    linux/fedora
    linux/filesystem
    linux/ipmi
-   linux/libvirt
    linux/lvm
    linux/memory_management
-   linux/monitoring
    linux/pandora
    linux/redhat
-   linux/smartmon
    linux/systemd
-   linux/virtualbox
    linux/xorg
 
 
@@ -35,10 +31,14 @@ Tools
 
    tools/emacs
    tools/firefox
+   tools/libvirt
    tools/mc
+   tools/monitoring
    tools/rrd
    tools/screen
+   tools/smartmon
    tools/tmux
+   tools/virtualbox
    tools/zsh
 
 
