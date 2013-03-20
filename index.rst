@@ -11,25 +11,20 @@ Linux
 
    linux/arch
    linux/debian
-   linux/redhat
-   linux/fedora
-   linux/pandora
-
-   linux/memory_management
-   linux/filesystem
-   linux/lvm
-
-   linux/smartmon
-   linux/monitoring
-   linux/ipmi
-
-   linux/virtualbox
-   linux/libvirt
-
-   linux/systemd
-   linux/xorg
-
    linux/debugging
+   linux/fedora
+   linux/filesystem
+   linux/ipmi
+   linux/libvirt
+   linux/lvm
+   linux/memory_management
+   linux/monitoring
+   linux/pandora
+   linux/redhat
+   linux/smartmon
+   linux/systemd
+   linux/virtualbox
+   linux/xorg
 
 
 Tools
@@ -54,7 +49,7 @@ Network
 .. toctree::
    :maxdepth: 1
 
-   network/pxe
+   network/clustershell
    network/gns3
    network/irssi
    network/ldap
@@ -62,6 +57,7 @@ Network
    network/nagios
    network/nginx
    network/postfix
+   network/pxe
    network/smtp
    network/snmp
    network/socket
@@ -93,12 +89,13 @@ Hacking
    :maxdepth: 1
 
    hacking/layer2
-   hacking/scapy
    hacking/reveng
+   hacking/scapy
    hacking/web_security
    hacking/wireless
    hacking/wireshark
 
+   
 Databases
 =========
 
@@ -109,26 +106,22 @@ Databases
    databases/mysql
    databases/postgres
 
+   
 Programming
 ===========
 
 .. toctree::
    :maxdepth: 1
 
-   programming/python
-   programming/django
-
-   programming/perl
-
-   programming/html5
    programming/css3
-
-   programming/git
-   programming/jenkins
-
-   programming/lisp
+   programming/django
    programming/functional
-
+   programming/git
+   programming/html5
+   programming/jenkins
+   programming/lisp
+   programming/perl
+   programming/python
    programming/shell
 
 
