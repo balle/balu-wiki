@@ -74,6 +74,14 @@ Power machine on / off
   ipmipower --on -h $host -u $user -P
 
 
+Activate chassis LED
+====================
+
+.. code-block:: bash
+
+  ipmi-chassis -h $host -u $user -P -i 1
+  
+
 Read system event logs
 ======================
 
@@ -88,3 +96,12 @@ Read system event logs
 .. code-block:: bash
 
   ipmi-sel -h $host -u $user -P 
+
+
+Get serial console
+==================
+
+.. code-block::
+
+  ipmiconsole -h $host -u $user -P
+  
