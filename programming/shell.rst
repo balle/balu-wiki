@@ -2,6 +2,22 @@
 Shell Scripting
 ################
 
+Sequence
+========
+
+.. code-block:: bash
+
+  for i in {1..32}; do echo $i; done
+
+Calculation
+===========
+
+.. code-block:: bash
+
+  x=3
+  y=$(($x+4))
+
+
 Quote Spaces in Filenames
 ==========================
 
