@@ -18,5 +18,5 @@ Inotify
 Recursive inotify
 =================
 
-* https://github.com/greggoryhz/Watcher
+* https://github.com/splitbrain/Watcher
 * http://www.splitbrain.org/blog/2011-01/07-watcher_a_recursive_incron_alternative
