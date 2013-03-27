@@ -14,6 +14,7 @@ Linux
    linux/debugging
    linux/fedora
    linux/filesystem
+   linux/inotify
    linux/ipmi
    linux/lvm
    linux/memory_management
