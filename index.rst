@@ -32,14 +32,12 @@ Tools
 
    tools/emacs
    tools/firefox
-   tools/libvirt
    tools/mc
    tools/monitoring
    tools/rrd
    tools/screen
    tools/smartmon
    tools/tmux
-   tools/virtualbox
    tools/zsh
 
 
@@ -106,6 +104,17 @@ Databases
    databases/mongodb
    databases/mysql
    databases/postgres
+
+
+Virtualization
+==============
+
+.. toctree::
+   :maxdepth: 1
+
+   virtualization/libvirt
+   virtualization/openstack
+   virtualization/virtualbox
 
    
 Programming

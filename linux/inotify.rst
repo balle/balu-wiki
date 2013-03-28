@@ -20,3 +20,16 @@ Recursive inotify
 
 * https://github.com/splitbrain/Watcher
 * http://www.splitbrain.org/blog/2011-01/07-watcher_a_recursive_incron_alternative
+
+.. code-block:: bash
+
+  [DEFAULT]
+  logfile=/var/log/watcher.log
+  pidfile=/var/run/watcher.pid
+
+  [data]
+  watch=/data
+  events=create,delete,modify
+  recursive=true
+  autoadd=true
+  command=rsync -a --delete $filename /media/backup
