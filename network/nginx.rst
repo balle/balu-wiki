@@ -231,6 +231,22 @@ uwsgi.params
   uwsgi_param  SERVER_NAME        $server_name;
 
 
+Gunicorn as WSGI server
+=======================
+
+* pip install gunicorn
+* gunicorn -w 4 -D --bind unix:/tmp/gunicorn.sock myproject:app
+
+.. code-block:: bash
+
+  server {
+    location / {
+      #proxy_pass http://localhost:8000;
+      proxy_pass unix:/tmp/gunicorn.sock;
+    }
+  }
+  
+  
 PHP
 ====
 
