@@ -131,7 +131,23 @@ Troubleshooting Nova
   rpc_backend = nova.rpc.impl_kombu
   rabbit_host=127.0.0.1
 
+* Unable to connect to AMQP server client: 0-10 -> rpc_backend in nova.conf doesnt match used server
 
+* AMQP server is unreachable: Socket closed -> Check credentials if socket is reachable
+
+.. code-block:: bash
+
+  rabbitmqctl list_users
+  rabbitmqctl change_password guest guest
+
+* or configure user / pass for rabbitmq access in `/etc/nova/nova.conf`
+
+.. code-block:: bash
+
+  rabbit_userid=guest
+  rabbit_password=guest
+
+  
 Troubleshooting Horizon
 =======================
 
