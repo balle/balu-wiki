@@ -132,6 +132,7 @@ Programming
    programming/lisp
    programming/perl
    programming/python
+   programming/rabbitmq
    programming/shell
 
 
