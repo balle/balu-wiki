@@ -32,13 +32,15 @@ Configfile to source
   export OS_AUTH_URL=http://127.0.0.1:35357/v2.0
 
   
-User
-=====
+User management
+===============
 
+* Either source configfile above or use `--token <your_secret> --endpoint http://127.0.0.1:35357/v2.0/`
 * List
 
 .. code-block:: bash
 
+  keystone tenant-list
   keystone user-list
 
 * Create
@@ -69,13 +71,18 @@ Troubleshooting Keystone
 ========================
 
 * SSL error SSL_CTX_use_Privatekey_file:system lib -> Check permission of /etc/keystone/ssl (maybe chown keystone)
-* Unable to authorize user -> edit /etc/keystone/keystone.conf section `[catalog]`
+* User / services etc doesnt appear in the database -> edit /etc/keystone/keystone.conf section `[catalog]`
 
 .. code-block:: bash
 
-  driver = keystone.catalog.backends.templated.TemplatedCatalog
-  template_file = /etc/keystone/default_catalog.templates
+  driver = keystone.catalog.backends.sql.Catalog
 
+* Unable to communicate with identity service "Invalid tenant" "Not authorized" -> check that the os-username and -tenant you use have a corresponding admin role
+
+.. code-block:: bash
+
+  keystone user-role-add --role-id <id_of_admin_role> --user-id <userid> --tenant-id <tenantid>
+  
 
 Troubleshooting Glance
 ======================
