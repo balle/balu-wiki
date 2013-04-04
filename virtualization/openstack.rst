@@ -65,6 +65,65 @@ Adding images
 .. code-block:: bash
 
   glance image-create --name="arch linux" --is-public true --disk-format raw --container-format bare --file "arch_linux.img"
+
+
+Managing security groups
+========================
+
+* Security groups define access rules for virtual machines
+
+.. code-block:: bash
+
+  nova secgroup-list
+  nova secgroup-create mygroup "test group"
+  nova secgroup-add-rule mygroup tcp <from-port> <to-port> 0.0.0.0/0
+
+
+Injecting SSH keys
+==================
+
+.. code-block:: bash
+
+  nova keypair-list
+  nova keypair-add --pub_key ~/.ssh/id_dsa.pub a_name
+
+
+Handling instances
+==================
+
+* Create a new machine
+
+.. code-block:: bash
+
+  nova flavor-list
+  nova image-list
+  nova boot --flavor <flavor_id> --image <image_id> --key_name <key_name> --security_group mygroup <machine_name>
+  nova list
+
+* Logfile `/var/log/nova/compute.log`
+* Get console output
+
+.. code-block:: bash
+
+  nova console-log <machine_id>
+
+* Remove a machine
+
+.. code-block:: bash
+
+  nova delete <machine_id>
+
+* Start / stop / suspend existing machine
+
+.. code-block:: bash
+
+  nova [start|stop|suspend] <machine_id>
+
+* Show details about a machine
+
+.. code-block:: bash
+
+  nova show <machine_id>
   
 
 Troubleshooting Keystone
@@ -129,7 +188,7 @@ Troubleshooting Nova
 
   modprobe kvm
 
-* Unable to connect to amqp server -> check that rabbitmq or qpid server is running
+* xxx in server list / Unable to connect to amqp server -> check that rabbitmq or qpid server is running
 
 * RabbitMQ config in `/etc/nova/nova.conf`
 
@@ -153,6 +212,17 @@ Troubleshooting Nova
 
   rabbit_userid=guest
   rabbit_password=guest
+
+* nova image-list returns `HTTP 401` -> thats auth failed check `/etc/nova/api-paste.ini` section `[filter:authtoken]` for
+
+.. code-block:: bash
+
+  admin_tenant_name=service
+  admin_user=nova
+  admin_password=nova
+
+* All nova commands return `Malformed request url (HTTP 400)` -> check that openstack-nova-compute is running
+* compute manager `nova [-] list index out of range` -> you're doomed with the nova-compute cannot restart because you have machine in ERROR state bug. only way is to manually delete the machine from the database nova (table instances and all constraints)
 
   
 Troubleshooting Horizon
