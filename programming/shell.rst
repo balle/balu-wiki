@@ -41,6 +41,13 @@ Now in unix time
 
   date +%s -d "now"
 
+Find files modified after date
+==============================
+
+.. code-block:: bash
+
+  find . -type f -newermt 2012-12-24
+
 Get lines where the nth element is bigger than x
 =================================================
 
