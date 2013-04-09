@@ -67,6 +67,49 @@ Adding images
   glance image-create --name="arch linux" --is-public true --disk-format raw --container-format bare --file "arch_linux.img"
 
 
+Configure networking
+====================
+
+* Setup bridge interface (install bridge-utils)
+
+.. code-block:: bash
+
+  ip link set eth0 promisc on
+
+* Create `/etc/sysconfig/network-scripts/ifcfg-br100`
+
+.. code-block:: bash
+
+  DEVICE=br100
+  TYPE=Bridge
+  ONBOOT=yes
+  DELAY=0
+  BOOTPROTO=static
+  IPADDR=192.168.100.1
+  NETMASK=255.255.255.0
+
+* Bring up bridge interface
+
+.. code-block:: bash
+
+  brctl addbr br100
+
+* Congigure network in `/etc/nova/nova.conf`
+
+.. code-block:: bash
+
+  network_manager=nova.network.manager.FlatDHCPManager
+  fixed_range=192.168.100.0/24
+  public_interface=eth0
+  flat_interface=eth0
+  flat_network_bridge=br100
+
+* Check network settings
+
+.. code-block:: bash
+
+  nova-manage network list
+
 Managing security groups
 ========================
 
@@ -77,7 +120,8 @@ Managing security groups
   nova secgroup-list
   nova secgroup-create mygroup "test group"
   nova secgroup-add-rule mygroup tcp <from-port> <to-port> 0.0.0.0/0
-
+  nova secgroup-list-rules mygroup
+  
 
 Injecting SSH keys
 ==================
@@ -90,6 +134,8 @@ Injecting SSH keys
 
 Handling instances
 ==================
+
+* Instances can be found in `/var/lib/nova/instances`
 
 * Create a new machine
 
@@ -124,6 +170,46 @@ Handling instances
 .. code-block:: bash
 
   nova show <machine_id>
+
+* Connect to machines display
+
+.. code-block:: bash
+
+  nova get-vnc-console <machine_id> novnc
+
+
+Adding additional storage
+=========================
+
+* Cinder uses LVM2 + ISCI
+* Can only attach a block device to one vm
+
+.. code-block:: bash
+
+  cinder create --display_name test 1
+  cinder list
+  nova volume-list
+  nova volume-attach <device_id> <volume_id> auto
+  <
+
+
+Configure logging  
+=================
+
+* E.g. open /etc/nova/nova.conf and add the following line
+
+.. code-block:: bash
+
+  log-config=/etc/nova/logging.conf
+
+* Now create /etc/nova/logging.conf with the following content
+
+.. code-block:: bash
+
+  [logger_nova]
+  level = DEBUG
+  handlers = stderr
+  qualname = nova
   
 
 Troubleshooting Keystone
@@ -157,11 +243,32 @@ Troubleshooting Cinder
 .. code-block:: bash
 
   vgdisplay cinder-volumes
+
+* HTTP 400 Permission denied? -> Edit /etc/cinder/api-paste.ini section `[filter:authtoken]`
+
+.. code-block:: bash
+
+  admin_tenant_name=service
+  admin_user=cinder
+  admin_password=cinder
+
+* Cannot connect to AMQP server -> Edit /etc/cinder/cinder.conf
+
+.. code-block:: bash
+
+  rpc_backend = cinder.rpc.impl_kombu
+  
+* Check nova is using cinder (edit /etc/nova/nova.conf)
+
+.. code-block:: bash
+
+  volume_api_class=nova.volume.cinder.API
   
 
 Troubleshooting Nova
 ====================
 
+* Use `virsh` / `virt-manager` or `virt-viewer` for debugging purpose
 * Check nova services (ensure ntp is running on all nova nodes)
 
 .. code-block:: bash
@@ -224,7 +331,14 @@ Troubleshooting Nova
 * All nova commands return `Malformed request url (HTTP 400)` -> check that openstack-nova-compute is running
 * compute manager `nova [-] list index out of range` -> you're doomed with the nova-compute cannot restart because you have machine in ERROR state bug. only way is to manually delete the machine from the database nova (table instances and all constraints)
 
+* `libvirt unable to read from monitor`  -> check vnc settings in `/etc/nova/nova.conf`
+* nova list returns `[Errno 111] Connection refused` -> Check that nova-compute is running, maybe configure its port in /etc/nova/nova.conf
+
+.. code-block:: bash
+
+  osapi_compute_listen_port=8774
   
+
 Troubleshooting Horizon
 =======================
 
