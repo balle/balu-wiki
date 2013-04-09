@@ -9,6 +9,13 @@ List all services and their status
 
   systemctl
 
+List all failed services
+========================
+
+.. code-block:: bash
+
+  systemctl --failed
+
 Start / Stop service
 ====================
 
@@ -17,6 +24,13 @@ Start / Stop service
 .. code-block:: bash
 
   systemctl [start|stop] sshd.service
+
+Activate service on boot
+========================
+
+.. code-block:: bash
+
+  systemctl enable sshd.service
 
 Show status and ongoing log messages of a service
 =================================================
@@ -87,12 +101,13 @@ An example service
   systemctl status test.service
 
 
-Enable a service at boot time
-=============================
+Power management
+================
 
 .. code-block:: bash
 
-  systemctl enable test.service
+  systemctl suspend
+  systemctl hibernate
 
 
 Use systemd as inetd
