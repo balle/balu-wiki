@@ -224,6 +224,36 @@ Load collection into memory
 
   db.runcommand({ touch: “collection_name”, data: true, index: true})
 
+
+Round robin collections
+=======================
+
+If you've not heard of capped collections before, they're a nice little feature of MongoDB that lets you have a high-performance circular queue. Capped collections have the following nice features:
+
+* They "remember" the insertion order of their documents
+* They store inserted documents in the insertion order on disk
+* They remove the oldest documents in the collection automatically as new documents are inserted
+
+.. code-block:: bash
+
+  db.create_collection(
+    'capped_collection',
+    capped=True,
+    size=size_in_bytes,     # required
+    max=max_number_of_docs, # optional
+    autoIndexId=False)      # optional
+
+* One can tail for new data in capped collections
+
+.. code-block:: bash
+
+  cur = db.capped_collection.find(
+        tailable=True,
+        await_data=True)
+
+* For more see http://blog.pythonisito.com/2013/04/mongodb-pubsub-with-capped-collections.html
+
+
 Getting help
 ============
 
