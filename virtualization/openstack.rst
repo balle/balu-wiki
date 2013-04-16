@@ -9,9 +9,9 @@ Overview
 * Tenant is something like an organization or mandant (can have multiple users)
 * Glance - Image service (manages kvm, qemu, vmware, amazon s3 etc images)
 * Nova - Compute service (manage startup / life of virtual machines using libvirt)
-* Quantum - Network configuration service
 * Cinder - Volumne service (manages storage and replication)
 * Horizon - Admin webfrontend in Django
+* (Quantum - Network configuration service) - install network client on each vm
 
 
 Installation
@@ -70,6 +70,11 @@ Adding images
 Configure networking
 ====================
 
+* FlatManager only connects vms to bridge device `no ip configuration!`
+* FlatDHCPManager configure network ip on bridge and starts dnsmasq dhcp server on that ip
+* VlanManager creates separate VLANs for each tenant
+* http://www.mirantis.com/blog/openstack-networking-flatmanager-and-flatdhcpmanager/
+
 * Setup bridge interface (install bridge-utils)
 
 .. code-block:: bash
@@ -94,7 +99,10 @@ Configure networking
 
   brctl addbr br100
 
-* Congigure network in `/etc/nova/nova.conf`
+* Configure network in `/etc/nova/nova.conf`
+* flat__network_bridge - bridge interface
+* flat_interface - where bridge ends up
+* public_interface - used for natting floating (public) ips to private ips
 
 .. code-block:: bash
 
@@ -110,6 +118,26 @@ Configure networking
 
   nova-manage network list
 
+* Setup floating ip range
+
+.. code-block:: bash
+
+  nova-manage floating create --pool=nova --ip_range=10.10.100.0/24
+
+* To automatically assign floating ip add the following to nova.conf
+
+.. code-block:: bash
+
+  auto_assign_floating_ip=True
+
+* For manually assigning a floating ip to a vm
+
+.. code-block:: bash
+
+  nova floating-ip-create
+  nova add-floating-ip <machine_id> <ip_address>
+  
+  
 Managing security groups
 ========================
 
@@ -178,11 +206,43 @@ Handling instances
   nova get-vnc-console <machine_id> novnc
 
 
+VNC access
+===========
+
+* First install requirements `novnc` and `openstack-nova-novncproxy`
+* Edit /etc/nova/nova.conf
+
+.. code-block:: bash
+
+  novnc_enabled=true
+  vnc_keymap="de-de"
+
+* Make sure `nova-console` and `nova-consoleauth` are running
+
+.. code-block:: bash
+
+  nova-manage service list
+
+* Get an access url to throw in your browser
+
+.. code-block:: bash
+
+  nova get-vnc-console <machine_id> novnc
+  
+
 Adding additional storage
 =========================
 
 * Cinder uses LVM2 + ISCI
 * Can only attach a block device to one vm
+* Activate Cinder in /etc/nova/nova.conf (restart nova-api and cinder-api afterwards)
+
+.. code-block:: bash
+
+  volume_api_class=nova.volume.cinder.API
+  enable_apis=ec2,osapi_compute,metadata
+
+* Create and attach a new columne
 
 .. code-block:: bash
 
@@ -190,19 +250,32 @@ Adding additional storage
   cinder list
   nova volume-list
   nova volume-attach <device_id> <volume_id> auto
-  <
+  
 
 
-Configure logging  
-=================
+Logging & Debugging 
+====================
 
-* E.g. open /etc/nova/nova.conf and add the following line
+* You can also add the following lines to all `[DEFAULT]` config sections
+
+.. code-block:: bash
+
+  verbose=True
+  debug=True
+
+* Every command has a `--debug` parameter
+
+.. code-block:: bash
+
+  nova --debug list
+  
+* Configure logging e.g. open /etc/nova/nova.conf and add the following line in `[DEFAULT]` secion
 
 .. code-block:: bash
 
   log-config=/etc/nova/logging.conf
 
-* Now create /etc/nova/logging.conf with the following content
+* Now create /etc/nova/logging.conf with the following content (syntax is `python logging <http://docs.python.org/3/library/logging.html>`) 
 
 .. code-block:: bash
 
@@ -210,6 +283,7 @@ Configure logging
   level = DEBUG
   handlers = stderr
   qualname = nova
+
   
 
 Troubleshooting Keystone
@@ -336,8 +410,9 @@ Troubleshooting Nova
 
 .. code-block:: bash
 
+  [nova.service]
   osapi_compute_listen_port=8774
-  
+
 
 Troubleshooting Horizon
 =======================
