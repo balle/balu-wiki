@@ -63,3 +63,27 @@ Create a snapshot from lvname
 
   lvcreate -L 1G -n snap --snapshot /dev/vgname/lvname
 
+
+Troubleshooting
+===============
+
+* Rescan
+
+.. code-block:: bash
+
+  pvscan
+  lvscan
+
+* Check that volumes / volume groups are active (Attr a)
+
+.. code-block:: bash
+
+  lvs / pvs
+
+* Reactivate all
+
+.. code-block:: bash
+
+  vgchange -ay
+
+  
