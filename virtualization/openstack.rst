@@ -5,13 +5,26 @@ Openstack
 Overview
 ========
 
-* Keystone - Identity service (manages user, roles and tenants)
 * Tenant is something like an organization or mandant (can have multiple users)
-* Glance - Image service (manages kvm, qemu, vmware, amazon s3 etc images)
-* Nova - Compute service (manage startup / life of virtual machines using libvirt)
-* Cinder - Volumne service (manages storage and replication)
-* Horizon - Admin webfrontend in Django
-* (Quantum - Network configuration service) - install network client on each vm
+
+================ ================ ========================================================================
+Subsystem        Ports            Description
+---------------- ---------------- ------------------------------------------------------------------------
+Keystone         35357            Identity service (manages user, roles and tenants)
+Glance           9191, 9292       Image service (manages kvm, qemu, vmware, amazon s3 etc images)
+Nova                              Compute service (manage startup / life of virtual machines using libvirt)
+Nova Scheduler   59229            Decide where to create a new instance
+Nova API         8773, 8774, 8775 Access Nova functionality
+Nova Network                      Configure network if Quantum is not in use
+Nova Compute                      Management controller for virtual machines
+Nova ObjectStore 3333             File-based Storage system (can be replaced by Glance or Image Service)
+Nova Cert                         Nova CA service for x509 certificates
+Nova Console                      VNC access support
+Nova Consoleauth                  VNC authorization
+Cinder           8776             Volumne service (manages additional storage and replication via LVM / iSCSI)
+Quantum                           Network configuration service - install network client on each vm
+Horizon          80               Admin webfrontend in Django
+================ ================ ========================================================================
 
 
 Installation
@@ -256,7 +269,15 @@ Adding additional storage
 Logging & Debugging 
 ====================
 
-* You can also add the following lines to all `[DEFAULT]` config sections
+* Get an overall overview about the status of openstack
+
+.. code-block:: bash
+
+  openstack-status
+
+* Every manage command like `nova-manage` or `cinder-manager` has a parameter `logs errors`
+  
+* You can add the following lines to all `[DEFAULT]` config sections of all subsystems like nova or keystone etc
 
 .. code-block:: bash
 
@@ -284,7 +305,15 @@ Logging & Debugging
   handlers = stderr
   qualname = nova
 
-  
+* Got a `Malformed request url (HTTP 400)` -> Check keystone (user / service / endpoint configuration) and service config for `auth_strategy=keystone` 
+
+.. code-block:: bash
+
+  keystone service-list
+  kestone endpoint-list
+
+* Got a `ERROR n/a (HTTP 401)` -> thats an auth failure check service and api config for same as above + tenant / user / password
+
 
 Troubleshooting Keystone
 ========================
@@ -318,7 +347,9 @@ Troubleshooting Cinder
 
   vgdisplay cinder-volumes
 
-* HTTP 400 Permission denied? -> Edit /etc/cinder/api-paste.ini section `[filter:authtoken]`
+* Check that tgtd is running
+  
+* HTTP 401 Permission denied? -> Edit /etc/cinder/api-paste.ini section `[filter:authtoken]`
 
 .. code-block:: bash
 
