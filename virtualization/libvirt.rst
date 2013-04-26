@@ -16,7 +16,7 @@ Connect to a remote libvirtd via ssh
 
   virsh -c qemu+ssh://username@host/system
 
-  
+
 Create a machine
 ================
 
@@ -35,15 +35,15 @@ Create a machine
 
   virt-install --name="TestVM" --os-type=linux --os-variant=rhel6 --network bridge=br0,mac=aa:bb:cc:aa:bb:cc --ram=512 --disk path=test-vm.img,size=20 --pxe
 
-  
+
 Remove a machine
 ================
 
 .. code-block:: bash
 
   virsh undefine <machine-name>
-  
-  
+
+
 List all virtual machines
 =========================
 
@@ -60,6 +60,16 @@ Start or stop a machine
   virsh shutdown <machine-name>
   virsh destroy <machine-name>
 
+* To shutdown a machine it must have acpid running
+
+
+Autostart a machine
+===================
+
+.. code-block:: bash
+
+  virsh autostart <machine-name>
+
 
 Info about a machine
 ====================
@@ -68,7 +78,7 @@ Info about a machine
 
   virsh dominfo <machine-name>
 
-  
+
 Info about host system
 ======================
 
@@ -114,7 +124,7 @@ Update boot order
 
   virsh define <machine-name> blah.xml
 
-  
+
 Configure RAM
 ==============
 
@@ -129,7 +139,7 @@ Configure number of CPUs
 
   virsh setvcpus <machine-name> <nr>
 
-  
+
 Update a machines config
 ========================
 
@@ -152,14 +162,25 @@ Backup
 .. code-block:: bash
 
   virsh snapshot-create <machine-name>
-  
+
 * Convert disk image
 
 .. code-block:: bash
 
   qemu-img convert -f raw -O qcow2 yourdisk.img newdisk.qcow2
 
-  
+
+Cloning
+=======
+
+* Will copy a whole machine and its properties and gives it a new mac address
+* The machine must be switched off
+
+.. code-block:: bash
+
+  virt-clone -o <machine-name> -n <new-machine-name>
+
+
 Migration
 =========
 
@@ -175,6 +196,19 @@ Performance overview
 =====================
 
 * Use ``virt-top``
+
+
+Performance tuning
+==================
+
+* Use virtio driver for disk and net this will give a machine direct hardware access (no emulation)
+* Maybe you have to load the kernel modules
+
+.. code-block:: bash
+
+  modprobe virtio_blk
+  modprobe virtio_net
+  modprobe virtio_pci
 
 
 Guest filesystem administration
