@@ -263,7 +263,16 @@ Adding additional storage
   cinder list
   nova volume-list
   nova volume-attach <device_id> <volume_id> auto
-  
+
+
+Automatically backup instances
+==============================
+
+* You can choose weekly instead of daily
+
+.. code-block:: bash
+
+  nova backup <device_id> <backup_name> daily <keep_x_copies>
 
 
 Logging & Debugging 
@@ -368,10 +377,35 @@ Troubleshooting Cinder
 .. code-block:: bash
 
   volume_api_class=nova.volume.cinder.API
+
+
+Troubleshooting Instances
+=========================
+
+* Check nova logs for errors
+
+.. code-block:: bash
+
+  nova-manage logs errors
+
+* Get information about the instance
+
+.. code-block:: bash
+
+  nova show <device_id>
+  nova diagnostics <device_id>
+
+* Qemu disk image is broken?
+
+.. code-block:: bash
+
+  qemu-img check check <disk_file>
   
 
 Troubleshooting Nova
 ====================
+
+* Read `Nova disaster recovery process <http://docs.openstack.org/trunk/openstack-compute/admin/content/nova-disaster-recovery-process.html>`
 
 * Use `virsh` / `virt-manager` or `virt-viewer` for debugging purpose
 * Check nova services (ensure ntp is running on all nova nodes)
