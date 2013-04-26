@@ -50,7 +50,7 @@ Migrate passwd / group
 
 * Edit ldif files and change ``dc=padl,dc=com`` to ``dc=myserver,dc=mydomain,dc=tld``
 * Maybe you have to delete the first entry of base.ldif because the root dn already exists
-  
+
   ldapadd -x -D "cn=admin,dc=myserver,dc=mydomain,dc=tld" -W -f base.ldif
   ldapadd -x -D "cn=admin,dc=myserver,dc=mydomain,dc=tld" -W -f group.ldif
   ldapadd -x -D "cn=admin,dc=myserver,dc=mydomain,dc=tld" -W -f passwd.ldif
@@ -62,6 +62,15 @@ Dump database
 .. code-block:: bash
 
   ldapsearch -x -D "cn=admin,dc=myserver,dc=mydomain,dc=tld" -W -b "dc=myserver,dc=mydomain,dc=tld"
+
+
+List user / groups
+==================
+
+.. code-block:: bash
+
+  getent passwd
+  getent group
 
 
 Migrate from 2.3 to 2.4
