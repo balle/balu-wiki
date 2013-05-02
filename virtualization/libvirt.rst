@@ -91,6 +91,7 @@ Connect to a machine
 
 * ``virt-viewer`` or ``virt-manager``
 
+
 Rename a machine
 ================
 
@@ -100,6 +101,7 @@ Rename a machine
   <edit muh.xml, change the name>
   virsh undefine <machine-name>
   virsh define muh.xml
+
 
 Attach a cdrom image
 ====================
@@ -140,6 +142,29 @@ Configure number of CPUs
   virsh setvcpus <machine-name> <nr>
 
 
+Resize disk
+===========
+
+* Switch off machine
+* Resize only disk image (filesystem left alone)
+
+.. code-block:: bash
+
+  qemu-img resize disk.img +10G
+
+* Or create a new bigger image
+
+.. code-block:: bash
+
+  qemu-img create -f qcow2 new-disk.img 20G
+
+* and convert old image to new one and expand sda2 to max size
+
+.. code-block:: bash
+
+  virt-resize --expand /dev/sda2 old-disk.img new-disk.img
+
+
 Update a machines config
 ========================
 
@@ -151,23 +176,93 @@ Update a machines config
 Backup
 ======
 
-* Save a machines CPU, RAM states
+* Save a machines RAM state to a file
 
 .. code-block:: bash
 
   virsh save <machine-name> <file>
 
-* Take a snapshot (must be supported by disk image format)
+* Take a snapshot of disk and ram (must be supported by disk image format e.g. qcow2 and this will PAUSE the machine)
 
 .. code-block:: bash
 
   virsh snapshot-create <machine-name>
 
-* Convert disk image
+* or by using qemu tools (but only when vm is off!)
+
+.. code-block:: bash
+
+  qemu-img snapshot -c my-backup disk.img
+  qemu-img snapshot -l disk.img
+
+* Another possibility is to install libguestfs-tools and create a tar archive of /
+
+.. code-block:: bash
+
+  virt-tar -z -x <machine_name> / machine-backup.tgz
+
+
+Restore
+=======
+
+.. code-block:: bash
+
+  virsh snapshot-revert <machine_name> <snapshot>
+
+
+Convert disk image
+==================
 
 .. code-block:: bash
 
   qemu-img convert -f raw -O qcow2 yourdisk.img newdisk.qcow2
+
+
+Disk tricks
+===========
+
+* Install libguestfs-tools
+
+.. code-block:: bash
+
+  virt-df
+  virt-df -d <machine_name>
+
+* Get content of a file
+
+.. code-block:: bash
+
+  virt-cat -d <machine_name> <filename>
+
+* Edit a file (vm must be off)
+
+.. code-block:: bash
+
+  virt-edit -d <machine_name> <filename>
+
+* Or even get a shell on a disk image
+
+.. code-block:: bash
+
+  guestfish \
+            add disk.img : run : mount /dev/vg_guest/lv_root / : \
+                      write /etc/resolv.conf "nameserver 8.8.8.8"
+
+
+Disk encryption
+===============
+
+* Create
+
+.. code-block:: bash
+
+  qemu-img create -e -f qcow2 disk.img 10G
+
+* Convert
+
+.. code-block:: bash
+
+  qemu-img convert -e -O qcow2 disk.img disc-enc.img
 
 
 Cloning
@@ -201,7 +296,7 @@ Performance overview
 Performance tuning
 ==================
 
-* Use virtio driver for disk and net this will give a machine direct hardware access (no emulation)
+* Use virtio driver for disk and net this will give a machine direct hardware access (no emulation - only for linux guests)
 * Maybe you have to load the kernel modules
 
 .. code-block:: bash
@@ -210,16 +305,8 @@ Performance tuning
   modprobe virtio_net
   modprobe virtio_pci
 
-
-Guest filesystem administration
-===============================
-
-* You can use ``guestfish`` to access a guests filesystem
-* Mount / Umount filesystems
-* Read / Write files
-* Manage swap
-* Configure partitions
-* Execute commands on the shell etc
+* If one dont want to use snapshots use `raw` as image type
+* Use `Writethrough` as caching type
 
 
 Scripting with Python2
@@ -248,3 +335,37 @@ Troubleshooting
 
 * Intel virtualisation support must be activated in bios to use kvm
 * Maybe Vbox modules should be unloaded
+* Use `virt-rescue` (from libguestfs-tools) as live-rescue system
+
+.. code-block:: bash
+
+  virt-rescue -d <machine_name>
+
+
+KVM
+===
+
+* Create an image
+
+.. code-block:: bash
+
+  qemu-img create -f qcow2 disk.img 4G
+
+* Install a machine
+
+.. code-block:: bash
+
+  qemu-kvm -m 1024 -boot -once=d -cdrom cd.iso disk.img
+
+* Start a machine
+
+.. code-block:: bash
+
+  qemu-kvm -m 1024 disk.img
+
+* Start qemu monitor
+
+.. code-block:: bash
+
+  qemu-kvm -m 1024 disk.img -monitor stdin
+
