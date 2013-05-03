@@ -307,6 +307,8 @@ Performance tuning
 
 * If one dont want to use snapshots use `raw` as image type
 * Use `Writethrough` as caching type
+* Use MacVtab bridge as network device with virtio model
+* Use Spice and QXL driver for display
 
 
 Scripting with Python2
