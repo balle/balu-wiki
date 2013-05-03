@@ -44,7 +44,7 @@ Configfile to source
   export OS_TENANT_NAME=<whatever>
   export OS_AUTH_URL=http://127.0.0.1:35357/v2.0
 
-  
+
 User management
 ===============
 
@@ -105,6 +105,7 @@ Configure networking
   BOOTPROTO=static
   IPADDR=192.168.100.1
   NETMASK=255.255.255.0
+  STP=off
 
 * Bring up bridge interface
 
@@ -149,8 +150,8 @@ Configure networking
 
   nova floating-ip-create
   nova add-floating-ip <machine_id> <ip_address>
-  
-  
+
+
 Managing security groups
 ========================
 
@@ -162,7 +163,7 @@ Managing security groups
   nova secgroup-create mygroup "test group"
   nova secgroup-add-rule mygroup tcp <from-port> <to-port> 0.0.0.0/0
   nova secgroup-list-rules mygroup
-  
+
 
 Injecting SSH keys
 ==================
@@ -241,7 +242,7 @@ VNC access
 .. code-block:: bash
 
   nova get-vnc-console <machine_id> novnc
-  
+
 
 Adding additional storage
 =========================
@@ -275,7 +276,32 @@ Automatically backup instances
   nova backup <device_id> <backup_name> daily <keep_x_copies>
 
 
-Logging & Debugging 
+Where to find which service?
+============================
+
+.. code-block:: bash
+
+  nova host-list
+  nova hypervisor-list
+
+
+Where to find which instance?
+=============================
+
+.. code-block:: bash
+
+  nova hypervisor-servers <host>
+
+
+Statistics
+==========
+
+.. code-block:: bash
+
+  nova hypervisor-stats
+
+
+Logging & Debugging
 ====================
 
 * Get an overall overview about the status of openstack
@@ -285,7 +311,7 @@ Logging & Debugging
   openstack-status
 
 * Every manage command like `nova-manage` or `cinder-manager` has a parameter `logs errors`
-  
+
 * You can add the following lines to all `[DEFAULT]` config sections of all subsystems like nova or keystone etc
 
 .. code-block:: bash
@@ -298,14 +324,14 @@ Logging & Debugging
 .. code-block:: bash
 
   nova --debug list
-  
+
 * Configure logging e.g. open /etc/nova/nova.conf and add the following line in `[DEFAULT]` secion
 
 .. code-block:: bash
 
   log-config=/etc/nova/logging.conf
 
-* Now create /etc/nova/logging.conf with the following content (syntax is `python logging <http://docs.python.org/3/library/logging.html>`) 
+* Now create /etc/nova/logging.conf with the following content (syntax is `python logging <http://docs.python.org/3/library/logging.html>`)
 
 .. code-block:: bash
 
@@ -314,7 +340,7 @@ Logging & Debugging
   handlers = stderr
   qualname = nova
 
-* Got a `Malformed request url (HTTP 400)` -> Check keystone (user / service / endpoint configuration) and service config for `auth_strategy=keystone` 
+* Got a `Malformed request url (HTTP 400)` -> Check keystone (user / service / endpoint configuration) and service config for `auth_strategy=keystone`
 
 .. code-block:: bash
 
@@ -339,7 +365,7 @@ Troubleshooting Keystone
 .. code-block:: bash
 
   keystone user-role-add --role-id <id_of_admin_role> --user-id <userid> --tenant-id <tenantid>
-  
+
 
 Troubleshooting Glance
 ======================
@@ -357,7 +383,7 @@ Troubleshooting Cinder
   vgdisplay cinder-volumes
 
 * Check that tgtd is running
-  
+
 * HTTP 401 Permission denied? -> Edit /etc/cinder/api-paste.ini section `[filter:authtoken]`
 
 .. code-block:: bash
@@ -371,7 +397,7 @@ Troubleshooting Cinder
 .. code-block:: bash
 
   rpc_backend = cinder.rpc.impl_kombu
-  
+
 * Check nova is using cinder (edit /etc/nova/nova.conf)
 
 .. code-block:: bash
@@ -400,7 +426,7 @@ Troubleshooting Instances
 .. code-block:: bash
 
   qemu-img check check <disk_file>
-  
+
 
 Troubleshooting Nova
 ====================
