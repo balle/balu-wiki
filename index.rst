@@ -51,6 +51,7 @@ Network
    network/bridging
    network/clustershell
    network/gns3
+   network/iproute
    network/irssi
    network/ldap
    network/mdns
