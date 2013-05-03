@@ -48,6 +48,7 @@ Network
 .. toctree::
    :maxdepth: 1
 
+   network/bridging
    network/clustershell
    network/gns3
    network/irssi
@@ -94,7 +95,7 @@ Hacking
    hacking/wireless
    hacking/wireshark
 
-   
+
 Databases
 =========
 
@@ -116,7 +117,7 @@ Virtualization
    virtualization/openstack
    virtualization/virtualbox
 
-   
+
 Programming
 ===========
 
