@@ -24,6 +24,15 @@ Load balancing
     nexthop via $P2 dev $IF2 weight 1
 
 
+Show routes of ipsec tunnel
+===========================
+
+.. code-block:: bash
+
+  ip xfrm policy
+  ip xfrm state
+
+
 Create a virtual interface
 ==========================
 
