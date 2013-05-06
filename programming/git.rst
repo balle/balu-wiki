@@ -268,6 +268,44 @@ Git over HTTP
   chown apache:apache -R /git/test
 
 
+Apache config for gitweb
+========================
+
+.. code-block:: bash
+
+  <VirtualHost *:80>
+    ServerName git.server.net
+    ServerAlias git
+
+    DocumentRoot "/var/www/git"
+    Timeout 2400
+
+    LogFormat   combinedssl
+    LogLevel    info
+    ErrorLog    /var/log/httpd/git-error.log
+    TransferLog /var/log/httpd/git-access.log
+
+    RewriteEngine On
+    RewriteLog "/var/log/httpd/git-rewirte.log"
+    RewriteLogLevel 5
+    RewriteCond %{QUERY_STRING} ^.*p=(.*?)(\.git|;|&|=|\s).*
+    RewriteRule (.*)/$ http://git.server.net$1?
+
+    SetEnv GIT_PROJECT_ROOT /git
+    SetEnv GITWEB_CONFIG /etc/gitweb.conf
+    Alias /git/static/ /var/www/git/static/
+    AliasMatch ^/git/(.*/objects/[0-9a-f]{2}/[0-9a-f]{38})$          /var/www/git/$1
+    AliasMatch ^/git/(.*/objects/pack/pack-[0-9a-f]{40}.(pack|idx))$ /var/www/git/$1
+    ScriptAliasMatch \
+                    "(?x)^/git/(.*/(HEAD | \
+                    info/refs | \
+                    objects/info/[^/]+ | \
+                    git-(upload|receive)-pack))$" \
+                    /usr/bin/git-http-backend/$1
+    ScriptAlias /git/ /var/www/git/gitweb.cgi/
+  </VirtualHost>
+
+
 Subversion over git
 ====================
 
