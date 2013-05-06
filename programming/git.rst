@@ -256,6 +256,18 @@ Handling remote repositories
   git remote show origin
 
 
+Git over HTTP
+=============
+
+.. code-block:: bash
+
+  git clone --bare /git/test
+  touch git-daemon-export-ok                                                                                                             │
+  git config --file config http.receivepack true                                                                                         │
+  git config core.sharedRepository                                                                                                       │
+  chown apache:apache -R /git/test
+
+
 Subversion over git
 ====================
 
