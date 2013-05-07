@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'BaLu Wiki'
-copyright = u'2012, Balle & Lilu'
+copyright = u'2013, Balle & Lilu'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

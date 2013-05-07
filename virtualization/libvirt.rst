@@ -182,7 +182,7 @@ Backup
 
   virsh save <machine-name> <file>
 
-* Take a snapshot of disk and ram (must be supported by disk image format e.g. qcow2 and this will PAUSE the machine)
+* Take a snapshot of disk and ram (must be supported by disk image format e.g. qcow2 and this will PAUSE the machine if ram is backuped! use --disk-only to avoid this)
 
 .. code-block:: bash
 
@@ -194,6 +194,13 @@ Backup
 
   qemu-img snapshot -c my-backup disk.img
   qemu-img snapshot -l disk.img
+
+* Extract snapshot of qcow2 image file
+
+.. code-block:: bash
+
+  qemu-img convert -f qcow2 -s <snapshot> -O qcow2 <image_file> <backup_file>
+
 
 * Another possibility is to install libguestfs-tools and create a tar archive of /
 
