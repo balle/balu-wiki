@@ -44,6 +44,21 @@ CL-DBI
     do (format t "~A ~,5F~%" (getf row :|timestamp|) (getf row :|value|)))
 
 
+Mongo
+=====
+
+* (ql:quickload "cl-mongo")
+
+.. code-block:: lisp
+
+  (use-package :cl-mongo)
+  (db.use "test")
+  (defvar *DOC* (make-document))
+  (add-element "key" "value" *DOC*)`
+  (db.insert "mycollection" *DOC*)
+  (db.find "mycollection" (kv "key" "value"))
+
+
 ORM
 ===
 
