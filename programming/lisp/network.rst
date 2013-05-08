@@ -42,3 +42,14 @@ Example socket client
      while line do
      (format t "~A~%" line))
 
+
+SNMP
+====
+
+* (ql:quickload "snmp")
+
+.. code-block:: lisp
+
+  (snmp:with-open-session (s "192.168.1.1" :version :v1 :community "public") (snmp:snmp-walk s "system"))
+
+* For more see http://cl-net-snmp.svn.sourceforge.net/viewvc/cl-net-snmp/snmp/branches/6/doc/papers/ILC09-SNMP.pdf
