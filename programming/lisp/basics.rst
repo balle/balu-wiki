@@ -7,12 +7,7 @@ Overview
 
 * (print "Hello world")
 * (format "%s" "Hello world")
-* create a global variable
-
-.. code-block:: lisp
-
-  (setq name "balle")
-
+* create a global variable with ``defvar`` or ``defparameter``
 * (setq name "balle") is the same as (set 'name "balle")
 
 * local variables
@@ -21,11 +16,12 @@ Overview
 
   (let ((var1 value) (var2 value2) do-something)
 
+* use ``let*`` if vars must know each other during declaration
 * var returns the value of var
-* 'var returns a reference on var
+* 'var returns a reference (the symbol) of var
+* symbols are always treated like uppercase 
 * quote or ' suspresses evaluation
 * ` suspresses evaluation for all expression but prefixed with ,
-* #' or function suspresses evaluation of functions (aka returns pointer)
 
 * nil and () are the same
 * with type-of you get the type of an object
@@ -37,16 +33,33 @@ Lists
 * ``append`` adds to a list by copying the first list
 * ``nconc`` adds the second, third etc list to the first
 * ``cons`` adds a element in front of list
-* ``pop`` returns and removes the first element
 * ``push`` insert an element at the beginning of the list
+* ``pop`` returns and removes the first element
 * ``(number-sequence 1 9)`` returns a list with numbers from 1 to 9
-* ``length`` returns the number of the lists elements
 * ``first`` or ``car`` returns the first element of the list
 * ``rest`` or ``cdr`` returns the rest of the list
+* ``cadr`` is the same as (car (cdr alist))
+* ``cdar`` is the same as (cdr (car alist))
 * (:muh 1 :maeh 2) is a property list
 * plist (property list) is a list with (:key value) pairs
 * (getf list :keyword) returns value of keyword in a plist
 * alist is a plist where you can also lookup by value using (assoc 'what-to-find my-list)
+* plists and alists are still handled sequencially
+* ``(member 'balle '(balle lilu))`` check if something is in a list
+* ``set-difference`` tells which items are in one list but not in another
+* ``intersection`` tells which items are in both Lists
+* ``remove-duplicates`` creates a unique list out of two or more lists
+* ``(mapcar #'function alist)`` applys function on every list element and returns new list
+* ``(mapc #'function alist)`` applys function on every list element without returning a new list
+
+
+Sequence functions
+==================
+
+* ``length`` returns the number of the lists elements
+* ``(map 'type #'function aseq)`` to loop through a sequence create a new 'type and apply function on ever element
+* ``(reduce function aseq)`` calls function with next item and previous return value of function and thus reduces a sequence to one value
+* ``(apply function aseq)`` Call function with remaining args, using last arg as list of args
 
 
 hashes
@@ -65,6 +78,17 @@ Arrays
 
   (make-array 5 :fill-pointer 0 :adjustable t)
   (vector-push-extend 'new-stuff my-array)
+  (aref my-array 3)
+
+
+Structures
+==========
+
+.. code-block:: LISP
+
+  (defstruct person surname firstname age)
+  (defvar hans (make-person :surname wurst :firstname hans :age 35))
+  (person-age hans)
 
 
 functions
@@ -90,8 +114,10 @@ functions
 
   (defun hello (&key name "world" by default))
 
-* use lamda to define anonymous functions
-* let declares a local variable
+* #' or function suspresses evaluation of functions (aka returns pointer)
+* use lambda to define anonymous functions
+* flet declares local functions
+* labels command is for flet what let* is for let (functions know each other during definition)
 
 
 control structures
@@ -102,6 +128,8 @@ control structures
 * (equal "abc" "abc") -> t
 * check numbers with =
 * (= 1 1) -> t
+* check symbols with eq
+* check everything else with equal
 
 * if else
 
@@ -113,7 +141,8 @@ control structures
   )
 
 
-* do switch case with cond
+* ``when`` is an if without else that can handle multiple statements
+* cond is a list of checks like if, else if, else if, else
 
 .. code-block:: lisp
 
@@ -126,6 +155,18 @@ control structures
       (t
 	(do-something))
   )
+
+* there is also a switch case
+
+.. code-block:: lisp 
+
+  (case person
+      ((hans)
+         '(give him some food))
+      ((wurst)
+         '(run away screaming))
+      ((otherwise)
+         '(be cool)))
 
 
 Loops
