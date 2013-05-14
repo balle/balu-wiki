@@ -80,6 +80,15 @@ Clush.conf
   ssh_options: -oStrictHostKeyChecking=no
 
 
+* Need to limit number of connection or connection / command timeouts?
+
+.. code-block:: bash
+
+  fanout: 256
+  connect_timeout: 15
+  command_timeout: 0
+
+
 Scripting in Python
 ===================
 
