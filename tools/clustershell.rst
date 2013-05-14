@@ -66,3 +66,29 @@ Retrieve a file
 .. code-block:: bash
 
   clush -v -w @node_all --rcopy /root/.ssh/id_rsa
+
+
+Clush.conf
+==========
+
+* Need ssh password auth? Install sshpass and edit /etc/custershell/clush.conf
+
+.. code-block:: bash
+
+  ssh_user: root
+  ssh_path: /usr/bin/sshpass -p "password"
+  ssh_options: -oStrictHostKeyChecking=no
+
+
+Scripting in Python
+===================
+
+.. code-block:: python
+
+  from ClusterShell.Task import task_self, NodeSet
+
+  task = task_self()
+  task.run("/bin/uname -r", nodes="mynode[001-123]")
+
+  for output, nodes in task.iter_buffers():
+      print NodeSet.fromlist(nodes), output

@@ -50,7 +50,6 @@ Network
    :maxdepth: 1
 
    network/bridging
-   network/clustershell
    network/gns3
    network/iproute
    network/irssi
