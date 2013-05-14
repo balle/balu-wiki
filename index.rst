@@ -30,6 +30,7 @@ Tools
 .. toctree::
    :maxdepth: 1
 
+   tools/clustershell
    tools/emacs
    tools/firefox
    tools/mc
