@@ -132,6 +132,7 @@ Programming
    programming/html5
    programming/jenkins
    programming/lisp
+   programming/mpi
    programming/perl
    programming/python
    programming/rabbitmq
