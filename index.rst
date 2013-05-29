@@ -35,6 +35,7 @@ Tools
    tools/firefox
    tools/mc
    tools/monitoring
+   tools/puppet
    tools/rrd
    tools/screen
    tools/smartmon
