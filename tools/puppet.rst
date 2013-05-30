@@ -50,6 +50,16 @@ Overview
   }
 
 
+Classes
+=======
+
+* Group some code blocks like package, file and service
+
+.. code-block:: bash
+
+  class a_name($param = "default value") {}
+  
+
 Modules
 =======
 
@@ -119,11 +129,31 @@ Adding users
     shell => "/bin/zsh",
     home => "/home/testuser",
     comment => "Just a test",
-    password => "secret",
+    password => "$hash",
     managehome => true,
   }
+
+* To generate the password hash use
+
+.. code-block:: bash
+
+  openssl passwd
   
 
+SSH keys
+========
+
+.. code-block:: bash
+
+  ssh_authorized_key { "testuser":
+    ensure => present,
+    type => "ssh-rsa",
+    key => "",
+    user => "testuser",
+    require => User["testuser"],
+  }
+  
+  
 Starting services
 =================
 
@@ -190,6 +220,44 @@ Config controls
                                     $logdir = '/var/log/apache2'}
   }        
 
+
+Firewall config
+===============
+
+* First install firewall module
+
+.. code-block::
+
+  puppet module install puppetlabs-firewall
+
+* The comment must contain an index to get the order of the rules
+
+.. code-block:: bash
+
+  firewall { "00001 a comment":
+    proto => 'tcp',
+    iniface => 'eth0',
+    dport => 22,
+    action => 'accept',
+  }
+
+
+SELinux
+=======
+
+.. code-block:: bash
+
+  selboolean { "a comment":
+    name => "http_enable_cgi",
+    value => 1,
+  }
+
+  selmodule { "load a policy":
+    ensure => present,
+    selmoduledir => "/path/to/policy",
+    name => "filename_without_pp",
+  }
+  
   
 Defined resource types
 ======================
@@ -277,6 +345,7 @@ Getting help
 ============
 
 * http://docs.puppetlabs.com/puppet/3/reference/
+* http://www.puppetcookbook.com
 * doc about a resource
 
 .. code-block:: bash
