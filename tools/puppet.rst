@@ -69,6 +69,19 @@ Modules
     }
   }
 
+* Search for existing modules on puppetlabs
+
+.. code-block:: bash
+
+  puppet module search <term>
+
+* Install / uninstall a module
+
+.. code-block:: bash
+
+  puppet module install puppetlabs-openstack
+  puppet module uninstall puppetlabs-openstack
+  
 
 Install software
 ================
@@ -88,7 +101,7 @@ Copy files
     group => "root",
     mode => 0440,
     source => "puppet://$puppetserver/modules/emacs/.emacs"
-    requrie => Package["emacs"]
+    require => Package["emacs"]
   }
 
 * File must be on master server in ``/etc/puppet/modules/emacs/files/.emacs``
@@ -127,7 +140,16 @@ Starting services
 
 * hasstatus and hasrestart tells puppet if the init script understand the parameter status and restart
 * A file can trigger a service restart by adding ``notify => Class["ssh::service"]``
+* To stop a service use ``ensure => stopped,``
 
+
+Deleting stuff
+==============
+
+.. code-block:: bash
+
+  ensure => absent,
+  
 
 Templates
 =========
@@ -225,6 +247,43 @@ Cert handling
   puppet cert clean <hostname>
 
 
+Environments
+============
+
+* Add the following to puppet.conf
+
+.. code-block:: bash
+
+  [main]
+    modulepath = $confdir/modules
+    manifest = $confdir/manifests/site.pp
+  
+  [devel]
+    modulepath = $confdir/devel/modules
+    manifest = $confdir/devel/manifests/site.pp
+
+* Now you can tell a puppet agent to use the devel environment by adding ``--environment devel``
+
+
+Syntaxcheck a manifest
+======================
+
+.. code-block:: bash
+
+  puppet apply --noop <manifests/init.pp>
+  
+
+Getting help
+============
+
+* http://docs.puppetlabs.com/puppet/3/reference/
+* doc about a resource
+
+.. code-block:: bash
+
+  puppet describe -s <keyword>
+  (+ 1 2)
+
 Debugging
 =========
 
@@ -240,4 +299,6 @@ Debugging
 
   puppet agent --no-daemonize --verbose --test --noop
 
+* Use ``--debug`` instead of ``--verbose`` for even more output
 * You can use the ``notice("foo")`` command somewhere to send a log message
+* See ``/var/lib/puppet/state/last_run_report.yaml`` for information update last update
