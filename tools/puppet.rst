@@ -248,8 +248,8 @@ SELinux
 .. code-block:: bash
 
   selboolean { "a comment":
-    name => "http_enable_cgi",
-    value => 1,
+    name => "httpd_enable_cgi",
+    value => 'off',
   }
 
   selmodule { "load a policy":
