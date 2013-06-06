@@ -10,6 +10,7 @@ Extensions
 * Download Helper - https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/
 * Session Manager - https://addons.mozilla.org/en-US/firefox/addon/session-manager/
 * Firemacs - https://addons.mozilla.org/en-US/firefox/addon/firemacs/
+* It's all text - https://addons.mozilla.org/en-US/firefox/addon/4125
 * LoL - http://elder-gods.org/lol
 * Foxyproxy - https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/
 * Live HTTP headers - https://addons.mozilla.org/en-US/firefox/addon/live-http-headers/
