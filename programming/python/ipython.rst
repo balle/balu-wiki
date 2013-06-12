@@ -75,6 +75,23 @@ Edit a function
   edit <function>
 
 
+Save shell command in variable
+==============================
+
+.. code-block:: bash
+
+  foo = !ps ax | grep something
+
+
+Define aliases
+==============
+
+.. code-block:: bash
+
+  %alias pids ps ax | grep app | cut -d " " -f 1
+  %store pids
+
+
 Debugging
 =========
 
