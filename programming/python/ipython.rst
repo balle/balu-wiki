@@ -301,10 +301,16 @@ Parallel computing
             'host3.example.com' : (1, ['--profile-dir=/home/different/location']),
             'host4.example.com' : 8 }
 
+* The key of the engines dict is the host and value number of engines to start
 * Now you can setup the cluster by executing
 
 .. code-block:: bash
 
   ipcluster start --profile=ssh
 
+* Use map to call a function on a dataset on all nodes
 
+.. code-block:: python
+ 
+  v = c[:]
+  result = v.map_sync(lambda x: x*x, data)
