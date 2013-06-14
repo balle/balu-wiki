@@ -336,6 +336,24 @@ Connect to an existing console
 * The kernel.json file can be found in ``~/.ipython/profile_default/security``
 
 
+Save state of a console
+=======================
+
+* You can start / stop logging of a sessions state with ``%logstart <file>`` / ``%logstop``
+* To load the session state exec
+
+.. code-block:: bash
+
+  ipython -log <file>
+
+* To automatically save state edit ``~/.ipython/profile_default/ipython_config.py`` and set
+
+.. code-block:: bash
+
+  c.TerminalInteractiveShell.logstart = True
+  c.TerminalInteractiveShell.logfile = '~/ipython_session.log'
+
+
 Extensions
 ==========
 
