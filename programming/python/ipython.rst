@@ -314,3 +314,36 @@ Parallel computing
  
   v = c[:]
   result = v.map_sync(lambda x: x*x, data)
+
+
+Connect to an existing console
+===============================
+
+* Start ipython with console or qtconsole
+
+.. code-block:: bash
+
+  ipython console
+  [IPKernelApp] To connect another client to this kernel, use:
+  [IPKernelApp] --existing kernel-26492.json
+
+* Now you can connect another console by executing
+
+.. code-block:: bash
+
+  ipython console --existing kernel-26492.json
+
+* The kernel.json file can be found in ``~/.ipython/profile_default/security``
+
+
+Extensions
+==========
+
+* To install use
+
+.. code-block:: bash
+
+  %install_ext https://www...
+
+* https://pypi.python.org/pypi/ipython-sql
+* Cython
