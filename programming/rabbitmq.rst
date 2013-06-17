@@ -43,6 +43,15 @@ User management
 
   rabbitmqctl delete_user <username>
 
+* Testing access
+
+.. code-block:: bash
+
+  import pika
+  parameters = pika.ConnectionParameters('localhost', 5672, '/', pika.PlainCredentials('guest', 'guest'))
+  connection = pika.BlockingConnection(parameters)
+  connection.disconnect()
+
 
 Enable management plugin
 ========================
