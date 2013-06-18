@@ -117,6 +117,20 @@ Copy files
 * File must be on master server in ``/etc/puppet/modules/emacs/files/.emacs``
 
 
+Change a file
+==============
+
+.. code-block:: bash
+
+  augeas { "nova.conf":
+    context => "/files/etc/nova/nova.conf",
+    changes => [
+                  "set rpc_backend nova.rpc.impl_kombu",
+                ],
+  }
+
+
+
 Adding users
 ============
 
