@@ -17,12 +17,15 @@ Nova Scheduler   59229            Decide where to create a new instance
 Nova API         8773, 8774, 8775 Access Nova functionality
 Nova Network                      Configure network if Quantum is not in use
 Nova Compute                      Management controller for virtual machines
-Nova ObjectStore 3333             File-based Storage system (can be replaced by Glance or Image Service)
+Nova Conductor                    Encapsulate database api for nova
+Nova ObjectStore 3333             File-based Storage system (can be replaced by Swift)
 Nova Cert                         Nova CA service for x509 certificates
 Nova Console                      VNC access support
 Nova Consoleauth                  VNC authorization
 Cinder           8776             Volumne service (manages additional storage and replication via LVM / iSCSI)
 Quantum                           Network configuration service - install network client on each vm
+Swift                             Distributed File Storage Service (can be used to store images for Glance)
+Ceph                              Ceph is a distributed storage system (object store, block store and POSIX-compliant distributed file system)
 Horizon          80               Admin webfrontend in Django
 ================ ================ ========================================================================
 
@@ -366,6 +369,13 @@ Troubleshooting Keystone
 
   keystone user-role-add --role-id <id_of_admin_role> --user-id <userid> --tenant-id <tenantid>
 
+* Select role in db
+
+.. code-block:: bash
+
+  select m.data from user u join user_project_metadata m on u.id=m.user_id join project p on p.id=m.project_id where u.name="nova";
+  select * from role where id="a4b2afdf62baifgafaifga7f";
+
 
 Troubleshooting Glance
 ======================
@@ -516,3 +526,17 @@ Troubleshooting Horizon
   Require all granted
 
 * Command node not found -> Install http://www.nodejs.org
+
+
+Programming
+===========
+
+* Overview about Openstack APIs http://www.ibm.com/developerworks/cloud/library/cl-openstack-pythonapis/index.html
+* Keystone
+
+.. code-block:: bash
+
+  import keystoneclient.v2_0.client as ksclient
+  conn = ksclient.Client(auth_url="http://127.0.0.1:35357/v2.0", username="nova", password="nova", tenant_name="services")
+  print conn.auth_token
+
