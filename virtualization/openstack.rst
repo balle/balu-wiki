@@ -376,6 +376,8 @@ Troubleshooting Keystone
   select m.data from user u join user_project_metadata m on u.id=m.user_id join project p on p.id=m.project_id where u.name="nova";
   select * from role where id="a4b2afdf62baifgafaifga7f";
 
+* Check ``token_format`` in keystone.conf should be ``UUID`` by default
+
 
 Troubleshooting Glance
 ======================
