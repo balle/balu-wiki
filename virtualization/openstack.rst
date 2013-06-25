@@ -83,6 +83,22 @@ Adding images
   glance image-create --name="arch linux" --is-public true --disk-format raw --container-format bare --file "arch_linux.img"
 
 
+Flavors
+=======
+
+* List
+
+.. code-block:: bash
+
+  nova flavor-list
+
+* Create
+
+.. code-block:: bash
+
+  nova flavor-create &lt;name&gt; &lt;id&gt; &lt;ram&gt; &lt;disk&gt; &lt;vcpus&gt;
+
+
 Configure networking
 ====================
 
@@ -267,6 +283,29 @@ Adding additional storage
   cinder list
   nova volume-list
   nova volume-attach <device_id> <volume_id> auto
+
+
+Quotas
+======
+
+* A value of -1 means unlimited
+* Show all quotas of a tenant / project
+
+.. code-block:: bash
+
+  nova quota-show --tenant <tenant>
+
+   * To configure default quota for all tenants edit ``/etc/nova/nova.conf`` and set the desired quota like
+
+.. code-block:: bash
+
+  quota_instances=100
+
+   * To update the quota of just one tenant execute
+
+.. code-block:: bash
+
+  nova quota-update <tenant-id> --instances 100
 
 
 Automatically backup instances
