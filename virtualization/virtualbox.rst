@@ -29,3 +29,9 @@ Automation
 ==========
 
 * http://vagrantup.com/
+
+
+Download disk images
+====================
+
+* http://virtualboximages.com/

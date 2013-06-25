@@ -378,3 +378,19 @@ KVM
 
   qemu-kvm -m 1024 disk.img -monitor stdin
 
+
+Downloading disk images
+=======================
+
+* Grab an image from http://virtual-machine.org or http://virtualboximages.com/
+
+
+Convert virtualbox or vmware image
+==================================
+
+.. code-block:: bash
+
+  qemu-img convert -O qcow2 Platte.(vdi|vmdk) Platte.img
+
+
+  
