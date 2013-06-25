@@ -392,5 +392,6 @@ Convert virtualbox or vmware image
 
   qemu-img convert -O qcow2 Platte.(vdi|vmdk) Platte.img
 
+* http://qemu-buch.de/de/index.php/QEMU-KVM-Buch/_Speichermedien/_Festplatten-Images_anderer_Virtualisierungssoftware
 
   
