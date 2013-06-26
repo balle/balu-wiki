@@ -1,8 +1,8 @@
 #######
- Apache
+Apache
 #######
 
- Redirct all HTTP to HTTPS
+Redirct all HTTP to HTTPS
 ===========================
 
 .. code-block:: bash

@@ -52,7 +52,7 @@ Network
    :maxdepth: 1
 
    network/apache
-  network/bridging
+   network/bridging
    network/gns3
    network/iproute
    network/irssi
