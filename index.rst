@@ -51,7 +51,8 @@ Network
 .. toctree::
    :maxdepth: 1
 
-   network/bridging
+   network/apache
+  network/bridging
    network/gns3
    network/iproute
    network/irssi
