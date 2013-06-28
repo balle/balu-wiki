@@ -393,6 +393,12 @@ Getting help
 
 * http://docs.puppetlabs.com/puppet/3/reference/
 * http://www.puppetcookbook.com
+* get a list of all known resources
+
+.. code-block:: bash
+
+  puppet describe --list
+
 * doc about a resource
 
 .. code-block:: bash
