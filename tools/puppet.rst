@@ -58,6 +58,27 @@ Classes
 .. code-block:: bash
 
   class a_name($param = "default value") {}
+
+
+Definitions
+===========
+
+* Definitions are like functions
+* Useful because classes are singletons (can be only instanciated once)
+
+.. code-block:: bash
+
+  define cronjob( $hour = '00', $minute = '00' ) {
+    cron { "$name":
+      command => "/opt/cronjobs/$name",
+      hour    => $hour,
+      minute  => $minute,
+    }
+  }
+
+  cronjob { 'blah':
+    hour => 23,
+  }
   
 
 Modules
@@ -187,6 +208,41 @@ Starting services
 * To stop a service use ``ensure => stopped,``
 
 
+Cronjobs
+========
+
+.. code-block:: bash
+
+  cron { 'Make Backup':
+    command => 'tar cvzf /data/backup,tgz /home',
+    hour    => '00',
+    minutes => '00',
+  }
+
+
+Selective Execution
+===================
+
+.. code-block:: bash
+
+  exec { 'apache restart':
+    command => 'apachectl restart',
+    unless  => 'ps ax | grep apache',
+  }
+
+* with ``cwd`` one can change working directory
+* ``path`` will set PATH env var
+* or exec on file change
+
+.. code-block:: bash
+
+  exec { 'myscript':
+    command => 'whatever',
+    refreshonly => true,
+    subscribe => File['/path/to/some_file'],
+  }
+
+
 Deleting stuff
 ==============
 
@@ -273,38 +329,6 @@ SELinux
   }
   
   
-Defined resource types
-======================
-
-* Defines are code-templates
-
-.. code-block:: bash
-
-  # /etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp
-  define apache::vhost ($port, $docroot, $servername = $title, $vhost_name = '*') {
-    include apache # contains Package['httpd'] and Service['httpd']
-    include apache::params # contains common config settings
-    $vhost_dir = $apache::params::vhost_dir
-    file { "${vhost_dir}/${servername}.conf":
-      content => template('apache/vhost-default.conf.erb'),
-      # This template can access all of the parameters and variables from above.
-      owner   => 'www',
-      group   => 'www',
-      mode    => '644',
-      require => Package['httpd'],
-      notify  => Service['httpd'],
-    }
-  }
-
-* To use it
-
-.. code-block:: bash
-
-  apache::vhost {'homepages':
-    port    => 8081,
-    docroot => '/var/www-testhost',
-  }
-
   
 Cert handling
 =============
@@ -349,6 +373,15 @@ Environments
 
 Syntaxcheck a manifest
 ======================
+
+* Check syntax of a file
+
+.. code-block:: bash
+
+  puppet parser validate <some_file.pp>
+
+
+* Test a whole module
 
 .. code-block:: bash
 
