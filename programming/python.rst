@@ -5,24 +5,25 @@ Python
 .. toctree::
    :maxdepth: 1
 
-   python/pip
-   python/ipython
-   python/pygraphviz
-   python/matplotlib
-   python/pylint
    python/date
+   python/debugging
    python/diff
    python/distutils
    python/encoding
    python/fabfile
    python/file
    python/introspection
+   python/ipython
    python/json
    python/looping
+   python/matplotlib
    python/metaprogramming
    python/misc
    python/multiprocessing
    python/performance
+   python/pip
+   python/pygraphviz
+   python/pylint
    python/shell
    python/soap
    python/string
