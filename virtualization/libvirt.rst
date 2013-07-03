@@ -321,22 +321,154 @@ Performance tuning
 Scripting with Python2
 ======================
 
+* Just a sample script to shutdown all active instances and boot all that were inactive
+
 .. code-block:: python
 
-  #! /usr/bin/env python2
-  # -*- coding: utf-8 -*-
-  import socket
+  import libvirt
+
+  #conn=libvirt.open("qemu:///system")
+  conn = libvirt.open("qemu+ssh://root@127.0.0.1/system")
+
+  print "Active instances"
+  active_instances = []
+
+  for id in conn.listDomainsID():
+    instance = conn.lookupByID(id)
+    instance_name = instance.name()
+    active_instances.append(instance_name)
+    print "Deactivating ", instance_name
+    instance.destroy()
+
+  print "Activating inactive instances"
+  inactive_instances = [instance for instance in conn.listDefinedDomains() if instance not in active_instances]
+
+  for instance_name in inactive_instances:
+    print "Activating ", instance_name
+    instance = dom = conn.lookupByName(instance_name)
+    instance.create()
+
+  conn.close()
+
+* A script to create / delete a new instances
+
+.. code-block:: bash
+
   import sys
   import libvirt
 
-  if (__name__ == "__main__"):
-    conn = libvirt.open("qemu+ssh://xxx/system")
-    print "Trying to find node on xxx"
-    domains = conn.listDomainsID()
+  dom_name = "testme"
+  dom_mem = 512
+  dom_cpu = 1
+  dom_disk = "/data/virtualbox/centos64.img"
+  qemu_disk_type = "raw"
 
-    for domainID in domains:
-      domConnect = conn.lookupByID(domainID)
-      print domConnect.name()
+  if len(sys.argv) < 2:
+    print sys.argv[0], " up/down"
+    sys.exit(0)
+
+  conn = libvirt.open("qemu+ssh://root@127.0.0.1/system")
+
+  if sys.argv[1] == "down":
+    dom = conn.lookupByName(dom_name)
+
+    if dom:
+        dom.undefine()
+    else:
+        print "Cannot find domain ", dom_name
+        conn.close()
+        sys.exit(1)
+  else:
+    xml = """<domain type='kvm'>
+      <name>""" + dom_name + """</name>
+      <memory unit='KiB'>""" + str(dom_mem * 1024) + """</memory>
+      <vcpu placement='static'>""" + str(dom_cpu) + """</vcpu>
+      <os>
+        <type arch='x86_64' machine='rhel6.4.0'>hvm</type>
+        <boot dev='hd'/>
+      </os>
+      <features>
+        <acpi/>
+        <apic/>
+        <pae/>
+      </features>
+      <clock offset='utc'/>
+      <on_poweroff>destroy</on_poweroff>
+      <on_reboot>restart</on_reboot>
+      <on_crash>restart</on_crash>
+      <devices>
+        <emulator>/usr/libexec/qemu-kvm</emulator>
+        <disk type='file' device='disk'>
+          <driver name='qemu' type='""" + qemu_disk_type + """' cache='none'/>
+          <source file='""" + dom_disk + """'/>
+          <target dev='hda' bus='ide'/>
+          <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+        </disk>
+        <disk type='block' device='cdrom'>
+          <driver name='qemu' type='raw'/>
+          <target dev='hdc' bus='ide'/>
+          <readonly/>
+          <address type='drive' controller='0' bus='1' target='0' unit='0'/>
+        </disk>
+        <controller type='usb' index='0'>
+          <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x2'/>
+        </controller>
+        <controller type='ide' index='0'>
+          <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+        </controller>
+        <interface type='bridge'>
+          <mac address='52:54:00:f8:56:2a'/>
+          <source bridge='br0'/>
+          <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+        </interface>
+        <serial type='pty'>
+          <target port='0'/>
+        </serial>
+        <console type='pty'>
+          <target type='serial' port='0'/>
+        </console>
+        <input type='mouse' bus='ps2'/>
+        <graphics type='vnc' port='-1' autoport='yes'/>
+        <video>
+          <model type='cirrus' vram='9216' heads='1'/>
+          <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+        </video>
+        <memballoon model='virtio'>
+          <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+        </memballoon>
+      </devices>
+    </domain>"""
+
+    #print xml
+    conn.createXML(xml, 0)
+
+  conn.close()
+
+* Accessing virtual disks with guestfs
+
+.. code-block:: bash
+
+  import guestfs
+
+  gfs = guestfs.GuestFS()
+  gfs.add_drive_opts(dom_disk)
+  gfs.launch()
+  root_device = None
+
+  for root in gfs.inspect_os():
+    for mountpoint in gfs.inspect_get_mountpoints(root):
+      if mountpoint[0] == "/":
+        root_device = mountpoint[1]
+        break
+
+  if root_device:
+    gfs.mount(root_device, "/")
+    gfs.sh("dhclient eth1 && yum install puppet")
+  else:
+    print "Cannot find root device :("
+
+  gfs.umount_all()
+
 
 
 Troubleshooting
@@ -394,4 +526,4 @@ Convert virtualbox or vmware image
 
 * http://qemu-buch.de/de/index.php/QEMU-KVM-Buch/_Speichermedien/_Festplatten-Images_anderer_Virtualisierungssoftware
 
-  
+
