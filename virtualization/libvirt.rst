@@ -392,9 +392,14 @@ Scripting with Python2
           <target type='serial' port='0'/>
         </console>
         <input type='mouse' bus='ps2'/>
-        <graphics type='vnc' port='-1' autoport='yes'/>
+        <graphics type='spice' port='5900' autoport='yes' listen='127.0.0.1'>
+          <listen type='address' address='127.0.0.1'/>
+          <clipboard copypaste='no'/>
+          <image compression='auto_glz'/>
+        </graphics>
         <video>
-          <model type='cirrus' vram='9216' heads='1'/>
+          <model type='qxl' ram='65536' vram='65536' heads='1'/>
+          <alias name='video0'/>
           <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
         </video>
         <memballoon model='virtio'>
@@ -404,7 +409,7 @@ Scripting with Python2
     </domain>"""
 
     #print xml
-    conn.createXML(xml, 0)
+    conn.createXML(xml, libvirt.VIR_DOMAIN_START_AUTODESTROY)
 
   conn.close()
 
