@@ -145,19 +145,7 @@ Configure number of CPUs
 Resize disk
 ===========
 
-* Switch off machine
-* Resize only disk image (filesystem left alone)
-
-.. code-block:: bash
-
-  qemu-img resize disk.img +10G
-
-* Or create a new bigger image
-
-.. code-block:: bash
-
-  qemu-img create -f qcow2 new-disk.img 20G
-
+* Switch off the machine
 * and convert old image to new one and expand sda2 to max size
 
 .. code-block:: bash
@@ -217,14 +205,6 @@ Restore
   virsh snapshot-revert <machine_name> <snapshot>
 
 
-Convert disk image
-==================
-
-.. code-block:: bash
-
-  qemu-img convert -f raw -O qcow2 yourdisk.img newdisk.qcow2
-
-
 Disk tricks
 ===========
 
@@ -254,22 +234,6 @@ Disk tricks
   guestfish \
             add disk.img : run : mount /dev/vg_guest/lv_root / : \
                       write /etc/resolv.conf "nameserver 8.8.8.8"
-
-
-Disk encryption
-===============
-
-* Create
-
-.. code-block:: bash
-
-  qemu-img create -e -f qcow2 disk.img 10G
-
-* Convert
-
-.. code-block:: bash
-
-  qemu-img convert -e -O qcow2 disk.img disc-enc.img
 
 
 Cloning
@@ -470,6 +434,11 @@ Scripting with Python2
   gfs.umount_all()
 
 
+Failover
+========
+
+* http://code.google.com/p/ganeti/
+
 
 Troubleshooting
 ===============
@@ -481,49 +450,3 @@ Troubleshooting
 .. code-block:: bash
 
   virt-rescue -d <machine_name>
-
-
-KVM
-===
-
-* Create an image
-
-.. code-block:: bash
-
-  qemu-img create -f qcow2 disk.img 4G
-
-* Install a machine
-
-.. code-block:: bash
-
-  qemu-kvm -m 1024 -boot -once=d -cdrom cd.iso disk.img
-
-* Start a machine
-
-.. code-block:: bash
-
-  qemu-kvm -m 1024 disk.img
-
-* Start qemu monitor
-
-.. code-block:: bash
-
-  qemu-kvm -m 1024 disk.img -monitor stdin
-
-
-Downloading disk images
-=======================
-
-* Grab an image from http://virtual-machine.org or http://virtualboximages.com/
-
-
-Convert virtualbox or vmware image
-==================================
-
-.. code-block:: bash
-
-  qemu-img convert -O qcow2 Platte.(vdi|vmdk) Platte.img
-
-* http://qemu-buch.de/de/index.php/QEMU-KVM-Buch/_Speichermedien/_Festplatten-Images_anderer_Virtualisierungssoftware
-
-
