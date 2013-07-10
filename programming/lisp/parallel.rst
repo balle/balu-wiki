@@ -51,3 +51,15 @@ Start thread in CLISP
 
   (mt:thread-active-p "thread name")
 
+
+Bordeaux Threads
+================
+
+* Portable thread library
+* http://trac.common-lisp.net/bordeaux-threads/wiki/ApiDocumentation
+
+.. code-block:: bash
+
+  (ql:quickload "bordeaux-threads")
+  (bordeaux-threads:make-thread (lambda () (print "MUH")) :name "balle")
+
