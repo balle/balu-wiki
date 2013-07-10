@@ -6,6 +6,7 @@ Lisp
    :maxdepth: 1
 
    lisp/basics
+   lisp/clos
    lisp/database
    lisp/date
    lisp/elisp
