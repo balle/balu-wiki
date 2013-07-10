@@ -63,3 +63,9 @@ Bordeaux Threads
   (ql:quickload "bordeaux-threads")
   (bordeaux-threads:make-thread (lambda () (print "MUH")) :name "balle")
 
+
+Clustering
+==========
+
+* lfarm is a Common Lisp library for distributing work across machines using the lparallel API.
+* https://github.com/lmj/lfarm
