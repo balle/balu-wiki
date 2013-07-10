@@ -41,3 +41,22 @@ Example
 
   (drive ferrari)
   (drive kawasaki)
+
+
+Define Getter / Setter
+======================
+
+* If you dont like to access slot directly using ``(slot-value)``
+
+.. code-block:: bash
+
+  (defclass vehicle ()
+    ((wheels)
+     (color
+      :initarg :black
+      :reader color
+      :writer (setf color)
+      :accessor color)))
+
+  (setf (color ferrari) 'red)
+  (print (color ferrari))
