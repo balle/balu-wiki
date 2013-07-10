@@ -11,6 +11,7 @@ Lisp
    lisp/elisp
    lisp/filesystem
    lisp/input-output
+   lisp/macros
    lisp/mail
    lisp/network
    lisp/parallel
