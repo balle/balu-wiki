@@ -6,6 +6,7 @@ Extensions
 ==========
 
 * NoScript - https://addons.mozilla.org/en-US/firefox/addon/noscript/
+* Cookie manager - https://addons.mozilla.org/en-US/firefox/addon/cookie-controller/
 * Flashblock - https://addons.mozilla.org/en-US/firefox/addon/flashblock/
 * Download Helper - https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/
 * Session Manager - https://addons.mozilla.org/en-US/firefox/addon/session-manager/
