@@ -12,6 +12,7 @@ Extensions
 * Firemacs - https://addons.mozilla.org/en-US/firefox/addon/firemacs/
 * It's all text - https://addons.mozilla.org/en-US/firefox/addon/4125
 * LoL - http://elder-gods.org/lol
+* Mouseless browsing - https://addons.mozilla.org/de/firefox/addon/mouseless-browsing/
 * Tile Tabs - https://addons.mozilla.org/de/firefox/addon/tile-tabs/
 * Foxyproxy - https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/
 * Live HTTP headers - https://addons.mozilla.org/en-US/firefox/addon/live-http-headers/
@@ -49,6 +50,15 @@ Goto last tab
 * set browser.ctrlTab.previews to true
 * Now you can switch to last tab with ctrl + tab
 
+
+Mouseless browsing
+==================
+
+* ctrl + space - show ids
+* ctrl + id + enter - click on id
+* alt + id - open id in new tab
+* ctrl + alt + id - open id in new window
+  
 
 Parameterized bookmarks
 =======================
