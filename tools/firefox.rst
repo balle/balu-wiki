@@ -12,6 +12,7 @@ Extensions
 * Firemacs - https://addons.mozilla.org/en-US/firefox/addon/firemacs/
 * It's all text - https://addons.mozilla.org/en-US/firefox/addon/4125
 * LoL - http://elder-gods.org/lol
+* Tile Tabs - https://addons.mozilla.org/de/firefox/addon/tile-tabs/
 * Foxyproxy - https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/
 * Live HTTP headers - https://addons.mozilla.org/en-US/firefox/addon/live-http-headers/
 
@@ -40,6 +41,13 @@ Shortcuts
 * ctrl + n - new window
 * ctrl + r - reload page
 * ctrl + shift + del - clear history
+
+Goto last tab
+=============
+
+*  browse about:config
+* set browser.ctrlTab.previews to true
+* Now you can switch to last tab with ctrl + tab
 
 
 Parameterized bookmarks
