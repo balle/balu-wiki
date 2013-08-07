@@ -129,6 +129,12 @@ Delete data
 
   db.<collection>.remove({"name": "wurst"})
 
+* Delete a field
+
+  db.<collection>.update({"_id": 1}, {$unset: {"field": ""}})
+  
+.. code-block:: bash
+  
 * Delete whole database
 
 .. code-block:: bash
@@ -185,6 +191,28 @@ Show indexes
   db.system.indexes.find()
 
 
+Replication
+============
+
+* MongoDB has automatically master / slave failover buildin!
+* You need at least 3 server
+* Edit ``/etc/mongodb.conf`` and set a replSet
+
+.. code-block:: bash
+
+  replSet = rs0
+
+* On the master node execute the folowing in mongo shell
+
+.. code-block:: bash
+
+  rs.initiate()
+  rs.conf()
+  rs.add("mongodb1.example.net")
+  rs.add("mongodb2.example.net")
+  rs.status()
+
+  
 Show real data size
 ===================
 
