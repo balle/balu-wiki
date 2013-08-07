@@ -10,7 +10,7 @@ Overview
 ================ ================ ========================================================================
 Subsystem        Ports            Description
 ---------------- ---------------- ------------------------------------------------------------------------
-Keystone         35357            Identity service (manages user, roles and tenants)
+Keystone         5000, 35357      Identity service (manages user, roles, tenants, services and endpoints) Port 5000 for auth, 35357 for service registry
 Glance           9191, 9292       Image service (manages kvm, qemu, vmware, amazon s3 etc images)
 Nova                              Compute service (manage startup / life of virtual machines using libvirt)
 Nova Scheduler   59229            Decide where to create a new instance
