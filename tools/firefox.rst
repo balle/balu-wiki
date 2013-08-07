@@ -44,6 +44,7 @@ Shortcuts
 * ctrl + r - reload page
 * ctrl + shift + del - clear history
 
+  
 Goto last tab
 =============
 
@@ -72,3 +73,11 @@ Parameterized bookmarks
 * Now you can use "g test" in location bar
 
 * See http://johnbokma.com/firefox/keymarks-explained.html
+
+
+Synchronization
+===============
+
+* Tools -> Setup Sync
+* Will (depending on config) synchronize tabs, bookmarks, history, settings, addons and passwords
+* You can setup your own firefox sync server see http://docs.services.mozilla.com/howtos/run-sync.html
