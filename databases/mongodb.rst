@@ -236,6 +236,21 @@ Replication
   rs.add("mongodb2.example.net")
   rs.status()
 
+
+Clustering
+==========
+
+* A cluster consist of 1) exact 3 config servers (hold metadata on where to find data), X query servers (mongos) the clients can connect to, X shard server that hold the real data
+* Set ``configsrv``, ``configdb`` and / or ``shardsvr`` in ``/etc/mongodb.conf`` to make the server a config, query or shard server
+* configdb = <cfgsrv1>, <cfgsrv2>, <cfgsrv3>
+* Shards can only be added to server belonging to a replica set
+* Config servers can neither be query nor shard servers
+* To enable sharding for a database run
+
+.. code-block:: bash
+
+  sh.enableSharding("<db>")
+
   
 Show real data size
 ===================
