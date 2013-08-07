@@ -191,6 +191,30 @@ Show indexes
   db.system.indexes.find()
 
 
+User administration
+===================
+
+* To setup authentication edit ``/etc/mongodb.conf`` and set
+
+.. code-block:: bash
+
+  auth = true
+
+* Now execute the following in mongo shell
+
+.. code-block:: bash
+
+  use <db>
+  db.addUser({user: "foo", pwd: "bar", roles: ["readWrite", "dbAdmin"]})
+
+* use role ``read`` for read-only access
+* To change a users password
+
+.. code-block:: bash
+
+  db.changeUserPassword("user", "newpassword")
+
+
 Replication
 ============
 
