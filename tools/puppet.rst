@@ -300,6 +300,58 @@ Firewall config
 
   puppet module install puppetlabs-firewall
 
+* Setup firewall in site.pp
+
+.. code-block:: bash
+
+  resources { "firewall":
+    purge => true
+  }
+
+  Firewall {
+    before  => Class['my_fw::post'],
+    require => Class['my_fw::pre'],
+  }
+
+  class { ['my_fw::pre', 'my_fw::post']: }
+  class { 'firewall': }
+      
+  class my_fw::pre {
+    Firewall {
+      require => undef,
+    }
+
+    # Default firewall rules
+    firewall { '00000 accept all icmp':
+      proto   => 'icmp',
+      action  => 'accept',
+    }->
+    firewall { '00001 accept all to lo interface':
+      proto   => 'all',
+      iniface => 'lo',
+      action  => 'accept',
+    }->
+    firewall { '00002 accept related established rules':
+      proto   => 'all',
+      state   => ['RELATED', 'ESTABLISHED'],
+      action  => 'accept',
+    }
+  }
+
+  class my_fw::post {
+    firewall { '99999 drop all':
+      proto   => 'all',
+      action  => 'drop',
+      before  => undef,
+    }
+  }
+
+* Make sure pluginsync is enabled in ``puppet.conf`` in section ``[main]``
+
+.. code-block:: bash
+
+  pluginsync = true
+  
 * The comment must contain an index to get the order of the rules
 
 .. code-block:: bash
