@@ -143,6 +143,17 @@ Change a file
 
 .. code-block:: bash
 
+  file_line {
+    'a comment':
+      path => '/path/to/a/file',
+      match => '^#?some content',
+      line => 'New content';
+  }
+
+* Or using augeas
+  
+.. code-block:: bash
+
   augeas { "nova.conf":
     context => "/files/etc/nova/nova.conf",
     changes => [
