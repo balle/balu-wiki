@@ -46,6 +46,17 @@ Shortcuts
 * ctrl + r - reload page
 * ctrl + shift + del - clear history
 
+
+Privacy
+========
+
+* Use flashbock, adblock, noscript and better privacy addon
+* Deactivate Security -> Detect attack / forgery sites
+* Block popups
+* Deactivate history
+* Use privoxy as proxy to filter thinks like browser identity string
+* Optionally use tor as forwarding proxy in privoxy
+
   
 Goto last tab
 =============
