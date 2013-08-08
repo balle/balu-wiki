@@ -7,7 +7,10 @@ Drum 'n Bass
 
 * http://www.plainaudio.com/
 * http://zardonicrecs.netii.net/
-
+* http://psymbionic.bandcamp.com/
+* http://www.pantyraidmusic.com/music/
+* http://bredemusic.com/
+  
 Triphop 
 ========
 
@@ -40,6 +43,7 @@ Mixes
 ======
 
 * http://kor.gazaxian.com/
+* http://www.cybermusique.de/
 * http://pulsar.cc/?mixes
 * http://www.mixotic.net/
 * http://www.sonicwalker.com/
