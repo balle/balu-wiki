@@ -8,6 +8,7 @@ Extensions
 * NoScript - https://addons.mozilla.org/en-US/firefox/addon/noscript/
 * Cookie manager - https://addons.mozilla.org/en-US/firefox/addon/cookie-controller/
 * Flashblock - https://addons.mozilla.org/en-US/firefox/addon/flashblock/
+* Better privacy - https://addons.mozilla.org/de/firefox/addon/betterprivacy/
 * Download Helper - https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/
 * Session Manager - https://addons.mozilla.org/en-US/firefox/addon/session-manager/
 * Firemacs - https://addons.mozilla.org/en-US/firefox/addon/firemacs/
@@ -17,6 +18,7 @@ Extensions
 * Tile Tabs - https://addons.mozilla.org/de/firefox/addon/tile-tabs/
 * Foxyproxy - https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/
 * Live HTTP headers - https://addons.mozilla.org/en-US/firefox/addon/live-http-headers/
+* Selenium - http://docs.seleniumhq.org/download/
 
 
 Shortcuts
