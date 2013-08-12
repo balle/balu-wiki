@@ -445,7 +445,7 @@ SELinux
   
 * Policy module
 
-..code-block:: bash
+.. code-block:: bash
 
   selmodule { "load a policy":
     ensure => present,
