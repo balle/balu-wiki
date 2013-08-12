@@ -137,10 +137,22 @@ Copy files
 
 * File must be on master server in ``/etc/puppet/modules/emacs/files/.emacs``
 
-
+  
 Change a file
 ==============
 
+* Append
+
+.. code-block:: bash
+
+  file_line {
+    'a comment':
+      path => '/path/to/a/file',
+      line => 'append this content';
+  }
+
+* Edit specific entry
+  
 .. code-block:: bash
 
   file_line {
@@ -161,6 +173,29 @@ Change a file
                 ],
   }
 
+
+Directory
+=========
+
+.. code-block:: bash
+
+  file { "/root/.emacs":
+    ensure => 'directory',
+    owner => "root",
+    group => "root",
+    mode => 0440,
+  }
+
+
+Link
+====
+
+.. code-block:: bash
+
+  file { "/link/from/here":
+    ensure => 'link',
+    target => '/link/to/here',
+  }
 
 
 Adding users
@@ -378,12 +413,39 @@ Firewall config
 SELinux
 =======
 
+* Boolean
+  
 .. code-block:: bash
 
   selboolean { "a comment":
     name => "httpd_enable_cgi",
     value => 'off',
   }
+
+* File context
+
+.. code-block:: bash
+
+  class selinux::fcontext ( $context = "", $pathname = "" ) {
+    if ( $context == "" ) or ( $pathname == "" ) {
+      fail("context and pathname must not be empty")
+    }
+
+    exec { "add_${context}_${pathname}":
+      command => "semanage fcontext -a -t ${context} \"${pathname}(/.*)?\" && restorecon -RFvv \"${pathname}\"",
+      unless  => "semanage fcontext -l|grep \"^${pathname}.*:${context}:\"",
+      path    => '/usr/sbin:/bin',
+    }
+  }
+
+  class { "selinux::fcontext":
+    context => "mysqld_log_t",
+    pathname => "/var/log/mysql(/.*)?",
+  }
+  
+* Policy module
+
+..code-block:: bash
 
   selmodule { "load a policy":
     ensure => present,
