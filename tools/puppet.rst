@@ -452,8 +452,17 @@ SELinux
     selmoduledir => "/path/to/policy",
     name => "filename_without_pp",
   }
-  
-  
+
+
+Executing ruby code
+===================
+
+.. code-block:: bash
+
+  require SecureRandom
+  #...
+  myparam => inline_template("<%= SecureRandom.hex(20) %>"),
+
   
 Cert handling
 =============
