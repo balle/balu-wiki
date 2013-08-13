@@ -33,6 +33,7 @@ Web frameworks
 ==============
 
 * mod_lisp
+* http://wookie.beeets.com
 * https://github.com/fukamachi/caveman/
 * http://weblocks.viridian-project.de
 
