@@ -31,7 +31,6 @@ Tools
    :maxdepth: 1
 
    tools/augeas
-   tools/clustershell
    tools/emacs
    tools/firefox
    tools/mc
@@ -100,6 +99,16 @@ Hacking
    hacking/wireshark
 
 
+Cluster
+=======
+
+.. toctree::
+   :maxdepth: 1
+
+   cluster/clustershell
+   cluster/mpi
+
+
 Databases
 =========
 
@@ -137,7 +146,6 @@ Programming
    programming/html5
    programming/jenkins
    programming/lisp
-   programming/mpi
    programming/perl
    programming/python
    programming/rabbitmq
