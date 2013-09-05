@@ -2,6 +2,11 @@
 SELinux
 #######
 
+Overview
+========
+
+
+
 Update policy
 =============
 
@@ -28,6 +33,7 @@ Booleans
 Managing file contexts
 ======================
 
+* SE Linux stores the security context for files directly in the filesystem (currently ext{2,3,4}, XFS, JFS, Btrfs)
 * Show file context
 
 .. code-block:: bash
