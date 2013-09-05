@@ -106,6 +106,7 @@ Cluster
    :maxdepth: 1
 
    cluster/clustershell
+   cluster/hadoop
    cluster/mpi
 
 
