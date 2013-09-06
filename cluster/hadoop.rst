@@ -35,14 +35,16 @@ conf/slaves           Lists every ndoe which should start TaskTracker and DataNo
 
 Network ports
 =============
-===== =================== =================
+
+===== =================== ================================
 Port  Description         Config parameter
------ ------------------- -----------------
+----- ------------------- --------------------------------
 50070 Name node           dfs.http.address
 50075 Data node           dfs.datanode.http.address
 50090 Secondary Name node dfs.secondary.http.address
 50030 Job tracker         mapred.job.tracker.http.address
 50060 Task tracker        mapred.task.tracker.http.address
+===== =================== ================================
 
 
 Installation
@@ -124,6 +126,7 @@ dfs.data.dir                Directory where data node stores its stuff
 dfs.name.dir                Directory where name node stores its stuff
 dfs.block.size              Changes the file block size
 dfs.namenode.handler.count  Nr of threads for name node to handle data nodes
+=========================== ======================================================
 
 
 Working with HDFS
@@ -189,6 +192,7 @@ mapred.reduce.parallel.copies      Number of concurrent connections a reducer sh
 tasktracker.http.threads           Number of threads each TaskTracker uses to provide intermediate map output to reducers
 mapred.tasktracker.map.tasks.maximum Number of map tasks to deploy on each machine
 mapred.tasktracker.reduce.tasks.maximum Number of reduce tasks to deploy on each machine
+================================== ======================================================
 
 
 Working with Map Reduce
@@ -214,6 +218,7 @@ security.inter.tracker.protocol.acl   ACL for InterTrackerProtocol, used by the 
 security.job.submission.protocol.acl  ACL for JobSubmissionProtocol, used by job clients to communciate with the jobtracker for job submission, querying job status etc.
 security.task.umbilical.protocol.acl  ACL for TaskUmbilicalProtocol, used by the map and reduce tasks to communicate with the parent tasktracker.
 security.refresh.policy.protocol.acl  ACL for RefreshAuthorizationPolicyProtocol, used by the dfsadmin and mradmin commands to refresh the security policy in-effect.
+===================================== ======================================================
 
 * After altering the policy you have to refresh it for data and task nodes
 
