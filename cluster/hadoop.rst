@@ -12,8 +12,8 @@ Overview
 * JobTracker is the controller of Map reduce
 * A job consists of a number of tasks
 * TaskTracker runs on every data node to receive a computation task
-* Hadoop moves to computation instead of the data around in the cluster
-* ``bin/slaves.sh`` allows to execute a command on all slave nodes
+* Hadoop moves the computation to the data instead of vice versa
+* ``bin/slaves.sh`` allows you to execute a command on all slave nodes
 
 
 Configuration files
@@ -22,17 +22,17 @@ Configuration files
 * Default values can be looked up in ``conf/hadoop-defaults.xml``
 * Config options can be combined in ``conf/hadoop-site.xml``
 
-====================  ========================================================================
-File                  Description
-====================  ========================================================================
-hadoop-env.sh         Environment variables
-hadoop-policy.xml     ACL for various Hadoop services
-core-site.xml         Hadoop core settings
-hdfs-site.xml         Settings for HDFS: namenode, secondary namenode, datanodes
-mapred-site.xml       Settings for MapReduce nodes
-masters               Contains the hostname of the SecondaryNameNode
-slaves                Lists every ndoe which should start TaskTracker and DataNode daemons
-===================== ========================================================================
+================== =====================================================================
+File               Description
+================== =====================================================================
+hadoop-env.sh      Environment variables
+hadoop-policy.xml  ACL for various Hadoop services
+core-site.xml      Hadoop core settings
+hdfs-site.xml      Settings for HDFS: namenode, secondary namenode, datanodes
+mapred-site.xml    Settings for MapReduce nodes
+masters            Contains the hostname of the SecondaryNameNode
+slaves             Lists every ndoe which should start TaskTracker and DataNode daemons
+================== =====================================================================
 
 
 Network ports
