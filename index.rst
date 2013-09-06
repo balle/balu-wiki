@@ -108,6 +108,7 @@ Cluster
    cluster/clustershell
    cluster/hadoop
    cluster/mpi
+   cluster/openstack
 
 
 Databases
@@ -129,7 +130,6 @@ Virtualization
 
    virtualization/kvm
    virtualization/libvirt
-   virtualization/openstack
    virtualization/vagrant
    virtualization/virtualbox
 
