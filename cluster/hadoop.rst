@@ -17,24 +17,28 @@ Overview
 
 
 Configuration files
-===================
+====================
+
+* Default values can be looked up in ``conf/hadoop-defaults.xml``
+* Config options can be combined in ``conf/hadoop-site.xml``
 
 ====================  ===============================================================================
 File                  Description
 --------------------- -------------------------------------------------------------------------------
-hadoop-defaults.xml   Defaults for config values
 hadoop-env.sh         Environment variables
 hadoop-policy.xml     ACL for various Hadoop services
 core-site.xml         Hadoop core settings
 hdfs-site.xml         Settings for HDFS: namenode, secondary namenode, datanodes
 mapred-site.xml       Settings for MapReduce nodes
-conf/masters          Contains the hostname of the SecondaryNameNode
-conf/slaves           Lists every ndoe which should start TaskTracker and DataNode daemons
+masters               Contains the hostname of the SecondaryNameNode
+slaves                Lists every ndoe which should start TaskTracker and DataNode daemons
 ===================== ===============================================================================
 
 
 Network ports
 =============
+
+* These are the tcp ports to open in your firewall
 
 ===== =================== ================================
 Port  Description         Config parameter
@@ -118,6 +122,8 @@ Installation
 Configure HDFS
 ==============
 
+* Config file is ``conf/hdfs-site.xml`` or in ``conf/hadoop-site.xml``
+
 =========================== ======================================================
 Config option               Description
 --------------------------- ------------------------------------------------------
@@ -180,6 +186,8 @@ Working with HDFS
 
 Configure Map Reduce
 ====================
+
+* Config file is ``conf/mapred-site.xml`` or in ``conf/hadoop-site.xml``
 
 ================================== ======================================================
 Config option                      Description
