@@ -24,7 +24,7 @@ Configuration files
 
 ====================  ===============================================================================
 File                  Description
---------------------- -------------------------------------------------------------------------------
+====================  ===============================================================================
 hadoop-env.sh         Environment variables
 hadoop-policy.xml     ACL for various Hadoop services
 core-site.xml         Hadoop core settings
@@ -42,7 +42,7 @@ Network ports
 
 ===== =================== ================================
 Port  Description         Config parameter
------ ------------------- --------------------------------
+===== =================== ================================
 50070 Name node           dfs.http.address
 50075 Data node           dfs.datanode.http.address
 50090 Secondary Name node dfs.secondary.http.address
@@ -126,7 +126,7 @@ Configure HDFS
 
 =========================== ======================================================
 Config option               Description
---------------------------- ------------------------------------------------------
+=========================== ======================================================
 fs.default.name             The URI for the name node e.g. hdfs://namenode:9000
 dfs.data.dir                Directory where data node stores its stuff
 dfs.name.dir                Directory where name node stores its stuff
@@ -191,7 +191,7 @@ Configure Map Reduce
 
 ================================== ======================================================
 Config option                      Description
----------------------------------- ------------------------------------------------------
+================================== ======================================================
 mapred.job.tracker.handler.count   Nr of threads for job tracker to handle task trackers
 io.file.buffer.size                Read/write buffer size
 io.sort.factor                     Number of streams to merge concurrently when sorting files during shuffling
@@ -216,7 +216,7 @@ Security
 
 ===================================== ======================================================
 Config option                         Description
-------------------------------------- ------------------------------------------------------
+===================================== ======================================================
 security.client.protocol.acl          ACL for ClientProtocol, which is used by user code via the DistributedFileSystem.
 security.client.datanode.protocol.acl ACL for ClientDatanodeProtocol, the client-to-datanode protocol for block recovery.
 security.datanode.protocol.acl        ACL for DatanodeProtocol, which is used by datanodes to communicate with the namenode.
