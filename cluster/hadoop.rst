@@ -22,9 +22,9 @@ Configuration files
 * Default values can be looked up in ``conf/hadoop-defaults.xml``
 * Config options can be combined in ``conf/hadoop-site.xml``
 
-====================  ===============================================================================
+====================  ========================================================================
 File                  Description
-====================  ===============================================================================
+====================  ========================================================================
 hadoop-env.sh         Environment variables
 hadoop-policy.xml     ACL for various Hadoop services
 core-site.xml         Hadoop core settings
@@ -32,7 +32,7 @@ hdfs-site.xml         Settings for HDFS: namenode, secondary namenode, datanodes
 mapred-site.xml       Settings for MapReduce nodes
 masters               Contains the hostname of the SecondaryNameNode
 slaves                Lists every ndoe which should start TaskTracker and DataNode daemons
-===================== ===============================================================================
+===================== ========================================================================
 
 
 Network ports
@@ -122,7 +122,7 @@ Installation
 Configure HDFS
 ==============
 
-* Config file is ``conf/hdfs-site.xml`` or in ``conf/hadoop-site.xml``
+* Config file is ``conf/hdfs-site.xml`` or ``conf/hadoop-site.xml``
 
 =========================== ======================================================
 Config option               Description
@@ -187,20 +187,20 @@ Working with HDFS
 Configure Map Reduce
 ====================
 
-* Config file is ``conf/mapred-site.xml`` or in ``conf/hadoop-site.xml``
+* Config file is ``conf/mapred-site.xml`` or ``conf/hadoop-site.xml``
 
-================================== ======================================================
-Config option                      Description
-================================== ======================================================
-mapred.job.tracker.handler.count   Nr of threads for job tracker to handle task trackers
-io.file.buffer.size                Read/write buffer size
-io.sort.factor                     Number of streams to merge concurrently when sorting files during shuffling
-io.sort.mb                         Amount of memory to use while sorting data
-mapred.reduce.parallel.copies      Number of concurrent connections a reducer should use when fetching its input from mappers
-tasktracker.http.threads           Number of threads each TaskTracker uses to provide intermediate map output to reducers
-mapred.tasktracker.map.tasks.maximum Number of map tasks to deploy on each machine
-mapred.tasktracker.reduce.tasks.maximum Number of reduce tasks to deploy on each machine
-================================== ======================================================
+======================================== ======================================================
+Config option                            Description
+======================================== ======================================================
+mapred.job.tracker.handler.count         Nr of threads for job tracker to handle task trackers
+io.file.buffer.size                      Read/write buffer size
+io.sort.factor                           Number of streams to merge concurrently when sorting files during shuffling
+io.sort.mb                               Amount of memory to use while sorting data
+mapred.reduce.parallel.copies            Number of concurrent connections a reducer should use when fetching its input from mappers
+tasktracker.http.threads                 Number of threads each TaskTracker uses to provide intermediate map output to reducers
+mapred.tasktracker.map.tasks.maximum     Number of map tasks to deploy on each machine
+mapred.tasktracker.reduce.tasks.maximum  Number of reduce tasks to deploy on each machine
+======================================== ======================================================
 
 
 Working with Map Reduce
