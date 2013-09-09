@@ -208,6 +208,58 @@ Working with Map Reduce
 
 * Access the JobTracker with http://localhost:50030
 
+* Example mapper for word counting (data comes from STDIN and output goes to STDOUT)
+
+.. code-block:: python
+
+  #!/usr/bin/env python
+
+  import sys
+
+  for line in sys.stdin:
+    line = line.strip()
+    words = line.split()
+
+    for word in words:
+      # This will be the input for the reduce script
+      print '%s\t%s' % (word, 1)
+
+* Example reducer code
+
+.. code-block:: bash
+
+  #!/usr/bin/env python
+
+  import sys
+
+  words = {}
+
+  for line in sys.stdin:
+    line = line.strip()
+    word, count = line.split('\t', 1)
+
+    try:
+      words[word] = words.get(word, 0) + int(count)
+    except ValueError:
+      pass
+
+  for (word, count) in words.items():
+    print "%s\t%d" % (word, count)
+
+* Execute it with the following command
+
+.. code-block:: bash
+
+  bin/hadoop dfs -mkdir /test
+  bin/hadoop dfs -put some_file /test
+  bin/hadoop jar contrib/streaming/hadoop-streaming-1.2.1.jar -file /full/path/to/mapper.py -mapper /full/path/to/mapper.py -file /full/path/to/reducer.py -reducer /full/path/to/reducer.py -input /test/README.txt -output /myoutput
+
+* Get the result
+
+.. code-block:: bash
+
+  bin/hadoop dfs -cat /myoutput/part-00000
+
 
 Security
 ========
@@ -243,6 +295,8 @@ security.refresh.policy.protocol.acl  ACL for RefreshAuthorizationPolicyProtocol
   hadoop dfs -chmod
   hadoop dfs -chgrp
 
+* Network encryption can be setup in Hadoop >= 2.0.2-alpha see http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/
+
 
 Addons
 ======
@@ -264,3 +318,9 @@ Documentation
 * http://developer.yahoo.com/hadoop/tutorial/
 * https://www.youtube.com/watch?v=XtLXPLb6EXs
 * http://hadoop.apache.org/docs/stable/commands_manual.pdf
+
+
+Troubleshooting
+===============
+
+* Cannot create directory Name node is in safe mode -> NameNode is in safemode until configured percent of blocks reported to be online by the data nodes.
