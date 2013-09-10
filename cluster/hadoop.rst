@@ -96,15 +96,20 @@ Installation
   and reduce task.
     </description>
   </property>
+  <property>
+    <name>mapreduce.jobtracker.staging.root.dir</name>
+    <value>/user</value>
+  </property>
 
 * Create a hadoop user with an SSH key
 
 .. code-block:: bash
 
-  adduser hadoop
+  useradd -d /opt/hadoop hadoop
   su - hadoop
   ssh-keygen
-  ssh-copy-id hadoop@localhost
+  cat .ssh/id_rsa.pub > .ssh/authorized_keys
+  chmod 400 .ssh/authorized_keys
 
 * Format the HDFS
 
@@ -264,12 +269,14 @@ Working with Map Reduce
 Security
 ========
 
+* This is not for user authentication but for authenticating services!
+* You can only adapt user permission by setting ``security.client.protocol.acl``
 * To enable service-level security set ``hadoop.security.authorization`` to ``true`` in ``conf/core-site.xml``
 
 ===================================== ======================================================
 Config option                         Description
 ===================================== ======================================================
-security.client.protocol.acl          ACL for ClientProtocol, which is used by user code via the DistributedFileSystem.
+security.client.protocol.acl          You must have these permissions to do anything with the API
 security.client.datanode.protocol.acl ACL for ClientDatanodeProtocol, the client-to-datanode protocol for block recovery.
 security.datanode.protocol.acl        ACL for DatanodeProtocol, which is used by datanodes to communicate with the namenode.
 security.inter.datanode.protocol.acl  ACL for InterDatanodeProtocol, the inter-datanode protocol for updating generation timestamp.
@@ -280,6 +287,7 @@ security.task.umbilical.protocol.acl  ACL for TaskUmbilicalProtocol, used by the
 security.refresh.policy.protocol.acl  ACL for RefreshAuthorizationPolicyProtocol, used by the dfsadmin and mradmin commands to refresh the security policy in-effect.
 ===================================== ======================================================
 
+* Seems like you have to always add root to security.client.protocol.acl
 * After altering the policy you have to refresh it for data and task nodes
 
 .. code-block:: bash
@@ -287,7 +295,7 @@ security.refresh.policy.protocol.acl  ACL for RefreshAuthorizationPolicyProtocol
   hadoop dfsadmin -refreshServiceAcl
   hadoop mradmin -refreshServiceAcl
 
-* HDFS has POSIX file permissions
+* HDFS has POSIX-like permissions
 
 .. code-block:: bash
 
@@ -296,6 +304,44 @@ security.refresh.policy.protocol.acl  ACL for RefreshAuthorizationPolicyProtocol
   hadoop dfs -chgrp
 
 * Network encryption can be setup in Hadoop >= 2.0.2-alpha see http://blog.cloudera.com/blog/2013/03/how-to-set-up-a-hadoop-cluster-with-network-encryption/
+
+
+Multi-User-Hadoop
+=================
+
+* Setup a hadoop group in ``conf/hdfs-site.xml``
+
+.. code-block:: bash
+
+  <property>
+    <name>dfs.permissions.supergroup</name>
+    <value>hadoop</value>
+  </property>
+
+* Set jobtracker staging directory in dfs to other than /
+
+.. code-block:: bash
+
+  <property>
+    <name>mapreduce.jobtracker.staging.root.dir</name>
+    <value>/user</value>
+  </property>
+
+* Change permissions in hdfs
+
+.. code-block:: bash
+
+  bin/hadoop chgrp -R hadoop /
+  bin/hadoop chmod 777 /user
+
+* Adjust tmp directory permission in real filesystem (do NOT change recursively datanodes will blame you for that!)
+
+.. code-block:: bash
+
+  chmod 777 /app/hadoop/tmp
+  chmod 777 /app/hadoop/tmp/mapred
+
+* Add your users to the hadoop group
 
 
 Addons
@@ -324,3 +370,15 @@ Troubleshooting
 ===============
 
 * Cannot create directory Name node is in safe mode -> NameNode is in safemode until configured percent of blocks reported to be online by the data nodes.
+* DFS not leaving safe mode?
+
+.. code-block:: bash
+
+  bin/hadoop dfsadmin -safemode leave
+
+* Start name and data node in foreground
+
+.. code-block:: bash
+
+  bin/hadoop namenode
+  bin/hadoop datanode
