@@ -106,10 +106,12 @@ Installation
 .. code-block:: bash
 
   useradd -d /opt/hadoop hadoop
+  chown -R hadoop /opt/hadoop
   su - hadoop
   ssh-keygen
   cat .ssh/id_rsa.pub > .ssh/authorized_keys
   chmod 400 .ssh/authorized_keys
+  ssh localhost
 
 * Format the HDFS
 
@@ -122,6 +124,12 @@ Installation
 .. code-block:: bash
 
   bin/start-all.sh
+
+* Test the installation
+
+.. code-block:: bash
+
+  bin/hadoop jar hadoop-examples-1.2.1.jar pi 2 10
 
 
 Configure HDFS
@@ -188,6 +196,8 @@ Working with HDFS
 
   hadoop dfs -get file.txt local_file.txt
 
+* Export HDFS via NFS, see https://github.com/cloudera/hdfs-nfs-proxy/wiki/Quick-Start
+
 
 Configure Map Reduce
 ====================
@@ -212,6 +222,7 @@ Working with Map Reduce
 =======================
 
 * Access the JobTracker with http://localhost:50030
+* Access TaskTracker with http://localhost:50060
 
 * Example mapper for word counting (data comes from STDIN and output goes to STDOUT)
 
@@ -264,6 +275,29 @@ Working with Map Reduce
 .. code-block:: bash
 
   bin/hadoop dfs -cat /myoutput/part-00000
+
+
+Jobs
+====
+
+* List jobs
+
+.. code-block:: bash
+
+  bin/hadoop job -list all
+
+* Terminate a job
+
+.. code-block:: bash
+
+  bin/hadoop job -kill <id>
+
+* Get status of a job
+
+.. code-block:: bash
+
+  bin/hadoop job -status <id>
+
 
 
 Security
