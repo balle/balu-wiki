@@ -54,3 +54,10 @@ Get lines where the nth element is bigger than x
 .. code-block:: bash
 
   perl -n -e '@a=split(/\s/,$_); print $_ if $a[3] > 2;'
+
+Generate a random number
+========================
+
+.. code-block:: bash
+
+  echo $RANDOM
