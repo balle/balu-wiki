@@ -82,9 +82,12 @@ Installation
   the FileSystem implementation class.  The uri's authority is used to
   determine the host, port, etc. for a filesystem.</description>
   </property>
+  <property>
+    <name>hadoop.security.authorization</name>
+    <value>true</value>
+  </property>
 
-
-* Edit ``conf/mapred-site.xml`` to set the locations of the mapred nodes
+* Edit ``conf/mapred-site.xml`` to set the locations of the job tracker and its working dir
 
 .. code-block:: bash
 
@@ -96,9 +99,31 @@ Installation
   and reduce task.
     </description>
   </property>
+
   <property>
     <name>mapreduce.jobtracker.staging.root.dir</name>
     <value>/user</value>
+  </property>
+
+* Edit ``conf/hdfs-site.xml`` to set working dirs of name and data node and how often a file gets replicated
+
+.. code-block:: bash
+
+  <property>
+    <name>dfs.replication</name>
+    <value>1</value>
+    <description>Default block replication.
+    The actual number of replications can be specified when the file is created.
+    The default is used if replication is not specified in create time.
+    </description>
+  </property>
+  <property>
+    <name>dfs.data.dir</name>
+    <value>/hadoop/data</value>
+  </property>
+  <property>
+    <name>dfs.name.dir</name>
+    <value>/hadoop/name</value>
   </property>
 
 * Create a hadoop user with an SSH key
