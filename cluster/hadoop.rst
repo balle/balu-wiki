@@ -403,6 +403,17 @@ Multi-User-Hadoop
 * Add your users to the hadoop group
 
 
+Restart a single daemon on a slave node
+=======================================
+
+* Connect to the slave node
+* Get hadoop user
+
+.. code-block:: bash
+
+  bin/hadoop-daemon.sh start tasktracker
+
+
 Addons
 ======
 
