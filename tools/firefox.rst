@@ -15,6 +15,7 @@ Extensions
 * It's all text - https://addons.mozilla.org/en-US/firefox/addon/4125
 * LoL - http://elder-gods.org/lol
 * Mouseless browsing - https://addons.mozilla.org/de/firefox/addon/mouseless-browsing/
+* Customizable Shortcuts - https://addons.mozilla.org/de/firefox/addon/customizable-shortcuts/
 * Tile Tabs - https://addons.mozilla.org/de/firefox/addon/tile-tabs/
 * Foxyproxy - https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/
 * Live HTTP headers - https://addons.mozilla.org/en-US/firefox/addon/live-http-headers/
@@ -57,7 +58,7 @@ Privacy
 * Use privoxy as proxy to filter thinks like browser identity string
 * Optionally use tor as forwarding proxy in privoxy
 
-  
+
 Goto last tab
 =============
 
@@ -73,7 +74,7 @@ Mouseless browsing
 * ctrl + id + enter - click on id
 * alt + id - open id in new tab
 * ctrl + alt + id - open id in new window
-  
+
 
 Parameterized bookmarks
 =======================
