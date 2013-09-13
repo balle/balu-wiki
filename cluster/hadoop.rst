@@ -221,6 +221,15 @@ Working with HDFS
 
   hadoop dfs -get file.txt local_file.txt
 
+* In python
+
+.. code-block:: bash
+
+  cat = subprocess.Popen(["hadoop", "fs", "-cat", "/path/to/myfile"], stdout=subprocess.PIPE)
+  for line in cat.stdout:
+    print line
+
+
 * Export HDFS via NFS, see https://github.com/cloudera/hdfs-nfs-proxy/wiki/Quick-Start
 
 
@@ -300,6 +309,39 @@ Working with Map Reduce
 .. code-block:: bash
 
   bin/hadoop dfs -cat /myoutput/part-00000
+
+
+Pydoop
+======
+
+* Requires boost-python and maybe boost-devel
+* Maybe you need to adjust setup.py to install pydoop (search for ``get_java_library_dirs`` function and return hardcoded path to libjvm.so)
+* Simple wordcount
+
+.. code-block:: bash
+
+  #!/usr/bin/python
+
+  def mapper(key, value, writer):
+    for word in value.split():
+      writer.emit(word, "1")
+
+  def reducer(key, value_list, writer):
+    writer.emit(key, sum(map(int, value_list)))
+
+* Run it with
+
+.. code-block:: bash
+
+  pydoop script test-pydoop.py /test/README.txt myout
+
+* Accessing HDFS
+
+.. code-block:: bash
+
+  import pydoop.hdfs as hdfs
+  for line in hdfs.open("/some/file"):
+    print line
 
 
 Jobs
