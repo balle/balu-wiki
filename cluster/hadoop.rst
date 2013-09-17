@@ -230,7 +230,41 @@ Working with HDFS
     print line
 
 
-* Export HDFS via NFS, see https://github.com/cloudera/hdfs-nfs-proxy/wiki/Quick-Start
+Export HDFS via NFS
+===================
+
+* Install like describe on https://github.com/cloudera/hdfs-nfs-proxy/wiki/Quick-Start
+* Example config
+
+.. code-block:: bash
+
+  <?xml version="1.0" encoding="UTF-8"?>
+
+  <configuration>
+    <property>
+      <name>hdfs.nfs.nfs4.owner.domain</name>
+      <value>localdomain</value>
+    </property>
+    <property>
+      <name>hdfs.nfs.data.dir</name>
+      <value>/tmp/hdfs-nfs-proxy/data</value>
+    </property>
+    <property>
+      <name>hdfs.nfs.temp.dirs</name>
+      <value>/tmp/hdfs-nfs-proxy/tmp</value>
+    </property>
+    <property>
+      <name>hdfs.nfs.security.flavor</name>
+      <value>unix</value>
+    </property>
+    <property>
+      <name>hdfs.nfs.security.allowed.hosts</name>
+      <value>
+      * rw
+      </value>
+    </property>
+  </configuration>
+
 
 
 Configure Map Reduce
