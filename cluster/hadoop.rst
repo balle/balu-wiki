@@ -495,7 +495,7 @@ Troubleshooting
   bin/hadoop --config conf namenode
   bin/hadoop --config conf datanode
 
-* java.io.IOException: Incompatible namespaceIDs (namenode war reformated but datanodes not)
+* java.io.IOException: Incompatible namespaceIDs (namenode was reformated but datanodes not) -> first try to manually update the namespaceID on every data node by editing ``/local/hadoop/data-node/current/VERSION`` if this doesnt help
 
 .. code-block bash
 
