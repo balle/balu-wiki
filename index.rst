@@ -106,6 +106,7 @@ Cluster
    :maxdepth: 1
 
    cluster/clustershell
+   cluster/glusterfs
    cluster/hadoop
    cluster/mpi
    cluster/openstack
