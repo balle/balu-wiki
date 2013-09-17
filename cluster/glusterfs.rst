@@ -46,3 +46,66 @@ Configuration
 .. code-block:: bash
 
   mount -t glusterfs node1:/export/test /mnt
+
+
+Peers
+=====
+
+* Add a new one
+
+.. code-block:: bash
+
+  gluster peer probe <ip>
+
+* Show status
+
+.. code-block:: bash
+
+  gluster peer status
+
+* Remove one
+
+.. code-block:: bash
+
+  gluster peer detach <ip>
+
+
+Volumes
+=======
+
+* Create a new one
+
+.. code-block:: bash
+
+  gluster volume create test replica 2 node1:/export/test node2:/export/test
+  gluster volume start test
+
+* List all volumes
+
+.. code-block:: bash
+
+  gluster volume status
+
+* Remove one
+
+.. code-block:: bash
+
+  gluster volume stop test
+  gluster volume remove test
+
+* Add a new disk to a volume
+
+.. code-block:: bash
+
+  gluster volume add-brick <volname> replica 2 node3:/export/moretest
+
+
+Troubleshooting
+===============
+
+* Performance information
+
+.. code-block:: bash
+
+  gluster volume top <volname> read-perf
+  gluster volume top <volname> write-perf
