@@ -492,5 +492,14 @@ Troubleshooting
 
 .. code-block:: bash
 
-  bin/hadoop namenode
-  bin/hadoop datanode
+  bin/hadoop --config conf namenode
+  bin/hadoop --config conf datanode
+
+* java.io.IOException: Incompatible namespaceIDs (namenode war reformated but datanodes not)
+
+.. code-block bash
+
+  bin/stop-all.sh
+  rm -rf /local/hadoop # on all datanodes
+  bin/hadoop namenode -format
+  bin/start-all.sh
