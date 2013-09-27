@@ -141,6 +141,7 @@ Programming
 .. toctree::
    :maxdepth: 1
 
+   programming/awk
    programming/css3
    programming/django
    programming/functional
