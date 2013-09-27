@@ -56,4 +56,5 @@ Make /etc/hosts to domain names
 ===============================
 
 .. code-block:: bash
+
    perl -n -e 'my @a=split(/\s*\s/,$_); print "$a[1]\tIN\tA\t$a[0]\n";' /etc/hosts >> domain.name.fwd
