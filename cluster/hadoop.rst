@@ -490,6 +490,111 @@ Restart a single daemon on a slave node
   bin/hadoop-daemon.sh start tasktracker
 
 
+Zookeeper Setup
+===============
+
+* Edit `conf/zoo.cfg`
+
+.. code-block:: bash
+
+  tickTime=2000
+  clientPort=2181
+  initLimit=5
+  syncLimit=2
+  dataDir=/local/hadoop/zookeeper/data
+  dataLogDir=/local/hadoop/zookeeper/log
+
+  # be sure to add an odd number of servers!
+  server.1=node1:2888:3888
+  server.2=node2:2888:3888
+  server.3=node3:2888:3888
+
+
+
+HBase Setup
+===========
+
+* Make sure zookeeper is installed
+* Edit `conf/hbase-site.xml`
+
+.. code-block:: bash
+
+  <configuration>
+    <property>
+      <name>hbase.rootdir</name>
+      <value>hdfs://dco-node176:54310/hbase</value>
+    </property>
+
+    <property>
+      <name>hbase.cluster.distributed</name>
+      <value>true</value>
+    </property>
+
+    <property>
+      <name>hbase.tmp.dir</name>
+     <value>/local/hadoop/hbase</value>
+    </property>
+
+    <property>
+     <name>hbase.ZooKeeper.quorum</name>
+     <value>dco-node176</value>
+    </property>
+
+    <property>
+      <name>hbase.zookeeper.property.dataDir</name>
+      <value>/local/hadoop/zookeeper</value>
+    </property>
+
+  </configuration>
+
+* Edit `conf/regionservers` and add all nodes
+
+
+Working with HBase
+===================
+
+* Create a table
+
+.. code-block:: bash
+
+  create 'tablename', 'col1', 'col2', 'col3'
+
+* Show all tables
+
+.. code-block:: bash
+
+  list
+  describe 'tablename'
+
+* Insert values (can only put 1 value in 1 column at a time!)
+
+.. code-block:: bash
+
+  put 'tablename'' 'index e.g. r1' 'col1' 'value1'
+
+* Select values
+
+.. code-block:: bash
+
+  get 'tablename' 'index'
+
+* Check table health
+
+.. code-block:: bash
+
+  scan 'tablename'
+
+* Drop a table
+
+.. code-block:: bash
+
+  disable 'tablename'
+  drop 'tablename'
+
+* For more see http://learnhbase.wordpress.com/2013/03/02/hbase-shell-commands/
+
+
+
 Addons
 ======
 
@@ -515,6 +620,25 @@ Documentation
 Troubleshooting
 ===============
 
+* Check all daemons are running
+
+.. code-block:: bash
+
+  jps
+
+* Get a list of active task trackers
+
+.. code-block:: bash
+
+  bin/hadoop job -list-active-trackers
+
+* Check DFS status
+
+.. code-block:: bash
+
+  bin/hadoop dfsadmin -report
+  bin/hadoop fschk /
+
 * Cannot create directory Name node is in safe mode -> NameNode is in safemode until configured percent of blocks reported to be online by the data nodes.
 * DFS not leaving safe mode?
 
@@ -537,3 +661,45 @@ Troubleshooting
   rm -rf /local/hadoop # on all datanodes
   bin/hadoop namenode -format
   bin/start-all.sh
+
+
+* Zookeeper status
+
+.. code-block:: bash
+
+  cd /opt/zookeeper
+  bin/zkCli.sh -server <master-node>:2181
+  [zk: mynode:2181(CONNECTED) 1] ls /
+  [zk: mynode:2181(CONNECTED) 1] quit
+
+* Be sure you have an odd number of server in zoo.cfg
+* Be sure there is an zookeeper id
+
+.. code-block:: bash
+
+  cat /local/hadoop/zookeeper/data/myid
+
+* Try to start zookeeper in foreground
+
+.. code-block:: bash
+
+  /opt/zookeeper/bin/zkServer.sh start-foreground
+
+
+* HBase status
+
+.. code-block:: bash
+
+  cd /opt/hbase
+  bin/hbase shell
+  hbase(main):001:0> list
+  hbase(main):002:0> status
+
+* Read http://hbase.apache.org/book/trouble.html if the error is not one of the below
+
+
+* ERROR: org.apache.hadoop.hbase.MasterNotRunningException -> Check that HMaster process is running
+
+.. code-block:: bash
+
+  jps
