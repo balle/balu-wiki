@@ -594,6 +594,44 @@ Working with HBase
 * For more see http://learnhbase.wordpress.com/2013/03/02/hbase-shell-commands/
 
 
+Working with Hive
+=================
+
+* Create a table in HBase
+
+.. code-block:: bash
+
+  CREATE TABLE people(key int, name string, age int) STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,name:val,age:val") TBLPROPERTIES ("hbase.table.name" = "hive_people");
+
+* List / describe tables
+
+.. code-block:: bash
+
+  SHOW TABLES;
+  DESCRIBE <tablename>
+
+* Insert data (format is 1|balle|31)
+
+.. code-block:: bash
+
+  LOAD DATA LOCAL INPATH 'people.txt' OVERWRITE INTO TABLE people
+
+
+Import data from a database to HDFS
+===================================
+
+.. code-block:: bash
+
+  bin/sqoop import -m 1 --connect jdbc:mysql://<host>:<port>/dbname --username <dbuser> --password <dbpass> --table <tablename> --target-dir </hdfs-dir>
+
+
+Export data from HDFS to a database
+===================================
+
+.. code-block:: bash
+
+  bin/sqoop export -m 1 --connect jdbc:mysql://<host>:<port>/dbname --username <dbuser> --password <dbpass> --table <tablename> --export-dir </hdfs-dir>
+
 
 Addons
 ======
