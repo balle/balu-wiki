@@ -256,6 +256,14 @@ Handling remote repositories
   git remote show origin
 
 
+Ignore existing file (if gitignore doesnt ignore)
+=================================================
+
+.. code-block:: bash
+
+  git update-index --assume-unchanged <file>
+
+
 Git over HTTP
 =============
 
