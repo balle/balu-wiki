@@ -1,8 +1,8 @@
 #######################
-Functional programming 
+Functional programming
 #######################
 
-Basics 
+Basics
 ======
 
 * lambda - Create an anonymous function
@@ -39,7 +39,7 @@ Basics
   [x for x in list1 if x in list2]
 
 
-Generators 
+Generators
 ==========
 
 * Generator remember it's state and return (yield) the next item
@@ -78,7 +78,7 @@ Generators
 
   gen = (x for x in filter(lambda x: x % 2 == 0, range(100)))
 
-Iterators 
+Iterators
 ==========
 
 .. code-block:: python
@@ -93,11 +93,11 @@ Iterators
               raise StopIteration
           self.nr += 2
           return self.nr
- 
+
   muh=MyIter()
   muh.next()
 
-Iterators with generators 
+Iterators with generators
 =========================
 
   class MyIter:
@@ -109,7 +109,7 @@ Iterators with generators
          return self.nr.next()
 
 
-Functools 
+Functools
 =========
 
 * create new function with fixed parameter
@@ -123,8 +123,41 @@ Functools
   add_two = functools.partial(sum, b=2)
 
 
-Decorators 
+Closure
+========
+
+* A closure is a function pointer with saved parameters
+
+.. code-block:: python
+
+  from urllib import urlopen
+
+  def page(url):
+    def get():
+      return urlopen(url).read()
+    return get
+
+  codekid = page("http://www.codekid.net")
+  codekid()
+
+
+Decorators
 ==========
+
+* A Decorator is a function that wraps another function
+* code by hand
+
+.. code-block:: python
+
+  def hello(func):
+    def callf(*args, **kwargs):
+      print "Hello"
+      func(*args, **kwargs)
+      print "Bye"
+    return callf
+
+
+* with functools
 
 .. code-block:: python
 
@@ -139,7 +172,7 @@ Decorators
 * http://rxwen.blogspot.com/2010/12/python-decorators.html
 
 
-Memoize Decorator 
+Memoize Decorator
 ==================
 
 * Caches function results for inputs
@@ -151,7 +184,7 @@ Memoize Decorator
 
       @wraps(f)
       def helper(x):
-          if x not in cache:            
+          if x not in cache:
               cache[x] = f(x)
           return cache[x]
       return helper
