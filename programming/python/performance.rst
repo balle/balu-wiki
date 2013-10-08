@@ -2,6 +2,8 @@
 Performace tricks
 ##################
 
+* use generators instead of lists were possible
+* run interpreter with ``-O``
 * For big ranges use ``xrange()`` cause it creates a generator
 * Use ``xreadlines()`` for big files cause it also creates a generator
 * Setting environment variable ``PYTHONUNBUFFERED`` will force stdout / stderr to be unbuffered
@@ -11,7 +13,7 @@ Performace tricks
 * Prefer ``while 1`` instead of `` while True``
 * Write "x < y < z" instead of "x < y and y < z"
 * ``"test " + var`` is slower than ``"test %s" % (var,)``
-* ``map()`` and list comprehension are faster than a loop
+* ``map()``, generator and list comprehension are faster than a loop
 * put your global variables into a ``main`` function and call it by:
 
 .. code-block:: Python
