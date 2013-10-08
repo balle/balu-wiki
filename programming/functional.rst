@@ -56,58 +56,31 @@ Generators
   gen = gen_even_numbers()
   gen.next()
 
-* yield can be given an argument with send
-
-.. code-block:: python
-
-  def gen_even_numbers():
-       i = 2
-
-       while True:
-           val = (yield i)
-           if val: i = val
-           else: i += 2
-
-  gen = gen_even_numbers()
-  gen.next()
-  gen.send(12)
-
-* Generator expressions (like list comprehensions with round parentheses)
+* Generator expressions are like list comprehensions with round parentheses
 
 .. code-block:: python
 
   gen = (x for x in filter(lambda x: x % 2 == 0, range(100)))
 
-Iterators
-==========
+
+Coroutine
+=========
+
+* A coroutine is like a generator but excepts chunk-wise input
+* It executes till the next `yield` and wait for you to `send` data in
+* Dont forget the pretending `next` otherwise the coroutine will never reach the first `yield`
 
 .. code-block:: python
 
-  class MyIter:
-      def __init__(self, i=1):
-          self.nr = i
-      def __iter__(self):
-          return self
-      def next(self):
-          if self.nr > 100:
-              raise StopIteration
-          self.nr += 2
-          return self.nr
+  def receiver():
+    while True:
+      print "Waiting for data..."
+      data = (yield)
+      print "Got " + str(data)
 
-  muh=MyIter()
-  muh.next()
-
-Iterators with generators
-=========================
-
-  class MyIter:
-      def __init__(self, i=1):
-         self.nr = (x for x in filter(lambda x: x % 2 == 0, range(100)))
-      def __iter__(self):
-          return self
-      def next(self):
-         return self.nr.next()
-
+  recv = receiver().next()
+  recv.send("abc")
+  recv.close()
 
 Functools
 =========
@@ -157,7 +130,7 @@ Decorators
     return callf
 
 
-o* with functools
+* with functools
 
 .. code-block:: python
 
