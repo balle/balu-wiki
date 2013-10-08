@@ -157,7 +157,7 @@ Decorators
     return callf
 
 
-* with functools
+o* with functools
 
 .. code-block:: python
 
@@ -170,6 +170,28 @@ Decorators
       return wrapper
 
 * http://rxwen.blogspot.com/2010/12/python-decorators.html
+
+
+Conditional decorator with arguments
+====================================
+
+.. code-block:: python
+
+  from nose.tools import timed
+  import time
+
+  def not_on_travis(decorator):
+    def wrapper(func):
+      if os.getenv("TRAVIS"):
+        return func
+      else:
+        return decorator(func)
+    return wrapper
+
+  @not_on_travis(timed(0.1))
+  def say(what):
+    print "You said " + what
+    time.sleep(1)
 
 
 Memoize Decorator
