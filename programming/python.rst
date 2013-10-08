@@ -12,6 +12,7 @@ Python
    python/encoding
    python/fabfile
    python/file
+   python/functional
    python/introspection
    python/ipython
    python/json
@@ -31,4 +32,3 @@ Python
    python/templating
    python/testing
    python/web
-
