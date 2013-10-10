@@ -44,6 +44,38 @@ Multiprocessing with Queues
     return result
 
 
+Fork Decorator
+==============
+
+.. code-block:: python
+
+  def forked(func):
+    def wrapped(*args, **kwargs):
+      import os
+
+      pid = os.fork()
+      if pid > 0: func(*args, **kwargs)
+
+    return wrapped
+
+
+Thread Decorator
+================
+
+.. code-block:: python
+
+  def threaded(name):
+    def callf(func):
+      def wrapped(*args, **kwargs):
+        import thread
+
+        def newfunc():
+          func(*args, **kwargs)
+        thread.start_new_thread(newfunc, ())
+      return wrapped
+    return callf
+
+
 MapReduce
 ==========
 
