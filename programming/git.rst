@@ -192,6 +192,13 @@ Working with older versions
 
   git reset --hard <version>
 
+* Delete just the changes of a specific commit
+
+.. code-block:: bash
+
+  git revert <commit-id>
+
+
 
 Using the stash
 ================
