@@ -85,6 +85,30 @@ List contents of uninstalled rpm
 
   rpm -qlp <rpm_file>
 
+Exclude a package from update
+=============================
+
+* Edit /etc/yum.conf
+
+.. code-block:: bash
+
+  exclude=some_pkg*
+
+Get all versions of a package and their repos
+==============================================
+
+.. code-block:: bash
+
+  yum list all --showduplicates | grep <pkgname>
+
+
+Downgrade a package
+===================
+
+.. code-block:: bash
+
+  yum downgrade <pkgname>
+
 
 Service Configuration
 =====================
@@ -168,4 +192,3 @@ Setting up a chroot environment
   mkdir -p /data/redhat/var/cache/yum/x64_64/\$releaseserver
   cp /etc/yum.repos.d/redhat.repo /data/redhat/var/cache/yum/x64_64/\$releaseserver
   yum --disablerepo=* --enablerepo=redhat --disableplugin=* --installroot=/data/redhat install bash
-
