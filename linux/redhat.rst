@@ -99,7 +99,7 @@ Get all versions of a package and their repos
 
 .. code-block:: bash
 
-  yum list all --showduplicates | grep <pkgname>
+  yum list <pkgname> --showduplicates
 
 
 Downgrade a package
