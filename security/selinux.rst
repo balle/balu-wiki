@@ -5,15 +5,16 @@ SELinux
 Overview
 ========
 
-
-
 Update policy
 =============
+
+* Use a unique policy name otherwise it can clash with system internals and result in strange error messages
 
 .. code-block:: bash
 
   grep qemu-system-x86 /var/log/audit/audit.log | audit2allow -M mypol
   semodule -i mypol.pp
+
 
 Booleans
 ========
@@ -63,6 +64,22 @@ Managing file contexts
 .. code-block:: bash
 
   chcon -R --reference=/old/dir /new/dir
+
+
+Compile a te file by hand
+==========================
+
+.. code-block:: bash
+
+  make -f /usr/share/selinux/devel/Makefile some.pp
+
+
+Log everything
+==============
+
+.. code-block:: bash
+
+  semanage dontaudit off
 
 
 Mysql config
