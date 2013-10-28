@@ -21,6 +21,7 @@ Python
    python/metaprogramming
    python/misc
    python/multiprocessing
+   python/pandas
    python/performance
    python/pip
    python/pygraphviz
