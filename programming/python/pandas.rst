@@ -97,6 +97,15 @@ Aggregation
   data.groupby('title').agg({'rating': [np.size, np.mean]})
 
 
+Iteration
+=========
+
+.. code-block:: bash
+
+  for entry in data[['date', 'value']].itertuples():
+    print entry
+
+
 Graphing
 ========
 
