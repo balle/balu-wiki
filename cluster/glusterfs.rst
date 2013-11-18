@@ -219,6 +219,8 @@ Troubleshooting
 
 * `Protocol not supported` -> you try to mount with version 4 instead of 3
 
+* `node is already part of another cluster` -> delete /var/lib/glusterd/peers/*
+
 * `split brain` means that we detected changes to both replicas
 
 .. code-block:: bash
