@@ -65,6 +65,12 @@ Configuration
 
   mount -t glusterfs node1:/export/test /mnt
 
+* For redundant mount insert the following into your ``/etc/fstab``
+
+.. code-block:: bash
+
+  $GFS1_NODE:/export/test /mnt glusterfs defaults,_netdev,backupvolfile-server=$GFS2_NODE 0 0
+
 
 Peers
 =====
