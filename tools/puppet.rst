@@ -27,7 +27,7 @@ Overview
     modulepath = /etc/puppet/modules
     autoflush = true
     autosign = true
-    
+
 
 * ``manifests/site.pp`` tells puppet what client configurations to load
 
@@ -36,7 +36,7 @@ Overview
   import 'nodes.pp'
   # import 'nodes/*'
   $puppetserver = "name-of.master.net"
-  
+
 * ``manifest/notes.pp`` include the client configuration
 
 .. code-block:: bash
@@ -79,7 +79,7 @@ Definitions
   cronjob { 'blah':
     hour => 23,
   }
-  
+
 
 Modules
 =======
@@ -112,7 +112,7 @@ Modules
 
   puppet module install puppetlabs-openstack
   puppet module uninstall puppetlabs-openstack
-  
+
 
 Install software
 ================
@@ -121,7 +121,7 @@ Install software
 
   package { 'emacs': ensure => present }
 
-  
+
 Copy files
 ==========
 
@@ -137,7 +137,7 @@ Copy files
 
 * File must be on master server in ``/etc/puppet/modules/emacs/files/.emacs``
 
-  
+
 Change a file
 ==============
 
@@ -152,7 +152,7 @@ Change a file
   }
 
 * Edit specific entry
-  
+
 .. code-block:: bash
 
   file_line {
@@ -163,7 +163,7 @@ Change a file
   }
 
 * Or using augeas
-  
+
 .. code-block:: bash
 
   augeas { "nova.conf":
@@ -219,7 +219,7 @@ Adding users
 .. code-block:: bash
 
   openssl passwd
-  
+
 
 SSH keys
 ========
@@ -233,8 +233,8 @@ SSH keys
     user => "testuser",
     require => User["testuser"],
   }
-  
-  
+
+
 Starting services
 =================
 
@@ -295,7 +295,7 @@ Deleting stuff
 .. code-block:: bash
 
   ensure => absent,
-  
+
 
 Templates
 =========
@@ -313,8 +313,9 @@ Templates
   <% else -%>
     do something totally different
   <% end -%>
-  
+
 * Can be included in files using ``content = template("template_file.erb")``
+* To access variables from other packages use ``<%= scope.lookupvar('my_package::some_var') %>``
 
 
 Config controls
@@ -334,7 +335,7 @@ Config controls
                                     $logdir = '/var/log/apache2'}
     default:                      { $vdir   = '/etc/apache2/sites-enabled'
                                     $logdir = '/var/log/apache2'}
-  }        
+  }
 
 
 Firewall config
@@ -361,7 +362,7 @@ Firewall config
 
   class { ['my_fw::pre', 'my_fw::post']: }
   class { 'firewall': }
-      
+
   class my_fw::pre {
     Firewall {
       require => undef,
@@ -397,7 +398,7 @@ Firewall config
 .. code-block:: bash
 
   pluginsync = true
-  
+
 * The comment must contain an index to get the order of the rules
 
 .. code-block:: bash
@@ -414,7 +415,7 @@ SELinux
 =======
 
 * Boolean
-  
+
 .. code-block:: bash
 
   selboolean { "a comment":
@@ -442,7 +443,7 @@ SELinux
     context => "mysqld_log_t",
     pathname => "/var/log/mysql(/.*)?",
   }
-  
+
 * Policy module
 
 .. code-block:: bash
@@ -463,7 +464,7 @@ Executing ruby code
   #...
   myparam => inline_template("<%= SecureRandom.hex(20) %>"),
 
-  
+
 Cert handling
 =============
 
@@ -479,7 +480,7 @@ Cert handling
 
   puppet cert --sign <hostname>
   puppet cert --sign --all
-  
+
 * Delete
 
 .. code-block:: bash
@@ -497,7 +498,7 @@ Environments
   [main]
     modulepath = $confdir/modules
     manifest = $confdir/manifests/site.pp
-  
+
   [devel]
     modulepath = $confdir/devel/modules
     manifest = $confdir/devel/manifests/site.pp
@@ -520,7 +521,7 @@ Syntaxcheck a manifest
 .. code-block:: bash
 
   puppet apply --noop <manifests/init.pp>
-  
+
 
 Getting help
 ============
