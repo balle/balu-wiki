@@ -78,6 +78,23 @@ Managing file contexts
   semanage fcontext -d <dir>
 
 
+Change role
+===========
+
+.. code-block:: bash
+
+  newrole -r system_r -t unconfined_t
+  id -Z
+
+
+Start a program in a specific role
+==================================
+
+.. code-block:: bash
+
+  runcon system_u:system_r:crond_t:s0 /bin/bash
+
+
 Compile a te file by hand
 ==========================
 
