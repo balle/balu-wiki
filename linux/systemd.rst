@@ -2,12 +2,19 @@
 Systemd
 #######
 
-List all services and their status
+List all units and their status
 ==================================
 
 .. code-block:: bash
 
   systemctl
+
+* List only services
+
+.. code-block:: bash
+
+  systemctl list-units --type=service
+
 
 List all failed services
 ========================

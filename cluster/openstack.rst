@@ -318,6 +318,17 @@ Automatically backup instances
   nova backup <device_id> <backup_name> daily <keep_x_copies>
 
 
+Live migration
+==============
+
+* Setup as described in http://docs.openstack.org/grizzly/openstack-compute/admin/content/configuring-migrations.html
+* Migrate a vm to another hypervisor
+
+.. code-block:: bash
+
+  nova live-migration <machine_id> <new_hypervisor>
+
+
 Where to find which service?
 ============================
 
@@ -329,6 +340,15 @@ Where to find which service?
 
 Where to find which instance?
 =============================
+
+* Get hypervisor of an instance
+
+.. code-block:: bash
+
+  nova show <machine_id> | grep OS-EXT-SRV-ATTR:host
+
+
+* List all instances of a hypervisor
 
 .. code-block:: bash
 
@@ -472,6 +492,13 @@ Troubleshooting Instances
   nova show <device_id>
   nova diagnostics <device_id>
 
+* Instance in an broken task state?
+
+.. code-block:: bash
+
+  nova reset-state <device_id>
+  nova reset-state --active <device_id>
+
 * Qemu disk image is broken?
 
 .. code-block:: bash
@@ -581,3 +608,53 @@ Programming
   conn = ksclient.Client(auth_url="http://127.0.0.1:35357/v2.0", username="nova", password="nova", tenant_name="services")
   print conn.auth_token
 
+* Nova
+
+.. code-block:: bash
+
+  import sys
+  import time
+  import novaclient.v1_1.client as nvclient
+
+  username = "admin"
+  password = "admin"
+  tenant = "admin"
+  auth_url = "http://127.0.0.1:5000/v2.0/"
+
+  def get_hypervisor_for_host(hostname):
+    try:
+      hypervisor = nova.hypervisors.search(hostname, servers=True)[0]
+    except Exception:
+      hypervisor = None
+
+    return hypervisor
+
+  nova = nvclient.Client(username, password, tenant, auth_url)
+  hypervisor = get_hypervisor_for_host(sys.argv[1])
+
+  if not hypervisor:
+    print "Hypervisor " + sys.argv[1] + " cannot be found"
+    sys.exit(1)
+
+  if hasattr(hypervisor, "servers"):
+    waiting_for_migrations = True
+
+    for vm_dict in hypervisor.servers:
+      vm = nova.servers.get(vm_dict.get('uuid'))
+      print "Migrating " + vm.name
+      vm.live_migrate()
+
+    # wait for migration to complete
+    sys.stdout.write("\nWaiting for migrations to finish ...")
+
+    while waiting_for_migrations:
+      sys.stdout.write(".")
+      hypervisor = get_hypervisor_for_host(sys.argv[1])
+
+      if not hypervisor or not hasattr(hypervisor, "servers"):
+        waiting_for_migrations = False
+        sys.stdout.write("\n")
+      else:
+        time.sleep(1)
+  else:
+    print "Hypervisor " + sys.argv[1] + " serves no vms"

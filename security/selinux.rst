@@ -65,6 +65,18 @@ Managing file contexts
 
   chcon -R --reference=/old/dir /new/dir
 
+* Permanently set same context as other directory
+
+.. code-block:: bash
+
+  semanage fcontext -a -e /var/www /srv/www
+
+* Delete a file context
+
+.. code-block:: bash
+
+  semanage fcontext -d <dir>
+
 
 Compile a te file by hand
 ==========================
