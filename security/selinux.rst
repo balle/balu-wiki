@@ -12,8 +12,32 @@ Update policy
 
 .. code-block:: bash
 
-  grep qemu-system-x86 /var/log/audit/audit.log | audit2allow -M mypol
-  semodule -i mypol.pp
+  grep qemu-system-x86 /var/log/audit/audit.log | audit2allow -M <policy_name>
+  semodule -i <policy_name>.pp
+
+
+Show all policies
+=================
+
+.. code-block:: bash
+
+  semodule -l
+
+
+Get rid of a policy
+===================
+
+* Disable
+
+.. code-block:: bash
+
+  semodule -d <policy_name>
+
+* Remove
+
+.. code-block:: bash
+
+  semodule -r <policy_name>
 
 
 Booleans
@@ -93,6 +117,24 @@ Start a program in a specific role
 .. code-block:: bash
 
   runcon system_u:system_r:crond_t:s0 /bin/bash
+
+
+Configure users
+===============
+
+* Map Unix user to SELinux user
+
+.. code-block:: bash
+
+  semanage login -a -s user_u <unix_user>
+  semanage login -l
+
+* Map SELinux user to roles
+
+.. code-block:: bash
+
+  semanage user -a -R "user_r sysadm_r" user_u
+  semanage user -l
 
 
 Compile a te file by hand
