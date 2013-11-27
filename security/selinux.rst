@@ -191,9 +191,24 @@ Apache config
 * For more see `man httpd_selinux`
 
 
+NFS / Mounting
+===============
+
+* Specify security context with mount parameter ``--context=<security_label>``
+
+
 Temporarily disable / enable SELinux
 ====================================
 
 .. code-block:: bash
 
   setenforce [0|1]
+
+
+Documentation
+=============
+
+* http://www.selinuxproject.org/page/User_Resources
+* http://www.admin-magazin.de/Online-Artikel/Mandatory-Access-Control-MAC-mit-SE-Linux
+* http://magazine.redhat.com/2007/08/21/a-step-by-step-guide-to-building-a-new-selinux-policy-module/
+* https://www.youtube.com/user/domg4721/videos
