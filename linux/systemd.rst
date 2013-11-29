@@ -83,6 +83,19 @@ Filtering logs
   journalctl -f
 
 
+Rescue Mode / Debugging
+=======================
+
+* On Grub prompt try to set one of the following kernel parameter
+
+.. code-block:: bash
+
+  systemd.unit=rescue.target      # (single user mode)
+  systemd.unit=emergency.target   # (only shell)
+  systemd.unit=multi-user.target  # (without X)
+  systemd.confirm_spawn=1
+
+
 An example service
 ==================
 
