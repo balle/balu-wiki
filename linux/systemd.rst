@@ -82,6 +82,25 @@ Filtering logs
 
   journalctl -f
 
+* Where to find the log files?
+
+.. code-block:: bash
+
+  cd /var/log/journal
+
+* How to configure max hd space for logs? Edit /etc/systemd/journald.conf
+
+.. code-block:: bash
+
+  SystemMaxUse=100M
+
+* Log rotation (/etc/systemd/journald.conf)
+
+.. code-block:: bash
+
+  MaxRetentionSec=1day
+  MaxFileSec=1month
+
 
 Rescue Mode / Debugging
 =======================
