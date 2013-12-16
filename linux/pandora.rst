@@ -2,8 +2,20 @@
 OpenPandora
 ###########
 
+Emulator handbook
+=================
+
+* http://dl.openhandhelds.org/pandora//uploads/Home/Pandora%20-%20Emulators/yoshis_pandora_emulator_fact_sheets_v07.pdf
+
+
 Firmware update
-================
+===============
+
+* Install and run http://repo.openpandora.org/?page=detail&app=szupdater1.openpandora.org
+
+
+Firmware update (old way)
+=========================
 
 * http://www.openpandora.org/index.php?option=com_content&view=article&id=199&Itemid=40&lang=en
 * hold right shoulder button
