@@ -73,6 +73,45 @@ Write your own policy module
 * All object classes can be found in ``/usr/src/redhat/BUILD/serefpolicy-<version>/policy/flask/security_classes``
 * All permissions for a class can be found in ``/usr/src/redhat/BUILD/serefpolicy-<version>/policy/flask/access_vectors``
 
+
+Compile a te file by hand
+==========================
+
+.. code-block:: bash
+
+  make -f /usr/share/selinux/devel/Makefile some.pp
+
+
+Search a policy rule
+====================
+
+.. code-block:: bash
+
+  sesearch -A | grep <whatever>
+
+* To see all allow rules with type httpd_t as source
+
+.. code-block:: bash
+
+  sesearch -a -s httpd_t
+
+
+* or to see what a boolean / macro does (needs policy.conf see below)
+
+.. code-block:: bash
+
+  apol
+
+
+Generate a policy skeleton
+==========================
+
+.. code-block:: bash
+
+  sepolicy generate --application /usr/bin/firefox
+  sepolicy generate --init /path/to/my/init-service
+
+
 Booleans
 ========
 
@@ -90,6 +129,19 @@ Booleans
   setsebool -P <boolean> <value>
 
 * All local changes are in ``/etc/selinux/<policy>/modules/booleans.local``
+
+
+Write your own boolean
+=======================
+
+.. code-block:: bash
+
+  bool mybool <defaultvalue>;
+  tuneable_policy(`mybool', `
+    allow statements
+  ');
+
+* Name can be combined with || or && and other boolean names to activated this boolean only if condition is true
 
 
 Managing file contexts
@@ -196,14 +248,6 @@ Configure users
   semanage user -l
 
 
-Compile a te file by hand
-==========================
-
-.. code-block:: bash
-
-  make -f /usr/share/selinux/devel/Makefile some.pp
-
-
 Log everything
 ==============
 
@@ -224,27 +268,6 @@ Reset base policy
 .. code-block:: bash
 
   semodule -B
-
-
-Search a policy rule
-====================
-
-.. code-block:: bash
-
-  sesearch -A | grep <whatever>
-
-* To see all allow rules with type httpd_t as source
-
-.. code-block:: bash
-
-  sesearch -a -s httpd_t
-
-
-* or to see what a boolean / macro does (needs policy.conf see below)
-
-.. code-block:: bash
-
-  apol
 
 
 Generate policy.conf (source file of your policy)
@@ -343,19 +366,6 @@ Write your own macro
   define(`macro_name', `allow $1 $2: file { getattr read }');
 
 
-Write your own boolean
-=======================
-
-.. code-block:: bash
-
-  bool mybool <defaultvalue>;
-  tuneable_policy(`mybool', `
-    allow statements
-  ');
-
-* Name can be combined with || or && and other boolean names to activated this boolean only if condition is true
-
-
 Domain transition
 =================
 
@@ -365,7 +375,6 @@ Domain transition
   domain_auto_trans(unconfined_t, myfile_exec_t, myproc_t)
   auth_domtrans_chk_passwd(myproc_t)
   auth_domtrans_upd_passwd(myproc_t)
-
 
 
 Mysql config
