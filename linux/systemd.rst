@@ -145,14 +145,59 @@ Rescue Mode / Debugging
 
   systemd.unit=rescue.target      # (single user mode)
   systemd.unit=emergency.target   # (only shell)
-  systemd.unit=multi-user.target  # (without X)
+
+* Ask before starting a servce
+
   systemd.confirm_spawn=1
+
+* Give me more log output
+
+.. code-block:: bash
+
+  systemd.log_target=kmsg systemd.log_level=debug
+
+* Get console output of legacy sysv init scripts
+
+.. code-block:: bash
+
+  systemd.sysv_console=1
+
+
+* Which units want which target?
+
+.. code-block:: bash
+
+  systemctl show -p "Wants" multi-user.target
 
 * To analyze which services was slow
 
 .. code-block:: bash
 
   systemd-analyze blame
+
+
+What services do get started?
+=============================
+
+.. code-block:: bash
+
+  systemctl list-dependencies multi-user.target
+
+
+Change runlevel
+===============
+
+.. code-block:: bash
+
+  systemctl isolate <newtarget e.g. rescue.target or mutli-user.target>
+
+
+Changing the default runlevel
+=============================
+
+.. code-block:: bash
+
+  ln -sf /usr/lib/systemd/system/multi-user.target /etc/systemd/system/default.target
 
 
 An example service
@@ -263,3 +308,11 @@ More security options
 
   User=nobody
   Group=nobody
+
+
+I want more gettys / text consoles
+==================================
+
+.. code-block:: bash
+
+  ln -sf /usr/lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@tty9.service
