@@ -2,7 +2,7 @@
 OpenSSL
 #######
 
-Basic stuff 
+Basic stuff
 ============
 
 * Check a certificate
@@ -15,7 +15,7 @@ Basic stuff
 
 .. code-block:: bash
 
-  openssl -in <cert_file> -text
+  openssl x509 -in <cert_file> -text
 
 * Generate a certificate request (CSR)
 
@@ -61,7 +61,7 @@ Basic stuff
   openssl pkcs12 -in mycert.pfx -out mycert.pem
 
 
-CA stuff 
+CA stuff
 =========
 
 * Build your own CA
@@ -95,4 +95,4 @@ CA stuff
 .. code-block:: bash
 
   openssl ca -revoke bad_crt_file -keyfile ca_key -cert ca_crt
-  openssl crl -in crl_file -noout -text 
+  openssl crl -in crl_file -noout -text
