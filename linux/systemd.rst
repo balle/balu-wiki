@@ -5,6 +5,8 @@ Systemd
 List all units and their status
 ==================================
 
+* All running
+
 .. code-block:: bash
 
   systemctl
@@ -14,6 +16,12 @@ List all units and their status
 .. code-block:: bash
 
   systemctl list-units --type=service
+
+* All available
+
+.. code-block:: bash
+
+  systemctl list-unit-files
 
 
 List all failed services
@@ -82,6 +90,32 @@ Filtering logs
 
   journalctl -f
 
+* For a single pid
+
+.. code-block:: bash
+
+  journalctl _PID=123
+
+* For a single user
+
+.. code-block:: bash
+
+  journalctl -u <user>
+
+* For a service
+
+.. code-block:: bash
+
+  journalctl _SYSTEMD_UNIT=<unit name e.g. sshd.service>
+
+
+* For a SELinux context
+
+.. code-block:: bash
+
+  journalctl _SELINUX_CONTEXT=<security context>
+
+
 * Where to find the log files?
 
 .. code-block:: bash
@@ -114,6 +148,12 @@ Rescue Mode / Debugging
   systemd.unit=multi-user.target  # (without X)
   systemd.confirm_spawn=1
 
+* To analyze which services was slow
+
+.. code-block:: bash
+
+  systemd-analyze blame
+
 
 An example service
 ==================
@@ -127,6 +167,9 @@ An example service
   [Service]
   ExecStart=/bin/some-daemon
   Type=forking
+  CPUShares=1500
+  MemoryLimit=1G
+  BlockIOWeight=500
 
   [Install]
   WantedBy=multi-user.target
