@@ -14,6 +14,7 @@ Linux
    linux/debugging
    linux/fedora
    linux/filesystem
+   linux/grub2
    linux/inotify
    linux/ipmi
    linux/lvm
