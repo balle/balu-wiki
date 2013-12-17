@@ -108,6 +108,17 @@ Filtering logs
 
   journalctl _SYSTEMD_UNIT=<unit name e.g. sshd.service>
 
+* For kernel messages
+
+.. code-block:: bash
+
+  journalctl _TRANSPORT=kernel
+
+* For network stuff
+
+.. code-block:: bash
+
+  journalctl _COMM=network
 
 * For a SELinux context
 
@@ -134,6 +145,38 @@ Filtering logs
 
   MaxRetentionSec=1day
   MaxFileSec=1month
+
+* How to log to syslog (edit /etc/systemd/journald.conf)
+
+.. code-block:: bash
+
+  ForwardToSyslog=yes
+
+* Export log as JSON
+
+.. code-block:: bash
+
+  -o json
+
+
+Journald Web Gateway
+====================
+
+* Install systemd-journal-gateway
+* Start service systemd-journal-gateways
+* Connect your browser to http://<ip>:19531
+* To get an endless stream http://<ip>:19531/entries?follow
+* To pull remote journal log an save it to a text file
+
+.. code-block:: bash
+
+  nohup curl --silent -o some-host.log 'http://<ip>:19531/entries?follow' &
+
+* Or to pull it in the original journal format
+
+.. code-block:: bash
+
+  nohup curl --silent -H'Accept: application/vnd.fdo.journal' -o some-host.log 'http://<ip>:19531/entries?follow' &
 
 
 Rescue Mode / Debugging
@@ -316,3 +359,10 @@ I want more gettys / text consoles
 .. code-block:: bash
 
   ln -sf /usr/lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@tty9.service
+
+
+Python Coding
+=============
+
+* http://www.freedesktop.org/software/systemd/python-systemd/
+* https://pypi.python.org/pypi/pyjournalctl/0.7.0
