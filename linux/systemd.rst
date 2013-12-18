@@ -352,6 +352,13 @@ More security options
   User=nobody
   Group=nobody
 
+Only start a service if a specific device is found
+==================================================
+
+.. code-block:: bash
+
+  BindToDevice=dev-sda5.device
+
 
 I want more gettys / text consoles
 ==================================
