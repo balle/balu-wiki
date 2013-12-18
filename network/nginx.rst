@@ -306,7 +306,7 @@ Puppet Passenger
 
     server {
       listen                     8140 ssl;
-      server_name                blackbox-1.inf.ethz.ch;
+      server_name                puppetmaster.example.com;
 
       passenger_enabled          on;
       passenger_set_cgi_param    HTTP_X_CLIENT_DN $ssl_client_s_dn;
@@ -317,8 +317,8 @@ Puppet Passenger
 
       root                       /usr/share/puppet/rack/puppetmasterd/public/;
 
-      ssl_certificate      /var/lib/puppet/ssl/certs/blackbox-1.inf.ethz.ch.pem;
-      ssl_certificate_key  /var/lib/puppet/ssl/private_keys/blackbox-1.inf.ethz.ch.pem;
+      ssl_certificate      /var/lib/puppet/ssl/certs/puppetmaster.example.com.pem;
+      ssl_certificate_key  /var/lib/puppet/ssl/private_keys/puppetmaster.example.com.pem;
       ssl_crl                    /var/lib/puppet/ssl/ca/ca_crl.pem;
       ssl_client_certificate     /var/lib/puppet/ssl/certs/ca.pem;
       ssl_ciphers                SSLv2:-LOW:-EXPORT:RC4+RSA;
