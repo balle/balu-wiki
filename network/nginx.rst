@@ -245,8 +245,8 @@ Gunicorn as WSGI server
       proxy_pass unix:/tmp/gunicorn.sock;
     }
   }
-  
-  
+
+
 PHP
 ====
 
@@ -262,3 +262,70 @@ PHP
   }
 
 
+
+Puppet Passenger
+================
+
+* For nginx with buildin passenger RPM see http://passenger.stealthymonkeys.com
+
+.. code-block:: bash
+
+  user  nginx;
+  worker_processes  1;
+
+  pid        /var/run/nginx.pid;
+
+  events {
+    worker_connections  1024;
+  }
+
+  http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    '$status $body_bytes_sent "$http_referer" '
+    '"$http_user_agent" "$http_x_forwarded_for"';
+
+    sendfile        on;
+    tcp_nopush      on;
+
+    keepalive_timeout  65;
+
+    # Passenger needed for puppet
+    passenger_root  /usr/share/rubygems/gems/1.8/passenger-3.0.21;
+    passenger_ruby  /usr/bin/ruby;
+    passenger_max_pool_size 15;
+
+    ssl                  on;
+
+    ssl_protocols  SSLv2 SSLv3 TLSv1;
+    ssl_ciphers  ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
+    ssl_prefer_server_ciphers   on;
+
+
+    server {
+      listen                     8140 ssl;
+      server_name                blackbox-1.inf.ethz.ch;
+
+      passenger_enabled          on;
+      passenger_set_cgi_param    HTTP_X_CLIENT_DN $ssl_client_s_dn;
+      passenger_set_cgi_param    HTTP_X_CLIENT_VERIFY $ssl_client_verify;
+
+      access_log  /var/log/puppet/passenger_access.log  main;
+      error_log  /var/log/puppet/passenger_error.log warn;
+
+      root                       /usr/share/puppet/rack/puppetmasterd/public/;
+
+      ssl_certificate      /var/lib/puppet/ssl/certs/blackbox-1.inf.ethz.ch.pem;
+      ssl_certificate_key  /var/lib/puppet/ssl/private_keys/blackbox-1.inf.ethz.ch.pem;
+      ssl_crl                    /var/lib/puppet/ssl/ca/ca_crl.pem;
+      ssl_client_certificate     /var/lib/puppet/ssl/certs/ca.pem;
+      ssl_ciphers                SSLv2:-LOW:-EXPORT:RC4+RSA;
+      ssl_prefer_server_ciphers  on;
+      ssl_verify_client          optional;
+      ssl_verify_depth           1;
+      ssl_session_cache          shared:SSL:128m;
+      ssl_session_timeout        5m;
+    }
+  }
