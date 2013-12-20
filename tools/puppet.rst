@@ -455,6 +455,21 @@ SELinux
   }
 
 
+Checkout from Git / Subverson / CVS...
+=======================================
+
+M#* Install https://github.com/puppetlabs/puppetlabs-vcsrepo
+
+.. code-block:: bash
+
+  vcsrepo { "/path/to/repo":
+    ensure => present,
+    provider => git,
+    source => 'git://example.com/repo.git',
+    revision => 'master'
+  }
+
+
 Executing ruby code
 ===================
 
