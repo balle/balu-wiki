@@ -10,6 +10,7 @@ Linux
    :maxdepth: 1
 
    linux/arch
+   linux/cgroup
    linux/debian
    linux/debugging
    linux/fedora
