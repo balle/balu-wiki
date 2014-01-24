@@ -394,6 +394,8 @@ Firewall config
   }
 
 * Make sure pluginsync is enabled in ``puppet.conf`` in section ``[main]``
+* If you dont want to delete the firewall or just add rules with puppet set ``purge => false``
+* If you want to configure bridge interfaces / kvm server see patch for "Could not evaluate: Invalid address from IPAddr.new" on https://github.com/puppetlabs/puppetlabs-firewall/issues/141
 
 .. code-block:: bash
 
