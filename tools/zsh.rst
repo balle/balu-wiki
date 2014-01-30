@@ -2,7 +2,7 @@
 Zsh
 ###
 
-History 
+History
 ========
 
 * !13 -> ruft den 13 Befehl der History aus
@@ -18,6 +18,7 @@ History
 * history -40 -20 -> zeigt alle letzten Eintrage zwischen dem 20 - 40
 * !ca -> letzter Befehl der mit ca anfing z.B cal 12 2011
 * !?pwd -> sucht nach dem letzten Befehl in dem pwd vorkam und führt ihn aus
+* ``history -EDd`` shows history with timestamps and how long a command had run
 
 * vom letzten Befehl bestimmte Zeichen löschen oder ersetzen
 
@@ -33,12 +34,12 @@ History
 .. code-block:: bash
 
   ls /usr/local/src
-  !!/blub		 -> ls /usr/local/src/blub		-> Wiederverwendung des gesamten letzten Befehls und hängt 
+  !!/blub		 -> ls /usr/local/src/blub		-> Wiederverwendung des gesamten letzten Befehls und hängt
                                                                    hinten "blub" an
   cp !$/something .      -> cp /usr/local/blub/something .      -> wiederverwenden des letzten Arguments des letzten Befehls
 
 
-Output redirect 
+Output redirect
 ================
 
 * cat bla > file.txt > error.txt->  redirect  output to file.txt and errors to error.txt
@@ -91,7 +92,7 @@ Output redirect
   column \
 
 
-Prozesse eines Terminals 
+Prozesse eines Terminals
 =========================
 
 * Ctrg+z -> Prozess im Vordergrund im Hintergrund schlafen legen (suspend)
@@ -104,7 +105,7 @@ Prozesse eines Terminals
 * Ctrg+z  + bg %Prozessnummer ->  Prozesse in den Hintergrund schieben die im Vordergrund laufen
 
 
-ZSh Bindings 
+ZSh Bindings
 =============
 
 * bindkey -L -> listet alle zsh Bindings auf
@@ -117,7 +118,7 @@ ZSh Bindings
 * stty intr '^t'  -> Interrupt jetzt nicht mehr Ctrg+c sondern Ctrg+t
 
 
-Keybindings für BASH ZSH und Emacs 
+Keybindings für BASH ZSH und Emacs
 ===================================
 
 * Alt + b		-> Wort zurück springen
@@ -137,7 +138,7 @@ Keybindings für BASH ZSH und Emacs
 * Strg + r 	        -> suche rückwärts
 * Strg + s	        -> Output Pause und     Strg + Q  -> Fortsetzen der Ausgabe
 
-Directory Stack 
+Directory Stack
 ===============
 
 * dirs -v    -> zeigt alle Directory des Stacks an
@@ -147,7 +148,7 @@ Directory Stack
 * ~3 	   -> 2 Verzeichnis im Stack
 
 
-Befehle finden 
+Befehle finden
 ===============
 
 * type acroread -> zeigt das Verzeichnis vom Adobe Reader an
@@ -157,7 +158,7 @@ Befehle finden
 * echo {1..10} -> gibt alle Zahlen von 1 bis 10 aus
 
 
-Pattern Matching 
+Pattern Matching
 ================
 
 * Dateien finden & Pattern Matching (ls ist doch Befehle wie chmod, print oder echo etc. ersetzbar)
@@ -193,7 +194,7 @@ Pattern Matching
 * :t:gs/z/ZED/ -> zeigt nur den hinteren Teil der Ausgabe an und ersetzt in jeder Zeile alle z mit ZED
 
 
-Misc 
+Misc
 =====
 
 * zsh oder bash für Windows use Cygwin
