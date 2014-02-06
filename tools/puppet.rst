@@ -394,6 +394,8 @@ Firewall config
   }
 
 * Make sure pluginsync is enabled in ``puppet.conf`` in section ``[main]``
+* If you dont want to delete the firewall or just add rules with puppet set ``purge => false``
+* If you want to configure bridge interfaces / kvm server see patch for "Could not evaluate: Invalid address from IPAddr.new" on https://github.com/puppetlabs/puppetlabs-firewall/issues/141
 
 .. code-block:: bash
 
@@ -452,6 +454,21 @@ SELinux
     ensure => present,
     selmoduledir => "/path/to/policy",
     name => "filename_without_pp",
+  }
+
+
+Checkout from Git / Subverson / CVS...
+=======================================
+
+M#* Install https://github.com/puppetlabs/puppetlabs-vcsrepo
+
+.. code-block:: bash
+
+  vcsrepo { "/path/to/repo":
+    ensure => present,
+    provider => git,
+    source => 'git://example.com/repo.git',
+    revision => 'master'
   }
 
 

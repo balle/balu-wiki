@@ -5,6 +5,8 @@ Systemd
 List all units and their status
 ==================================
 
+* All running
+
 .. code-block:: bash
 
   systemctl
@@ -14,6 +16,12 @@ List all units and their status
 .. code-block:: bash
 
   systemctl list-units --type=service
+
+* All available
+
+.. code-block:: bash
+
+  systemctl list-unit-files
 
 
 List all failed services
@@ -82,6 +90,43 @@ Filtering logs
 
   journalctl -f
 
+* For a single pid
+
+.. code-block:: bash
+
+  journalctl _PID=123
+
+* For a single user
+
+.. code-block:: bash
+
+  journalctl -u <user>
+
+* For a service
+
+.. code-block:: bash
+
+  journalctl _SYSTEMD_UNIT=<unit name e.g. sshd.service>
+
+* For kernel messages
+
+.. code-block:: bash
+
+  journalctl _TRANSPORT=kernel
+
+* For network stuff
+
+.. code-block:: bash
+
+  journalctl _COMM=network
+
+* For a SELinux context
+
+.. code-block:: bash
+
+  journalctl _SELINUX_CONTEXT=<security context>
+
+
 * Where to find the log files?
 
 .. code-block:: bash
@@ -101,6 +146,38 @@ Filtering logs
   MaxRetentionSec=1day
   MaxFileSec=1month
 
+* How to log to syslog (edit /etc/systemd/journald.conf)
+
+.. code-block:: bash
+
+  ForwardToSyslog=yes
+
+* Export log as JSON
+
+.. code-block:: bash
+
+  -o json
+
+
+Journald Web Gateway
+====================
+
+* Install systemd-journal-gateway
+* Start service systemd-journal-gateways
+* Connect your browser to http://<ip>:19531
+* To get an endless stream http://<ip>:19531/entries?follow
+* To pull remote journal log an save it to a text file
+
+.. code-block:: bash
+
+  nohup curl --silent -o some-host.log 'http://<ip>:19531/entries?follow' &
+
+* Or to pull it in the original journal format
+
+.. code-block:: bash
+
+  nohup curl --silent -H'Accept: application/vnd.fdo.journal' -o some-host.log 'http://<ip>:19531/entries?follow' &
+
 
 Rescue Mode / Debugging
 =======================
@@ -111,8 +188,59 @@ Rescue Mode / Debugging
 
   systemd.unit=rescue.target      # (single user mode)
   systemd.unit=emergency.target   # (only shell)
-  systemd.unit=multi-user.target  # (without X)
+
+* Ask before starting a servce
+
   systemd.confirm_spawn=1
+
+* Give me more log output
+
+.. code-block:: bash
+
+  systemd.log_target=kmsg systemd.log_level=debug
+
+* Get console output of legacy sysv init scripts
+
+.. code-block:: bash
+
+  systemd.sysv_console=1
+
+
+* Which units want which target?
+
+.. code-block:: bash
+
+  systemctl show -p "Wants" multi-user.target
+
+* To analyze which services was slow
+
+.. code-block:: bash
+
+  systemd-analyze blame
+
+
+What services do get started?
+=============================
+
+.. code-block:: bash
+
+  systemctl list-dependencies multi-user.target
+
+
+Change runlevel
+===============
+
+.. code-block:: bash
+
+  systemctl isolate <newtarget e.g. rescue.target or mutli-user.target>
+
+
+Changing the default runlevel
+=============================
+
+.. code-block:: bash
+
+  ln -sf /usr/lib/systemd/system/multi-user.target /etc/systemd/system/default.target
 
 
 An example service
@@ -127,6 +255,9 @@ An example service
   [Service]
   ExecStart=/bin/some-daemon
   Type=forking
+  CPUShares=1500
+  MemoryLimit=1G
+  BlockIOWeight=500
 
   [Install]
   WantedBy=multi-user.target
@@ -220,3 +351,25 @@ More security options
 
   User=nobody
   Group=nobody
+
+Only start a service if a specific device is found
+==================================================
+
+.. code-block:: bash
+
+  BindToDevice=dev-sda5.device
+
+
+I want more gettys / text consoles
+==================================
+
+.. code-block:: bash
+
+  ln -sf /usr/lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@tty9.service
+
+
+Python Coding
+=============
+
+* http://www.freedesktop.org/software/systemd/python-systemd/
+* https://pypi.python.org/pypi/pyjournalctl/0.7.0

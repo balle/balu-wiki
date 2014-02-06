@@ -2,6 +2,32 @@
 iproute
 #######
 
+Simple stuff
+============
+
+* Set device up and give it an ip
+
+.. code-block:: bash
+
+  ip l s <dev> up/down
+  ip a add <ip> dev <dev>
+
+* Configure default gateway
+
+.. code-block:: bash
+
+  ip r
+  ip route add default via 192.168.1.254
+
+
+Change MAC
+==========
+
+.. code-block:: bash
+
+  ip link set <dev> addr <mac>
+
+
 Source routing
 ==============
 
@@ -48,4 +74,3 @@ A network interface with multiple mac addresses
 .. code-block:: bash
 
   ip link add link eth0 dev peth0 type macvlan address aa:aa:aa:aa:aa:aa
-

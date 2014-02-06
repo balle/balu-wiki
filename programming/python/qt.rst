@@ -31,7 +31,7 @@ Simple hello world example with button and signal / slot
         menuFile.addAction(self.actionFileSave)
         menuFile.addSeparator()
         menuFile.addAction(self.actionExit)
-        
+
      def createComponents(self):
         self.labelHelloWorld = QtGui.QLabel(self.tr("Hello world!"))
         self.buttonUpdate = QtGui.QPushButton(self.tr("Update"))
@@ -57,7 +57,7 @@ Simple hello world example with button and signal / slot
      def updateText(self):
         self.labelHelloWorld.setText(self.editText.text())
 
-        
+
   def main(argv):
     app = QtGui.QApplication(argv)
     mainwindow = MainWindow()
@@ -66,3 +66,9 @@ Simple hello world example with button and signal / slot
 
   if __name__ == "__main__":
     main(sys.argv)
+
+
+Django-like Framework
+=====================
+
+* http://www.python-camelot.com

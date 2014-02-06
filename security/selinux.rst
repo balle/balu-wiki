@@ -5,6 +5,11 @@ SELinux
 Overview
 ========
 
+* .te -> type enforcement = allow rules, new types, user etc (used most of the time)
+* .fc -> file context = define file context rules for module (<regexp> <security_context>)
+* .if -> interfaces = macros
+
+
 Update policy
 =============
 
@@ -15,9 +20,15 @@ Update policy
   grep qemu-system-x86 /var/log/audit/audit.log | audit2allow -M <policy_name>
   semodule -i <policy_name>.pp
 
+* Or to allow all since the last policy change
 
-Show all policies
-=================
+.. code-block:: bash
+
+  audit2allow -alR
+
+
+Show all policy modules
+=======================
 
 .. code-block:: bash
 
@@ -40,6 +51,67 @@ Get rid of a policy
   semodule -r <policy_name>
 
 
+Write your own policy module
+============================
+
+* Allow rules have the definition ``allow <from_type> <to_type> : <object_class> {permissions};``
+* Every type / attribute / class used and not defined in module must be required
+* Choose a good name (not mypol) to avoid clashing with other predefined modules
+* Copy Makefile from /usr/share/selinux/devel/
+
+.. code-block:: bash
+
+  policy_module(mypol, 1.0)
+
+  require {
+    type httpd_t;
+  }
+
+  type my_type;
+  allow httpd_t my_type : file { getattr read };
+
+* All object classes can be found in ``/usr/src/redhat/BUILD/serefpolicy-<version>/policy/flask/security_classes``
+* All permissions for a class can be found in ``/usr/src/redhat/BUILD/serefpolicy-<version>/policy/flask/access_vectors``
+
+
+Compile a te file by hand
+==========================
+
+.. code-block:: bash
+
+  make -f /usr/share/selinux/devel/Makefile some.pp
+
+
+Search a policy rule
+====================
+
+.. code-block:: bash
+
+  sesearch -A | grep <whatever>
+
+* To see all allow rules with type httpd_t as source
+
+.. code-block:: bash
+
+  sesearch -a -s httpd_t
+
+
+* or to see what a boolean / macro does (needs policy.conf see below)
+
+.. code-block:: bash
+
+  apol
+
+
+Generate a policy skeleton
+==========================
+
+.. code-block:: bash
+
+  sepolicy generate --application /usr/bin/firefox
+  sepolicy generate --init /path/to/my/init-service
+
+
 Booleans
 ========
 
@@ -47,7 +119,8 @@ Booleans
 
 .. code-block:: bash
 
-  getsebool -a
+  semanage boolean -l
+  getselbool -a
 
 * Set a boolean
 
@@ -55,10 +128,27 @@ Booleans
 
   setsebool -P <boolean> <value>
 
+* All local changes are in ``/etc/selinux/<policy>/modules/booleans.local``
+
+
+Write your own boolean
+=======================
+
+.. code-block:: bash
+
+  bool mybool <defaultvalue>;
+  tuneable_policy(`mybool', `
+    allow statements
+  ');
+
+* Name can be combined with || or && and other boolean names to activated this boolean only if condition is true
+
+
 Managing file contexts
 ======================
 
 * SE Linux stores the security context for files directly in the filesystem (currently ext{2,3,4}, XFS, JFS, Btrfs)
+* Last rule matches
 * Show file context
 
 .. code-block:: bash
@@ -101,6 +191,20 @@ Managing file contexts
 
   semanage fcontext -d <dir>
 
+* Automatically relabel all files on next boot
+
+.. code-block:: bash
+
+  touch /.autorelabel
+
+
+List all roles
+==============
+
+.. code-block:: bash
+
+  seinfo -r
+
 
 Change role
 ===========
@@ -122,6 +226,13 @@ Start a program in a specific role
 Configure users
 ===============
 
+* List all users
+
+.. code-block:: bash
+
+  seinfo -u
+
+
 * Map Unix user to SELinux user
 
 .. code-block:: bash
@@ -137,20 +248,133 @@ Configure users
   semanage user -l
 
 
-Compile a te file by hand
-==========================
-
-.. code-block:: bash
-
-  make -f /usr/share/selinux/devel/Makefile some.pp
-
-
 Log everything
 ==============
 
 .. code-block:: bash
 
   semanage dontaudit off
+
+* or
+
+.. code-block:: bash
+
+  semanage -DB
+
+
+Reset base policy
+=================
+
+.. code-block:: bash
+
+  semodule -B
+
+
+Generate policy.conf (source file of your policy)
+==================================================
+
+* install src rpm of policy
+
+.. code-block:: bash
+
+  rpmbuild -bp selinux-policy.spec
+  cd BUILD/serefpolicy-<version>
+
+* Edit ``build.conf`` and set type to mcs, name to whatever, distro to redhat and monolithic to y
+
+.. code-block:: bash
+
+  make bare conf
+  cp ../../SOURCES/boolean-targeted.conf policy/booleans.conf
+  cp ../../SOURCES/modules-targeted.conf policy/modules.conf
+  make policy.conf
+
+* To make a module policy set MONOLITHIC=n and ``make base.pp`` instead of make policy.conf
+* If apol complains it cannot load policy due to whatever failure just delete those line(s)
+
+
+Configure Non-executable stack / heap
+=====================================
+
+.. code-block:: bash
+
+  setsebool -P allow_execstack 0
+  setsebool -P allow_execmem 0
+
+
+Kernel parameter
+================
+
+.. code-block:: bash
+
+  selinux=0|1
+  enforcing=0|1
+  autorelabel=0|1
+
+
+Switch to MCS or MLS policy
+===========================
+
+* Install policy rpm
+* Edit ``/etc/selinux/config``
+
+.. code-block:: bash
+
+  touch /.autorelabel
+  reboot
+
+* Boot with ``enforcing=0``
+* Reboot after relabeling
+
+
+Define new category
+===================
+
+* Edit ``/etc/selinux/targeted/setrans.conf``
+
+.. code-block:: bash
+
+  s0:c0=NotImportant
+  s0:c100=VeryImportant
+
+* Restart mcstrans
+
+
+Change category of a user
+=========================
+
+.. code-block:: bash
+
+  semanage login -a -r <category> <user>
+
+
+Change category of file / dir
+==============================
+
+* Multiple categories are AND conditions
+
+.. code-block:: bash
+
+  chcat +|-<category> <file|dir>
+
+
+Write your own macro
+====================
+
+.. code-block:: bash
+
+  define(`macro_name', `allow $1 $2: file { getattr read }');
+
+
+Domain transition
+=================
+
+.. code-block:: bash
+
+  init_daemon_domain(myproc_t, myfile_exec_t)
+  domain_auto_trans(unconfined_t, myfile_exec_t, myproc_t)
+  auth_domtrans_chk_passwd(myproc_t)
+  auth_domtrans_upd_passwd(myproc_t)
 
 
 Mysql config
@@ -194,7 +418,8 @@ Apache config
 NFS / Mounting
 ===============
 
-* Specify security context with mount parameter ``--context=<security_label>``
+* Specify security context with mount parameter ``--context=<security_label>`` to have all files / dirs that security label or
+* ``--defcontext=<security_label>`` to define a label just for those unlabeled
 
 
 Temporarily disable / enable SELinux
