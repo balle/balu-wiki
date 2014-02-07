@@ -18,6 +18,7 @@ Linux
    linux/grub2
    linux/inotify
    linux/ipmi
+   linux/kernel
    linux/lvm
    linux/memory_management
    linux/pandora
