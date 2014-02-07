@@ -250,11 +250,13 @@ VNC access
   novnc_enabled=true
   vnc_keymap="de-de"
 
-* Make sure `nova-console` and `nova-consoleauth` are running
+* Make sure `nova-consoleauth` is running
 
 .. code-block:: bash
 
   nova-manage service list
+
+* ``vncserver_proxyclient_address`` must contain the official ip of the compute node
 
 * Get an access url to throw in your browser
 
