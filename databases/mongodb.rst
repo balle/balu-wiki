@@ -218,6 +218,7 @@ User administration
 Replication
 ============
 
+* All nodes share the same data
 * You need at least 3 server
 * Edit ``/etc/mongodb.conf`` and set a replSet
 
@@ -234,6 +235,8 @@ Replication
   rs.add("mongodb1.example.net")
   rs.add("mongodb2.example.net")
   rs.status()
+
+* You can define one as master and the others as slaves
 
 
 Clustering / Sharding
@@ -270,13 +273,14 @@ Clustering / Sharding
 
   sh.addShard( "newnode:27017" )
 
-* You can set ``configsrv``, ``configdb`` and / or ``shardsvr`` in ``/etc/mongodb.conf`` to make the server a config, query or shard server
+* You can set ``configsvr`` or ``shardsvr=true`` in ``/etc/mongodb.conf`` to make the server a config, query or shard server
 * configdb = <cfgsrv1>, <cfgsrv2>, <cfgsrv3>
 * To enable sharding for a database run
 
 .. code-block:: bash
 
   sh.enableSharding("<db>")
+  sh.status()
 
 
 Show real data size
