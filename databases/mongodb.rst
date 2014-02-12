@@ -132,9 +132,9 @@ Delete data
 * Delete a field
 
   db.<collection>.update({"_id": 1}, {$unset: {"field": ""}})
-  
+
 .. code-block:: bash
-  
+
 * Delete whole database
 
 .. code-block:: bash
@@ -218,7 +218,7 @@ User administration
 Replication
 ============
 
-* MongoDB has automatically master / slave failover buildin!
+* All nodes share the same data
 * You need at least 3 server
 * Edit ``/etc/mongodb.conf`` and set a replSet
 
@@ -236,22 +236,53 @@ Replication
   rs.add("mongodb2.example.net")
   rs.status()
 
+* You can define one as master and the others as slaves
 
-Clustering
-==========
 
-* A cluster consist of 1) exact 3 config servers (hold metadata on where to find data), X query servers (mongos) the clients can connect to, X shard server that hold the real data
-* Set ``configsrv``, ``configdb`` and / or ``shardsvr`` in ``/etc/mongodb.conf`` to make the server a config, query or shard server
+Clustering / Sharding
+=====================
+
+* Sharding means to spread the database horizontally across multiple servers
+* config servers store the complete metadata of a cluster (you should have 3)
+
+.. code-block:: bash
+
+  mongod --configsvr --dbpath <path>
+
+* mongos are query servers (configdb must define configsvr nodes in same order!)
+
+.. code-block:: bash
+
+  mongos --configdb node1:27019,node2:27019,node3:27019
+
+* shard servers store the data
+
+.. code-block:: bash
+
+  mongo --host querysrv --port 27017
+
+* You can add the new shard to a replica set
+
+.. code-block:: bash
+
+  sh.addShard( "rs0/newnode:27017" )
+
+* or to a whole
+
+.. code-block:: bash
+
+  sh.addShard( "newnode:27017" )
+
+* You can set ``configsvr`` or ``shardsvr=true`` in ``/etc/mongodb.conf`` to make the server a config, query or shard server
 * configdb = <cfgsrv1>, <cfgsrv2>, <cfgsrv3>
-* Shards can only be added to server belonging to a replica set
-* Config servers can neither be query nor shard servers
 * To enable sharding for a database run
 
 .. code-block:: bash
 
   sh.enableSharding("<db>")
+  sh.status()
 
-  
+
 Show real data size
 ===================
 
@@ -327,5 +358,3 @@ Getting help
 .. code-block:: bash
 
   db.help()
-
-
