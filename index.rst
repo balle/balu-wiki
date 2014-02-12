@@ -108,6 +108,7 @@ Cluster
 .. toctree::
    :maxdepth: 1
 
+   cluster/ceph
    cluster/clustershell
    cluster/glusterfs
    cluster/hadoop
