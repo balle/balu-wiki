@@ -34,7 +34,7 @@ Start qemu monitor
 Downloading disk images
 =======================
 
-* Grab an image from http://virtual-machine.org or http://virtualboximages.com/
+* Grab an image from http://pvirtualboxes.org or http://virtual-machine.org or http://virtualboximages.com/
 
 
 Convert virtualbox or vmware image

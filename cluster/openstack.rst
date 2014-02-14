@@ -66,6 +66,8 @@ User management
   keystone user-create --name USERNAME --pass PASSWORD
   keystone user-role-add --user-id <user_id> --role-id <role_id> --tenant-id <tenant_id>
 
+* The privileges of a role are defined in ``/etc/keystone/policy.json``
+
 
 Adding images
 =============
@@ -364,6 +366,11 @@ Statistics
 
   nova hypervisor-stats
 
+
+Updating to a new version
+=========================
+
+* Every service has a db sync command 
 
 Logging & Debugging
 ====================
