@@ -208,6 +208,13 @@ User administration
   db.addUser({user: "foo", pwd: "bar", roles: ["readWrite", "dbAdmin"]})
 
 * use role ``read`` for read-only access
+* To log into a database
+
+.. code-block:: bash
+
+  db.auth("user", "pass")
+
+
 * To change a users password
 
 .. code-block:: bash
@@ -281,6 +288,21 @@ Clustering / Sharding
 
   sh.enableSharding("<db>")
   sh.status()
+
+
+Backup
+=======
+
+.. code-block:: bash
+
+  #!/bin/bash
+
+  $BACKUP_DIR="/my/backup/path"
+
+  cd $BACKUP_DIR
+  /usr/bin/mongodump
+
+  /bin/tar cvjf `hostname`_`date +%Y%m%d`.tbz dump && /bin/rm -rf $BACKUP_DIR/dump
 
 
 Show real data size
