@@ -5,7 +5,7 @@ Openstack
 Overview
 ========
 
-* Tenant is something like an organization or mandant (can have multiple users)
+* Tenant is something like an organization or mandant (can have multiple users) --> In new versions called project
 
 ================ ================ ========================================================================
 Subsystem        Ports            Description
@@ -15,15 +15,15 @@ Glance           9191, 9292       Image service (manages kvm, qemu, vmware, amaz
 Nova                              Compute service (manage startup / life of virtual machines using libvirt)
 Nova Scheduler   59229            Decide where to create a new instance
 Nova API         8773, 8774, 8775 Access Nova functionality
-Nova Network                      Configure network if Quantum is not in use
+Nova Network                      Configure network if Neutron is not in use
 Nova Compute                      Management controller for virtual machines
 Nova Conductor                    Encapsulate database api for nova
-Nova ObjectStore 3333             File-based Storage system (can be replaced by Swift)
+Nova ObjectStore 3333             File-based Storage system (can be replaced by Swift or Ceph)
 Nova Cert                         Nova CA service for x509 certificates
 Nova Console                      VNC access support
 Nova Consoleauth                  VNC authorization
-Cinder           8776             Volumne service (manages additional storage and replication via LVM / iSCSI)
-Quantum                           Network configuration service - install network client on each vm
+Cinder           8776             Volumne service (manages additional storage and replication via LVM / iSCSI / Ceph)
+Neutron                           Network configuration service - install network client on each vm
 Swift                             Distributed File Storage Service (can be used to store images for Glance)
 Ceph                              Ceph is a distributed storage system (object store, block store and POSIX-compliant distributed file system)
 Horizon          80               Admin webfrontend in Django
@@ -33,8 +33,20 @@ Horizon          80               Admin webfrontend in Django
 Installation
 ============
 
-* Out-of-the-box http://www.devstack.org
+* Out-of-the-box http://openstack.redhat.com/Quickstart
+
+.. code-block:: bash
+
+  packstack --allinone
+
+  # multi node setup with nova network
+  packstack --install-hosts=node1,node2,node3 --os-neutron-install=n
+
+  # iterative changes (edit answerfile in home dir)
+  packstack --answer-file=<answerfile>
+
 * Manually http://docs.openstack.org/install/
+* By using puppet https://wiki.openstack.org/wiki/Puppet-openstack
 
 
 Configfile to source
@@ -372,6 +384,7 @@ Updating to a new version
 
 * Every service has a db sync command 
 
+
 Logging & Debugging
 ====================
 
@@ -419,6 +432,34 @@ Logging & Debugging
   kestone endpoint-list
 
 * Got a `ERROR n/a (HTTP 401)` -> thats an auth failure check service and api config for same as above + tenant / user / password
+
+
+Compute node crashed
+=====================
+
+* If the did not crash completely but openstack-nova-compute service is broken, the machine will still be running and you can ssh into them but not use vnc
+* If you decide to nevertheless migrate all vms first halt them otherwise the disk images will get crushed 
+
+.. code-block:: bash
+
+  ssh <HOSTNAME_OF_CRASHED_NODE>
+  for VM in $(virsh list --uuid); do virsh shutdown $VM; done
+  sleep 10
+  for VM in $(virsh list --uuid); do virsh destroy $VM; done
+
+* Connect to the master node and execute the following (dont forget to replace the two variables!) 
+
+.. code-block:: bash
+
+  echo "select uuid from instances where host = 'HOSTNAME_OF_CRASHED_NODE' and deleted = 0;" | mysql --skip-column-names nova > broken_vms
+  echo "update instances set host = 'HOSTNAME_OF_NEW_NODE' where host = 'HOSTNAME_OF_CRASHED_NODE' and deleted = 0;" | mysql nova
+  for VM in $(cat broken_vms); do nova reboot $VM; done
+
+* The following command should return no results 
+
+.. code-block:: bash
+
+  nova list --host <HOSTNAME_OF_CRASHED_NODE>
 
 
 Troubleshooting Keystone
