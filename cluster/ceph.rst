@@ -51,6 +51,12 @@ Access storage
 
   ceph-fuse -m <monitor>:6789 /mountpoint
 
+* FUSE via fstab
+
+.. code-block:: bash
+
+  id=admin                /mnt  fuse.ceph defaults 0 0
+
 * CEPH FS kernel client
 
 * RADOS API for object storage
@@ -140,3 +146,20 @@ Troubleshooting network
 * Make sure you have a ``public network = 1.2.3.4/24`` in your ceph.conf
 
 
+Repair monitor
+==============
+
+* the id can be found by looking into ``/var/lib/ceph/mon/``
+
+* run monitor in debug mode
+
+.. code-block:: bash
+
+  ceph-mon -i <myid> -d
+
+* Reformat monitor data store
+
+.. code-block:: bash
+
+  rm -rf /var/lib/ceph/mon/ceph-<myid>
+  ceph-mon --mkfs -i <myid> --keyring /etc/ceph/ceph.client.admin.keyring

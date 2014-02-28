@@ -29,6 +29,8 @@ Ceph                              Ceph is a distributed storage system (object s
 Horizon          80               Admin webfrontend in Django
 ================ ================ ========================================================================
 
+* How an instances is started http://ilearnstack.wordpress.com/2013/04/26/request-flow-for-provisioning-instance-in-openstack/?preview=true&preview_id=410&preview_nonce=3618fe51b7
+/D
 
 Installation
 ============
