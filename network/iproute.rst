@@ -74,3 +74,28 @@ A network interface with multiple mac addresses
 .. code-block:: bash
 
   ip link add link eth0 dev peth0 type macvlan address aa:aa:aa:aa:aa:aa
+
+
+Network namespaces
+==================
+
+* http://blog.scottlowe.org/2013/09/04/introducing-linux-network-namespaces/
+* With network namespaces, you can have different and separate instances of network interfaces and routing tables that operate independent of each other.
+* Only virtual network interfaces can be assigned to a network namespace and they always come in pairs connected peer-to-peer. One device for the default namespace to be connected to the physical interface by bridge and one to assign to the network namespace
+
+.. code-block:: bash
+
+  ip netns add balle
+  ip netns list
+  ip link add veth0 type veth peer name veth1
+  ip link set veth1 netns balle
+  brctl addbr balle_br 
+  brctl addif balle_br eth0 veth0
+  ip netns exec balle ip addr add 192.168.100.1/24 dev veth1
+  dhclient balle_br
+
+* Now you can start a process or a shell if you like to use the new network namespace
+
+.. code-block:: bash
+
+  ip netns exec balle bash
