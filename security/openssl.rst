@@ -60,6 +60,18 @@ Basic stuff
 
   openssl pkcs12 -in mycert.pfx -out mycert.pem
 
+* View the details of a certificate revocation list (CRL) 
+
+.. code-block:: bash
+
+  openssl crl -in filename.crl  -noout -text
+
+* Verify a cert and check crl
+
+.. code-block:: bash
+
+  openssl verify -crl_check -CApath /etc/ssl/certs cert.pem
+
 
 CA stuff
 =========
