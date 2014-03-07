@@ -66,12 +66,12 @@ Manual installation
   uuidgen
   ceph osd create <uuid>
   mkdir -p /var/lib/ceph/osd/ceph-<osd_id>
-  mkfs.xfs -f /dev/sda
+  fdisk /dev/sda
+  ceph-disk prepare /dev/sda1
   mount /dev/sda /var/lib/ceph/osd/ceph-<osd_id>/
   ceph-osd -i <osd_id> --mkfs --mkkey
   ceph auth add osd.<osd_id> osd 'allow *' mon 'allow rwx' -i /var/lib/ceph/osd/ceph-<osd_id>/keyring
-  ceph osd crush add-bucket osd.<osd_id> host
-  ceph osd crush move osd.<osd_id> root=default
+  ceph-disk activate /dev/sda1 --activate-key /var/lib/ceph/osd/ceph-<osd_id>/keyring
   ceph-osd -i <osd_id>
   ceph status
 
@@ -247,6 +247,21 @@ Placement groups
 .. code-block:: bash
 
   ceph osd map <pg_name> <object-name>
+
+
+Editing the CRUSH map
+=====================
+
+* The CRUSH map defines ``buckets`` (think storage groups) to map placement groups tp OSDs across a failure domain (e.g. copy 1 is in rack 1 and copy 2 in rack 2 to avoid power outage of one rack to destroy all copies)
+* A higher weight will get more load than a lower weight
+
+.. code-block:: bash
+
+  ceph osd getcrushmap -o crushmap
+  crushtool -d crushmap -o mymap
+  emacs mymap
+  crushtool -c mymap -o newmap
+  ceph osd setcrushmap -i newmap
 
 
 Maintanance
