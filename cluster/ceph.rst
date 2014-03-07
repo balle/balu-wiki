@@ -6,19 +6,90 @@ Overview
 ========
 
 * http://www.youtube.com/watch?v=OyH1C0C4HzM
-* A monitor is the controller of net ceph cluster. It knows the status of the network.
+* A monitor knows the status of the network and keeps it in its monitor map
 * You can have multiple monitors but should have a small, odd number
 * MDS are the metadata servers (stores hirarchy of ceph fs + owner, timestamps, permissions etc)
-* MDS is only necessary for ceph fs
+* MDS is only needed for ceph fs
 * An OSD is a storage node that contains and servers the real data, replicates and rebalances it
 * The OSDs form a p2p network, recognize if one node is out and automatically restore the lost data to other nodes
 * The client computes the localization of storage by using the CRUSH algorythm (no need to ask a central server)
+* RADOS is the object storage interface
+* RBD (RADOS Block Device) creates a block device as RADOS object
+* Placement groups (pgs) combine objects into group. Replication is done on pgs or pools not files or dirs. You should have 100 pgs / OSD
+* Pool is a seperate storage container that contains its own placement groups and objects (think of mountpoint)
 
 
-Adding OSDs
-===========
+Manual installation
+===================
 
-* Automatically
+* Setup a monitor 
+
+.. code-block:: bash
+
+ uuidgen
+
+* Edit ``/etc/ceph/ceph.conf``
+
+.. code-block:: bash
+
+  fsid = <uuid>
+  mon initial members = <short_hostname>
+  mon host = <ip_address>
+  auth cluster required = cephx
+  auth service required = cephx
+  auth client required = cephx
+  osd pool default size = 2
+  
+* Generate keys for the monitor and admin user and add the monitor to the monitor map
+
+.. code-block:: bash
+
+  ceph-authtool --create-keyring /tmp/ceph.mon.keyring --gen-key -n mon. --cap mon 'allow *'
+  ceph-authtool --create-keyring /etc/ceph/ceph.client.admin.keyring --gen-key -n client.admin --set-uid=0 --cap mon 'allow *' --cap osd 'allow *' --cap mds 'allow'
+  ceph-authtool /tmp/ceph.mon.keyring --import-keyring /etc/ceph/ceph.client.admin.keyring
+  monmaptool --create --add <short_hostname> <ip_address> --fsid <uuid> /tmp/monmap
+
+* Create the monitor cache filesystem, start the monitor and see if it created the default pools and is running
+
+.. code-block:: bash
+
+  mkdir -p /var/lib/ceph/mon/ceph-<short_hostname>
+  ceph-mon --mkfs -i <short_hostname> --monmap /tmp/monmap --keyring /tmp/ceph.mon.keyring
+  ceph-mon -i <short_hostname>
+  ceph osd lspools
+  ceph -s
+
+* Setup an OSD (note the command ceph osd create returns the osd id to use!)
+
+.. code-block:: bash
+
+  uuidgen
+  ceph osd create <uuid>
+  mkdir -p /var/lib/ceph/osd/ceph-<osd_id>
+  mkfs.xfs -f /dev/sda
+  mount /dev/sda /var/lib/ceph/osd/ceph-<osd_id>/
+  ceph-osd -i <osd_id> --mkfs --mkkey
+  ceph auth add osd.<osd_id> osd 'allow *' mon 'allow rwx' -i /var/lib/ceph/osd/ceph-<osd_id>/keyring
+  ceph osd crush add-bucket osd.<osd_id> host
+  ceph osd crush move osd.<osd_id> root=default
+  ceph-osd -i <osd_id>
+  ceph status
+
+* Add another OSD for replication
+* Setup a metadata server (only needed when using CephFS)
+
+.. code-block:: bash
+
+  mkdir -p /var/lib/ceph/mds/mds.<mds_id>
+  ceph auth get-or-create mds.<mds_id> mds 'allow ' osd 'allow *' mon 'allow rwx' > /var/lib/ceph/mds/mds.<mds_id>/mds.<mds_id>.keyring
+  ceph-mds -i <mds_id>
+  ceph status
+
+
+Adding OSDs the easy way
+========================
+
+* With ceph-deploy
 
 .. code-block:: bash
 
@@ -29,7 +100,8 @@ Adding OSDs
 
 .. code-block:: bash
 
-  ceph-disk-prepare --fs-type xfs /local/path
+  ceph-disk prepare --cluster ceph --cluster-uuid <fsid> --fs-type xfs /dev/sda
+  ceph-disk-prepare --fs-type xfs /dev/sda
 
 
 Configure replication
@@ -105,6 +177,8 @@ Check osd status
 .. code-block:: bash
 
   ceph osd stat
+  ceph osd tree
+  ceph osd dump
 
 
 Check server status
@@ -113,6 +187,76 @@ Check server status
 .. code-block:: bash
 
   /etc/init.d/ceph status
+
+
+Pools
+=============
+
+* Create 
+
+.. code-block:: bash
+
+  ceph osd lspools
+  ceph osd pool create <pool_name> <num_pgs>
+
+* Change number of pgs
+
+.. code-block:: bash
+
+  ceph osd pool get <name> pg_num
+  ceph osd pool set <name> pg_num <nr>
+
+* Create a snapshot
+
+.. code-block:: bash
+
+  ceph osd pool mksnap <name>
+
+* Change nr of replicas per pool
+
+.. code-block:: bash
+
+  ceph osd pool set <name> size 3
+
+
+Placement groups
+================
+
+* Overview
+
+.. code-block:: bash
+
+  ceph pg dump
+
+* What does the status XXX mean?
+
+.. code-block:: bash
+
+  inactive - The placement group has not been active for too long (i.e., it hasn’t been able to service read/write requests).
+  unclean - The placement group has not been clean for too long (i.e., it hasn’t been able to completely recover from a previous failure).
+  stale - The placement group status has not been updated by a ceph-osd, indicating that all nodes storing this placement group may be down.
+
+* Why is a pg in such a state?
+
+.. code-block:: bash
+
+  ceph pg <pg_num> query
+
+* Where to find an object?
+
+.. code-block:: bash
+
+  ceph osd map <pg_name> <object-name>
+
+
+Maintanance
+===========
+
+* To stop CRUSH from automatically balance load of the cluster 
+
+.. code-block:: bash
+
+  ceph osd set noout
 
 
 Troubleshooting general
