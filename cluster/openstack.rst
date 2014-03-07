@@ -386,6 +386,10 @@ Updating to a new version
 
 * Every service has a db sync command 
 
+.. code-block:: bash
+
+  keystone-manage -vvv db_sync
+
 
 Logging & Debugging
 ====================
@@ -489,6 +493,19 @@ Troubleshooting Keystone
 
 * Check ``token_format`` in keystone.conf should be ``UUID`` by default
 
+* `` 'Client' object has no attribute 'auth_tenant_id'``
+
+.. code-block:: bash
+
+  export SERVICE_TOKEN=
+  export SERVICE_ENDPOINT=
+
+* Manually receive an auth token by executing ``keystone token-get`` or 
+
+.. code-block:: bash
+
+  curl -i 'http://127.0.0.1:5000/v2.0/tokens' -X POST -H "Content-Type: application/json" -H "Accept: application/json"  -d '{"auth": {"tenantName": "admin", "passwordCredentials": {"username": "admin", "password": "devstack"}}}'
+
 
 Troubleshooting Glance
 ======================
@@ -562,6 +579,8 @@ Troubleshooting Nova
 ====================
 
 * Read `Nova disaster recovery process <http://docs.openstack.org/trunk/openstack-compute/admin/content/nova-disaster-recovery-process.html>`
+
+* ``Instance instance-XXXXXXXX already exists`` --> the instance is running check with ``virsh list --all``
 
 * Use `virsh` / `virt-manager` or `virt-viewer` for debugging purpose
 * Check nova services (ensure ntp is running on all nova nodes)
