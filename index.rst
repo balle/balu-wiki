@@ -62,6 +62,7 @@ Network
    network/mdns
    network/nagios
    network/nginx
+   network/openvswitch
    network/postfix
    network/pxe
    network/smtp
