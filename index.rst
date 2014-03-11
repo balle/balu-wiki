@@ -68,6 +68,7 @@ Network
    network/smtp
    network/snmp
    network/socket
+   network/ssh
    network/upnp
    network/uwsgi
 
