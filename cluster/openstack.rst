@@ -98,6 +98,18 @@ Adding images
 
   glance image-create --name="arch linux" --is-public true --disk-format raw --container-format bare --file "arch_linux.img"
 
+* Share an Image with another tenant (--can-share defines it can be reshared)
+
+.. code-block:: bash
+
+  glance member-create --can-share <image> <tenant>
+
+* Download an image (e.g. for testing purpose)
+
+.. code-block:: bash
+
+  glance image-download <image>
+
 
 Flavors
 =======
@@ -115,43 +127,49 @@ Flavors
   nova flavor-create &lt;name&gt; &lt;id&gt; &lt;ram&gt; &lt;disk&gt; &lt;vcpus&gt;
 
 
-Configure networking
-====================
+Host Aggregates
+===============
+
+* Group hypervisors and assign metadata to it to combine it with a flavor so you can start e.g. some vms on monster machines and some on slow ones
+* Create a new group
+
+.. code-block:: bash
+
+  nova aggregate-create <name>
+  nova aggregate-add-host <group_name> <hypervisor>
+  nova aggregate-list
+  nova aggregate-details <group_name>
+
+* Assign metadata to group
+
+.. code-block:: bash
+
+  nova aggregate-add-metadata <group_name> key=value (e.g. highspec=1)
+
+* Assign metadata to flavor
+
+.. code-block:: bash
+
+  nova flavor-key <flavor> set highspec=true
+
+* To isolate tenants in a certain host aggregation use ``AggregateMultiTenancyIsolation`` as ``scheduler_default_filters`` in ``/etc/nova/nova.conf`` and set metadata ``filter_tenant_id=<tenant_id>`` to your aggregation
+
+.. code-block:: bash
+
+  nova aggregate-add-metadata <group_name> filter_tenant_id=<tenant_id>
+
+
+Configure networking (old style nova networking)
+================================================
 
 * FlatManager only connects vms to bridge device `no ip configuration!`
 * FlatDHCPManager configure network ip on bridge and starts dnsmasq dhcp server on that ip
 * VlanManager creates separate VLANs for each tenant
 * http://www.mirantis.com/blog/openstack-networking-flatmanager-and-flatdhcpmanager/
-
-* Setup bridge interface (install bridge-utils)
-
-.. code-block:: bash
-
-  ip link set eth0 promisc on
-
-* Create `/etc/sysconfig/network-scripts/ifcfg-br100`
-
-.. code-block:: bash
-
-  DEVICE=br100
-  TYPE=Bridge
-  ONBOOT=yes
-  DELAY=0
-  BOOTPROTO=static
-  IPADDR=192.168.100.1
-  NETMASK=255.255.255.0
-  STP=off
-
-* Bring up bridge interface
-
-.. code-block:: bash
-
-  brctl addbr br100
-
 * Configure network in `/etc/nova/nova.conf`
-* flat__network_bridge - bridge interface
+* flat_network_bridge - bridge interface
 * flat_interface - where bridge ends up
-* public_interface - used for natting floating (public) ips to private ips
+* public_interface - used for natting floating (public) ips to private (fixed) ips
 
 .. code-block:: bash
 
@@ -167,7 +185,7 @@ Configure networking
 
   nova-manage network list
 
-* Setup floating ip range
+* Setup floating ip range manually
 
 .. code-block:: bash
 
@@ -185,6 +203,73 @@ Configure networking
 
   nova floating-ip-create
   nova add-floating-ip <machine_id> <ip_address>
+
+
+Configure Neutron
+=================
+
+* Most of the time based on Open vSwitch (http://openvswitch.org/)
+* Uses network namespaces and gre tunnel or vlan to seperate tenants (projects)
+* You need an interface for host and one for neutron
+* Flat network is like nova network flat dhcp network (doesnt seperate tenants)
+
+* Create a new network and subnet
+
+.. code-block:: bash
+
+  neutron net-create <name>
+  neutron subnet-create --name bastiSubnet --no-gateway --host-route destination=0.0.0.0/0,nexthop=10.10.1.1 --dns-nameserver 8.8.8.8 <net_uuid> 10.10.1.0/24
+
+* List existing networks
+
+.. code-block:: bash
+
+  neutron net-list
+
+* Get ips / mac of vms
+
+.. code-block:: bash
+
+  neutron port-list
+
+* Routing between two nets
+
+.. code-block:: bash
+
+  neutron router-create <name>
+  neutron router-interface-add <router_name> <net_name_1>
+  neutron router-interface-add <router_name> <net_name_2>
+  neutron router-list
+
+* Delete an interface from a router
+
+.. code-block:: bash
+
+  neutron router-interface-delete <router_name> <net_name>
+
+
+* Create a floating net
+
+.. code-block:: bash
+
+  neutron net-create --router:external=True floatingNet
+  neutron subnet-create --name floatingNet --allocation-pool start=192.168.1.2,end=192.168.1.100 --enable_dhcp=False floatingNet 192.168.1.0/24
+  neutron router-gateway-set <router_name> floatingNet
+
+* Firewall rule handling
+
+.. code-block:: bash
+
+  neutron security-group-list
+  neutron security-group-create --protocol ICMP --direction ingress <group_id>
+  neutron security-group-rule-list
+
+* Quota (independent from nova network quotas!)
+
+.. code-block:: bash
+
+  neutron quota-update --network 0 --router 0 --floatingip 5 --tenant-id <tenant_id>
+  neutron quota-list
 
 
 Managing security groups
@@ -220,8 +305,8 @@ Handling instances
 
   nova flavor-list
   nova image-list
-  nova boot --flavor <flavor_id> --image <image_id> --key_name <key_name> --security_group mygroup <machine_name>
-  nova list
+  nova boot --poll --flavor <flavor_id> --image <image_id> --key_name <key_name> --security_group mygroup <machine_name>
+  nova list --all-tenants
 
 * Logfile `/var/log/nova/compute.log`
 * Get console output
@@ -504,7 +589,38 @@ Troubleshooting Keystone
 
 .. code-block:: bash
 
-  curl -i 'http://127.0.0.1:5000/v2.0/tokens' -X POST -H "Content-Type: application/json" -H "Accept: application/json"  -d '{"auth": {"tenantName": "admin", "passwordCredentials": {"username": "admin", "password": "devstack"}}}'
+  curl -i 'http://127.0.0.1:5000/v2.0/tokens' -X POST -H "Content-Type: application/json" -H "Accept: application/json"  -d '{"auth": {"tenantName": "admin", "passwordCredentials": {"username": "admin", "password": "admin"}}}'
+
+
+Troubleshooting Neutron
+=======================
+
+* What is for what? l2-agent (DHCP), l3-agent (floating ips and routers)
+* Check the neutron metadata agent is running and accessible (lives on 169.254.0.0/16)
+
+.. code-block:: bash
+
+  nova console-log <machine_id>
+
+* Status overview
+
+.. code-block:: bash
+
+  neutron agent-list
+
+* Check br-int and br-ext exist and br-tun for gre tunnel setup
+
+.. code-block:: bash
+
+  ovs-vsctl show
+
+* Check ``/var/log/neutron`` logs and that iproute tool support netns
+* Get a shell in the network namespace
+
+.. code-block:: bash
+
+  ip netns list
+  ip netns exec <namespace> bash
 
 
 Troubleshooting Glance
