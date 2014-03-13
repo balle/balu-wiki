@@ -159,6 +159,20 @@ Host Aggregates
   nova aggregate-add-metadata <group_name> filter_tenant_id=<tenant_id>
 
 
+Cells (untested)
+================
+
+* Seperate compute nodes into independent groups with its own db, amqp, network and scheduler servers which share single services like nova-api, keystone, glance, cinder, ceilometer and heat
+* Useful to avoid clustering amqp and db servers if load gets to high on very large deployments
+* Activated in ``/etc/nova/nova.conf`` in section ``[cells]``
+
+.. code-block:: bash
+
+  [cells]
+  enable = true
+  name = MyCellName
+
+
 Configure networking (old style nova networking)
 ================================================
 
@@ -321,6 +335,12 @@ Handling instances
 
   nova delete <machine_id>
 
+* If it cannot be removed use
+
+.. code-block:: bash
+
+  nova force-delete <machine_id>
+
 * Start / stop / suspend existing machine
 
 .. code-block:: bash
@@ -338,6 +358,12 @@ Handling instances
 .. code-block:: bash
 
   nova get-vnc-console <machine_id> novnc
+
+* Show all vms and where they are running
+
+.. code-block:: bash
+
+  nova-manage vm list
 
 
 VNC access
@@ -409,6 +435,38 @@ Quotas
 .. code-block:: bash
 
   nova quota-update <tenant-id> --instances 100
+
+
+Ceilometer
+==========
+
+* Collects data for statistics, alarmings ("monitoring as a service") or interaction with Heat
+* Compute agent polls libvirt, central agent polls Openstack infrastructure, collector collects data in ampq or database, alarm evaluator decides if an alarm should take place, alarm notifier sends the alarm
+* QuickStart guide http://openstack.redhat.com/CeilometerQuickStart
+* List all what can be monitored
+
+.. code-block:: bash
+
+  ceilometer meter-list
+
+* List collected data
+
+.. code-block:: bash
+
+  ceilometer sample-list --meter cpu
+
+
+Heat
+====
+
+* http://docs.openstack.org/developer/heat/template_guide/hot_guide.html
+* More complex examples can be found on https://github.com/openstack/heat-templates/tree/master
+* Execute a heat template with parameters from console
+
+.. code-block:: bash
+
+  heat stack-create mystack --template-file=/PATH_TO_HEAT_TEMPLATES/WordPress_Single_Instance.template
+     --parameters="InstanceType=m1.large;DBUsername=USERNAME;DBPassword=PASSWORD;KeyName=HEAT_KEY;LinuxDistribution=F17"
 
 
 Automatically backup instances
@@ -538,6 +596,7 @@ Compute node crashed
   sleep 10
   for VM in $(virsh list --uuid); do virsh destroy $VM; done
 
+* Maybe you can use `nova evacuate <server> <vm>` instead of plain sql
 * Connect to the master node and execute the following (dont forget to replace the two variables!) 
 
 .. code-block:: bash
@@ -551,6 +610,16 @@ Compute node crashed
 .. code-block:: bash
 
   nova list --host <HOSTNAME_OF_CRASHED_NODE>
+
+
+Disable a service on a host
+===========================
+
+* For example disable a compute node
+
+.. code-block:: bash
+
+  nova-manage service disable <host> nova-compute
 
 
 Troubleshooting Keystone
@@ -608,6 +677,7 @@ Troubleshooting Neutron
 
   neutron agent-list
 
+* Make sure the short hostname is not on loopback ip in ``/etc/hosts``
 * Check br-int and br-ext exist and br-tun for gre tunnel setup
 
 .. code-block:: bash
@@ -621,6 +691,8 @@ Troubleshooting Neutron
 
   ip netns list
   ip netns exec <namespace> bash
+
+* ``Timeout while waiting on RPC response - topic: "network"`` -> check neutron config in ``/etc/nova/nova.conf`` on your compute nodes
 
 
 Troubleshooting Glance
@@ -845,3 +917,9 @@ Programming
         time.sleep(1)
   else:
     print "Hypervisor " + sys.argv[1] + " serves no vms"
+
+
+Cool addons
+===========
+
+* http://zerovm.org
