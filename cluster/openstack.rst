@@ -299,6 +299,8 @@ Configure Neutron
   neutron security-group-rule-create --protocol icmp default
   neutron security-group-rule-create --protocol tcp --port-range-min 22 --port-range-max 22 default
   ip netns exec qdhcp-<subnet_uuid> ssh <user>@<machine_ip>
+  ip a add 10.10.10.1/24 dev br-ex
+  iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -j MASQUERADE
 
 
 Managing security groups
