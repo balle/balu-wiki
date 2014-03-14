@@ -285,6 +285,21 @@ Configure Neutron
   neutron quota-update --network 0 --router 0 --floatingip 5 --tenant-id <tenant_id>
   neutron quota-list
 
+* Complete example
+
+.. code-block:: bash
+
+  neutron net-create external --router:external=True
+  neutron subnet-create --disable-dhcp external 10.10.10.0/24
+  neutron net-create net0
+  neutron subnet-create --name net0-subnet0 --dns-nameserver 8.8.8.8 net0 192.168.100.0/24
+  neutron router-create extrouter
+  neutron router-gateway-set extrouter external
+  neutron router-interface-add extrouter net0-subnet0
+  neutron security-group-rule-create --protocol icmp default
+  neutron security-group-rule-create --protocol tcp --port-range-min 22 --port-range-max 22 default
+  ip netns exec qdhcp-<subnet_uuid> ssh <user>@<machine_ip>
+
 
 Managing security groups
 ========================
@@ -395,7 +410,7 @@ VNC access
 Adding additional storage
 =========================
 
-* Cinder uses LVM2 + ISCI
+* Cinder uses LVM2 (or Ceph, NetApp, ...) + ISCSI
 * Can only attach a block device to one vm
 * Activate Cinder in /etc/nova/nova.conf (restart nova-api and cinder-api afterwards)
 
@@ -412,6 +427,33 @@ Adding additional storage
   cinder list
   nova volume-list
   nova volume-attach <device_id> <volume_id> auto
+
+* Create a snapshot
+
+.. code-block:: bash
+
+  nova volume-detach <machine_id> <volumne_id>
+  cinder snapshot-create --display-name <name> <volumne_id>
+
+* Restore a snapshot
+
+.. code-block:: bash
+
+  cinder snapshot-list
+  cinder create <size> --snapshot-id <snapshot_uuid> --display-name <name>
+
+* Boot from image in cinder
+
+.. code-block:: bash
+
+  cinder create <size> --display-name <name> --image-id <glance_image_id>
+  nova boot --block-device-mapping vda=<volume_id> --flavor ...
+
+* Resize a volumne offline
+
+.. code-block:: bash
+
+  cinder extend <volumne_id> <new_size>
 
 
 Quotas
