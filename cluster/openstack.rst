@@ -83,6 +83,15 @@ User management
 * The privileges of a role are defined in ``/etc/keystone/policy.json``
 
 
+Create images
+=============
+
+* Install your system with libvirt
+* Install cloud-init
+* Take the disk image
+* For more information http://docs.openstack.org/image-guide/content/centos-image.html
+
+
 Adding images
 =============
 
@@ -382,6 +391,20 @@ Handling instances
 
   nova-manage vm list
 
+* Connect to a neutron network
+
+.. code-block:: bash
+
+  nova boot --nic net-id=<subnet_id>
+
+* Execute a script after creation (image needs to support cloud init and nova metadata must be running)
+
+.. code-block:: bash
+
+  nova boot --user-data ./myscript.sh --flavor ...
+
+* In user-data scripts cloud-config can be used to configure the machine in yaml or by invoking puppet (see http://docs.openstack.org/user-guide/content/user-data.html)
+
 
 VNC access
 ===========
@@ -504,13 +527,13 @@ Heat
 ====
 
 * http://docs.openstack.org/developer/heat/template_guide/hot_guide.html
-* More complex examples can be found on https://github.com/openstack/heat-templates/tree/master
+* http://docs.openstack.org/developer/heat/template_guide/openstack.html
+* Examples can be found on https://github.com/openstack/heat-templates/tree/master
 * Execute a heat template with parameters from console
 
 .. code-block:: bash
 
-  heat stack-create mystack --template-file=/PATH_TO_HEAT_TEMPLATES/WordPress_Single_Instance.template
-     --parameters="InstanceType=m1.large;DBUsername=USERNAME;DBPassword=PASSWORD;KeyName=HEAT_KEY;LinuxDistribution=F17"
+  heat stack-create mystack --template-file=<filename> --parameters="Param1=value;Param2=value"
 
 
 Automatically backup instances
@@ -571,7 +594,7 @@ Statistics
 Updating to a new version
 =========================
 
-* Every service has a db sync command 
+* Every service has a db sync command
 
 .. code-block:: bash
 
@@ -631,7 +654,7 @@ Compute node crashed
 =====================
 
 * If the did not crash completely but openstack-nova-compute service is broken, the machine will still be running and you can ssh into them but not use vnc
-* If you decide to nevertheless migrate all vms first halt them otherwise the disk images will get crushed 
+* If you decide to nevertheless migrate all vms first halt them otherwise the disk images will get crushed
 
 .. code-block:: bash
 
@@ -641,7 +664,7 @@ Compute node crashed
   for VM in $(virsh list --uuid); do virsh destroy $VM; done
 
 * Maybe you can use `nova evacuate <server> <vm>` instead of plain sql
-* Connect to the master node and execute the following (dont forget to replace the two variables!) 
+* Connect to the master node and execute the following (dont forget to replace the two variables!)
 
 .. code-block:: bash
 
@@ -649,7 +672,7 @@ Compute node crashed
   echo "update instances set host = 'HOSTNAME_OF_NEW_NODE' where host = 'HOSTNAME_OF_CRASHED_NODE' and deleted = 0;" | mysql nova
   for VM in $(cat broken_vms); do nova reboot $VM; done
 
-* The following command should return no results 
+* The following command should return no results
 
 .. code-block:: bash
 
@@ -698,7 +721,7 @@ Troubleshooting Keystone
   export SERVICE_TOKEN=
   export SERVICE_ENDPOINT=
 
-* Manually receive an auth token by executing ``keystone token-get`` or 
+* Manually receive an auth token by executing ``keystone token-get`` or
 
 .. code-block:: bash
 
