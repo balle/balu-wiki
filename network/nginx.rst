@@ -46,6 +46,20 @@ Htaccess
   auth_basic            "You shall not pass!";
   auth_basic_user_file   /etc/nginx/htpasswd;
 
+* Use htpasswd to create the file
+* If you would like to require auth except for one ip
+
+.. code-block:: bash
+
+  # allow puppet master to post reports
+  allow 1.2.3.4;
+
+  # require auth from all else
+  deny all;
+  satisfy  any;
+  auth_basic            "You must login";
+  auth_basic_user_file   /etc/nginx/htpasswd;""
+
 
 SSL config
 ==========
