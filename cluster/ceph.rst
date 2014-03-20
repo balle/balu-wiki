@@ -22,7 +22,7 @@ Overview
 Manual installation
 ===================
 
-* Setup a monitor 
+* Setup a monitor
 
 .. code-block:: bash
 
@@ -39,7 +39,7 @@ Manual installation
   auth service required = cephx
   auth client required = cephx
   osd pool default size = 2
-  
+
 * Generate keys for the monitor and admin user and add the monitor to the monitor map
 
 .. code-block:: bash
@@ -104,6 +104,30 @@ Adding OSDs the easy way
   ceph-disk-prepare --fs-type xfs /dev/sda
 
 
+Complete setup of new node
+==========================
+
+* On new node
+
+.. code-block:: bash
+
+  useradd -d /home/ceph -m ceph
+  passwd ceph
+  echo "ceph ALL = (root) NOPASSWD:ALL" | tee /etc/sudoers.d/ceph
+  mkdir /local/osd<id>
+
+* On ceph-deploy node
+
+.. code-block:: bash
+
+  su - ceph
+  ssh-copyid ceph@<hostname_of_new_node>
+  ceph-deploy install <hostname_of_new_node>
+  ceph-deploy osd prepare <hostname_of_new_node>:/local/osd<id>
+  ceph-deploy osd activate <hostname_of_new_node>:/local/osd<id>
+  ceph-deploy mon create <hostname_of_new_node>
+
+
 Configure replication
 =====================
 
@@ -140,7 +164,7 @@ Access storage
   ceph osd map data test-object
   rados rm test-object --pool=data
 
-* RADOS FUSE 
+* RADOS FUSE
 
 * Virtual Block device via kernel driver (needs kernel >= 3.4.20)
 
@@ -192,7 +216,7 @@ Check server status
 Pools
 =============
 
-* Create 
+* Create
 
 .. code-block:: bash
 
@@ -267,7 +291,7 @@ Editing the CRUSH map
 Maintanance
 ===========
 
-* To stop CRUSH from automatically balance load of the cluster 
+* To stop CRUSH from automatically balance load of the cluster
 
 .. code-block:: bash
 
