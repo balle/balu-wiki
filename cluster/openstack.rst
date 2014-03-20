@@ -480,6 +480,13 @@ Adding additional storage
 
   cinder extend <volumne_id> <new_size>
 
+* QoS
+
+.. code-block:: bash
+
+  cinder qos-create standard-iops consumer="front-end" read_iops_sec=400 write_iops_sec=200
+  cinder qos-associate <qos_id> <volumne_id>
+
 
 Quotas
 ======
