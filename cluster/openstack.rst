@@ -542,6 +542,68 @@ Heat
 
   heat stack-create mystack --template-file=<filename> --parameters="Param1=value;Param2=value"
 
+* Example script
+
+.. code-block:: bash
+
+  heat_template_version: 2013-05-23
+
+  description: Create a network and an instance attached to it
+
+  parameters:
+    public_net_id:
+      type: string
+      description: >
+        ID of floating network
+
+  resources:
+    private_net:
+      type: OS::Neutron::Net
+      properties:
+        name: Privatenet
+
+    private_subnet:
+      type: OS::Neutron::Subnet
+      properties:
+        network_id: { get_resource: private_net }
+        cidr: 192.168.1.0/24
+        gateway_ip: 192.168.1.1
+        allocation_pools:
+          - start: 192.168.1.2
+            end: 192.168.1.254
+
+    router:
+      type: OS::Neutron::Router
+
+    router_gateway:
+      type: OS::Neutron::RouterGateway
+      properties:
+        router_id: { get_resource: router }
+        network_id: { get_param: public_net_id }
+
+    router_interface:
+      type: OS::Neutron::RouterInterface
+      properties:
+        router_id: { get_resource: router }
+        subnet_id: { get_resource: private_subnet }
+
+    server1:
+      type: OS::Nova::Server
+      properties:
+        name: Server1
+        image: Test Image
+        flavor: m1.small
+        networks:
+          - port: { get_resource: server1_port }
+
+    server1_port:
+      type: OS::Neutron::Port
+      properties:
+        network_id: { get_resource: private_net }
+        fixed_ips:
+          - subnet_id: { get_resource: private_subnet }
+
+
 
 Automatically backup instances
 ==============================
