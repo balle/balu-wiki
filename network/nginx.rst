@@ -184,6 +184,14 @@ Traffic shaping
     limit_rate       50k;
 
 
+Request size
+============
+
+.. code-block:: bash
+
+  client_max_body_size 2M;
+
+
 Debugging
 ==========
 
