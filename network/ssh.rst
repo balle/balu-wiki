@@ -5,11 +5,11 @@ SSH
 Local port forward
 ==================
 
-* Local port 5555 gets forwarded to 25 on remote machine
+* Local port 5555 gets forwarded to 25 on remote machine over ssh-host
 
 .. code-block:: bash
 
-  ssh -L 5555:remote-machine:25 user@ssh-host
+  ssh -Nf -L 5555:remote-machine:25 user@ssh-host
 
 
 Socks forward
@@ -20,3 +20,11 @@ Socks forward
   ssh -D 5555 user@remote-machine
 
 * Now connect your firefox to socks proxy port 5555 and it will tunnel everything over it
+
+
+Ignore Host key
+===============
+
+.. code-block:: bash
+
+  ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
