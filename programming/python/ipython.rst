@@ -248,6 +248,33 @@ Background jobs
   job[0].result
 
 
+Connect to an existing console
+===============================
+
+* Start ipython with console or qtconsole
+
+.. code-block:: bash
+
+  ipython kernel
+  [IPKernelApp] To connect another client to this kernel, use:
+  [IPKernelApp] --existing kernel-26492.json
+
+* Now you can connect another console by executing
+
+.. code-block:: bash
+
+  ipython console --existing kernel-26492.json
+
+* If the kernel is on another system you either have to setup ssh tunnel for all port specified in the json file
+
+.. code-block:: bash
+
+  ssh user@remote -f -N -L 61947:127.0.0.1:61947
+
+* or append `--ssh user@remote` to the ipython console command
+* The kernel.json file can be found in ``~/.ipython/profile_default/security``
+
+
 Parallel computing
 ==================
 
@@ -260,7 +287,7 @@ Parallel computing
   ipcluster start
   ipython
 
-* To run a simple hello world on all cores exec 
+* To run a simple hello world on all cores exec
 
 .. code-block:: python
 
@@ -284,7 +311,7 @@ Parallel computing
     import os
   %px print os.uname()
 
-* If all nodes share a home directory for ipcontroller-engine.json file you can automatically start the controller on localhost and engines on remote 
+* If all nodes share a home directory for ipcontroller-engine.json file you can automatically start the controller on localhost and engines on remote
 * Create a new profile with
 
 .. code-block:: bash
@@ -311,29 +338,9 @@ Parallel computing
 * Use map to call a function on a dataset on all nodes
 
 .. code-block:: python
- 
+
   v = c[:]
   result = v.map_sync(lambda x: x*x, data)
-
-
-Connect to an existing console
-===============================
-
-* Start ipython with console or qtconsole
-
-.. code-block:: bash
-
-  ipython console
-  [IPKernelApp] To connect another client to this kernel, use:
-  [IPKernelApp] --existing kernel-26492.json
-
-* Now you can connect another console by executing
-
-.. code-block:: bash
-
-  ipython console --existing kernel-26492.json
-
-* The kernel.json file can be found in ``~/.ipython/profile_default/security``
 
 
 Save state of a console
