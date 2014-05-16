@@ -110,6 +110,24 @@ Downgrade a package
   yum downgrade <pkgname>
 
 
+Examine installation history
+============================
+
+.. code-block:: bash
+
+  yum history list [package]
+  yum history info <id>
+
+
+Revert an update
+================
+
+.. code-block:: bash
+
+  yum history list
+  yum undo <id>
+
+
 Service Configuration
 =====================
 
