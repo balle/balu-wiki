@@ -52,6 +52,22 @@ ASCII, Hex and Binary conversion
   perl -e 'print chr(ord(pack("B*",$ARGV[0])))."\n";'
 
 
+Base64
+======
+
+* Encoding
+
+.. code-block:: bash
+
+  perl -MMIME::Base64 -e 'print MIME::Base64::encode_base64($ARGV[0]) . "\n"' "BLA BLA BLA"
+
+* Decoding
+
+.. code-block:: bash
+
+  perl -MMIME::Base64 -e 'print MIME::Base64::decode_base64($ARGV[0]) . "\n"' "QkxBIEJMQSBCTEE="
+
+
 Make /etc/hosts to domain names
 ===============================
 
