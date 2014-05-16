@@ -176,9 +176,28 @@ Access storage
 Check size
 ==========
 
+* Of the filesystem
+
 .. code-block:: bash
 
   ceph df
+
+* Of a file
+
+.. code-block:: bash
+
+  rbd -p <pool> info <file>
+
+
+File snapshots
+==============
+
+.. code-block:: bash
+
+  rbd -p <pool> snap create <file>
+  rbd -p <pool> snap ls <file>
+  rbd -p <pool> snap rollback <file>
+  rbd -p <pool> snap rm <file>
 
 
 Check health
