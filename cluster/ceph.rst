@@ -168,6 +168,13 @@ Access storage
 
 * Virtual Block device via kernel driver (needs kernel >= 3.4.20)
 
+.. code-block:: bash
+
+  rbd create rbd/myrbd --size=1024
+  echo "rbd/myrbd" >> /etc/ceph/rbdmap
+  service rbdmap reload
+  rbd showmapped
+
 * iSCSI interface under development
 
 * Code your own client with librados
@@ -255,6 +262,13 @@ Pools
 
   ceph osd pool mksnap <name>
 
+* Find out nr of replicas per pool
+
+.. code-block:: bash
+
+  ceph osd dump | grep <pool>
+
+
 * Change nr of replicas per pool
 
 .. code-block:: bash
@@ -270,6 +284,7 @@ Placement groups
 .. code-block:: bash
 
   ceph pg dump
+  ceph pg stat
 
 * What does the status XXX mean?
 
@@ -285,7 +300,7 @@ Placement groups
 
   ceph pg <pg_num> query
 
-* Where to find an object?
+* Where to find an object / file?
 
 .. code-block:: bash
 
@@ -320,7 +335,7 @@ Maintanance
 Troubleshooting general
 =======================
 
-* Remove everything
+* Remove everything (not recommended for production use!)
 
 .. code-block:: bash
 
@@ -365,3 +380,28 @@ Repair monitor
 
   rm -rf /var/lib/ceph/mon/ceph-<myid>
   ceph-mon --mkfs -i <myid> --keyring /etc/ceph/ceph.client.admin.keyring
+
+
+Cluster is full
+================
+
+* The easiest way is of course to add new OSDs, but if thats not possible
+
+* Try to reweight automatically
+
+.. code-block:: bash
+
+  ceph osd reweight-by-utilization
+
+* Reweight manually free OSDs
+
+.. code-block:: bash
+
+  ceph osd tree
+  ceph osd crush reweight osd.<nr> <new_weight>
+
+* Reconfigure ``full_ratio`` value and delete objects (DONT FORGET TO CHANGE IT BACK!)
+
+.. code-block:: bash
+
+  ceph pg set_full_ratio 0.99
