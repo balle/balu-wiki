@@ -405,3 +405,34 @@ Cluster is full
 .. code-block:: bash
 
   ceph pg set_full_ratio 0.99
+
+
+Cannot delete a file
+=====================
+
+* Check that the cluster is not full otherwise see above
+
+.. code-block:: bash
+
+  ceph health detail
+
+* Purge all snapshots
+
+.. code-block:: bash
+
+  rbd -p <pool> snap purge <file>
+
+
+* Check that the file is not locked and maybe remove the lock
+
+.. code-block:: bash
+
+  rbd -p <pool> lock list <file>
+  rbd -p <pool> lock remove <file> <id> <locker>
+
+* I can still not remove the file! (Thats the not so nice and maybe destructive way)
+
+.. code-block:: bash
+
+  rados -p <pool> rm rbd_id.<file_id>
+  rbd -p <pool> rm <file>
