@@ -306,6 +306,12 @@ Placement groups
 
   ceph osd map <pg_name> <object-name>
 
+* "Fsck" a placement group
+
+.. code-block:: bash
+
+  ceph pg scrub <pg_num>
+
 
 Editing the CRUSH map
 =====================
