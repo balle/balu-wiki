@@ -6,6 +6,47 @@ Multiprocessing
 
 * `Celery is an asynchronous task queue/job queue <http://celeryproject.org/>`_
 
+Parallel map
+=============
+
+.. code-block:: bash
+
+  import urllib2
+  import multiprocessing
+
+  def fetch(url):
+    print "GET " + url
+    body = urllib2.urlopen(url).read()
+    print "FIN " + url; return (url, body)
+
+  urls = ['http://www.google.de', 'http://www.ccc.de', 'http://www.heise.de', 'http://www.codekid.net']
+  pool = multiprocessing.Pool()
+
+  for url, body in pool.imap(fetch, urls):
+    print "GOT body for " + url
+
+
+Gevent
+======
+
+.. code-block:: bash
+
+  import gevent
+  import urllib2
+
+  def fetch(url):
+    print "GET " + url
+    body = urllib2.urlopen(url).read()
+    print "FIN " + url
+    return (url, body)
+
+  urls = ['http://www.google.de', 'http://www.ccc.de', 'http://www.heise.de', 'http://www.codekid.net']
+  jobs = [gevent.spawn(fetch, url) for url in urls]
+
+  gevent.joinall(jobs, timeout=2)
+  [job.get() for job in jobs]
+
+
 Multiprocessing with Queues
 ============================
 
