@@ -21,9 +21,15 @@ Parallel map
 
   urls = ['http://www.google.de', 'http://www.ccc.de', 'http://www.heise.de', 'http://www.codekid.net']
   pool = multiprocessing.Pool()
+  result = pool.map_async(fetch, urls):
+  timeout = 3
 
-  for url, body in pool.imap(fetch, urls):
-    print "GOT body for " + url
+  try:
+    for url, body in result.get(timeout)
+      print "GOT body for " + url
+  except multiprocessing.TimeoutError:
+    print "Got timeout :("
+    pool.terminate()
 
 
 Gevent
