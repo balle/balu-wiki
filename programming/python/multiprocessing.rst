@@ -25,7 +25,7 @@ Parallel map
   timeout = 3
 
   try:
-    for url, body in result.get(timeout)
+    for url, body in result.get(timeout):
       print "GOT body for " + url
   except multiprocessing.TimeoutError:
     print "Got timeout :("
