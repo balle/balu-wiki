@@ -116,6 +116,7 @@ Cluster
    cluster/hadoop
    cluster/mpi
    cluster/openstack
+   cluster/torque
 
 
 Databases
