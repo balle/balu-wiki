@@ -60,3 +60,13 @@ Port forward
 .. code-block:: bash
 
   docker run -d -p 8888:80 <image>
+
+
+Troubleshooting
+===============
+
+* ``Couldn’t create Tag store: unexpected end of JSON input``
+
+.. code-block:: bash
+
+  rm /var/lib/docker/repositories
