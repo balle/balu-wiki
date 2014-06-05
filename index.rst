@@ -136,6 +136,7 @@ Virtualization
 .. toctree::
    :maxdepth: 1
 
+   virtualization/docker
    virtualization/kvm
    virtualization/libvirt
    virtualization/vagrant
