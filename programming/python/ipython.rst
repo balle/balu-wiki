@@ -274,6 +274,12 @@ Connect to an existing console
 * or append `--ssh user@remote` to the ipython console command
 * The kernel.json file can be found in ``~/.ipython/profile_default/security``
 
+* To manually create all ssh tunnels
+
+.. code-block:: bash
+
+  for port in $(cat kernel-1234.json | grep '_port' | grep -o '[0-9]\+'); do ssh myremotehost -f -N -L $port:127.0.0.1:$port; done
+
 
 Parallel computing
 ==================
