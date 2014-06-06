@@ -48,8 +48,8 @@ Export images
 
 .. code-block:: bash
 
-  docker save <image>
-  docker load <image>
+  docker save <image> > <archive_file>
+  docker load -i <archive_file>
 
 
 Port forward
@@ -60,6 +60,20 @@ Port forward
 .. code-block:: bash
 
   docker run -d -p 8888:80 <image>
+
+* Automatically forward all ports
+
+.. code-block:: bash
+
+  docker run -P <image>
+
+
+Get IP of container
+===================
+
+.. code-block:: bash
+
+  docker inspect <container_id> | grep IPAddress
 
 
 Troubleshooting
