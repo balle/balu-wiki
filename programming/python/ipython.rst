@@ -357,7 +357,7 @@ Save state of a console
 
 .. code-block:: bash
 
-  ipython -log <file>
+  ipython -lp <file>
 
 * To automatically save state edit ``~/.ipython/profile_default/ipython_config.py`` and set
 
