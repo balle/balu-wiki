@@ -106,3 +106,11 @@ Export data as XML
 .. code-block:: bash
 
   rrdtool xport --start `date +%s -d "yesterday"` --end `date +%s` DEF:load1=some.rrd:load:AVERAGE XPORT:load1
+
+
+Resize Databases
+==================
+
+.. code-block:: bash
+
+  for DIR in $(ls); do echo "Entering $DIR"; cd $DIR/snmp; for RRD in $(find . |grep rrd|grep -v resize); do echo "Resizing $RRD"; rrdtool resize $RRD 12 GROW 10800; mv -f resize.rrd $RRD; rrdtool resize $RRD 13 GROW 10800; mv -f resize.rrd $RRD; rrdtool resize $RRD 14 GROW 10800; mv -f resize.rrd $RRD; done; cd ../..; done
