@@ -430,6 +430,61 @@ Temporarily disable / enable SELinux
   setenforce [0|1]
 
 
+Audit Framework
+================
+
+* For permanent rules edit ``/etc/audit/audit.rules``
+
+* Show current status
+
+.. code-block:: bash
+
+  auditctl -s
+
+* Enable / disable audit
+
+.. code-block:: bash
+
+  auditctl -e 0/1
+
+* Show all rules
+
+.. code-block:: bash
+
+  auditctl -l
+
+* Delete all rules
+
+.. code-block:: bash
+
+  auditctl -D
+
+* Log all execve calls of user root
+
+.. code-block:: bash
+
+  auditctl -a exit,always -S execve -F euid=0
+
+* Log all executions of a specific program
+
+.. code-block:: bash
+
+  auditctl -A exit,always -F path=/path/to/executable -S execve
+
+* Show all logs of a specific timespan and from a certain user
+
+.. code-block:: bash
+
+  ausearch --start month/day/year time --end month/day/year time -ui 0
+
+
+* Show recent events (last 5 minutes)
+
+.. code-block:: bash
+
+  ausearch -ts recent
+
+
 Documentation
 =============
 
