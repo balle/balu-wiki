@@ -279,6 +279,21 @@ Configure Neutron
   neutron subnet-create --name floatingNet --allocation-pool start=192.168.1.2,end=192.168.1.100 --enable_dhcp=False floatingNet 192.168.1.0/24
   neutron router-gateway-set <router_name> floatingNet
 
+* Find agent hosting a network
+
+.. code-block:: bash
+
+  neutron dhcp-agent-list-hosting-net <net_name>
+
+* Find network namespace of a vm
+
+.. code-block:: bash
+
+  nova show <vm_id> # get tenant id
+  neutron net-list --tenant-id <tenant_id>
+  neutron dhcp-agent-list-hosting-net <net_name> # find host where net is served
+  ip netns exec <net_id> # on serving host
+
 * Firewall rule handling
 
 .. code-block:: bash
