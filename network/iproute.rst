@@ -12,6 +12,13 @@ Simple stuff
   ip l s <dev> up/down
   ip a add <ip> dev <dev>
 
+* Remove all ips
+
+.. code-block:: bash
+
+  ip a flush dev eth0
+
+
 * Configure default gateway
 
 .. code-block:: bash
@@ -26,6 +33,14 @@ Change MAC
 .. code-block:: bash
 
   ip link set <dev> addr <mac>
+
+
+Promisc mode
+===========
+
+.. code-block:: bash
+
+  ip link set dev eth0 promisc on
 
 
 Source routing
@@ -89,7 +104,7 @@ Network namespaces
   ip netns list
   ip link add veth0 type veth peer name veth1
   ip link set veth1 netns balle
-  brctl addbr balle_br 
+  brctl addbr balle_br
   brctl addif balle_br eth0 veth0
   ip netns exec balle ip addr add 192.168.100.1/24 dev veth1
   dhclient balle_br
@@ -99,3 +114,9 @@ Network namespaces
 .. code-block:: bash
 
   ip netns exec balle bash
+
+* Monitor namespaces
+
+.. code-block:: bash
+
+  ip netns monitor
