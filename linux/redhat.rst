@@ -110,6 +110,16 @@ Downgrade a package
   yum downgrade <pkgname>
 
 
+Remove package with all dependencies
+====================================
+
+* Edit ``/etc/yum.conf``
+
+.. code-block:: bash
+
+  clean_requirements_on_remove=1
+
+
 Examine installation history
 ============================
 
