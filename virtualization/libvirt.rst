@@ -174,7 +174,7 @@ Backup
 
 .. code-block:: bash
 
-  virsh snapshot-create <machine-name>
+  virsh snapshot-create-as <machine-name> <snapshot-name>
 
 * or by using qemu tools (but only when vm is off!)
 
@@ -202,6 +202,7 @@ Restore
 
 .. code-block:: bash
 
+  virsh snapshot-list <machine_name>
   virsh snapshot-revert <machine_name> <snapshot>
 
 
