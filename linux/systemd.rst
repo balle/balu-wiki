@@ -119,7 +119,7 @@ Filtering logs
 
 .. code-block:: bash
 
-  journalctl _TRANSPORT=kernel
+  journalctl -k
 
 * For network stuff
 

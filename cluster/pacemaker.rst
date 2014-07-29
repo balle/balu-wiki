@@ -132,6 +132,22 @@ Define a service
   pcs resource create mongodb lsb:mongod --clone
 
 
+Define a mountpoint
+===================
+
+.. code-block:: bash
+
+  pcs resource create my-nfs Filesystem device=192.168.1.1:/export/something directory=/mnt fstype=nfs options=nolock
+
+
+Group resources
+===============
+
+.. code-block:: bash
+
+  pcs resource group add my-group resource1 resource2
+
+
 Define constraints
 ==================
 
