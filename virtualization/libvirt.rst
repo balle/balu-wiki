@@ -124,7 +124,7 @@ Update boot order
 
 .. code-block:: bash
 
-  virsh define <machine-name> blah.xml
+  virsh define blah.xml
 
 
 Configure RAM
