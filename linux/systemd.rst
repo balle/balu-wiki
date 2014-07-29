@@ -71,6 +71,13 @@ Filtering logs
 
   journalctl --since today
 
+* One hour ago
+
+.. code-block:: bash
+
+  journalctl --since -1h
+
+
 * Or timerange
 
 .. code-block:: bash

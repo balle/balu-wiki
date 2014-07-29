@@ -83,6 +83,7 @@ Security
 
    security/crypto
    security/cisco
+   security/firewalld
    security/honeypot
    security/iptables
    security/openssl
