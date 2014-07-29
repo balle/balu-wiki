@@ -44,6 +44,9 @@ Installation
   # multi node setup with nova network
   packstack --install-hosts=node1,node2,node3 --os-neutron-install=n
 
+  # alternativly generate an answer file and edit it
+  packstack --gen-answer-file /root/answers.txt
+
   # iterative changes (edit answerfile in home dir)
   packstack --answer-file=<answerfile>
 
