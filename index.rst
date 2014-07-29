@@ -117,6 +117,7 @@ Cluster
    cluster/hadoop
    cluster/mpi
    cluster/openstack
+   cluster/pacemaker
    cluster/torque
 
 
