@@ -286,8 +286,8 @@ mapred.tasktracker.reduce.tasks.maximum  Number of reduce tasks to deploy on eac
 ======================================== ======================================================
 
 
-Working with Map Reduce
-=======================
+Streaming interface
+===================
 
 * Access the JobTracker with http://localhost:50030
 * Access TaskTracker with http://localhost:50060
@@ -318,6 +318,11 @@ Working with Map Reduce
 
   words = {}
 
+  # Gets something like
+  # word1 1
+  # word1 1
+  # word2 1
+  # word3 1
   for line in sys.stdin:
     line = line.strip()
     word, count = line.split('\t', 1)
@@ -336,13 +341,46 @@ Working with Map Reduce
 
   bin/hadoop dfs -mkdir /test
   bin/hadoop dfs -put some_file /test
-  bin/hadoop jar contrib/streaming/hadoop-streaming-1.2.1.jar -file /full/path/to/mapper.py -mapper /full/path/to/mapper.py -file /full/path/to/reducer.py -reducer /full/path/to/reducer.py -input /test/README.txt -output /myoutput
+  bin/hadoop jar share/hadoop/tools/lib/hadoop-streaming-2.4.1.jar -file /full/path/to/mapper.py -mapper /full/path/to/mapper.py -file /full/path/to/reducer.py -reducer /full/path/to/reducer.py -input /test/README.txt -output /myoutput
 
 * Get the result
 
 .. code-block:: bash
 
   bin/hadoop dfs -cat /myoutput/part-00000
+
+
+Mrjob
+=====
+
+.. code-block:: bash
+
+  from mrjob.job import MRJob
+
+  class MRWordFrequencyCount(MRJob):
+
+      def mapper(self, _, line):
+          yield "chars", len(line)
+          yield "words", len(line.split())
+          yield "lines", 1
+
+      def reducer(self, key, values):
+          yield key, sum(values)
+
+  if __name__ == '__main__':
+      MRWordFrequencyCount.run()
+
+* To run it locally run
+
+.. code-block:: bash
+
+  cat input.txt | python mrjob-example.py
+
+* To run it on hadoop call
+
+.. code-block:: bash
+
+  python mrjob-example.py -r hadoop hdfs:///mydir/input.txt
 
 
 Pydoop
