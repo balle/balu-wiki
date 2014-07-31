@@ -66,8 +66,25 @@ Set mandatory fencing off
   pcs property set stonith-enabled=false
 
 
-Configure fencing
-=================
+Configure fencing via IPMI
+==========================
+
+* Install ``fence-agents`` on every node
+
+.. code-block:: bash
+
+  pcs stonith create node1 fence_ipmilan params auth="password" ipaddr="1.2.3.4" login="root" passwd="secret" pcmk_host_list="node1" op monitor interval="30s"
+  pcs stonith create node2 fence_ipmilan params auth="password" ipaddr="1.2.3.4" login="root" passwd="secret" pcmk_host_list="node2" op monitor interval="30s"
+
+* To test it execute
+
+.. code-block:: bash
+
+  pcs stonith fence another-node
+
+
+Configure fencing for libvirtd
+==============================
 
 * On libvirt node install ``fence-virtd``
 
