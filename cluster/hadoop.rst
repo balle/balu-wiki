@@ -651,7 +651,7 @@ Working with HBase
   bin/hbase rest start
   curl -v -X GET -H "Accept: application/json" 'http://localhost:8080/webtable/de.codekid.www'""
 
-* REST with Python
+* REST with Python (http://blog.cloudera.com/blog/2013/10/hello-starbase-a-python-wrapper-for-the-hbase-rest-api/)
 
 .. code-block:: bash
 
@@ -667,6 +667,7 @@ Working with HBase
   c = Connection(host='127.0.0.1', port=8080)
   t = c.table(table)
   t.insert(key, {column: data})
+  print t.fetch(key)
 
 * For Thrift interface install `thrift.apache.org`
 
