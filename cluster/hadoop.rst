@@ -560,7 +560,7 @@ HBase Setup
   <configuration>
     <property>
       <name>hbase.rootdir</name>
-      <value>hdfs://dco-node176:54310/hbase</value>
+      <value>hdfs://localhost:54310/hbase</value>
     </property>
 
     <property>
@@ -575,7 +575,7 @@ HBase Setup
 
     <property>
      <name>hbase.ZooKeeper.quorum</name>
-     <value>dco-node176</value>
+     <value>localhost</value>
     </property>
 
     <property>
@@ -586,16 +586,25 @@ HBase Setup
   </configuration>
 
 * Edit `conf/regionservers` and add all nodes
+* Edit `conf/hbase-env.sh` and set `JAVA_HOME`
+* Start HBase server and shell
+
+.. code-block:: bash
+
+  bin/start-hbase.sh
+  bin/hbase shell
+
+* Web interface can be found here `http://localhost:60010`
 
 
 Working with HBase
 ===================
 
-* Create a table
+* Create a table (cf is the columfamily)
 
 .. code-block:: bash
 
-  create 'tablename', 'col1', 'col2', 'col3'
+  create 'tablename', 'cf'
 
 * Show all tables
 
@@ -608,13 +617,13 @@ Working with HBase
 
 .. code-block:: bash
 
-  put 'tablename'' 'index e.g. r1' 'col1' 'value1'
+  put 'tablename', 'row index', 'cf:col1', 'value1'
 
 * Select values
 
 .. code-block:: bash
 
-  get 'tablename' 'index'
+  get 'tablename' 'row index'
 
 * Check table health
 
@@ -630,6 +639,23 @@ Working with HBase
   drop 'tablename'
 
 * For more see http://learnhbase.wordpress.com/2013/03/02/hbase-shell-commands/
+* Install `thrift.apache.org` for remote access
+
+.. code-block:: bash
+
+  bin/hbase thrift start
+
+* For python api ``pip install pyhbase``
+
+.. code-block:: bash
+
+  from pyhbase.connection import HBaseConnection
+
+  connection = HBaseConnection('localhost', 9090)
+  connection.create_table('test', 'col1')
+  print connection.list_tables()
+  connection.put('test', 'index1', 'col1', 'value1')
+  print connection.get('test', 'index1')
 
 
 Working with Hive
