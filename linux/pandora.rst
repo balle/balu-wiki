@@ -22,6 +22,12 @@ Firmware update (old way)
 * boot from sd-card
 
 
+Deactivate boot splash
+======================
+
+* Edit /boot/autoboot.txt and append ``psplash=false`` at the end of the ``setenv bootargs`` parameter
+* Or hit ``Alt + D-pad right`` to disable it temporarily
+
 Turn wifi off
 =============
 
