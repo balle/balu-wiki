@@ -191,6 +191,14 @@ Show indexes
   db.system.indexes.find()
 
 
+Using references
+================
+
+.. code-block:: bash
+
+  some_field: new DBRef('collection_of_target', target_document._id)
+
+
 User administration
 ===================
 
