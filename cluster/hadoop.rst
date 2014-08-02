@@ -605,6 +605,7 @@ Working with HBase
 .. code-block:: bash
 
   create 'tablename', 'cf'
+  create 'webtable', 'contents', 'anchors'
 
 * Show all tables
 
@@ -618,12 +619,16 @@ Working with HBase
 .. code-block:: bash
 
   put 'tablename', 'row index', 'cf:col1', 'value1'
+  put 'webtable', 'de.codekid.www', 'contents:html', '<html><body>blah blah</body></html>'
+  put 'webtable', 'de.codekid.www', 'anchors:www.ccc.de', 'Chaos Computer Club'
+  put 'webtable', 'de.codekid.www', 'anchors:www.chaostal.de', 'Chaostal'
 
 * Select values
 
 .. code-block:: bash
 
   get 'tablename' 'row index'
+  get 'webtable', 'de.codekid.www'
 
 * Check table health
 
@@ -639,7 +644,31 @@ Working with HBase
   drop 'tablename'
 
 * For more see http://learnhbase.wordpress.com/2013/03/02/hbase-shell-commands/
-* Install `thrift.apache.org` for remote access
+* REST interface
+
+.. code-block:: bash
+
+  bin/hbase rest start
+  curl -v -X GET -H "Accept: application/json" 'http://localhost:8080/webtable/de.codekid.www'""
+
+* REST with Python
+
+.. code-block:: bash
+
+  #!/usr/bin/python
+
+  from starbase import Connection
+
+  table = 'webtable'
+  key = 'de.codekid.www'
+  column = 'anchors:images.datenterrorist.de'
+  data = 'Galerie'
+
+  c = Connection(host='127.0.0.1', port=8080)
+  t = c.table(table)
+  t.insert(key, {column: data})
+
+* For Thrift interface install `thrift.apache.org`
 
 .. code-block:: bash
 
