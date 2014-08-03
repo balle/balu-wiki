@@ -669,23 +669,57 @@ Working with HBase
   t.insert(key, {column: data})
   print t.fetch(key)
 
-* For Thrift interface install `thrift.apache.org`
+* Complete example
 
-.. code-block:: bash
+.. code-block:: python
 
-  bin/hbase thrift start
+  from BeautifulSoup import BeautifulSoup
+  from urlparse import urlparse
+  from urllib2 import urlopen
+  from starbase import Connection
+  from mrjob.job import MRJob
+  import sys
 
-* For python api ``pip install pyhbase``
+  class MRWebCrawler(MRJob):
+      def prepare_link(self, link):
+          link_url = link
+      	scheme = urlparse(link_url)[0]
 
-.. code-block:: bash
+  	if not scheme:
+  	    parsed_base_url = urlparse(self.base_url)
+  	    link_url = parsed_base_url[0] + "://" + parsed_base_url[1] + "/" + link_url
 
-  from pyhbase.connection import HBaseConnection
+          return str(link_url)
 
-  connection = HBaseConnection('localhost', 9090)
-  connection.create_table('test', 'col1')
-  print connection.list_tables()
-  connection.put('test', 'index1', 'col1', 'value1')
-  print connection.get('test', 'index1')
+      def mapper(self, _, base_url):
+  	self.base_url = base_url
+  	table = 'webtable'
+  	host = urlparse(base_url)[1]
+  	html = urlopen(base_url).read()
+  	parser = BeautifulSoup(html)
+
+  	conn = Connection(host='127.0.0.1', port=8080)
+  	table = conn.table(table)
+  	table.insert(host, {'contents:html': html})
+
+
+  	for link in parser('a'):
+      	    if link.get('href'):
+          	if len(link.contents[0]) > 1:
+  	    	    table.insert(host, {'anchor:' + link.contents[0]: self.prepare_link(link.get('href'))})
+          	else:
+              	    for tag in link.contents:
+                  	if hasattr(tag, 'get') and tag.get('alt'):
+  			    table.insert(host, {'anchor:' + tag.get('alt'): self.prepare_link(link.get('href'))})
+  		    	    break
+                  	elif hasattr(tag, 'get') and  tag.get('title'):
+  		    	    table.insert(host, {'anchor:' + tag.get('title'): self.prepare_link(link.get('href'))})
+  		    	    break
+
+  if __name__ == '__main__':
+      MRWebCrawler.run()
+
+  sys.exit(0)
 
 
 Working with Hive
