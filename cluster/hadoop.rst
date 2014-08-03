@@ -668,6 +668,10 @@ Working with HBase
   t = c.table(table)
   t.insert(key, {column: data})
   print t.fetch(key)
+  rf = '{"type": "RowFilter", "op": "EQUAL", "comparator": {"type": "RegexStringComparator", "value": "^row_1.+"}}'
+
+  for row in t.fetch_all_rows(with_row_id=True, filter_string=rf):
+    print row
 
 * Complete example
 
