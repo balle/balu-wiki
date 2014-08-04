@@ -143,3 +143,40 @@ Temporary tables
 .. code-block:: sql
 
   CREATE TEMPORARY TABLE table2 AS (SELECT * FROM table1)
+
+
+Reset root password
+===================
+
+* Restart db with `` --skip-grant-tables --skip-networking``
+
+
+Active active cluster
+=====================
+
+* Install ``MariaDB-Galera-server`` instead of mysql-server
+* Edit ``/etc/my.cnf`` on all nodes
+
+.. code-block:: bash
+
+  wsrep_cluster_address=gcomm://master-node
+  wsrep_node_address='<ip_of_this_node>'
+  wsrep_node_name='<name_of_this_node>'
+
+* On all other nodes than master node init a base db
+
+.. code-block:: bash
+
+  mysql_install_db --user=mysql --ldata=/var/lib/mysql
+
+* On master node start
+
+.. code-block:: bash
+
+  service mysql bootstrap
+
+* On all other nodes
+
+.. code-block:: bash
+
+  service mysql start
