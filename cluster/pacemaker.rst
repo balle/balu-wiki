@@ -114,6 +114,16 @@ Enable / disable a resource
   pcs resource enable/disable <resource>
 
 
+Maintenance a node
+==================
+
+* On the node exec
+
+.. code-block:: bash
+
+  pcs cluster standby
+
+
 Reset logs of a resource
 ========================
 
