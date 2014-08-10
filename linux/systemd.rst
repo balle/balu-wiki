@@ -380,3 +380,33 @@ Python Coding
 
 * http://www.freedesktop.org/software/systemd/python-systemd/
 * https://pypi.python.org/pypi/pyjournalctl/0.7.0
+
+
+Custom kernel
+=============
+
+* CONFIG_DEVTMPFS
+* CONFIG_CGROUPS (it is OK to disable all controllers)
+* CONFIG_INOTIFY_USER
+* CONFIG_SIGNALFD
+* CONFIG_TIMERFD
+* CONFIG_EPOLL
+* CONFIG_NET
+* CONFIG_SYSFS
+* CONFIG_PROC_FS
+* CONFIG_FHANDLE (libudev, mount and bind mount handling)
+* CONFIG_SYSFS_DEPRECATED=n
+* CONFIG_UEVENT_HELPER_PATH=""
+* CONFIG_FW_LOADER_USER_HELPER=n
+* CONFIG_DMIID
+* CONFIG_BLK_DEV_BSG
+* CONFIG_NET_NS
+* CONFIG_IPV6
+* CONFIG_AUTOFS4_FS
+* CONFIG_TMPFS_POSIX_ACL
+* CONFIG_TMPFS_XATTR
+* CONFIG_SECCOMP
+* CONFIG_CGROUP_SCHED
+* CONFIG_FAIR_GROUP_SCHED
+* CONFIG_SCHEDSTATS
+* CONFIG_SCHED_DEBUG
