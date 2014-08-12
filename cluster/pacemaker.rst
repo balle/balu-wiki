@@ -158,6 +158,12 @@ Define a service
 
   pcs resource create mongodb lsb:mongod --clone
 
+* For systemd services
+
+.. code-block:: bash
+
+  pcs resource create myhaproxy systemd:mongod
+
 
 Define a mountpoint
 ===================
@@ -201,3 +207,13 @@ Define constraints
 .. code-block:: bash
 
   pcs contraint [colocation|...] remove <resource1> <resource2>
+
+
+Setup a 2 node cluster
+======================
+
+* Normally an odd number greater than 1 is used to build a cluster to form a valid quorom
+
+.. code-block:: bash
+
+  pcs resource clone lsb:httpd globally-unique=true clone-max=2 clone-node-max=2
