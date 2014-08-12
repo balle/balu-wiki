@@ -18,6 +18,12 @@ Handling Buffers
   (current-buffer)
   (other-buffer)
 
+* Exec commands on another buffer without changing to it
+
+.. code-block:: bash
+
+  (set-buffer "name")
+
 
 Switch to an existing buffer or create a new one
 =================================================
@@ -39,23 +45,24 @@ Working with directories
 
 
 
-Useful objects
+Cursor
 ==============
 
-* point
+* point-min ; beginning of buffer
+* point ; current position
+* point-max ; end of buffer
 
 
-Useful functions
-================
+Shell
+=====
 
 * Execute a shell command with ``call-process-shell-command``
-*  restore point and mark after executing do-something
 
-.. code-block:: lisp
 
-  (save-excursion do-something)
+Function
+=========
 
-* ask user for parameter in interactive function
+* ask user for parameter in (interactive) function
 * b existing buffer
 * B buffer name but doesnt need to exist
 * d position of point
@@ -97,11 +104,26 @@ Debugging
 * g - goto next breakpoint
 * h - goto here
 * d - backtrace
-* e - eval expression e.g. (symbol-value 'some-var) 
+* e - eval expression e.g. (symbol-value 'some-var)
 
 
 Misc
 =====
+
+*  restore point and mark after executing do-something
+
+.. code-block:: lisp
+
+  (save-excursion do-something)
+
+* Run a command if user is idle
+
+.. code-block:: bash
+
+  (defun balle()
+  (message "MUH"))
+
+  (run-with-idle-timer 10 t 'balle)
 
 * http://www.emacswiki.org/emacs/ElispCookbook
 * get integer value of char with ?
