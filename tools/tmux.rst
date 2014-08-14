@@ -205,3 +205,15 @@ Balle Config
     # copy & paste
     bind -n M-w run "tmux show-buffer | xclip -i -selection clipboard"
     
+* For browsing urls in firefox edit ``~/.urlview``
+
+.. code-block:: bash
+
+  COMMAND exec >> /tmp/urlview.out 2>&1; set -x; firefox
+
+
+Tmux plugins
+=============
+
+* https://github.com/tmux-plugins
+
