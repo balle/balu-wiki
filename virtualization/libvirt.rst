@@ -17,6 +17,29 @@ Connect to a remote libvirtd via ssh
   virsh -c qemu+ssh://username@host/system
 
 
+Quickinstall
+============
+
+* This needs ``libguestfs-tools``
+
+* Build a new disk
+
+.. code-block:: bash
+
+  virt-builder centos-7 -o mydisk.img --format qcow2 --size 20G \
+		--root-password file:/tmp/rootpw \
+		--update \
+		--run-command 'rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm' \
+		--install cloud-utils,cloud-init
+
+* Install a whole cluster
+
+.. code-block:: bash
+
+  
+
+
+
 Create a machine
 ================
 
