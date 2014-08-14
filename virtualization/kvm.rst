@@ -47,6 +47,14 @@ Convert virtualbox or vmware image
 * http://qemu-buch.de/de/index.php/QEMU-KVM-Buch/_Speichermedien/_Festplatten-Images_anderer_Virtualisierungssoftware
 
 
+Convert to older Qcow version
+==============================
+
+.. code-block:: bash
+
+  qemu-img convert disk.img -O qcow2 -o compat=0.10 -c disk-2.img
+
+
 Resize disk
 ===========
 
