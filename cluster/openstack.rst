@@ -297,6 +297,12 @@ Configure Neutron
   neutron dhcp-agent-list-hosting-net <net_name> # find host where net is served
   ip netns exec <net_id> # on serving host
 
+* Find fixed ips for tenant
+
+.. code-block:: bash
+
+  neutron port-list -f csv -c fixed_ips --tenant_id <tenant_id> | grep subnet | cut -d ' ' -f 4 | sed 's/["}]//g'
+
 * Firewall rule handling
 
 .. code-block:: bash
