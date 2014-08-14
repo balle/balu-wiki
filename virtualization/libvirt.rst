@@ -36,7 +36,7 @@ Quickinstall
 
 .. code-block:: bash
 
-  for i in {1..3}; do cp centos7.img node$i.img; virt-install --import --name "Node$i" --os-type=linux --ram=512 --disk path=node$1.img,size=2; done
+  for i in {1..3}; do cp centos7.img node$i.img; virt-install --import --name "Node$i" --os-type=linux --ram=512 --disk path=node$i.img,size=2; done
 
 
 
