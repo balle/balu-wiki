@@ -16,3 +16,11 @@ Console interface
 .. code-block:: bash
 
   nmcli c up/down <connection>
+
+
+Applet
+======
+
+.. code-block:: bash
+
+  nm-applet --sm-disable
