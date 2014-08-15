@@ -61,6 +61,7 @@ Network
    network/ldap
    network/mdns
    network/nagios
+   network/networkmanager
    network/nginx
    network/openvswitch
    network/postfix
