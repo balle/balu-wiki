@@ -24,3 +24,11 @@ Applet
 .. code-block:: bash
 
   nm-applet --sm-disable
+
+
+Edit connections
+================
+
+.. code-block:: bash
+
+  nm-connection-editor
