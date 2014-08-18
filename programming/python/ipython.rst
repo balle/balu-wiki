@@ -370,7 +370,7 @@ Save state of a console
 Extensions
 ==========
 
-* To install use
+* To install an extension execute
 
 .. code-block:: bash
 
@@ -378,3 +378,4 @@ Extensions
 
 * https://pypi.python.org/pypi/ipython-sql
 * Cython
+* http://blog.cloudera.com/blog/2014/08/how-to-use-ipython-notebook-with-apache-spark/
