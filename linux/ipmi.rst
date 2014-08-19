@@ -110,6 +110,36 @@ Configure network for remote console
   ipmitool lan set 2 ipaddr $IP
   ipmitool lan set 2 netmask 255.255.255.0
   ipmitool lan set 2 defgw ipaddr $GW
+  ipmitool lan print 2
+
+
+Configure user
+==============
+
+.. code-block:: bash
+
+  ipmitool user set name <userid> balle
+  ipmitool user set password <userid> ""
+
+* admin privs
+
+.. code-block:: bash
+
+  ipmitool channel setaccess 1 <userid> link=on ipmi=on callin=on privilege=4
+  ipmitool channel setaccess 2 <userid> link=on ipmi=on callin=on privilege=4
+
+* user privs
+
+.. code-block:: bash
+
+  ipmitool channel setaccess 1 <userid> link=on ipmi=on callin=on privilege=2
+  ipmitool channel setaccess 2 <userid> link=on ipmi=on callin=on privilege=2
+
+* dont forget to enable the user
+
+.. code-block:: bash
+
+  ipmitool user enable <userid>
 
 
 Get serial console
