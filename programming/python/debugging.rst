@@ -76,3 +76,23 @@ Inject a pudb into a running process
 .. code-block:: bash
 
   pyrasite <pid> inject-pudb.py
+
+
+Connect an ipython shell to a running process
+=============================================
+
+* Install pyrasite
+* Create a inject-ipython.py file
+
+.. code-block:: bash
+
+  from IPython.frontend.terminal.embed import InteractiveShellEmbed
+  ipshell = InteractiveShellEmbed()
+  ipshell()
+
+* Find pid of desired python process
+* Inject the code
+
+.. code-block:: bash
+
+  pyrasite <pid> inject-ipython.py
