@@ -58,4 +58,21 @@ Winpdb
 
   ssh -C -N -f -L 51000:localhost:51000 user@$SERVER_HOST
 
-        
+
+
+Inject a pudb into a running process
+====================================
+
+* Install pyrasite
+* Create a inject-pudb.py file
+
+.. code-block:: bash
+
+  import pudb;pudb.set_trace()
+
+* Find pid of desired python process
+* Inject the code
+
+.. code-block:: bash
+
+  pyrasite <pid> inject-pudb.py
