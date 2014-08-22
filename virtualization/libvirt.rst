@@ -306,6 +306,21 @@ Performance tuning
 * Use Spice and QXL driver for display
 
 
+Grant normal user permission to qemu:///system
+==============================================
+
+* Create file ``/etc/polkit-1/localauthority/30-site.d/libvirt.pkla``
+
+.. code-block:: bash
+
+  [User update perms]
+  Identity=unix-user:basti
+  Action=org.libvirt.unix.manage
+  ResultAny=no
+  ResultInactive=no
+  ResultActive=yes
+
+
 Scripting with Python2
 ======================
 
