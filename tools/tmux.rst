@@ -41,6 +41,8 @@ Shortcuts
 * Ctrl + b   o    -> switch panel
 * ctrl + b up/down -> switch to panel up/down
 * ctrl + b q <nr> -> show panel numbers and switch to it directly
+* ctrl + b !      -> move current pane to new window
+* ctrl + b s      -> send pane to other window
 * Ctrl + b   [    -> switch to buffer (like emacs)
 * Ctrl + Space    -> set marker
 * Ctrl + w        -> cut region
@@ -100,6 +102,12 @@ Scripting
     tmux send-keys "ssh root@192.168.1.$IP" C-m
     tmux send-keys "top" C-m
   done
+
+
+Synchronous input
+=================
+
+* ctrl + b : synchronize-panes
 
 
 Getting help
