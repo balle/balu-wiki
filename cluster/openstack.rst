@@ -853,6 +853,7 @@ Troubleshooting Neutron
   ip netns exec <namespace> bash
 
 * ``Timeout while waiting on RPC response - topic: "network"`` -> check neutron config in ``/etc/nova/nova.conf`` on your compute nodes
+* ``Error: Local ip for ovs agent must be set when tunneling is enabled`` -> network device is not up / configured or name used is not in dns / /etc/hosts
 
 
 Troubleshooting Glance
