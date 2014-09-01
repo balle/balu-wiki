@@ -55,6 +55,7 @@ Shortcuts
 * ctrl + space    -> toggle different pane layouts
 * ctrl + b : resize-pane -D 20 -> shrink down
 * ctrl + b : resize-pane -U 20 -> shrink up
+* ctrl + b <left/right/up/down> -> resize current pane to left/right/up/down
 * ctrl + b : break-pane -> convert pane to window
 * ctrl + b : source-file ~/.tmux.conf -> reload config
 
