@@ -114,3 +114,38 @@ Optionally kickstart setup
 .. code-block:: bash
 
   ks=http://192.168.1.23/centos-kickstart.cfg
+
+
+Install clonezilla images
+=========================
+
+* Unzip clonezilla zip into ``/var/lib/tftpboot/images/clonezilla``
+* Edit ``/var/tftpboot/pxelinux.cfg/default`` and for manual installtion append
+
+.. code-block:: bash
+
+  DEFAULT Clonezilla
+  TIMEOUT 0
+  PROMPT 0
+
+  LABEL Clonezilla
+      MENU LABEL Clonezilla
+      APPEND initrd=clonezilla/live/initrd.img boot=live config noswap nolocales edd=on nomodeset ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts="" ocs_live_batch="no" locales="" vga=788 nosplash noprompt fetch=tftp://install.inf.ethz.ch/pxe/clonezilla/live/filesystem.squashfs
+      KERNEL clonezilla/live/vmlinuz
+
+* for full-automatic installion append
+
+.. code-block:: bash
+
+  DEFAULT Clonezilla
+  TIMEOUT 0
+  PROMPT 0
+
+  LABEL Clonezilla
+      MENU LABEL Clonezilla
+      APPEND initrd=images/clonezilla/live/initrd.img boot=live config noswap nolocales edd=on nomodeset ocs_live_run="/usr/sbin/ocs-sr --batch -q -e1 auto -e2 -r -j2 -p '$POST_COMMAND && reboot' restoredisk $IMAGENAME sda" ocs_live_extra_param="" ocs_live_keymap="NONE" ocs_live_batch="yes" ocs_lang="en_US.UTF-8" vga=788 nosplash noprompt ocs_prerun="mount -t nfs -o vers=3 10.0.0.1:/local/clonezilla /home/partimag" fetch=tftp://10.0.0.1/images/clonezilla/live/filesystem.squashfs
+      KERNEL clonezilla/live/vmlinuz
+
+* Make sure to replace $POST_COMMAND, $IMAGENAME, /path/to/image and the ip of your pxe server
+* Dont use ocs_postrun for post commands it was conflicting with -p parameter of ocs-sr (at least for me)
+* Virtio disks can also be a problem make sure to use normal disks in vms
