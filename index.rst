@@ -36,6 +36,7 @@ Tools
    tools/augeas
    tools/emacs
    tools/firefox
+   tools/lsof
    tools/mc
    tools/monitoring
    tools/puppet
