@@ -260,6 +260,44 @@ Disk tricks
                       write /etc/resolv.conf "nameserver 8.8.8.8"
 
 
+Convert VirtIO to IDE disk and vice versa
+==========================================
+
+* Make sure the machine is powered off
+
+.. code-block:: bash
+
+  virsh edit <machine-name>
+
+* For IDE disk
+
+.. code-block:: bash
+
+   <disk type='file' device='disk'>
+      <driver name='qemu' type='raw'/>
+      <source file='/whatever.img'/>
+      <target dev='hda' bus='ide'/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
+    </disk>
+
+* For VirtIO disk
+
+.. code-block:: bash
+
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='raw' cache='writethrough'/>
+      <source file='/whatever.img'/>
+      <target dev='vda' bus='virtio'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    </disk>
+
+* Afterwards update the systems ``/etc/fstab``
+
+.. code-block:: bash
+
+  virt-edit /path/to/image-file /etc/fstab
+
+
 Cloning
 =======
 
