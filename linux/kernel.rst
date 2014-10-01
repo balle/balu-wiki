@@ -2,6 +2,21 @@
 Kernel
 ######
 
+What is load?
+=============
+
+* With a quad core system a load average of 5 means that all 4 cpus are busy for 100% and processes to fill another cpu are waiting
+* http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages
+
+.. code-block:: bash
+
+  cat /proc/loadavg
+
+* field 1-3 = load average of jobs in the run queue (state R) or waiting for disk I/O (state D) averaged over 1, 5, and 15 minutes
+* field 4 = number of currently runnable kernel scheduling entities (processes, threads) / number of kernel scheduling entities that currently exist on the system 
+* field 5 PID of the process that was most recently created on the system
+
+
 Find out which driver is in use
 ===============================
 
