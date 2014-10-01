@@ -44,6 +44,17 @@ Working with directories
   (directory-files "~/")
 
 
+Read file as list of lines
+==========================
+
+.. code-block:: bash
+
+  (defun read-lines (filePath)
+    "Return a list of lines of a file at filePath."
+    (with-temp-buffer
+      (insert-file-contents filePath)
+      (split-string (buffer-string) "\n" t)))
+
 
 Cursor
 ==============
@@ -74,6 +85,14 @@ Function
 .. code-block:: lisp
 
   (interactive "fFilename:")
+
+
+Run as script
+=============
+
+.. code-block:: bash
+
+  emacs --script myscript.el
 
 
 Profiling
