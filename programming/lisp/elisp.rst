@@ -144,5 +144,20 @@ Misc
 
   (run-with-idle-timer 10 t 'balle)
 
+* Use common lisp (Emacs 24.3 and later)
+
+.. code-block:: bash
+
+  (require 'cl-lib)
+  (cl-defun print-name (&key first (last "?"))
+
+* Earlier Emacs versions
+
+.. code-block:: bash
+
+  (require 'cl)
+  (defun* print-name (&key first (last "?"))
+
+* Common Lisp interpreter written in Emacs Lisp https://github.com/larsbrinkhoff/emacs-cl
 * http://www.emacswiki.org/emacs/ElispCookbook
 * get integer value of char with ?
