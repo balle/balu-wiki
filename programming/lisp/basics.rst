@@ -30,9 +30,15 @@ Overview
 Lists
 =====
 
+* ``car`` returns the first element of a list
+* ``cdr`` returns all but the first element of a list
+* ``cons`` adds a element in front of list by creating a new list
+* ``nthcdr`` exec cdr nth times on list
+* ``nth`` returns the nth element of the list staring with 0
+* ``setcar`` replace first element of list
+* ``setcdr`` replace all but first element of list
 * ``append`` adds to a list by copying the first list
 * ``nconc`` adds the second, third etc list to the first
-* ``cons`` adds a element in front of list
 * ``push`` insert an element at the beginning of the list
 * ``pop`` returns and removes the first element
 * ``(number-sequence 1 9)`` returns a list with numbers from 1 to 9
