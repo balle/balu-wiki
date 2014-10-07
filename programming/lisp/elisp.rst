@@ -126,6 +126,14 @@ Debugging
 * e - eval expression e.g. (symbol-value 'some-var)
 
 
+Detect mode
+============
+
+.. code-block:: bash
+
+  (when (derived-mode-p 'emacs-lisp-mode) (message "MUH"))
+
+
 Misc
 =====
 
