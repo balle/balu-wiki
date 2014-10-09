@@ -10,7 +10,14 @@ Simple stuff
 .. code-block:: bash
 
   ip l s <dev> up/down
-  ip a add <ip> dev <dev>
+  ip a add <ip> <netmask> dev <dev>
+  ip a sh dev <dev>
+
+* Remove one IP2
+
+.. code-block:: bash
+
+  ip a del <ip> dev <dev>
 
 * Remove all ips
 
@@ -18,13 +25,23 @@ Simple stuff
 
   ip a flush dev eth0
 
+* Show routing table
+
+.. code-block:: bash
+
+  ip r
 
 * Configure default gateway
 
 .. code-block:: bash
 
-  ip r
   ip route add default via 192.168.1.254
+
+* Arp table
+
+.. code-block:: bash
+
+  ip n
 
 
 Change MAC
