@@ -41,6 +41,10 @@ Lists
 * ``nconc`` adds the second, third etc list to the first
 * ``push`` insert an element at the beginning of the list
 * ``pop`` returns and removes the first element
+* ``(member what list)`` check if what is in list
+* ``(position what list)`` get position of what in list
+* ``(remove what list)`` remove element what from list (returns new list)
+* ``(delete what list)`` remove element what from list directly
 * ``(number-sequence 1 9)`` returns a list with numbers from 1 to 9
 * ``first`` or ``car`` returns the first element of the list
 * ``rest`` or ``cdr`` returns the rest of the list
@@ -51,7 +55,6 @@ Lists
 * (getf list :keyword) returns value of keyword in a plist
 * alist is a plist where you can also lookup by value using (assoc 'what-to-find my-list)
 * plists and alists are still handled sequencially
-* ``(member 'balle '(balle lilu))`` check if something is in a list
 * ``set-difference`` tells which items are in one list but not in another
 * ``intersection`` tells which items are in both Lists
 * ``remove-duplicates`` creates a unique list out of two or more lists
