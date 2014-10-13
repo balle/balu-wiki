@@ -167,5 +167,6 @@ Misc
   (defun* print-name (&key first (last "?"))
 
 * Common Lisp interpreter written in Emacs Lisp https://github.com/larsbrinkhoff/emacs-cl
+* Namespaces https://github.com/Bruce-Connor/names
 * http://www.emacswiki.org/emacs/ElispCookbook
 * get integer value of char with ?
