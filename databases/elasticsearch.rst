@@ -71,6 +71,12 @@ Use fluentd as log aggregator
 * Is written in Ruby and needs no Java like Logstash
 * Can output to many directions including files, mongodb and of course elasticsearch
 * For installation see http://docs.fluentd.org/categories/installation
+* Install Elasticsearch plugin
+
+.. code-block:: bash
+
+  gem install fluent-plugin-elasticsearch
+
 * Example config
 
 .. code-block:: bash
