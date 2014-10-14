@@ -344,4 +344,4 @@ Misc
 
 * Diff with meld http://nathanhoad.net/how-to-meld-for-git-diffs-in-ubuntu-hardy
 * Code Review with ReviewBoard http://ericholscher.com/blog/2011/jan/24/using-reviewboard-git/
-* Webfrontend http://gitorious.org/
+* Webfrontend http://gitorious.org/ or https://github.com/takezoe/gitbucket
