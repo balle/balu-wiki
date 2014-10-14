@@ -129,6 +129,7 @@ Databases
 .. toctree::
    :maxdepth: 1
 
+   databases/elasticsearch
    databases/mongodb
    databases/mysql
    databases/postgres
