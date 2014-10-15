@@ -77,6 +77,15 @@ Use fluentd as log aggregator
 
   gem install fluent-plugin-elasticsearch
 
+* If your ruby version is too old or buggy install fluentd inside rvm
+
+.. code-block:: bash
+
+  curl -sSL https://get.rvm.io | bash -s stable --ruby
+  source /usr/local/rvm/scripts/rvm
+  gem install fluentd
+  gem install fluent-plugin-elasticsearch
+
 * Example config
 
 .. code-block:: bash
