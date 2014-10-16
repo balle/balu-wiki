@@ -86,15 +86,24 @@ Use fluentd as log aggregator
   gem install fluentd
   gem install fluent-plugin-elasticsearch
 
+* Regular expressions for parsing logs can be tested on http://rubular.com/ 
+* Time format options can be looked up here http://www.ruby-doc.org/core-1.9.3/Time.html#method-i-strftime
 * Example config
 
 .. code-block:: bash
+
+  # live debugging agent  
+  #<source>
+  #  type debug_agent
+  #  bind 127.0.0.1
+  #  port 24230
+  #</source>
 
   # Listen to Syslog
   <source>
     type syslog
     port 42185
-    tag hostname.system
+    tag system.raw
   </source>
   
   # Apache Access Logs
@@ -102,8 +111,8 @@ Use fluentd as log aggregator
     type tail
     format apache2
     path /var/log/httpd/access_log
-    pos_file /var/log/td-agent/httpd.access.pos
-    tag hostname.httpd.access
+    pos_file /var/log/fluentd/httpd.access.pos
+    tag httpd.access
   </source>
   
   # Apache Error Logs
@@ -111,9 +120,40 @@ Use fluentd as log aggregator
     type tail
     format apache_error
     path /var/log/httpd/error_log
-    pos_file /var/log/td-agent/httpd.error.pos
-    tag hostname.httpd.error
+    pos_file /var/log/fluentd/httpd.error.pos
+    tag httpd.error
   </source>
+
+  # Tag kernel messages
+  <match system.raw.**>
+    type rewrite_tag_filter
+    rewriterule1 ident ^kernel$  kernel.raw # kernel events
+    rewriterule2 ident .* system.unmatched     # let all else through
+  </match>
+
+  # Identify iptables messages
+  <match kernel.raw.**>
+    type rewrite_tag_filter
+    rewriterule1 message ^IN=.* OUT=.+$ iptables.raw  # iptables events
+    rewriterule2 message .* kernel.unmatched      # let all else through
+ </match>
+
+  # Parse iptables messages
+  # IN=eno1 OUT= MAC=aa:bb:cc:aa:bb:cc:aa:bb:cc:aa:bb:cc:aa:00 SRC=192.168.10.42 DST=192.168.10.23 LEN=148 TOS=0x00 PREC=0x00 TTL=255 ID=53270 DF PROTO=UDP SPT=5353 DPT=5353 LEN=128
+  # IN=eth0 OUT= MAC=01:00:5e:00:00:01:04:c5:a4:e3:fb:42:08:00 SRC=129.132.166.65 DST=224.0.0.1 LEN=32 TOS=0x00 PREC=0xC0 TTL=1 ID=14698 PROTO=2
+  <match iptables.raw.**>
+    type parser
+    key_name message # this is the field to be parsed!
+    format /^IN=(?<iface>.*) OUT=(?<oface>.*) MAC=(?<mac>.*?) (SRC=(?<srcip>.*))? (DST=(?<dstip>.*))? LEN=(?<pkglen>.+) TOS=(?<pkgtos>.+) PREC=(?<pkgrec>.+) TTL=(?<pkgttl>.+) ID=(?<ipid>.+) \w{0,2}\s?PROTO=(?<pkgproto>.+)( SPT=(?<srcport>.+) DPT=(?<dstport>.+) LEN=(.*))?$/
+    time_format %b %d %H:%M:%S
+    tag iptables.parsed
+  </match>
+
+  # write to file
+  #<match iptables.parsed>
+  #  type file
+  #  path /var/log/td-agent/iptables.log
+  #</match>
 
   # Write to elasticsearch
   <match *.**>
@@ -127,9 +167,9 @@ Use fluentd as log aggregator
   </match>
   
   # Log to stdout for debugging
-  <match *.**>
-      type stdout
-  </match>
+  #<match *.**>
+  #    type stdout
+  #</match>
 
 * Last but not least configure your systlog to send messages to fluentd
 
