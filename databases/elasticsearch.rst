@@ -140,7 +140,6 @@ Use fluentd as log aggregator
 
   # Parse iptables messages
   # IN=eno1 OUT= MAC=aa:bb:cc:aa:bb:cc:aa:bb:cc:aa:bb:cc:aa:00 SRC=192.168.10.42 DST=192.168.10.23 LEN=148 TOS=0x00 PREC=0x00 TTL=255 ID=53270 DF PROTO=UDP SPT=5353 DPT=5353 LEN=128
-  # IN=eth0 OUT= MAC=01:00:5e:00:00:01:04:c5:a4:e3:fb:42:08:00 SRC=129.132.166.65 DST=224.0.0.1 LEN=32 TOS=0x00 PREC=0xC0 TTL=1 ID=14698 PROTO=2
   <match iptables.raw.**>
     type parser
     key_name message # this is the field to be parsed!
