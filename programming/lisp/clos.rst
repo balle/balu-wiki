@@ -60,3 +60,20 @@ Define Getter / Setter
 
   (setf (color ferrari) 'red)
   (print (color ferrari))
+
+
+Print all slots
+================
+
+* SBCL
+
+.. code-block:: bash
+
+  (mapcar #'sb-pcl:slot-definition-name (sb-pcl:class-slots (class-of object)))
+
+* Clisp
+
+.. code-block:: bash
+
+  (mapcar #'clos:slot-definition-name (clos:class-slots (class-of object)))
+
