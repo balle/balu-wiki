@@ -101,8 +101,8 @@ Profiling
 .. code-block:: bash
 
   profiler-start
+  profiler-report
   profiler-stop
-  profiler-result
 
 * You can expand lines with a + by pressing RET
 
