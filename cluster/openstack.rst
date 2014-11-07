@@ -951,7 +951,7 @@ Troubleshooting Nova
   egrep '(vmx|svm)' /proc/cpuinfo
   lsmod | grep kvm
 
-
+* No valid hosts found and log file says ``Unexpected vif_type=binding_failed`` -> check local_ip setting in [ovs] section in file /etc/neutron/plugins/ml2/ml2_conf.ini
 * libvirtError: internal error no supported architecture for os type 'hvm'
 
 .. code-block:: bash
