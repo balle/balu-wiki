@@ -5,7 +5,14 @@ Elisp
 Basics
 =======
 
+* Go get a REPL with M-x ielm
 * (message "hello world")
+
+
+Performance
+===========
+
+* Use ``(goto-char (point-min))`` instead of ``(beginning-of-buffer)``
 
 
 Handling Buffers
@@ -23,6 +30,13 @@ Handling Buffers
 .. code-block:: bash
 
   (set-buffer "name")
+
+* Iterate over buffer list
+
+.. code-block:: bash
+
+  (dolist (buffer buffer-list)
+    (message (concat "BLAH " (buffer-name buffer))))
 
 
 Switch to an existing buffer or create a new one
