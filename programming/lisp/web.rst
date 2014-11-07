@@ -29,6 +29,13 @@ Full featured http client
 * More examples on http://weitz.de/drakma/#examples
 
 
+Parsing HTML5
+=============
+
+.. code-block:: bash
+
+  (html5-parser:parse-html5 (drakma:http-request "http://www.google.de"))
+
 Web frameworks
 ==============
 
