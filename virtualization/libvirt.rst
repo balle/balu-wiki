@@ -9,6 +9,36 @@ Installation
 
   yum install libvirt libvirtd python-virtinst qemu-kvm
 
+Set up bridged network for direct access
+========================================
+
+* Edit ``/etc//etc/sysconfig/network-scripts/ifcfg-eno1``
+
+.. code-block:: bash
+
+  DEVICE=eno1
+  ONBOOT=yes
+  BRIDGE=br0
+  NM_CONTROLLED=no
+
+* Create ``/etc//etc/sysconfig/network-scripts/ifcfg-br0``
+
+.. code-block:: bash
+
+  DEVICE=br0
+  TYPE=Bridge
+  BOOTPROTO=dhcp
+  ONBOOT=yes
+  DELAY=0
+  NM_CONTROLLED=no
+
+* Restart network
+
+.. code-block:: bash
+
+  systemctl restart network
+
+
 Connect to a remote libvirtd via ssh
 ====================================
 
