@@ -117,6 +117,7 @@ Cluster
    cluster/clustershell
    cluster/glusterfs
    cluster/hadoop
+   cluster/hadoop2
    cluster/mpi
    cluster/openstack
    cluster/pacemaker
