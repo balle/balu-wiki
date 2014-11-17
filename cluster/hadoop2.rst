@@ -383,13 +383,13 @@ Configure multi-tenancy
 
   <!-- GROUP A -->
   <property>
-    <name>yarn.scheduler.capacity.a.default.capacity</name>
+    <name>yarn.scheduler.capacity.root.a.capacity</name>
     <value>50</value>
     <description>Default queue target capacity.</description>
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.a.default.user-limit-factor</name>
+    <name>yarn.scheduler.capacity.root.a.user-limit-factor</name>
     <value>1</value>
     <description>
       Default queue user limit a percentage from 0.0 to 1.0.
@@ -397,7 +397,7 @@ Configure multi-tenancy
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.a.default.maximum-capacity</name>
+    <name>yarn.scheduler.capacity.root.a.maximum-capacity</name>
     <value>100</value>
     <description>
       The maximum capacity of the default queue.
@@ -405,7 +405,7 @@ Configure multi-tenancy
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.a.default.state</name>
+    <name>yarn.scheduler.capacity.root.a.state</name>
     <value>RUNNING</value>
     <description>
       The state of the default queue. State can be one of RUNNING or STOPPED.
@@ -414,13 +414,13 @@ Configure multi-tenancy
 
   <!-- GROUP B -->
   <property>
-    <name>yarn.scheduler.capacity.b.default.capacity</name>
+    <name>yarn.scheduler.capacity.root.b.capacity</name>
     <value>50</value>
     <description>Default queue target capacity.</description>
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.b.default.user-limit-factor</name>
+    <name>yarn.scheduler.capacity.root.b.user-limit-factor</name>
     <value>1</value>
     <description>
       Default queue user limit a percentage from 0.0 to 1.0.
@@ -428,7 +428,7 @@ Configure multi-tenancy
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.b.default.maximum-capacity</name>
+    <name>yarn.scheduler.capacity.root.b.maximum-capacity</name>
     <value>100</value>
     <description>
       The maximum capacity of the default queue.
@@ -436,7 +436,7 @@ Configure multi-tenancy
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.b.default.state</name>
+    <name>yarn.scheduler.capacity.root.b.state</name>
     <value>RUNNING</value>
     <description>
       The state of the default queue. State can be one of RUNNING or STOPPED.
@@ -445,13 +445,13 @@ Configure multi-tenancy
 
   <!-- GROUP C -->
   <property>
-    <name>yarn.scheduler.capacity.c.default.capacity</name>
+    <name>yarn.scheduler.capacity.root.c.capacity</name>
     <value>50</value>
     <description>Default queue target capacity.</description>
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.c.default.user-limit-factor</name>
+    <name>yarn.scheduler.capacity.root.c.user-limit-factor</name>
     <value>1</value>
     <description>
       Default queue user limit a percentage from 0.0 to 1.0.
@@ -459,7 +459,7 @@ Configure multi-tenancy
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.c.default.maximum-capacity</name>
+    <name>yarn.scheduler.capacity.root.c.maximum-capacity</name>
     <value>100</value>
     <description>
       The maximum capacity of the default queue.
@@ -467,9 +467,15 @@ Configure multi-tenancy
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.c.default.state</name>
+    <name>yarn.scheduler.capacity.root.c.state</name>
     <value>RUNNING</value>
     <description>
       The state of the default queue. State can be one of RUNNING or STOPPED.
     </description>
   </property>
+
+* Refresh queues
+
+.. code-block:: bash
+
+  bin/yarn rmadmin -refreshQueues
