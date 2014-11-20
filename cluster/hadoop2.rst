@@ -16,7 +16,7 @@ Installation
     <description>A base for other temporary directories.</description>
   </property>
   <property>
-    <name>fs.default.name</name>
+    <name>fs.defaultFS</name>
     <value>hdfs://127.0.0.1:54310</value>
   </property>
   <property>
@@ -49,7 +49,10 @@ Installation
     <name>mapred.tasktracker.reduce.tasks.maximum</name>
     <value>16</value>
   </property>
-
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
 
   <!--
        DEFAULT VALUES LIKELY TO GET ADJUSTED BELOW HERE
@@ -365,6 +368,41 @@ Installation
   su - hadoop -c '/opt/hadoop/sbin/hadoop-daemon.sh start namenode && /opt/hadoop/sbin/hadoop-daemon.sh start datanode' && /opt/hadoop/sbin/yarn-daemon.sh start resourcemanager && /opt/hadoop/sbin/yarn-daemon.sh start nodemanager'"
 
 
+Check status
+============
+
+* HDFS
+
+.. code-block:: bash
+
+  /opt/hadoop/bin/hdfs dfsadmin -report
+
+* YARN
+
+.. code-block:: bash
+
+  /opt/hadoop/bin/yarn node -list
+
+* Test Namenode
+
+.. code-block:: bash
+
+  su - hadoop -c '/opt/hadoop/bin/hadoop fs -mkdir /user'
+  su - hadoop -c '/opt/hadoop/bin/hadoop fs -mkdir /user/hadoop'
+
+* Test Datanode
+
+.. code-block:: bash
+
+  su - hadoop -c '/opt/hadoop/bin/hadoop fs -put /opt/hadoop/etc/hadoop/hadoop-env.sh /user/hadoop/hadoop-env'
+
+* Test YARN
+
+.. code-block:: bash
+
+  su - hadoop -c "/opt/hadoop/bin/hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar pi 2 10"
+
+
 Configure multi-tenancy
 ========================
 
@@ -479,3 +517,9 @@ Configure multi-tenancy
 .. code-block:: bash
 
   bin/yarn rmadmin -refreshQueues
+
+
+Troubleshooting
+===============
+
+* ``java.lang.IllegalArgumentException: Illegal capacity of -1.0 for queue`` -> You dont have defined a capacity for the queue like yarn.scheduler.capacity.root.$QUEUENAME.capacity
