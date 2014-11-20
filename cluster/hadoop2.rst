@@ -2,6 +2,31 @@
 Hadoop 2
 #########
 
+Overview
+========
+
+===== ===================
+Port  Description
+===== ===================
+50070 hadoop namenode web
+54310 hadoop namenode
+50010 hadoop datanode
+50020 hadoop datanode
+50075 hadoop datanode
+8030  hadoop resourcemanager
+8031  hadoop resourcemanager
+8032  hadoop resourcemanager
+8033  hadoop resourcemanager
+8088  hadoop resourcemanager web
+13562 hadoop nodemanager
+8040  hadoop nodemanager
+34568 hadoop nodemanager
+8042  hadoop nodemanager
+19888 hadoop job history web
+10020 hadoop job history
+10033 hadoop job history
+===== ===================
+
 
 Installation
 ============
@@ -407,14 +432,14 @@ Configure multi-tenancy
 ========================
 
 * Make sure ``org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler`` is set as ``yarn.resourcemanager.scheduler.class`` in ``conf/yarn-site.xml``
-* Configure resources for unix groups a, b and c
+* Configure resources for unix groups a, b and default
 * Edit ``conf/capacity-scheduler.xml``
 
 .. code-block:: bash
 
   <property>
     <name>yarn.scheduler.capacity.root.queues</name>
-    <value>a,b,c</value>
+    <value>a,b,default</value>
     <description>The queues at the this level (root is the root queue).
     </description>
   </property>
@@ -422,7 +447,7 @@ Configure multi-tenancy
   <!-- GROUP A -->
   <property>
     <name>yarn.scheduler.capacity.root.a.capacity</name>
-    <value>50</value>
+    <value>30</value>
     <description>Default queue target capacity.</description>
   </property>
 
@@ -450,10 +475,19 @@ Configure multi-tenancy
     </description>
   </property>
 
+  <property>
+    <name>yarn.scheduler.capacity.root.a.acl_submit_applications</name>
+    <value>group_a</value>
+    <description>
+      The ACL of who can submit jobs to the default queue.
+    </description>
+  </property>
+
+
   <!-- GROUP B -->
   <property>
     <name>yarn.scheduler.capacity.root.b.capacity</name>
-    <value>50</value>
+    <value>30</value>
     <description>Default queue target capacity.</description>
   </property>
 
@@ -481,15 +515,24 @@ Configure multi-tenancy
     </description>
   </property>
 
-  <!-- GROUP C -->
   <property>
-    <name>yarn.scheduler.capacity.root.c.capacity</name>
-    <value>50</value>
+    <name>yarn.scheduler.capacity.root.b.acl_submit_applications</name>
+    <value>group_b</value>
+    <description>
+      The ACL of who can submit jobs to the default queue.
+    </description>
+  </property>
+
+
+  <!-- GROUP DEFAULT -->
+  <property>
+    <name>yarn.scheduler.capacity.root.default.capacity</name>
+    <value>40</value>
     <description>Default queue target capacity.</description>
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.root.c.user-limit-factor</name>
+    <name>yarn.scheduler.capacity.root.default.user-limit-factor</name>
     <value>1</value>
     <description>
       Default queue user limit a percentage from 0.0 to 1.0.
@@ -497,7 +540,7 @@ Configure multi-tenancy
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.root.c.maximum-capacity</name>
+    <name>yarn.scheduler.capacity.root.default.maximum-capacity</name>
     <value>100</value>
     <description>
       The maximum capacity of the default queue.
@@ -505,10 +548,18 @@ Configure multi-tenancy
   </property>
 
   <property>
-    <name>yarn.scheduler.capacity.root.c.state</name>
+    <name>yarn.scheduler.capacity.root.default.state</name>
     <value>RUNNING</value>
     <description>
       The state of the default queue. State can be one of RUNNING or STOPPED.
+    </description>
+  </property>
+
+  <property>
+    <name>yarn.scheduler.capacity.root.default.acl_submit_applications</name>
+    <value>*</value>
+    <description>
+      The ACL of who can submit jobs to the default queue.
     </description>
   </property>
 
