@@ -568,9 +568,17 @@ Configure multi-tenancy
 .. code-block:: bash
 
   bin/yarn rmadmin -refreshQueues
+  bin/hadoop queue -list
+
+* Submit a test job
+
+.. code-block:: bash
+
+  bin/hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar pi -Dmapred.job.queue.name=a 2 10
 
 
 Troubleshooting
 ===============
 
 * ``java.lang.IllegalArgumentException: Illegal capacity of -1.0 for queue`` -> You dont have defined a capacity for the queue like yarn.scheduler.capacity.root.$QUEUENAME.capacity
+* ``org.apache.hadoop.util.Shell$ExitCodeException: chmod: cannot access `/user/myuser1544460269/.staging/job_local1544460269_0001': No such file or directory`` -> set mapreduce.framework.name to yarn in mapred-site.xml
