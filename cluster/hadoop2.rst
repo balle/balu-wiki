@@ -577,6 +577,61 @@ Configure multi-tenancy
   bin/hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar pi -Dmapred.job.queue.name=a 2 10
 
 
+HDFS NFS Gateway
+================
+
+* Edit ``hdfs-site.xml``
+
+.. code-block:: bash
+
+    <property>
+      <name>dfs.nfs3.dump.dir</name>
+      <value>/data/hadoop/.hdfs-nfs</value>
+    </property>
+
+    <property>
+      <name>dfs.nfs.exports.allowed.hosts</name>
+      <value>* rw</value>                                                                                                                                                                                                                      
+    </property>
+
+* Edit ``core-site.xml``
+
+.. code-block:: bash
+
+  <property>
+    <name>hadoop.proxyuser.nfsserver.groups</name>
+    <value>*</value>
+    <description>
+           The 'nfsserver' user is allowed to proxy all members of the 'nfs-users1' and 
+           'nfs-users2' groups. Set this to '*' to allow nfsserver user to proxy any group.
+    </description>
+  </property>
+  
+  <property>
+    <name>hadoop.proxyuser.nfsserver.hosts</name>
+    <value>*</value>
+    <description>
+           This is the host where the nfs gateway is running. Set this to '*' to allow
+           requests from any hosts to be proxied.
+    </description>
+  </property>
+
+* Start the daemons
+
+.. code-block:: bash
+
+  systemctl stop rpcbind
+  sbin/hadoop-daemon.sh start portmap
+  su - hadoop -c "sbin/hadoop-daemon.sh start nfs3"
+
+* Test nfs mount
+
+.. code-block:: bash
+
+  showmount -e
+  mount -t nfs -o vers=3,proto=tcp,nolock localhost:/ /mnt
+
+
 Troubleshooting
 ===============
 
