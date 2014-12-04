@@ -285,7 +285,7 @@ Remove a data node
 * Edit ``conf/hdfs-site.xml`` and add the following snippet
 
 .. code:: xml
-  
+
   <property>
     <name>dfs.hosts.exclude</name>
     <value>$HADOOP_HOME/conf/dfs-exclude.txt</value>
@@ -305,7 +305,7 @@ Remove a task tracker
 * Edit ``conf/mapred-site.xml`` and add the following snippet
 
 .. code:: xml
-  
+
   <property>
     <name>mapred.hosts.exclude</name>
     <value>$HADOOP_HOME/conf/mapred-exclude.txt</value>
@@ -495,7 +495,7 @@ Jobs
 
   bin/hadoop job -status <id>
 
-* Change priority of a job 
+* Change priority of a job
 
 .. code:: bash
 

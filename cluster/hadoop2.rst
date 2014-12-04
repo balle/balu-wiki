@@ -31,7 +31,7 @@ Port  Description
 Installation
 ============
 
-* Edit ``conf/core-site.xml`` to configure tmp dir and location of name node
+* Edit ``etc/hadoop/core-site.xml`` to configure tmp dir and location of name node
 
 .. code-block:: bash
 
@@ -54,7 +54,7 @@ Installation
   </property>
 
 
-* Edit ``conf/mapred-site.xml`` to set the locations of the job tracker and its working dir
+* Edit ``etc/hadoop/mapred-site.xml`` to set the locations of the job tracker and its working dir
 
 .. code-block:: bash
 
@@ -158,7 +158,7 @@ Installation
   </property>
 
 
-* Edit ``conf/hdfs-site.xml`` to set working dirs of name and data node and how often a file gets replicated
+* Edit ``etc/hadoop/hdfs-site.xml`` to set working dirs of name and data node and how often a file gets replicated
 
 .. code-block:: bash
 
@@ -305,7 +305,7 @@ Installation
     </description>
   </property>
 
-* Edit ``conf/yarn-site.xml``
+* Edit ``etc/hadoop/yarn-site.xml``
 
 .. code-block:: bash
 
@@ -428,12 +428,12 @@ Check status
   su - hadoop -c "/opt/hadoop/bin/hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar pi 2 10"
 
 
-Configure multi-tenancy
-========================
+Configure Capacity Scheduler
+============================
 
-* Make sure ``org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler`` is set as ``yarn.resourcemanager.scheduler.class`` in ``conf/yarn-site.xml``
+* Make sure ``org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler`` is set as ``yarn.resourcemanager.scheduler.class`` in ``etc/hadoop/yarn-site.xml``
 * Configure resources for unix groups a, b and default
-* Edit ``conf/capacity-scheduler.xml``
+* Edit ``etc/hadoop/capacity-scheduler.xml``
 
 .. code-block:: bash
 
@@ -577,6 +577,33 @@ Configure multi-tenancy
   bin/hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar pi -Dmapred.job.queue.name=a 2 10
 
 
+Configure Fair Scheduler
+========================
+
+* Make sure ``org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler`` is set as ``yarn.resourcemanager.scheduler.class`` in ``etc/hadoop/yarn-site.xml``
+* A pool has the same name as the user
+* Create file ``etc/hadoop/fair-scheduler.xml``
+
+.. code:: xml
+
+  <?xml version="1.0"?>
+
+  <allocations>
+    <pool name="hadoop">
+      <minMaps>5</minMaps>
+      <maxMaps>90</maxMaps>
+      <maxReduces>20</maxReduces>
+      <weight>2.0</weight>
+    </pool>
+    <user name="hadoop">
+      <maxRunningJobs>3</maxRunningJobs>
+    </user>
+    <userMaxJobsDefault>2</userMaxJobsDefault>
+  </allocations>
+
+* Restart resource manager
+
+
 HDFS NFS Gateway
 ================
 
@@ -591,7 +618,7 @@ HDFS NFS Gateway
 
     <property>
       <name>dfs.nfs.exports.allowed.hosts</name>
-      <value>* rw</value>                                                                                                                                                                                                                      
+      <value>* rw</value>
     </property>
 
 * Edit ``core-site.xml``
@@ -602,11 +629,11 @@ HDFS NFS Gateway
     <name>hadoop.proxyuser.nfsserver.groups</name>
     <value>*</value>
     <description>
-           The 'nfsserver' user is allowed to proxy all members of the 'nfs-users1' and 
+           The 'nfsserver' user is allowed to proxy all members of the 'nfs-users1' and
            'nfs-users2' groups. Set this to '*' to allow nfsserver user to proxy any group.
     </description>
   </property>
-  
+
   <property>
     <name>hadoop.proxyuser.nfsserver.hosts</name>
     <value>*</value>
