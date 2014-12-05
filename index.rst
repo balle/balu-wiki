@@ -41,6 +41,7 @@ Tools
    tools/monitoring
    tools/puppet
    tools/rrd
+   tools/sar
    tools/screen
    tools/smartmon
    tools/tmux
