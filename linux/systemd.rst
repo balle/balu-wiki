@@ -55,6 +55,19 @@ Show status and ongoing log messages of a service
   systemctl status sshd.service -f
 
 
+Persistent logs
+===============
+
+* Normally journald logs to /run/log/journal this is a tmpfs and logs are deleted on reboot
+* To avoid this execute the following
+
+.... code:: bash
+
+  mkdir /var/log/journal
+  chgrp systemd-journal /var/log/journal
+  chmod 775 /var/log/journal
+
+
 Filtering logs
 ==============
 
