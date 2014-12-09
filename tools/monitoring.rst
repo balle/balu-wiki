@@ -100,6 +100,30 @@ Collectd
 * Use Observium as Webfrontend http://www.observium.org/wiki/Collectd_Integration
 
 
+Graphite
+========
+
+* After installation append the following to ``/etc/graphite/local_settings.py``
+
+.. code:: bash
+
+  from graphite.app_settings import *
+
+  SECRET_KEY='eiThoo6/biephe7Fs.o7aiZeu=eD8sho!ahQuah2+yiegh9Ai,6euP8hAequa7ee'
+
+* Of course make sure to generate your own secret key
+* Adjust apache configuration file ``/etc/httpd/conf.d/graphite-web.conf`` and add 
+
+.. code:: bash
+ 
+   <Location "/">
+      AllowOverride All
+      Require all granted
+  </Location>
+
+* Last but not least add graphite-web as hostname to localhost in ``/etc/hosts`` or whatever ip you like
+
+
 Cluster graphing
 ================
 
