@@ -26,6 +26,14 @@ Quote Spaces in Filenames
   echo $FILE | sed 's/ /\\ /g'
 
 
+Remove lines beginning with XXX
+===============================
+
+.. code:: bash
+
+  sed -i -e '/^XXX_/d' /my/file"
+
+
 Get yesterdays date
 ===================
 
