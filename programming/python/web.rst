@@ -9,6 +9,14 @@ Share dir with simple webserver
 
   python -m SimpleHTTPServer 8080
 
+Grep in url
+===========
+
+.. code-block:: bash
+
+  python -c "import sys,urllib2; print filter(lambda line: sys.argv[2] in line, urllib2.urlopen(sys.argv[1]).readlines())" http://www.codekid.net "Network Hacks"
+
+
 Web Crawling
 ============
 
