@@ -649,12 +649,13 @@ HDFS NFS Gateway
 
   systemctl stop rpcbind
   sbin/hadoop-daemon.sh start portmap
-  su - hadoop -c "sbin/hadoop-daemon.sh start nfs3"
+  su - nfsserver -c "sbin/hadoop-daemon.sh start nfs3"
 
 * Test nfs mount
 
 .. code-block:: bash
 
+  rpcinfo -p localhost
   showmount -e
   mount -t nfs -o vers=3,proto=tcp,nolock localhost:/ /mnt
 
