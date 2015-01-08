@@ -628,6 +628,15 @@ Heat
           - subnet_id: { get_resource: private_subnet }
 
 
+Savana
+======
+
+* Register an image in glance found in the plugin page e.g. http://docs.openstack.org/developer/sahara/userdoc/spark_plugin.html
+* Register image in Data Processing -> Image Registry as described on the plugin page e.g. for Spark the user is ubuntu and tag is Spark version 1.0.0
+* Create at least one Node Group Template (better one for master and one for slave nodes)
+* Create a Cluster Template to combine the Node Group Templates and define number of nodes per template
+* Click on Cluter -> Create Cluster
+
 
 Automatically backup instances
 ==============================
