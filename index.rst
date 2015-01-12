@@ -34,8 +34,10 @@ Tools
    :maxdepth: 1
 
    tools/augeas
+   tools/collectd
    tools/emacs
    tools/firefox
+   tools/graphite
    tools/lsof
    tools/mc
    tools/monitoring
