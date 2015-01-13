@@ -36,6 +36,7 @@ Collectd
      Host "127.0.0.1"
      Port "2003"
      Protocol "tcp"
+     Prefix "collectd."
      EscapeCharacter "_"
      SeparateInstances true
      StoreRates false
