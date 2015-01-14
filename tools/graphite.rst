@@ -66,3 +66,25 @@ Carbon config
   pattern = ^collectd\..*
   rententions = 1s:1d,1m:7d,1h:30d,1d:2y
 
+
+Fetch some data
+===============
+
+.. code:: bash
+
+  whisper-fetch --from=`date +%s -d "2014-12-24 00:00:00"` --until=`date +%s` /var/lib/carbon/whisper/<some_database.wsp> 
+
+Dump database
+=============
+
+.. code:: bash
+
+  whisper-dump /var/lib/carbon/whisper/<some_database.wsp>
+
+
+Convert RRD to Whisper
+======================
+
+.. code:: bash
+
+  rrd2whisper <path_to_rrd>
