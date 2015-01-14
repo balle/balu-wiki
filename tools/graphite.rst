@@ -82,6 +82,14 @@ Dump database
   whisper-dump /var/lib/carbon/whisper/<some_database.wsp>
 
 
+Resize database 
+===============
+
+.. code:: bash
+
+  whisper-resize /var/lib/carbon/whisper/<some_database.wsp> 1s:7d
+
+
 Convert RRD to Whisper
 ======================
 
