@@ -23,6 +23,12 @@ Setup graphite-web
       Require all granted
   </Location>
 
+* If the database was not created by your packagemanagement go to `/usr/lib/python2.6/site-packages/graphite` and exec
+
+.. code:: bash
+
+  ./manage.py syncdb
+
 * Last but not least add graphite-web as hostname to localhost in ``/etc/hosts`` or whatever ip you like
 
 
@@ -40,6 +46,12 @@ Send data to graphite
   echo "localhost.hello.world `ps ax | wc -l` `date +%s`" | nc <graphite-srv> 2003
 
 * For windows systems use SSC Serv
+
+
+Graphite Web API
+=================
+
+* See http://graphite.readthedocs.org/en/latest/render_api.html
 
 
 Carbon config
