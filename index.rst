@@ -162,6 +162,7 @@ Programming
    programming/awk
    programming/css3
    programming/django
+   programming/erlang
    programming/git
    programming/html5
    programming/jenkins
