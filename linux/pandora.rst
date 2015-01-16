@@ -22,6 +22,14 @@ Firmware update (old way)
 * boot from sd-card
 
 
+Start SSH server
+================
+
+.. code:: bash
+
+  /etc/init.d/dropbear start
+
+
 Deactivate boot splash
 ======================
 

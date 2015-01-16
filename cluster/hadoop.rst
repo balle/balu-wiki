@@ -191,6 +191,18 @@ Working with HDFS
   hadoop dfs -copyFromLocal file.txt some_dir
   hadoop dfs -put file.txt some_dir
 
+* Copy a large file in parallel
+
+.. code:: bash
+
+  hadoop distcp file:///data/bigfile /some_dir
+
+* Copy a directory
+
+.. code:: bash
+
+  hadoop fs -copyFromLocal src_dir dst_dir
+
 * List a directory
 
 .. code-block:: bash
@@ -264,6 +276,46 @@ Export HDFS via NFS
       </value>
     </property>
   </configuration>
+
+
+Remove a data node
+===================
+
+* Add the node name to ``conf/dfs-exclude.txt``
+* Edit ``conf/hdfs-site.xml`` and add the following snippet
+
+.. code:: xml
+
+  <property>
+    <name>dfs.hosts.exclude</name>
+    <value>$HADOOP_HOME/conf/dfs-exclude.txt</value>
+  </property>
+
+* Reload DFS Config
+
+.. code:: bash
+
+  hadoop dfsadmin -refreshNodes
+
+
+Remove a task tracker
+=====================
+
+* Add the node name to ``conf/mapred-exclude.txt``
+* Edit ``conf/mapred-site.xml`` and add the following snippet
+
+.. code:: xml
+
+  <property>
+    <name>mapred.hosts.exclude</name>
+    <value>$HADOOP_HOME/conf/mapred-exclude.txt</value>
+  </property>
+
+* Reload DFS Config
+
+.. code:: bash
+
+  hadoop mapredadmin -refreshNodes
 
 
 
@@ -419,7 +471,13 @@ Pydoop
 Jobs
 ====
 
-* List jobs
+* List running jobs
+
+.. code-block:: bash
+
+  bin/hadoop job -list
+
+* List all jobs
 
 .. code-block:: bash
 
@@ -437,6 +495,33 @@ Jobs
 
   bin/hadoop job -status <id>
 
+* Change priority of a job
+
+.. code:: bash
+
+  hadoop job -set-priority <id> HIGH
+
+
+Queues
+======
+
+* List queues
+
+.. code:: bash
+
+  hadoop queue -list
+
+* List ACLs of a queue
+
+.. code:: bash
+
+  hadoop queue -showacls
+
+* Show all jobs in a queue
+
+.. code:: bash
+
+  hadoop queue -info <queue> -showJobs
 
 
 Security

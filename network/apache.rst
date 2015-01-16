@@ -19,6 +19,17 @@ Redirct all HTTP to HTTPS
   </VirtualHost>
 
 
+New allow all
+=============
+
+.. code:: bash
+
+  <Location "/content/">
+      AllowOverride All
+      Require all granted
+  </Location>
+
+
 Run in foreground
 ==================
 

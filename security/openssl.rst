@@ -108,3 +108,16 @@ CA stuff
 
   openssl ca -revoke bad_crt_file -keyfile ca_key -cert ca_crt
   openssl crl -in crl_file -noout -text
+
+
+Java keystore
+==============
+
+* How to convert a PEM cert and RSA key to PKCS12 and import it into a java keystore
+
+.. code-block:: bash
+
+  openssl pkcs12 -export -in mycert.pem -inkey my.key -out mycert.pkcs12
+  keytool -importkeystore -deststorepass mypassword -destkeystore keystore.jks -srckeystore mycert.pkcs12 -srcstorepass mypassword 
+
+* add -ext san=dns:www.example.com for alternative names

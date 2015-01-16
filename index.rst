@@ -34,13 +34,16 @@ Tools
    :maxdepth: 1
 
    tools/augeas
+   tools/collectd
    tools/emacs
    tools/firefox
+   tools/graphite
    tools/lsof
    tools/mc
    tools/monitoring
    tools/puppet
    tools/rrd
+   tools/sar
    tools/screen
    tools/smartmon
    tools/tmux
@@ -117,9 +120,11 @@ Cluster
    cluster/clustershell
    cluster/glusterfs
    cluster/hadoop
+   cluster/hadoop2
    cluster/mpi
    cluster/openstack
    cluster/pacemaker
+   cluster/spark
    cluster/torque
 
 
@@ -157,6 +162,7 @@ Programming
    programming/awk
    programming/css3
    programming/django
+   programming/erlang
    programming/git
    programming/html5
    programming/jenkins

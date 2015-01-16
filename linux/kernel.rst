@@ -75,3 +75,19 @@ Show current kernel boot parameters
 .. code-block:: bash
 
   cat /proc/cmdline
+
+
+Hotplug CPUs
+============
+
+* Enable
+
+.. code:: bash
+
+  echo 1 > /sys/devices/system/cpu/cpu<No>/online
+
+* Disable
+
+.. code:: bash
+
+  echo 1 > /sys/devices/system/cpu/cpu<No>/online
