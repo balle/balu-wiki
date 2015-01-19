@@ -303,6 +303,20 @@ Configure Neutron
 
   neutron port-list -f csv -c fixed_ips --tenant_id <tenant_id> | grep subnet | cut -d ' ' -f 4 | sed 's/["}]//g'
 
+* Release a floating ip 
+
+..code-block:: bash
+
+  neutron floatingip-list --tenant-id $TENANT_ID
+  neutron floatingip-disassociate $ID
+  neutron floatingip-delete $ID
+
+* Release all floating ips of a tenant
+
+.. code-block:: bash
+
+  for ID in $(neutron floatingip-list --tenant-id $TENANT_ID -c id -f csv |grep -v float | sed 's/"//g'); do neutron floatingip-disassociate $ID; neutron floatingip-delete $ID; done
+
 * Firewall rule handling
 
 .. code-block:: bash
