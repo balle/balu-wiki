@@ -39,3 +39,24 @@ Run in foreground
   ErrorLog "|cat"
   LogFormat "%h %l %u %t \"%r\" %>s %b" common
   CustomLog "|cat" common
+
+
+Serve Django or WSGI app
+========================
+
+* install mod_wsgi
+
+.. code-block:: bash
+
+  <VirtualHost *:80>
+      ServerName my-cool-webserver
+
+      WSGIDaemonProcess $APPNAME user=$UNIX_USER group=$UNIX_GROUP threads=42
+      WSGIScriptAlias / /path/to/run.wsgi
+
+      <Directory /path/to/app/>
+          WSGIProcessGroup $UNIX_GROUP
+          WSGIApplicationGroup %{GLOBAL}
+      </Directory>
+
+  </VirtualHost>
