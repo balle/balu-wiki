@@ -290,6 +290,27 @@ Disk tricks
                       write /etc/resolv.conf "nameserver 8.8.8.8"
 
 
+Change root password with guestfish
+===================================
+
+* Generate a new password hash
+
+.. code-block:: bash
+
+  openssl passwd -1 topsecretpassword
+
+* Edit shadow file on image
+
+.. code-block:: bash
+
+  guestfish --rw -a <imagefile>
+  ><fs> run
+  ><fs> list-filesystems
+  /dev/sda1: ext4
+  ><fs> mount /dev/sda1 /
+  ><fs> vi /etc/shadow
+
+
 Convert VirtIO to IDE disk and vice versa
 ==========================================
 
