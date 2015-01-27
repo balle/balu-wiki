@@ -233,6 +233,12 @@ Working with HDFS
 
   hadoop dfs -get file.txt local_file.txt
 
+* Remote access 
+
+.. code:: bash
+
+  HADOOP_USER_NAME=hadoop bin/hdfs dfs -fs hdfs://192.168.1.4:9000 -ls /
+
 * In python
 
 .. code-block:: bash
@@ -240,6 +246,18 @@ Working with HDFS
   cat = subprocess.Popen(["hadoop", "fs", "-cat", "/path/to/myfile"], stdout=subprocess.PIPE)
   for line in cat.stdout:
     print line
+
+* Rebalance HDFS
+
+.. code:: bash
+
+  bin/start-balancer.sh
+
+* Check filesystem health
+
+.. code:: bash
+
+  bin/hadoof fsck 
 
 
 Export HDFS via NFS
@@ -870,6 +888,8 @@ Documentation
 * http://developer.yahoo.com/hadoop/tutorial/
 * https://www.youtube.com/watch?v=XtLXPLb6EXs
 * http://hadoop.apache.org/docs/stable/commands_manual.pdf
+* http://www.wdong.org/wordpress/blog/2015/01/08/hadoop-internals-how-to-manually-assemble-a-file-in-hdfs/
+* http://www.aosabook.org/en/hdfs.html - Internals of HDFS
 
 
 Troubleshooting

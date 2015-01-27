@@ -23,6 +23,22 @@ Installation
   /opt/spark/bin/start-all.sh
 
 
+Status Overview
+===============
+
+* Point your web browser to http://<yourmasternode>:8080
+* Run example 
+
+.. code:: bash
+
+  bin/spark-submit \
+  --class org.apache.spark.examples.SparkPi \
+  --master spark://127.0.0.1:7077 \
+  --executor-memory 1G \
+  --total-executor-cores 1 \ 
+  lib/spark-examples-1.1.1-hadoop2.4.0.jar \
+  1000               
+
 
 Get a Python shell on the cluster
 =================================
