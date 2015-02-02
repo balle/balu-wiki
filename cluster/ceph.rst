@@ -19,6 +19,15 @@ Overview
 * Pool is a seperate storage container that contains its own placement groups and objects (think of mountpoint)
 
 
+Status
+======
+
+* degraded == not enough replicas
+* stuck inactive - The placement group has not been active for too long (i.e., it hasn’t been able to service read/write requests).
+* stuck unclean - The placement group has not been clean for too long (i.e., it hasn’t been able to completely recover from a previous failure).
+* stuck stale - The placement group status has not been updated by a ceph-osd, indicating that all nodes storing this placement group may be down.
+
+
 Manual installation
 ===================
 
