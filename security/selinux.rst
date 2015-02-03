@@ -74,6 +74,14 @@ Write your own policy module
 * All permissions for a class can be found in ``/usr/src/redhat/BUILD/serefpolicy-<version>/policy/flask/access_vectors``
 
 
+Check policy module
+===================
+
+.. code-block:: bash
+
+  checkmodule -m some.te
+
+
 Compile a te file by hand
 ==========================
 
@@ -470,6 +478,12 @@ Audit Framework
 .. code-block:: bash
 
   auditctl -A exit,always -F path=/path/to/executable -S execve
+
+* Suppress all successful executions of some program
+
+.. code-block:: bash
+
+  auditctl -w /path/to/executable -F success=1
 
 * Show all logs of a specific timespan and from a certain user
 
