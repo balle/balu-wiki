@@ -89,6 +89,7 @@ Security
    security/crypto
    security/cisco
    security/firewalld
+   security/grsecurity
    security/honeypot
    security/iptables
    security/openssl
