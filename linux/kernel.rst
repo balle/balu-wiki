@@ -2,6 +2,12 @@
 Kernel
 ######
 
+USB shuts itself down
+=====================
+
+* Append ``usbcore.autosuspend=-1``  to kernel parameters
+
+
 What is load?
 =============
 
@@ -91,3 +97,19 @@ Hotplug CPUs
 .. code:: bash
 
   echo 1 > /sys/devices/system/cpu/cpu<No>/online
+
+
+Check if virtualization is enabled
+==================================
+
+.. code:: bash
+
+  grep vmx /proc/cpuinfo
+
+
+Check if TPM is available
+=========================
+
+.. code:: bash
+
+  grep smx /proc/cpuinfo
