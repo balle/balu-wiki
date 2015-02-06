@@ -121,3 +121,11 @@ Java keystore
   keytool -importkeystore -deststorepass mypassword -destkeystore keystore.jks -srckeystore mycert.pkcs12 -srcstorepass mypassword 
 
 * add -ext san=dns:www.example.com for alternative names
+
+
+Generate random bytes
+=====================
+
+.. code:: bash
+
+  openssl rand <nr_of_bytes>
