@@ -24,3 +24,13 @@ Find out filesystem of unmounted device
 .. code-block:: bash
 
   parted -l /dev/sda
+
+
+SSD
+===
+
+* Add the following options to fstab
+
+.. code-block:: bash
+
+  noatime,discard
