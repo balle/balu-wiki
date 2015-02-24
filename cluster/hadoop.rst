@@ -456,7 +456,7 @@ Mrjob
               yield key, "\n".join(values)
 
   if __name__ == '__main__':
-      MRWordGrepErrors.run()
+      GrepErrors.run()
 
 
 * To run it locally run
