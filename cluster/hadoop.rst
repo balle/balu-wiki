@@ -444,7 +444,7 @@ Mrjob
 
 * Or to grep for errors in kern.log
 
-..code-block:: bash
+.. code-block:: bash
 
   class MRWordGrepErrors(MRJob):
       def mapper(self, _, line):
