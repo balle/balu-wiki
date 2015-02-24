@@ -446,7 +446,7 @@ Mrjob
 
 .. code-block:: bash
 
-  class MRWordGrepErrors(MRJob):
+  class GrepErrors(MRJob):
       def mapper(self, _, line):
           if "error" in line.lower() or "failure" in line.lower():
   	    yield "lines", line
