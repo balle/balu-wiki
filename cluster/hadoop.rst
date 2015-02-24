@@ -446,8 +446,6 @@ Mrjob
 
 ..code-block:: bash
 
-  from mrjob.job import MRJob
-
   class MRWordGrepErrors(MRJob):
       def mapper(self, _, line):
           if "error" in line.lower() or "failure" in line.lower():
