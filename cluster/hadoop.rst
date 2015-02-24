@@ -449,11 +449,10 @@ Mrjob
   class GrepErrors(MRJob):
       def mapper(self, _, line):
           if "error" in line.lower() or "failure" in line.lower():
-  	    yield "lines", line
+  	      yield "lines", line
 
       def reducer(self, key, values):
-  	if key == "lines":
-              yield key, "\n".join(values)
+          yield key, "\n".join(values)
 
   if __name__ == '__main__':
       GrepErrors.run()
