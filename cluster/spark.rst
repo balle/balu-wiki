@@ -75,3 +75,10 @@ Add slave nodes to a running cluster
 .. code:: bash
 
   /opt/spark/sbin/start-slave.sh some-worker-id spark://master-node:7077
+
+
+Troubleshooting
+===============
+
+* Be sure if remotely submiting jobs to use the DNS name and not IP
+* ``TaskSchedulerImpl: Initial job has not accepted any resources; check your cluster UI to ensure that workers are registered and have sufficient memory``

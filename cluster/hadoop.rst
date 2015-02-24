@@ -233,7 +233,7 @@ Working with HDFS
 
   hadoop dfs -get file.txt local_file.txt
 
-* Remote access 
+* Remote access
 
 .. code:: bash
 
@@ -257,7 +257,7 @@ Working with HDFS
 
 .. code:: bash
 
-  bin/hadoof fsck 
+  bin/hadoof fsck
 
 
 Export HDFS via NFS
@@ -423,6 +423,8 @@ Streaming interface
 Mrjob
 =====
 
+* Sample word count
+
 .. code-block:: bash
 
   from mrjob.job import MRJob
@@ -439,6 +441,25 @@ Mrjob
 
   if __name__ == '__main__':
       MRWordFrequencyCount.run()
+
+* Or to grep for errors in kern.log
+
+..code-block:: bash
+
+  from mrjob.job import MRJob
+
+  class MRWordGrepErrors(MRJob):
+      def mapper(self, _, line):
+          if "error" in line.lower() or "failure" in line.lower():
+  	    yield "lines", line
+
+      def reducer(self, key, values):
+  	if key == "lines":
+              yield key, "\n".join(values)
+
+  if __name__ == '__main__':
+      MRWordGrepErrors.run()
+
 
 * To run it locally run
 
