@@ -46,12 +46,24 @@ Remote editing
     exec ssh $THEY "emacsclient /$ME:$PWD/$1"
   fi
 
+
+Share a buffer over http
+========================
+
+* Install the impatient-mode package.
+* Call M-x httpd-start.
+* Configure the firewall to allow incoming connections.
+* Put the selected buffer into impatient-mode.
+* Share the link with my IP address (form: http://my.ip.ad.dress:8080/imp/)
+* Copied from http://sachachua.com/blog/2015/02/emacs-peer-peer-coaching-easier-use-impatient-mode-share-buffer/
+
+
 How to Write a Emacs Major Mode for Syntax Coloring
 ===================================================
 
 * http://ergoemacs.org/emacs/elisp_syntax_coloring.html
 
-  
+
 Extensions
 ===========
 
