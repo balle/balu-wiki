@@ -150,6 +150,7 @@ Virtualization
    virtualization/docker
    virtualization/kvm
    virtualization/libvirt
+   virtualization/ovirt
    virtualization/vagrant
    virtualization/virtualbox
 
