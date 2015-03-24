@@ -31,6 +31,14 @@ Display all volumne groups
 
   vgdisplay
 
+Which device is in which volumne group
+======================================
+
+.. code-block:: bash
+
+  pvs
+
+
 Just show free space of volumne groups
 ======================================
 
@@ -85,5 +93,3 @@ Troubleshooting
 .. code-block:: bash
 
   vgchange -ay
-
-  
