@@ -29,3 +29,11 @@ Setup hypervisor node
 * Open Cluster tab and click on Default -> Hosts -> New
 * Fill out General form
 * Click in the right lower corner of the arrows to see event logs
+
+
+Import an ISO image
+===================
+
+.. code-block:: bash
+
+  engine-iso-uploader -r <ovirt-server> -i iiScratch_iso upload <ISO_FILENAME>
