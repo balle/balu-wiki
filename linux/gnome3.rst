@@ -36,6 +36,13 @@ Cool themes
 * http://gnome-look.org/content/show.php/Just-Dark?content=168025q
 
 
+Automatically place windows
+===========================
+
+* Enable Auto move windows extension
+* Add new placement rule
+
+
 Non blank screensaver
 =====================
 
@@ -92,6 +99,13 @@ Remove window decorations
 * Search for frame_geometry name="normal"
 * Add has_title="false"
 * Reload Gnome config
+
+
+Alternative menu
+================
+
+* To access the alternative menu hold the Alt key
+* This will for example allow you to hibernate instead of shutdown in the user menu
 
 
 Switching back to old GNOME look and feel
