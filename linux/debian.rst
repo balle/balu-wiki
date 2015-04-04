@@ -2,6 +2,16 @@
 Debian
 ######
 
+Install with sysvinit as init system
+=====================================
+
+* On boot screen of install medium type tab and append
+
+.. code-block:: bash
+
+  preseed/late_command="in-target apt-get install -y sysvinit-core"
+		
+
 How to build a deb package
 ==========================
 
