@@ -27,6 +27,15 @@ Install a new theme
 * Install it with gnome-tweak-tool
 
 
+Cool themes
+===========
+
+* http://gnome-look.org/content/show.php/Ambiance+Dark+Blue?content=169553
+* http://gnome-look.org/content/show.php/E17gtk?content=163472
+* http://gnome-look.org/content/show.php/Cenodark-red?content=165815
+* http://gnome-look.org/content/show.php/Just-Dark?content=168025q
+
+
 Non blank screensaver
 =====================
 
