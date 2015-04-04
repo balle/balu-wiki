@@ -17,14 +17,6 @@ Allow SELinux exception
 * Paste solution as root
 
 
-Configure startup applications
-==============================
-
-.. code-block:: bash
-
-  gnome-session-properties
-
-
 Disable boot logo
 =================
 
@@ -39,25 +31,6 @@ Gnome3 settings
 * Install gnome-tweak-tool
 * Install gconf-editor
 
-Non blank screensaver
-=====================
-
-* killall gnome-screensaver
-* yum install xscreensaver
-* xscreensaver-demo
-
-
-Changing keyboard shortcuts
-===========================
-
-* Applications -> System Tools -> System Settings -> Keyboard
-
-
-Default shortcuts
-=================
-
-* Alt+F1 - Switch between overview and desktop view
-* Alt+F2 - Launch command
 
 
 Change login background
@@ -82,8 +55,3 @@ Upgrade system
 * http://fedoraproject.org/wiki/Upgrading_Fedora_using_yum
 
 
-Switching back to old GNOME look and feel
-=========================================
-
-* Either set "Use Fallback Mode" in System Settings -> Details -> Graphics
-* Or install Mate http://mate-desktop.org/
