@@ -22,6 +22,14 @@ Shortcuts
 * ctrl + u - source code
 * ctrl + d - bookmark page
 * ctrl + f - find in page
+* ctrl + w - close tab
+* ctrl + o - open file
+* ctrl + n - new window
+* ctrl + r - reload page
+* ctrl + shift + r - reload page without cache
+* alt + 1-8 - switch to tab 1 - 8
+* alt + <left> - back in history
+* alt + <right> - forward in history
 * alt + t - search tab (with tab ahead extension)
 * alt + q - switch to last tab (with last recent tab extension)
 * alt + j - jump to link or formular input (with ace jump extension)
