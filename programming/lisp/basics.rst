@@ -177,6 +177,20 @@ control structures
       ((otherwise)
          '(be cool)))
 
+* to compare strings in a case form
+
+.. code-block:: lisp
+
+  (case (find-symbol (string-upcase person) :keyword)
+    (:hans
+       '(give him some food))
+    (:wurst
+       '(run away screaming))
+    (otherwise
+       '(be cool)))
+     
+
+	   
 
 Loops
 =====
