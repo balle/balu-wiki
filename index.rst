@@ -141,6 +141,7 @@ Databases
    databases/mongodb
    databases/mysql
    databases/postgres
+   databases/redis
 
 
 Virtualization
