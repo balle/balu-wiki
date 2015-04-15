@@ -25,6 +25,12 @@ List all keys
 
   redis> KEYS *
 
+* With types
+
+.. code-block:: bash
+
+  for KEY in $(redis-cli KEYS "*" | cut -d " " -f 2); do echo -en "$KEY - "; redis-cli TYPE "$KEY"; done
+
 
 Show type of keys
 =================
