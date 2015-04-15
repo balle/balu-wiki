@@ -83,6 +83,7 @@ Pidgin integration
 ==================
 
 * Install https://extensions.gnome.org/extension/170/pidgin-peristent-notification/
+* Or install https://extensions.gnome.org/extension/258/notifications-alert-on-user-menu/
 
 
 System monitor in top panel
@@ -90,6 +91,18 @@ System monitor in top panel
 
 * Install https://extensions.gnome.org/extension/120/system-monitor/
 
+
+Declaring the primary monitor
+=============================
+
+* Goto settings -> monitor
+* Use drag and drop to move the monitors around, the first is the primary
+
+
+Configure desktop to be on all monitors
+=======================================
+
+* gnome-tweak-tool -> desktops
 
 Remove window decorations
 ==========================
