@@ -36,3 +36,11 @@ Special pages
 * about:memory
 * about:cache
 * about:sandbox
+
+
+Edit with Emacs
+===============
+
+* Install chrome extension https://chrome.google.com/webstore/detail/edit-with-emacs/ljobjlafonikaiipfkggjbhkghgicgoh
+* Install edit-server package in Emacs
+* For more see http://www.emacswiki.org/emacs/Edit_with_Emacs    
