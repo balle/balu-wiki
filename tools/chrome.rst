@@ -50,5 +50,11 @@ Edit with Emacs
 ===============
 
 * Install chrome extension https://chrome.google.com/webstore/detail/edit-with-emacs/ljobjlafonikaiipfkggjbhkghgicgoh
-* Install edit-server package in Emacs
+* Install edit-server package in Emacs and eval
+
+.. code-block:: bash
+
+  (require 'edit-server)
+  (edit-server-start)
+
 * For more see http://www.emacswiki.org/emacs/Edit_with_Emacs    
