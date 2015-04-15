@@ -36,6 +36,7 @@ Tools
 
    tools/augeas
    tools/collectd
+   tools/chrome	      
    tools/emacs
    tools/firefox
    tools/graphite
