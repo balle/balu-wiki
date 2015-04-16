@@ -18,6 +18,16 @@ Connect
   redis-cli -s <path/to/unix.sock>
 
 
+Select a database
+=================
+
+* Default db is 0
+
+.. code-block:: bash
+
+  redis> SELECT <index>
+
+
 List all keys
 =============
 
