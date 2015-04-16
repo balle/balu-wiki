@@ -216,18 +216,38 @@ User administration
   db.addUser({user: "foo", pwd: "bar", roles: ["readWrite", "dbAdmin"]})
 
 * use role ``read`` for read-only access
+* role ``root`` will give overall access
+* other useful roles "userAdminAnyDatabase", "readWriteAnyDatabase", "dbAdminAnyDatabase" (use db admin in this case)
+* give ``clusterAdmin`` roles if user should be able to configure clustering
 * To log into a database
 
 .. code-block:: bash
 
   db.auth("user", "pass")
 
+* List all users 
+
+.. code-block:: bash 
+
+  db.getUsers()
+
+* List one user
+
+.. code-block:: bash
+
+  db.getUser("foo")
 
 * To change a users password
 
 .. code-block:: bash
 
   db.changeUserPassword("user", "newpassword")
+
+* Update a users roles
+
+.. code-block:: bash
+
+  db.grantRolesToUser("vip_user", ["userAdminAnyDatabase", "readWriteAnyDatabase", "dbAdminAnyDatabase", "clusterAdmin"])
 
 
 Replication
@@ -382,9 +402,21 @@ If you've not heard of capped collections before, they're a nice little feature 
 * For more see http://blog.pythonisito.com/2013/04/mongodb-pubsub-with-capped-collections.html
 
 
+Troubleshooting
+===============
+
+* I always get ``not master`` errors
+
+.. code-block:: bash
+
+  db.setSlaveOk()
+
+
 Getting help
 ============
 
 .. code-block:: bash
 
   db.help()
+
+
