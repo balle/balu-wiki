@@ -35,6 +35,23 @@ Commit
   git revert <version>
 
 
+Edit a commit 
+=============
+
+.. code-block:: bash
+
+  git rebase -i <version>
+
+* This opens an editor -> change the pick into edit
+
+.. code-block:: bash
+
+  git add -A
+  git commit -C HEAD
+  git rebase --continue
+  git push
+
+
 Logging
 ========
 
