@@ -22,6 +22,9 @@ Setup
 
 * Add uplink
 
+.. code-block:: bash
+
+
   brctl addif br0 eth0
 
 * Add other ports
