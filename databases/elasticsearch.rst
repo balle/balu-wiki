@@ -26,8 +26,28 @@ Insert data manually
   curl -XPUT 'http://localhost:9200/dept/employee/1' -d '{ "empname": "emp1"}'
 
 
-Configure Rsyslog to log to Elasticsearch
-=========================================
+Configure Rsyslog to log to Logstash
+====================================
+
+* Create file /etc/rsyslog.d/logstash.conf
+
+.. code-block:: bash
+
+  *.* @127.0.0.1:5544
+
+
+Configure Rsyslog to log to Fluentd
+====================================
+
+* Create file /etc/rsyslog.d/fluentd.conf
+
+.. code-block:: bash
+
+  *.* @127.0.0.1:42185
+
+
+Configure Rsyslog to log directly to Elasticsearch
+===================================================
 
 * For RHEL7 / CentOS 7 the rsyslog-elasticsearch plugin is included
 * For RHEL6 use repo http://rpms.adiscon.com/v5-stable/rsyslog.repo 
@@ -72,8 +92,8 @@ Configure Rsyslog to log to Elasticsearch
       dynSearchIndex="on")  
   
 
-Listen only on loopback
-=======================  
+Let Elasticsearch listen only on loopback
+==========================================  
 
 * Edit /etc/elasticsearch/elasticsearch.yml
 
@@ -237,6 +257,24 @@ Kibana Web Frontend
 ===================
 
 * Install it http://www.elasticsearch.org/overview/kibana/installation/
+* Run bin/kibana
+* Or use this systemd service file
+
+.. code-block:: bash
+
+  [Service]
+  ExecStart=/opt/kibana4/bin/kibana
+  Restart=always
+  StandardOutput=syslog
+  StandardError=syslog
+  SyslogIdentifier=kibana4
+  User=root
+  Group=root
+  Environment=NODE_ENV=production
+  
+  [Install]
+  WantedBy=multi-user.target
+
 * Have a look at https://www.youtube.com/watch?v=hXiBe8NcLPA&index=4&list=UUh7Gp4Z-f2Dyp5pSpLO3Vpg
 * For Dashboards see https://github.com/search?utf8=%E2%9C%93&q=kibana+dashboard&type=Repositories&ref=searchresults
 
