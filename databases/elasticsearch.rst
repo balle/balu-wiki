@@ -61,8 +61,57 @@ Configure Rsyslog to log to Elasticsearch
         constant(value="\",\"host\":\"")        property(name="hostname")
         constant(value="\",\"severity\":\"")    property(name="syslogseverity-text")
         constant(value="\",\"facility\":\"")    property(name="syslogfacility-text")
-        constant(value="\",\"tag\":\"")   property(name="syslogtag" format="
+        constant(value="\",\"tag\":\"")   property(name="syslogtag" format="on")
+        constant(value="\",\"message\":\"")    property(name="msg" format="on")
+      constant(value="\"}")
+  }
+  # this is where we actually send the logs to Elasticsearch (localhost:9200 by default)
+  action(type="omelasticsearch"
+      template="plain-syslog"
+      searchIndex="logstash-index"
+      dynSearchIndex="on")  
   
+
+Listen only on loopback
+=======================  
+
+* Edit /etc/elasticsearch/elasticsearch.yml
+
+.. code-block:: bash
+
+  network.host: 127.0.0.1
+
+
+Use logstash as log aggregator
+==============================
+
+* Create /etc/logstash/conf.d/10-syslog.conf 
+
+.. code-block:: bash
+
+  filter {
+    if [type] == "syslog" {
+      grok {
+        match => { "message" => "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
+        add_field => [ "received_at", "%{@timestamp}" ]
+        add_field => [ "received_from", "%{host}" ]
+      }
+      syslog_pri { }
+      date {
+        match => [ "syslog_timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+      }
+    }
+  }
+
+* Create /etc/logstash/conf.d/30-elasticsearch-output.conf
+
+.. code-block:: bash
+
+  output {
+    elasticsearch { host => localhost }
+    stdout { codec => rubydebug }
+  }
+
 
 Use fluentd as log aggregator
 =============================
