@@ -109,6 +109,13 @@ Use logstash as log aggregator
 
 .. code-block:: bash
 
+  input {
+    syslog {
+      type => syslog
+      port => 5544
+    }
+  }
+
   filter {
     if [type] == "syslog" {
       grok {
