@@ -79,12 +79,25 @@ Persistent logs
 Filtering logs
 ==============
 
+* Use the force of TAB completion!
+
+.. code-block:: bash
+
+  journalctl <TAB>
+  journalctl _COMM=<TAB>
+  
 * Errors since last boot
 
 .. code-block:: bash
 
   journalctl -b -p err
 
+* List all reboots
+
+.. code-block:: bash
+
+  journalctl --list-boots
+  
 * Since today
 
 .. code-block:: bash
