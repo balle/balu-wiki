@@ -71,12 +71,11 @@ Persistent logs
 Filtering logs
 ==============
 
-* Since last boot
+* Errors since last boot
 
 .. code-block:: bash
 
-  journalctl -b
-
+  journalctl -b -p err
 
 * Since today
 
@@ -116,17 +115,11 @@ Filtering logs
 
   journalctl _PID=123
 
-* For a single user
+* For a single unit (service)
 
 .. code-block:: bash
 
-  journalctl -u <user>
-
-* For a service
-
-.. code-block:: bash
-
-  journalctl _SYSTEMD_UNIT=<unit name e.g. sshd.service>
+  journalctl -u <servicename>
 
 * For kernel messages
 
@@ -146,6 +139,17 @@ Filtering logs
 
   journalctl _SELINUX_CONTEXT=<security context>
 
+* For a single user
+
+.. code-block:: bash
+
+  journalctl _UID=<userid>
+		
+* Full output for last 10 messages
+
+.. code-block:: bash
+
+  journalctl -l -o verbose -n 10
 
 * Where to find the log files?
 
