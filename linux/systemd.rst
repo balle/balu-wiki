@@ -59,13 +59,21 @@ Persistent logs
 ===============
 
 * Normally journald logs to /run/log/journal this is a tmpfs and logs are deleted on reboot
-* To avoid this execute the following
+* To avoid this edit ``/etc/systemd/journald.conf``
 
-.... code:: bash
+.. code:: bash
+
+  [Journal]
+  Storage=persistent
+
+* If that's not working try
+
+.. code:: bash
 
   mkdir /var/log/journal
   chgrp systemd-journal /var/log/journal
   chmod 775 /var/log/journal
+
 
 
 Filtering logs
