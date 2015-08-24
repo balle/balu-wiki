@@ -9,6 +9,7 @@ Extensions
 * Adblock Plus - https://chrome.google.com/webstore/detail/adblock-plus/cfhdojbkjhnklbpkdaibdccddilifddb
 * Ghostery - https://chrome.google.com/webstore/detail/ghostery/mlomiejdfkolichcflejclcbmpeaniij
 * ScriptBlock - https://chrome.google.com/webstore/detail/scriptblock/hcdjknjpbnhdoabbngpmfekaecnpajba
+* WebRTC Block - https://chrome.google.com/webstore/detail/webrtc-block/nphkkbaidamjmhfanlpblblcadhfbkdm/related
 * Spreed - https://chrome.google.com/webstore/detail/spreed-speed-read-the-web/ipikiaemdopojhpe
 * Tab Ahead - https://chrome.google.com/webstore/detail/tab-ahead/naoaiblmpegfelhkapanmmaaghmi
 * Last recent tab - https://chrome.google.com/webstore/detail/toggle-switch-recent-last/odhjcgnlbagjllfbilicalpigimhdcll

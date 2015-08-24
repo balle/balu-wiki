@@ -9,6 +9,7 @@ Extensions
 * Cookie manager - https://addons.mozilla.org/en-US/firefox/addon/cookie-controller/
 * Flashblock - https://addons.mozilla.org/en-US/firefox/addon/flashblock/
 * Better privacy - https://addons.mozilla.org/de/firefox/addon/betterprivacy/
+* Disable WebRTC - https://addons.mozilla.org/de/firefox/addon/happy-bonobo-disable-webrtc/
 * Download Helper - https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/
 * Session Manager - https://addons.mozilla.org/en-US/firefox/addon/session-manager/
 * Firemacs - https://addons.mozilla.org/en-US/firefox/addon/firemacs/
