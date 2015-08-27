@@ -668,6 +668,19 @@ Zookeeper Setup
   server.2=node2:2888:3888
   server.3=node3:2888:3888
 
+* Start the server on all nodes
+
+.. code-block:: bash
+
+  bin/zkServer.sh start
+  
+* To test the connection
+
+.. code-block:: bash
+
+  bin/zkCli.sh -server 127.0.0.1:2181
+
+* If the slave server wont start up check ``myid`` file in zookeeper data dir. It must be the same as in ``zoo.cfg``
 
 
 HBase Setup
