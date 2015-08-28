@@ -682,6 +682,24 @@ Zookeeper Setup
 
 * If the slave server wont start up check ``myid`` file in zookeeper data dir. It must be the same as in ``zoo.cfg``
 
+* To get some status about the zookeeper cluster run
+
+.. code-block:: bash
+
+  echo stat | nc 127.0.0.1 2181
+
+* To get a shell on a zookeeper cluster do the following
+
+.. code-block:: bash
+
+  cd zookeeper/src/c
+  ./configure
+  make
+  ./cli_st 127.0.0.1:2181
+  help
+  
+* Zookeeper logfile may be in same directory as it was started from
+  
 
 HBase Setup
 ===========
