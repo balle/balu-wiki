@@ -12,8 +12,8 @@ Simple stuff
   ip l s <dev> up/down
   ip a add <ip> <netmask> dev <dev>
   ip a sh dev <dev>
-
-* Remove one IP2
+ 
+* Remove one IP
 
 .. code-block:: bash
 
@@ -42,6 +42,13 @@ Simple stuff
 .. code-block:: bash
 
   ip n
+
+
+* Show interface statistics for packets and errors
+
+.. code-block:: bash
+
+  ip -s l sh dev eth0
 
 
 Change MAC
