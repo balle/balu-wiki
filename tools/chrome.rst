@@ -28,6 +28,7 @@ Shortcuts
 * ctrl + n - new window
 * ctrl + r - reload page
 * ctrl + shift + r - reload page without cache
+* ctrl + up + shift + t - restore recently closed tab(s)
 * alt + 1-8 - switch to tab 1 - 8
 * alt + <left> - back in history
 * alt + <right> - forward in history
