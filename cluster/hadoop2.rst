@@ -428,6 +428,157 @@ Check status
   su - hadoop -c "/opt/hadoop/bin/hadoop jar /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar pi 2 10"
 
 
+Configure High Availability
+===========================
+
+* Edit core-site.xml
+
+.. code-block:: bash
+
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://mycluster</value>
+  </property>
+  <property>
+    <name>ha.zookeeper.quorum</name>
+    <value>zookeeper1:2181,zookeeper2:2181,zookeeper3:2181</value>
+  </property>
+
+* Edit hdfs-site.xml
+
+.. code-block:: bash
+
+  <!-- only for single node setup
+  <property>
+    <name>dfs.name.dir</name>
+    <value>file:///local/hadoop/name-node</value>
+    </property>
+  -->
+
+  <!-- HA settings -->
+  <property>
+    <name>dfs.nameservices</name>
+    <value>mycluster</value>
+  </property>
+  
+  <property>
+    <name>dfs.ha.namenodes.mycluster</name>
+    <value>nn1,nn2</value>
+  </property>
+  
+  <property>
+    <name>dfs.namenode.rpc-address.mycluster.nn1</name>
+    <value>hadoop_master:8020</value>
+  </property>
+  <property>
+    <name>dfs.namenode.rpc-address.mycluster.nn2</name>
+    <value>hadoop_master2:8020</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.http-address.mycluster.nn1</name>
+    <value>hadoop_master:50070</value>
+  </property>
+  <property>
+    <name>dfs.namenode.http-address.mycluster.nn2</name>
+    <value>hadoop_master2:50070</value>
+  </property>
+
+  <property>
+    <name>dfs.namenode.shared.edits.dir</name>
+    <value>qjournal://hadoop_master:8485;hadoop_master2:8485/mycluster</value>
+  </property>
+  
+  <property>
+    <name>dfs.client.failover.proxy.provider.mycluster</name>
+    <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+  </property>
+
+  <property>
+    <name>dfs.ha.fencing.methods</name>
+    <value>sshfence</value>
+  </property>
+
+  <property>
+    <name>dfs.ha.fencing.ssh.private-key-files</name>
+    <value>/opt/hadoop/.ssh/id_rsa</value>
+  </property>
+  
+  <property>
+    <name>dfs.ha.automatic-failover.enabled</name>
+    <value>true</value>
+    <description>
+    Whether automatic failover is enabled. See the HDFS High
+    Availability documentation for details on automatic HA
+    configuration.
+    </description>
+  </property>
+
+  <property>
+    <name>ha.zookeeper.quorum</name>
+    <value>zookeeper1:2181,zookeeper2:2181,zookeeper3:2181</value>
+  </property>
+
+
+* Edit yarn-site.xml
+
+.. code-block:: bash
+
+  <property>
+    <name>yarn.resourcemanager.ha.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.cluster-id</name>
+    <value>mycluster</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.ha.rm-ids</name>
+    <value>rm1,rm2</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.hostname.rm1</name>
+    <value>hadoop_master</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.hostname.rm2</name>
+    <value>hadoop_master2</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.address.rm1</name>
+    <value>hadoop_master:8088</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.address.rm2</name>
+    <value>hadoop_master2:8088</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.zk-address</name>
+    <value>zookeeper1:2181,zookeeper2:2181,zookeeper3:2181</value>
+  </property>
+
+* Start Zookeeper Fencing Service additionally to normal Zookeeper
+
+.. code-block:: bash
+
+  /opt/hadoop/sbin/hadoop-daemon.sh --script /opt/hadoop/bin/hdfs start zkfc
+
+* Start HDFS Journalnode on Namenode servers
+
+.. code-block:: bash
+
+  /opt/hadoop/sbin/hadoop-daemon.sh start journalnode
+
+* Initialize and format Namenode
+
+.. code-block:: bash
+
+  /opt/hadoop/bin/hdfs zkfc -formatZK
+  /opt/hadoop/bin/hdfs namenode -format -force
+  /opt/hadoop/bin/hdfs namenode -initializeSharedEdits
+  /opt/hadoop/sbin/hadoop-daemon.sh start namenode
+
+  
 Configure Capacity Scheduler
 ============================
 
@@ -665,3 +816,4 @@ Troubleshooting
 
 * ``java.lang.IllegalArgumentException: Illegal capacity of -1.0 for queue`` -> You dont have defined a capacity for the queue like yarn.scheduler.capacity.root.$QUEUENAME.capacity
 * ``org.apache.hadoop.util.Shell$ExitCodeException: chmod: cannot access `/user/myuser1544460269/.staging/job_local1544460269_0001': No such file or directory`` -> set mapreduce.framework.name to yarn in mapred-site.xml
+* datanode says ``Initialization failed for Block pool`` -> Namenode got formated / changed afterwards, delete the contents of dfs.data.dir
