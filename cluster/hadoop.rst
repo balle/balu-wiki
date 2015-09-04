@@ -748,6 +748,18 @@ HBase Setup
 
 * Web interface can be found here `http://localhost:60010`
 
+* If it complains about Class not found make sure to copy some required libs
+
+.. code-block:: bash
+
+  cp /opt/hadoop/hadoop-core*.jar /opt/hadoop/lib/commons-*.jar /opt/zookeeper/zookeeper-*.jar /opt/hbase/lib
+  
+* If it complains about address already in use in hbase-zookeeper log, set
+
+.. code-block:: bash
+
+  export HBASE_MANAGES_ZK=false
+  
 
 Working with HBase
 ===================
