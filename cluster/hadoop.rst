@@ -890,6 +890,14 @@ Working with HBase
   sys.exit(0)
 
 
+Hbase troubleshooting
+=====================
+
+.. code-block:: bash
+
+  bin/hbase org.apache.hadoop.hbase.util.hbck.OfflineMetaRepair
+
+
 Working with Hive
 =================
 

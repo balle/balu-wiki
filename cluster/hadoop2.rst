@@ -575,13 +575,31 @@ Configure High Availability
 
   /opt/hadoop/bin/hdfs zkfc -formatZK
   /opt/hadoop/bin/hdfs namenode -format -force
-  /opt/hadoop/bin/hdfs namenode -initializeSharedEdits
   /opt/hadoop/sbin/hadoop-daemon.sh start namenode
+
+* Check the status
+
+.. code-block:: bash
+
+  bin/hdfs haadmin -getServiceState nn1
+  bin/hdfs haadmin -getServiceState nn2
+  bin/yarn rmadmin -getServiceState rm1
+  bin/yarn rmadmin -getServiceState rm2
+
+  
+Convert single namenode to HA
+=============================
+
+.. code-block:: bash
+
+  /opt/hadoop/bin/hdfs namenode -bootstrapStandby
+  /opt/hadoop/bin/hdfs namenode -initializeSharedEdits
 
   
 Configure Capacity Scheduler
 ============================
 
+* The CapacityScheduler is designed to allow sharing a large cluster while giving each organization a minimum capacity guarantee.
 * Make sure ``org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler`` is set as ``yarn.resourcemanager.scheduler.class`` in ``etc/hadoop/yarn-site.xml``
 * Configure resources for unix groups a, b and default
 * Edit ``etc/hadoop/capacity-scheduler.xml``
@@ -731,6 +749,7 @@ Configure Capacity Scheduler
 Configure Fair Scheduler
 ========================
 
+* All jobs get, on average, an equal share of resources over time
 * Make sure ``org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler`` is set as ``yarn.resourcemanager.scheduler.class`` in ``etc/hadoop/yarn-site.xml``
 * A pool has the same name as the user
 * Create file ``etc/hadoop/fair-scheduler.xml``
