@@ -85,6 +85,20 @@ List contents of uninstalled rpm
 
   rpm -qlp <rpm_file>
 
+Check checksum of installed files
+=================================
+  
+.. code-block:: bash
+
+  rpm -Vv <rpm_file>
+
+* Check that no file from all python packages have changed
+
+.. code-block:: bash
+
+  rpm -Vv `rpm -qa |grep python`
+
+  
 Exclude a package from update
 =============================
 
