@@ -204,6 +204,14 @@ Filtering logs
   -o json
 
 
+Remote logging
+==============
+
+* Install systemd-journal-gateway
+* On server edit ``/etc/systemd/journal-remote.conf`` and start service systemd-journal-remote
+* On log client edit ``/etc/systemd/journal-upload.conf``, to URL to ``http://<ip_of_logserver>:19531`` and start service systemd-journal-upload
+  
+
 Journald Web Gateway
 ====================
 
