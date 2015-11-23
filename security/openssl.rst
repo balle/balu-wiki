@@ -15,7 +15,13 @@ Basic stuff
 
 .. code-block:: bash
 
-  openssl x509 -in <cert_file> -text
+  openssl x509 -in <cert_file> -noout -text
+
+* Show expiry date of cert
+
+.. code-block:: bash
+
+   openssl x509 -in <cert_file> -noout -enddate
 
 * Generate a certificate request (CSR)
 
@@ -60,7 +66,7 @@ Basic stuff
 
   openssl pkcs12 -in mycert.pfx -out mycert.pem
 
-* View the details of a certificate revocation list (CRL) 
+* View the details of a certificate revocation list (CRL)
 
 .. code-block:: bash
 
@@ -118,7 +124,7 @@ Java keystore
 .. code-block:: bash
 
   openssl pkcs12 -export -in mycert.pem -inkey my.key -out mycert.pkcs12
-  keytool -importkeystore -deststorepass mypassword -destkeystore keystore.jks -srckeystore mycert.pkcs12 -srcstorepass mypassword 
+  keytool -importkeystore -deststorepass mypassword -destkeystore keystore.jks -srckeystore mycert.pkcs12 -srcstorepass mypassword
 
 * add -ext san=dns:www.example.com for alternative names
 
