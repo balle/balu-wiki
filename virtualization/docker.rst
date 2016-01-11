@@ -35,6 +35,14 @@ List installed images
   docker images
 
 
+List running containers
+=======================
+
+.. code-block:: bash
+
+  docker ps
+
+
 Save changes
 ============
 
@@ -75,6 +83,21 @@ Get IP of container
 
   docker inspect <container_id> | grep IPAddress
 
+
+Display CPU / RAM usage of container
+====================================
+
+.. code-block:: bash
+
+  docker stats <container_id>
+
+
+Get STDOUT / STDERR from container
+===================================
+
+.. code-block:: bash
+
+  docker log <container_id>
 
 Troubleshooting
 ===============
