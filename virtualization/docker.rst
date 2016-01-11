@@ -63,11 +63,11 @@ Export images
 Port forward
 ============
 
-* Starts in daemon mode and forwards container port 80 to host port 8888
+* Starts in daemon mode and forwards container port 80 to host port 8888 but only on loopback interface
 
 .. code-block:: bash
 
-  docker run -d -p 8888:80 <image>
+  docker run -d -p 127.0.0.1:8888:80 <image>
 
 * Automatically forward all ports
 
