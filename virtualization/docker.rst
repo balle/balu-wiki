@@ -60,6 +60,22 @@ Export images
   docker load -i <archive_file>
 
 
+Update images
+=============
+
+* Only one
+
+.. code-block:: bash
+
+  docker pull <image>
+
+* All images
+
+.. code-block:: bash
+
+  docker images | awk '{print $1}' | xargs -L1 docker pull
+
+
 Port forward
 ============
 
@@ -84,6 +100,22 @@ Get IP of container
   docker inspect <container_id> | grep IPAddress
 
 
+Share directory between host and container
+==========================================
+
+* Via Dockerfile
+
+.. code-block:: bash
+
+  VOLUME        ["/var/volume1", "/var/volume2"]
+
+* Via command-line
+
+.. code-block:: bash
+
+  -v /path/on/host:/path/in/container
+
+
 Display CPU / RAM usage of container
 ====================================
 
@@ -98,6 +130,33 @@ Get STDOUT / STDERR from container
 .. code-block:: bash
 
   docker log <container_id>
+
+
+Example docker file
+===================
+
+.. code-block:: bash
+
+  #
+  # base image is latest official redhat rhel7
+  #
+  from rhel7:latest
+
+  # Update the system
+  RUN yum update -y
+
+  # Install web server
+  RUN yum install -y httpd
+
+  # Copy files to image
+  #COPY ./public-html/ /usr/local/apache2/htdocs/
+  #COPY ./my-httpd.conf /usr/local/apache2/conf/httpd.conf
+
+  # Start the service
+  EXPOSE 80
+  CMD ["-D", "FOREGROUND"]
+  ENTRYPOINT ["/usr/sbin/httpd"]
+
 
 Troubleshooting
 ===============
