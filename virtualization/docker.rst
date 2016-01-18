@@ -92,6 +92,14 @@ Port forward
   docker run -P <image>
 
 
+Set fixed IP for container
+==========================
+
+.. code-block:: bash
+
+  docker run --ip=<container_ip> --default-gateway=<gw_ip>
+
+
 Get IP of container
 ===================
 
@@ -130,6 +138,13 @@ Get STDOUT / STDERR from container
 .. code-block:: bash
 
   docker log <container_id>
+
+
+Get a shell on a running container
+==================================
+
+.. code-block:: bash
+  docker exec -it <container_id> bash
 
 
 Example docker file
