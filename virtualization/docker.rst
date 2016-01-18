@@ -124,6 +124,14 @@ Share directory between host and container
   -v /path/on/host:/path/in/container
 
 
+Allow docker container to access DISPLAY
+========================================
+
+.. code-block:: bash
+
+  xhost +local:docker
+
+
 Display CPU / RAM usage of container
 ====================================
 
