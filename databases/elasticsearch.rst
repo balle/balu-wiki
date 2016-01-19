@@ -18,6 +18,37 @@ Install browser plugin
 * Now point your browser to http://localhost:9200/_plugin/head/
 
 
+Configure cluster
+=================
+
+* Edit ``/etc/elasticsearch/elasticsearch.yml``
+* Set cluster.name, node.name and network.host
+* Make sure TCP port 9300 is open
+
+
+Cluster autodiscovery is not working
+====================================
+
+* Edit ``/etc/elasticsearch/elasticsearch.yml``
+* Make one node the master node
+
+.. code-block:: bash
+
+  node.master: true
+  node.data: true
+  discovery.zen.ping.multicast.enabled: false
+  discovery.zen.ping.unicast.hosts: ["node1.example.com"]
+
+* Let the others connect to the master node
+
+.. code-block:: bash
+
+  node.master: false
+  node.data: true
+  discovery.zen.ping.multicast.enabled: false
+  discovery.zen.ping.unicast.hosts: ["node1.example.com"]
+
+
 Insert data manually
 =====================
 
@@ -50,7 +81,7 @@ Configure Rsyslog to log directly to Elasticsearch
 ===================================================
 
 * For RHEL7 / CentOS 7 the rsyslog-elasticsearch plugin is included
-* For RHEL6 use repo http://rpms.adiscon.com/v5-stable/rsyslog.repo 
+* For RHEL6 use repo http://rpms.adiscon.com/v5-stable/rsyslog.repo
 
 .. code-block:: bash
 
@@ -72,7 +103,7 @@ Configure Rsyslog to log directly to Elasticsearch
       constant(value=".")
       property(name="timereported" dateFormat="rfc3339" position.from="9" position.to="10")
   }
-  
+
   # this is for formatting our syslog in JSON with @timestamp
   template(name="plain-syslog"
     type="list") {
@@ -89,11 +120,11 @@ Configure Rsyslog to log directly to Elasticsearch
   action(type="omelasticsearch"
       template="plain-syslog"
       searchIndex="logstash-index"
-      dynSearchIndex="on")  
-  
+      dynSearchIndex="on")
+
 
 Let Elasticsearch listen only on loopback
-==========================================  
+==========================================
 
 * Edit /etc/elasticsearch/elasticsearch.yml
 
@@ -105,7 +136,7 @@ Let Elasticsearch listen only on loopback
 Use logstash as log aggregator
 ==============================
 
-* Create /etc/logstash/conf.d/10-syslog.conf 
+* Create /etc/logstash/conf.d/10-syslog.conf
 
 .. code-block:: bash
 
@@ -162,13 +193,13 @@ Use fluentd as log aggregator
   gem install fluentd
   gem install fluent-plugin-elasticsearch
 
-* Regular expressions for parsing logs can be tested on http://rubular.com/ 
+* Regular expressions for parsing logs can be tested on http://rubular.com/
 * Time format options can be looked up here http://www.ruby-doc.org/core-1.9.3/Time.html#method-i-strftime
 * Example config
 
 .. code-block:: bash
 
-  # live debugging agent  
+  # live debugging agent
   #<source>
   #  type debug_agent
   #  bind 127.0.0.1
@@ -181,7 +212,7 @@ Use fluentd as log aggregator
     port 42185
     tag system.raw
   </source>
-  
+
   # Apache Access Logs
   <source>
     type tail
@@ -190,7 +221,7 @@ Use fluentd as log aggregator
     pos_file /var/log/fluentd/httpd.access.pos
     tag httpd.access
   </source>
-  
+
   # Apache Error Logs
   <source>
     type tail
@@ -240,7 +271,7 @@ Use fluentd as log aggregator
       logstash_format true
       flush_interval 10s
   </match>
-  
+
   # Log to stdout for debugging
   #<match *.**>
   #    type stdout
@@ -278,12 +309,9 @@ Kibana Web Frontend
   User=root
   Group=root
   Environment=NODE_ENV=production
-  
+
   [Install]
   WantedBy=multi-user.target
 
 * Have a look at https://www.youtube.com/watch?v=hXiBe8NcLPA&index=4&list=UUh7Gp4Z-f2Dyp5pSpLO3Vpg
 * For Dashboards see https://github.com/search?utf8=%E2%9C%93&q=kibana+dashboard&type=Repositories&ref=searchresults
-
-
-  
