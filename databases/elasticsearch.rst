@@ -49,6 +49,14 @@ Cluster autodiscovery is not working
   discovery.zen.ping.unicast.hosts: ["node1.example.com"]
 
 
+Add security to Elasticsearch
+=============================
+
+* Need user and rights management or encryption and authentication?
+* Install the plugin shield
+* https://www.elastic.co/products/shield
+
+
 Insert data manually
 =====================
 
