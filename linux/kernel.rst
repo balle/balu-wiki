@@ -19,7 +19,7 @@ What is load?
   cat /proc/loadavg
 
 * field 1-3 = load average of jobs in the run queue (state R) or waiting for disk I/O (state D) averaged over 1, 5, and 15 minutes
-* field 4 = number of currently runnable kernel scheduling entities (processes, threads) / number of kernel scheduling entities that currently exist on the system 
+* field 4 = number of currently runnable kernel scheduling entities (processes, threads) / number of kernel scheduling entities that currently exist on the system
 * field 5 PID of the process that was most recently created on the system
 
 
@@ -88,13 +88,13 @@ Hotplug CPUs
 
 * Enable
 
-.. code:: bash
+.. code-block:: bash
 
   echo 1 > /sys/devices/system/cpu/cpu<No>/online
 
 * Disable
 
-.. code:: bash
+.. code-block:: bash
 
   echo 1 > /sys/devices/system/cpu/cpu<No>/online
 
@@ -102,7 +102,7 @@ Hotplug CPUs
 Check if virtualization is enabled
 ==================================
 
-.. code:: bash
+.. code-block:: bash
 
   grep vmx /proc/cpuinfo
 
@@ -110,6 +110,16 @@ Check if virtualization is enabled
 Check if TPM is available
 =========================
 
-.. code:: bash
+.. code-block:: bash
 
   grep smx /proc/cpuinfo
+
+
+Hide kernel symbols
+===================
+
+* Create /etc/sysctl.d/50-kptr-restrict.conf
+
+.. code-block:: bash
+
+  kernel.kptr_restrict = 1
