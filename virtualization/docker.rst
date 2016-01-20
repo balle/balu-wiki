@@ -131,7 +131,6 @@ Allow docker container to access DISPLAY
 
   xhost +local:docker
 
-
 Display CPU / RAM usage of container
 ====================================
 
