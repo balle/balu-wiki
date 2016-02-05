@@ -36,7 +36,7 @@ Tools
 
    tools/augeas
    tools/collectd
-   tools/chrome	      
+   tools/chrome
    tools/emacs
    tools/firefox
    tools/graphite
@@ -137,6 +137,7 @@ Databases
 .. toctree::
    :maxdepth: 1
 
+   databases/cassandra
    databases/elasticsearch
    databases/mongodb
    databases/mysql
