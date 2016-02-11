@@ -113,7 +113,7 @@ Optionally kickstart setup
 
 .. code-block:: bash
 
-  ks=http://192.168.1.23/centos-kickstart.cfg
+  ks=http://<ip_of_pxe_server>/centos-kickstart.cfg
 
 
 Install clonezilla images
@@ -124,27 +124,123 @@ Install clonezilla images
 
 .. code-block:: bash
 
-  DEFAULT Clonezilla
-  TIMEOUT 0
-  PROMPT 0
-
   LABEL Clonezilla
       MENU LABEL Clonezilla
-      APPEND initrd=clonezilla/live/initrd.img boot=live config noswap nolocales edd=on nomodeset ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts="" ocs_live_batch="no" locales="" vga=788 nosplash noprompt fetch=tftp://install.inf.ethz.ch/pxe/clonezilla/live/filesystem.squashfs
+      APPEND initrd=clonezilla/live/initrd.img boot=live config noswap nolocales edd=on nomodeset ocs_live_run="ocs-live-general" ocs_live_extra_param="" keyboard-layouts="" ocs_live_batch="no" locales="" vga=788 nosplash noprompt fetch=tftp://<ip_of_pxe_server>/pxe/clonezilla/live/filesystem.squashfs
       KERNEL clonezilla/live/vmlinuz
 
 * for full-automatic installion append
 
 .. code-block:: bash
 
-  DEFAULT Clonezilla
-  TIMEOUT 0
-  PROMPT 0
-
   LABEL Clonezilla
       MENU LABEL Clonezilla
-      APPEND initrd=images/clonezilla/live/initrd.img boot=live config noswap nolocales edd=on nomodeset ocs_live_run="/usr/sbin/ocs-sr --batch -q -e1 auto -e2 -r -j2 -p reboot restoredisk $IMAGENAME sda" ocs_live_extra_param="" ocs_live_keymap="NONE" ocs_live_batch="yes" ocs_lang="en_US.UTF-8" vga=788 nosplash noprompt ocs_prerun="mount -t nfs -o vers=3 10.0.0.1:/local/clonezilla /home/partimag" ocs_postrun="$POST_COMMAND && reboot" fetch=tftp://10.0.0.1/images/clonezilla/live/filesystem.squashfs
+      APPEND initrd=images/clonezilla/live/initrd.img boot=live config noswap nolocales edd=on nomodeset ocs_live_run="/usr/sbin/ocs-sr --batch -q -e1 auto -e2 -r -j2 -p reboot restoredisk $IMAGENAME sda" ocs_live_extra_param="" ocs_live_keymap="NONE" ocs_live_batch="yes" ocs_lang="en_US.UTF-8" vga=788 nosplash noprompt ocs_prerun="mount -t nfs -o vers=3 <ip_of_pxe_server>:/local/clonezilla /home/partimag" ocs_postrun="$POST_COMMAND && reboot" fetch=tftp://<ip_of_pxe_server>/images/clonezilla/live/filesystem.squashfs
       KERNEL clonezilla/live/vmlinuz
 
 * Make sure to replace $POST_COMMAND, $IMAGENAME, /path/to/image and the ip of your pxe server
 * Virtio disks can also be a problem make sure to use normal disks in vms
+
+
+Diskless Redhat
+===============
+
+* Install dracut and dracut-network
+* Edit ``/etc/dracut.conf`` and make sure the following is set
+
+.. code-block:: bash
+
+  add_dracutmodules+="nfs"
+
+* Also add network kernel modules to ``add_drivers+``
+* Build initramdisk
+
+.. code-block:: bash
+
+  dracut initramfs-3.10.0-327.4.5.el7.x86_64 3.10.0-327.4.5.el7.x86_64
+  lsinitrd initramfs-3.10.0-327.4.5.el7.x86_64
+
+* Create minimal root filesystem
+
+.. code-block:: bash
+
+  yum groupinstall Base --installroot=/export/diskless-el7
+  yum install openssh-server openssh-clients --installroot=/export/diskless-el7
+
+* Make sure there is a network config file for your card e.g. ``/export/diskless-el7/etc/sysconfig/network-scripts/ifcfg-eno0``
+
+.. code-block:: bash
+
+  DEVICE=eno0
+  NAME=eno0
+  BOOTPROTO=dhcp
+  ONBOOT=yes
+
+* Create ``/export/diskless-el7/etc/fstab``
+
+.. code-block:: bash
+
+  none            /tmp            tmpfs   defaults        0 0
+  tmpfs           /dev/shm        tmpfs   defaults        0 0
+  sysfs           /sys            sysfs   defaults        0 0
+  proc            /proc           proc    defaults        0 0
+  none            /var/log        tmpfs   defaults        0 0
+  none            /var/run        tmpfs   defaults        0 0
+  none            /var/lock       tmpfs   defaults        0 0
+  none            /var/tmp        tmpfs   defaults        0 0
+  none            /var/spool      tmpfs   defaults        0 0
+
+* Create some links to files or dirs that otherwise want to be writable
+
+.. code-block:: bash
+
+  ln -s etc/ld.so.cache~ tmp/ld.so.cache~
+  ln -s etc/udev/hwdb.bin tmp/hwdb.bin
+  mkdir tmp/catalog; ln -s var/lib/systemd/catalog tmp/catalog
+  ln -s etc/machine-id /tmp/machine-id
+
+* Generate ssh host keys for the image
+
+.. code-block:: bash
+
+  mount -o bind /dev /export/diskless-el7/dev
+  chroot /export/diskless-el7
+  ssh-keygen -A
+  exit
+  umount /export/diskless-el7/dev
+
+* Copy your public key into the image
+
+.. code-block:: bash
+
+  mkdir /export/diskless-el7/root/.ssh
+  cat ~/.ssh/id_rsa.pub > /export/diskless-el7/root/.ssh/authorized_keys
+
+* Delete unneeded services
+
+.. code-block:: bash
+
+  cd /export/diskless-el7/etc/systemd/multi-user.target.wants
+  rm -f abrt* atd.service crond.service chronyd.service firewalld.service kdump.service libstoragemgmt.service rhel-dmesg.service rhsmcertd.service rngd.service sysstat.service
+
+* Edit ``/var/tftpboot/pxelinux.cfg/default`` and add
+
+.. code-block:: bash
+
+  LABEL  rhel7
+     KERNEL diskless/vmlinuz-3.10.0-327.4.5.el7.x86_64
+     APPEND initrd=diskless/initramfs-3.10.0-327.4.5.el7.x86_64 root=nfs:<ip_to_nfs_server>:/export/diskless-el7:nfsvers=3 ip=dhcp netdev=boot
+
+
+Fedora netinstall
+=================
+
+* Download lkrn from https://boot.fedoraproject.org/download
+* Edit ``/var/tftpboot/pxelinux.cfg/default`` and add
+
+.. code-block:: bash
+
+  LABEL  Fedora
+  MENU LABEL boot.fedoraproject.org
+  IPAPPEND 2
+  KERNEL linux/bfo.lkrn
