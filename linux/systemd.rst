@@ -55,8 +55,22 @@ Show status of a service
   systemctl status sshd.service
 
 
+List all available targets (runlevels)
+======================================
+
+.. code-block:: bash
+
+  systemctl list-units --type=target
+
+
 Change default target (runlevel)
 ================================
+
+.. code-block:: bash
+
+  systemctl set-default multi-user.target
+
+* or
 
 .. code-block:: bash
 
