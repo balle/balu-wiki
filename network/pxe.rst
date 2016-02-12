@@ -190,6 +190,13 @@ Diskless Redhat
   none            /var/tmp        tmpfs   defaults        0 0
   none            /var/spool      tmpfs   defaults        0 0
 
+* Set default target to multi-user instead of graphical
+
+.. code-block:: bash
+
+  rm -f /export/diskless-el7/etc/systemd/system/default.target
+  ln -s ../../../usr/lib/systemd/system/multi-user.target /export/diskless-el7/etc/systemd/system/de
+
 * Create some links to files or dirs that otherwise want to be writable
 
 .. code-block:: bash
