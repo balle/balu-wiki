@@ -47,12 +47,21 @@ Activate service on boot
 
   systemctl enable sshd.service
 
-Show status and ongoing log messages of a service
-=================================================
+Show status of a service
+========================
 
 .. code-block:: bash
 
-  systemctl status sshd.service -f
+  systemctl status sshd.service
+
+
+Change default target (runlevel)
+================================
+
+.. code-block:: bash
+
+  rm /etc/systemd/system/default.target
+  ln -sf /lib/systemd/system/multi-user.target /etc/systemd/system/default.target
 
 
 Persistent logs
@@ -85,7 +94,7 @@ Filtering logs
 
   journalctl <TAB>
   journalctl _COMM=<TAB>
-  
+
 * Errors since last boot
 
 .. code-block:: bash
@@ -97,7 +106,7 @@ Filtering logs
 .. code-block:: bash
 
   journalctl --list-boots
-  
+
 * Since today
 
 .. code-block:: bash
@@ -165,7 +174,7 @@ Filtering logs
 .. code-block:: bash
 
   journalctl _UID=<userid>
-		
+
 * Full output for last 10 messages
 
 .. code-block:: bash
@@ -210,7 +219,7 @@ Remote logging
 * Install systemd-journal-gateway
 * On server edit ``/etc/systemd/journal-remote.conf`` and start service systemd-journal-remote
 * On log client edit ``/etc/systemd/journal-upload.conf``, to URL to ``http://<ip_of_logserver>:19531`` and start service systemd-journal-upload
-  
+
 
 Journald Web Gateway
 ====================
