@@ -949,7 +949,7 @@ Addons
 * `hbase <http://hbase.apache.org>` - realtime processing (based on google bigtable)
 * `accumulo <http://accumulo.apache.org>` - NSA fork of HBase
 * `mahout <http://mahout.apache.org>` - machine learning libraries
-
+* `trumpet <http://verisign.github.io/trumpet/>` - Trumpet is an highly-available, fault-tolerant, non intrusive and scalable INotify-like building block for Hadoop HDFS.
 
 Documentation
 =============
