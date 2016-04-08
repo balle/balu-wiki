@@ -409,6 +409,13 @@ Troubleshooting
 
 .. code-block:: bash
 
+  rs.status()
+  rs.initiate()
+
+* Or if you really want to access a slave node
+		
+.. code-block:: bash
+
   db.setSlaveOk()
 
 
