@@ -5,10 +5,11 @@ Cassandra
 Overview
 ========
 
-  * Db split over whole cluster
+  * Cassandra is a partitioned row store database (Db split over whole cluster)
   * Replication for HA
-  * No Master node
+  * Designed from the ground up as a distributed database with peer-to-peer communication (No Master node)
   * Feels lot like MySQL
+  * Cassandra Demo App https://github.com/snazy/barker
 
 
 Specifics
@@ -52,3 +53,27 @@ INSERT, UPDATE, SELECT, DELETE
   cqlsh:app> UPDATE users SET firstname='Bastian' WHERE username = 'balle';
   cqlsh:app> SELECT username, last_login FROM users WHERE surname='Ballmann' ALLOW FILTERING;
   cqlsh:app> DELETE FROM users WHERE username='balle';
+
+
+Create a cluster
+================
+
+* Edit ``conf/cassandra.yaml``
+* Set at least the Cluster name and listen_address
+* Include all nodes in seed provider list
+* Start cassandra on all nodes
+* Check cluster status
+
+.. code-block:: bash
+
+  bin/nodetool status
+
+
+Import data from MySQL
+======================
+
+* Install squoop (http://sqoop.apache.org/)
+
+.. code-block:: bash
+
+  sqoop import --connect jdbc:mysql://127.0.0.1/dev --username root --cassandra-keyspace dev --cassandra-create-schema
