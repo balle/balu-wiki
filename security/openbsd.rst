@@ -2,6 +2,18 @@
 OpenBSD
 ########
 
+Filesystem tweaks
+=================
+
+* Configure soft updates everywhere (softdep)
+* Disable access time logging (noatime)
+* If possible mount with noexec, nosuid, nodev 
+
+.. code-block:: bash
+
+  <duid> /home ffs rw,nodev,nosuid,noatime,softdep 1 2
+
+  
 Ports and packages
 ==================
 
