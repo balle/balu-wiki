@@ -94,6 +94,7 @@ Security
    security/grsecurity
    security/honeypot
    security/iptables
+   security/openbsd
    security/openssl
    security/pf
    security/selinux
