@@ -57,7 +57,7 @@ Graphite output plugin
      StoreRates false
      AlwaysAppendDS false
    </Carbon>
-</Plugin>
+  </Plugin>
 
 
 Mongodb output
@@ -145,7 +145,7 @@ Example exec plugin
 
 .. code-block:: bash
 
-LoadPlugin exec
-<Plugin exec>
+  LoadPlugin exec
+  <Plugin exec>
     Exec "nobody" "/usr/bin/count_lines_in_file" "/var/log/httpd/error_log"
-</Plugin>
+  </Plugin>
