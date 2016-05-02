@@ -101,7 +101,7 @@ WPA enterprise
         pairwise=CCMP
 	group=CCMP
 	phase1="peaplabel=0"
-#       phase1="tls_disable_tlsv1=1 tls_disable_tlsv1_1=2" # if only sslv3 is supported
+  #     phase1="tls_disable_tlsv1=1 tls_disable_tlsv1_1=2" # if only sslv3 is supported
 	phase2="auth=MSCHAPV2"
 	ca_cert="/etc/certs/QV2.pem"
 	ssid="<ssid>"
@@ -119,9 +119,18 @@ WPA enterprise
   wpa_supplicant -B -c /etc/wpa_supplicant.conf -D openbsd -i urtwn0
 
 
+UTF-8 system-wide
+=================
+
+.. code-block:: bash
+
+  echo 'export LC_ALL="en_US.UTF-8"' >> /etc/profile
+  
+
 Linux compatibility
 ===================
 
+* Currently only works on i386!
 * You need to build a custom kernel
 
 .. code-block:: bash
