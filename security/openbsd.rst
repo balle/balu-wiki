@@ -131,7 +131,7 @@ Linux compatibility
 ===================
 
 * Currently only works on i386!
-* You need to build a custom kernel
+* You may need to build a custom kernel
 
 .. code-block:: bash
 
@@ -154,9 +154,34 @@ Linux compatibility
 * And start your Linux program
 * If it is dynamically linked you need to provide all libs under /emul/linux (easiest way is to unzip a base package e.g. fedorabase there)
 * For more information see http://www.openbsd.org/papers/slack2k11-on_compat_linux.pdf
+
+
+List all available disks
+========================
+
+.. code-block:: bash
+
+  sysctl hw.disknames
+
+
+Which program is listening on port x?
+=====================================
+
+* Install lsof
+
+.. code-block:: bash
+
+  lsof -i :<port>
   
-  
+		
 Readmes for packages
 ====================
 
 * Can be found in /usr/local/share/doc/pkg-readmes
+
+
+Building images for cloud and embedded devices
+===============================================
+
+* Read http://stable.rcesoftware.com/resflash/
+
