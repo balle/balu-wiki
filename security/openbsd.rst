@@ -143,8 +143,10 @@ Linux compatibility
   sysctl kern.emul.linux = 1
 
 * And start your Linux program
+* If it is dynamically linked you need to provide all libs under /emul/linux (easiest way is to unzip a base package e.g. fedorabase there)
+* For more information see http://www.openbsd.org/papers/slack2k11-on_compat_linux.pdf
   
-
+  
 Readmes for packages
 ====================
 
