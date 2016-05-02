@@ -1,7 +1,7 @@
 ########
 OpenBSD
 ########
-
+  
 Filesystem tweaks
 =================
 
@@ -56,7 +56,6 @@ Update base system
   config GENERIC
   cd /usr/src/sys/arch/$(uname -m)/compile/GENERIC
   make clean && make
-  cd /usr/src/sys/arch/$(uname -m)/compile/GENERIC
   make install
   reboot
   rm -rf /usr/obj/*
@@ -118,4 +117,35 @@ WPA enterprise
 
   ifconfig urtwn0 nwid <ssid> bssid <mac_of_ap> wpa wpaakms 802.1x up
   wpa_supplicant -B -c /etc/wpa_supplicant.conf -D openbsd -i urtwn0
+
+
+Linux compatibility
+===================
+
+* You need to build a custom kernel
+
+.. code-block:: bash
+
+  cd /usr/src/sys/arch/$(uname -m)/conf
+  cp GENERIC.MP MYKERNEL
+  echo "option COMPAT_LINUX" >> MYKERNEL
+  config MYKERNEL
+  cd ../compile/MYKERNEL
+  make depend
+  make
+  make install
+  reboot
+
+* Now you can activate it with
+
+.. code-block:: bash
+
+  sysctl kern.emul.linux = 1
+
+* And start your Linux program
   
+
+Readmes for packages
+====================
+
+* Can be found in /usr/local/share/doc/pkg-readmes
