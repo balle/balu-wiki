@@ -127,8 +127,8 @@ UTF-8 system-wide
   echo 'export LC_ALL="en_US.UTF-8"' >> /etc/profile
   
 
-Linux compatibility
-===================
+Linux compatibility (untested yet)
+==================================
 
 * Currently only works on i386!
 * You may need to build a custom kernel
