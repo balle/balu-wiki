@@ -66,6 +66,13 @@ Update base system
   make build
 
 
+Upgrade to a new release
+=========================
+
+* Refer to the upgrade documentation e.g. http://www.openbsd.org/faq/upgrade59.html
+* If you cannot upgrade by CD / USB / PXE use the ``Upgrade without the Install Kernel`` documentation
+  
+
 WPA-PSK
 =======
 
