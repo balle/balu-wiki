@@ -125,6 +125,13 @@ UTF-8 system-wide
 .. code-block:: bash
 
   echo 'export LC_ALL="en_US.UTF-8"' >> /etc/profile
+
+
+NTFS
+====
+
+* Built-in NTFS support is read-only
+* Install ntfs-3g from ports to get write support
   
 
 Linux compatibility (untested yet)
@@ -180,6 +187,13 @@ Readmes for packages
 * Can be found in /usr/local/share/doc/pkg-readmes
 
 
+Automatic installation over PXE
+===============================
+
+* Possible with autoinstall
+* http://www.bsdnow.tv/tutorials/autoinstall
+
+  
 Building images for cloud and embedded devices
 ===============================================
 
