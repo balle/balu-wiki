@@ -194,6 +194,17 @@ Readmes for packages
 * Can be found in /usr/local/share/doc/pkg-readmes
 
 
+Disable acpi permanently
+========================
+
+.. code-block:: bash
+
+  mv /bsd /bsd.old
+  config -e -o /bsd /bsd.old
+  ukc>disable acpi
+  ukc>quit
+
+  
 Automatic installation over PXE
 ===============================
 
