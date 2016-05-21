@@ -71,8 +71,25 @@ Upgrade to a new release
 
 * Refer to the upgrade documentation e.g. http://www.openbsd.org/faq/upgrade59.html
 * If you cannot upgrade by CD / USB / PXE use the ``Upgrade without the Install Kernel`` documentation
-  
 
+
+Set clock to localtime
+======================
+
+.. code-block:: bash
+
+  ln -sf /usr/share/zoneinfo/right/CET /etc/localtime
+  rdate -ncv time.fu-berlin.de
+
+
+Increase / derease volumne
+===========================
+
+.. code-block:: bash
+
+  mixerctl outputs.master=100,100
+  
+   
 WPA-PSK
 =======
 
@@ -139,8 +156,19 @@ NTFS
 
 * Built-in NTFS support is read-only
 * Install ntfs-3g from ports to get write support
-  
 
+
+Permanently disable kernel features like ACPI
+==============================================
+
+.. code-block:: bash
+
+  mv /bsd /bsd.old
+  config -e -o /bsd /bsd.old
+  ukc>disable acpi
+  ukc>quit
+
+  
 Linux compatibility (untested yet)
 ==================================
 
