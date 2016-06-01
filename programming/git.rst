@@ -101,8 +101,7 @@ Branching
 .. code-block:: bash
 
   git checkout -b <branch>
-  git push origin <name>
-  git checkout master
+  git push origin <branch>
 
 * Checkout a branch
 
