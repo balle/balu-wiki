@@ -1,19 +1,19 @@
 ########
 OpenBSD
 ########
-  
+
 Filesystem tweaks
 =================
 
 * Configure soft updates everywhere (softdep)
 * Disable access time logging (noatime)
-* If possible mount with noexec, nosuid, nodev 
+* If possible mount with noexec, nosuid, nodev
 
 .. code-block:: bash
 
   <duid> /home ffs rw,nodev,nosuid,noatime,softdep 1 2
 
-  
+
 Ports and packages
 ==================
 
@@ -88,8 +88,8 @@ Increase / derease volumne
 .. code-block:: bash
 
   mixerctl outputs.master=100,100
-  
-   
+
+
 WPA-PSK
 =======
 
@@ -136,7 +136,7 @@ WPA enterprise
 * You must setup wiki card before running wpa_supplicant!
 * It is better to set the bssid
 * wpaakms must be configure otherwise wpa_supplicant will fail!
-  
+
 .. code-block:: bash
 
   ifconfig urtwn0 nwid <ssid> bssid <mac_of_ap> wpa wpaakms 802.1x up
@@ -158,6 +158,20 @@ NTFS
 * Install ntfs-3g from ports to get write support
 
 
+Flash support
+=============
+
+* Adobe and Chrome flash plugins do not work on OpenBSD
+* But you can use Gnash in Firefox
+
+.. code-block:: bash
+
+  pkg_add gnash
+  mkdir /home/<user>/.mozilla/firefox/<account_id>.default/plugins
+  cd /home/<user>/.mozilla/firefox/<account_id>.default/plugins
+  ln -s /usr/local/lib/mozilla/plugins/libgnashplugin.so
+
+
 Permanently disable kernel features like ACPI
 ==============================================
 
@@ -168,7 +182,7 @@ Permanently disable kernel features like ACPI
   ukc>disable acpi
   ukc>quit
 
-  
+
 Linux compatibility (untested yet)
 ==================================
 
@@ -214,23 +228,12 @@ Which program is listening on port x?
 .. code-block:: bash
 
   lsof -i :<port>
-  
-		
+
+
 Readmes for packages
 ====================
 
 * Can be found in /usr/local/share/doc/pkg-readmes
-
-
-Disable acpi permanently
-========================
-
-.. code-block:: bash
-
-  mv /bsd /bsd.old
-  config -e -o /bsd /bsd.old
-  ukc>disable acpi
-  ukc>quit
 
 
 Fix arrow keys in Emacs under Xorg
@@ -246,17 +249,27 @@ Fix arrow keys in Emacs under Xorg
       (define-key arrow-keys-map "B" 'next-line)
       (define-key arrow-keys-map "C" 'forward-char)
       (define-key arrow-keys-map "D" 'backward-char)))
-					  
-  
+
+
 Automatic installation over PXE
 ===============================
 
 * Possible with autoinstall
 * http://www.bsdnow.tv/tutorials/autoinstall
 
-  
+
+Tracing kernel calls
+====================
+
+* Comparable to strace on Linux
+
+.. code-block:: bash
+
+  ktrace -t cn <program>
+  kdump | less
+
+
 Building images for cloud and embedded devices
 ===============================================
 
 * Read http://stable.rcesoftware.com/resflash/
-
