@@ -18,6 +18,14 @@ Install browser plugin
 * Now point your browser to http://localhost:9200/_plugin/head/
 
 
+Dump database
+=============
+
+.. code-block:: bash
+
+  curl -XPUT 'http://localhost:9200/_snapshot/my_backup' -d '{ "type": "fs", "settings": { "location": "/mount/backups/my_backup", "compress": true }}'
+
+
 Configure cluster
 =================
 
