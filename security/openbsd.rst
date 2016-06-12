@@ -149,6 +149,7 @@ UTF-8 system-wide
 .. code-block:: bash
 
   echo 'export LC_ALL="en_US.UTF-8"' >> /etc/profile
+  echo 'export LC_ALL="en_US.UTF-8"' >> ~/.xsession
 
 
 NTFS
