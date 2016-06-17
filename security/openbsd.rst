@@ -220,6 +220,23 @@ List all available disks
   sysctl hw.disknames
 
 
+Ksh config
+==========
+
+* ~/.kshrc
+
+.. code-block:: bash
+
+  export PS1='\[\t\] \u@\h:\w\$ '
+  export EDITOR=/usr/local/bin/zile
+
+  set -o emacs
+
+  alias cp='cp -i'
+  alias mv='mv -i'
+  alias rm='rm -i'
+
+
 Which program is listening on port x?
 =====================================
 
