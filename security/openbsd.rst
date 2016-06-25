@@ -152,6 +152,19 @@ UTF-8 system-wide
   echo 'export LC_ALL="en_US.UTF-8"' >> ~/.xsession
 
 
+Adjust max memory size
+======================
+
+* Edit /etc/login.conf
+
+.. code-block:: bash
+
+  :datasize-max=1024M:\
+  :datasize-cur=1024M:\
+
+* Or set `infinity:` as value
+  
+		      
 NTFS
 ====
 
