@@ -250,6 +250,12 @@ Ksh config
   alias mv='mv -i'
   alias rm='rm -i'
 
+* If you use tmux or screen put the following into ~/.profile
+
+.. code-block:: bash
+
+  export ENV=~/.kshrc
+  
 
 Which program is listening on port x?
 =====================================
