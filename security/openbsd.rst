@@ -197,6 +197,16 @@ Permanently disable kernel features like ACPI
   ukc>quit
 
 
+Automatically adjust cpufreq
+=============================
+
+* Edit /etc/rc.conf.local
+
+.. code-block:: bash
+
+  apmd_flags="-A"
+
+
 Linux compatibility (untested yet)
 ==================================
 
