@@ -35,7 +35,7 @@ Commit
   git revert <version>
 
 
-Edit a commit 
+Edit a commit
 =============
 
 .. code-block:: bash
@@ -126,7 +126,8 @@ Branching
 
 .. code-block:: bash
 
-  git remote show origin
+  git branch -a
+
 
 Merging
 ========
