@@ -92,6 +92,12 @@ Logging
 
   git log -- [filename]
 
+* Show files of a Commit
+
+.. code-block:: bash
+
+  git show --name-only <revision>
+
 
 Branching
 ==========

@@ -2,6 +2,14 @@
 OpenBSD
 ########
 
+What's missing (in mid 2016)?
+=============================
+
+* Bluetooth
+* TRIM support for SSDs
+* Adobe Flash
+
+
 Filesystem tweaks
 =================
 
