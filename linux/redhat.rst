@@ -85,20 +85,32 @@ List contents of uninstalled rpm
 
   rpm -qlp <rpm_file>
 
-Check checksum of installed files
+Unpack rpm without installing
+=============================
+
+.. code-block:: bash
+
+  mkdir bla
+  cd bla
+  rpm2cpio ../ethjudge-backend-libs-1.4-4.el7.noarch.rpm | cpio -idvm
+
+
+Check checksum of files in a rpm
 =================================
-  
+
+* Installed rpm
+
 .. code-block:: bash
 
   rpm -Vv <rpm_file>
 
-* Check that no file from all python packages have changed
+* Uninstalled rpm
 
 .. code-block:: bash
 
-  rpm -Vv `rpm -qa |grep python`
+  rpm -V -p <rpm_file>
 
-  
+
 Exclude a package from update
 =============================
 

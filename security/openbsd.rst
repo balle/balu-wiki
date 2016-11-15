@@ -160,6 +160,19 @@ UTF-8 system-wide
   echo 'export LC_ALL="en_US.UTF-8"' >> ~/.xsession
 
 
+Adjust max memory size
+======================
+
+* Edit /etc/login.conf
+
+.. code-block:: bash
+
+  :datasize-max=1024M:\
+  :datasize-cur=1024M:\
+
+* Or set `infinity:` as value
+  
+		      
 NTFS
 ====
 
@@ -190,6 +203,16 @@ Permanently disable kernel features like ACPI
   config -e -o /bsd /bsd.old
   ukc>disable acpi
   ukc>quit
+
+
+Automatically adjust cpufreq
+=============================
+
+* Edit /etc/rc.conf.local
+
+.. code-block:: bash
+
+  apmd_flags="-A"
 
 
 Linux compatibility (untested yet)
@@ -245,6 +268,12 @@ Ksh config
   alias mv='mv -i'
   alias rm='rm -i'
 
+* If you use tmux or screen put the following into ~/.profile
+
+.. code-block:: bash
+
+  export ENV=~/.kshrc
+  
 
 Which program is listening on port x?
 =====================================
