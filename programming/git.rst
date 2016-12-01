@@ -294,6 +294,25 @@ Ignore existing file (if gitignore doesnt ignore)
   git update-index --assume-unchanged <file>
 
 
+Check consistency
+=================
+
+.. code-block:: bash
+
+  git fsck --progress
+
+
+Dangling commits
+================
+
+* A commit that is not linked to a branch or tag
+
+.. code-block:: bash
+
+  git reflog expire --expire=now --all
+  git gc --prune=now --aggressive
+
+
 Git over HTTP
 =============
 
