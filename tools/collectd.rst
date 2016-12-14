@@ -12,12 +12,32 @@ General
 Check config file
 =================
 
-.. code-block:: bash 
+.. code-block:: bash
 
   collectd -ft
 
 
-Example SNMP config 
+Debugging
+=========
+
+* Add this to your config file
+
+.. code-block:: bash
+
+  LoadPlugin logfile
+  <Plugin logfile>
+    LogLevel debug
+      File STDOUT
+  </Plugin>
+
+* Start collectd in foreground
+
+.. code-block:: bash
+
+  collectd -f -C /etc/collectd.conf
+
+
+Example SNMP config
 ====================
 
 * For single values use ``Table false``
@@ -81,7 +101,7 @@ RRD output
 
 * For using rrdcached (prefered method)
 
-.. code-block:: bash 
+.. code-block:: bash
 
   LoadPlugin rrdcached
   <Plugin "rrdcached">
@@ -134,7 +154,7 @@ Example exec plugin
   HOSTNAME="${COLLECTD_HOSTNAME:-localhost}"
   INTERVAL="${COLLECTD_INTERVAL:-60}"
   FILE=$1
-   
+
    while sleep "$INTERVAL"; do
      VALUE=`cat $FILE | wc -l`
      echo "PUTVAL \"$HOSTNAME/"`basename $FILE`"_count/counter\" interval=$INTERVAL N:$VALUE"
