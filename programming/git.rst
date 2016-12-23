@@ -313,6 +313,14 @@ Dangling commits
   git gc --prune=now --aggressive
 
 
+Convert normal repo to bare
+===========================
+
+.. code-block:: bash
+
+  git clone --bare -l <normal_repo> <bare_repo>
+  
+
 Git over HTTP
 =============
 
