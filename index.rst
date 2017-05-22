@@ -121,6 +121,7 @@ Cluster
 .. toctree::
    :maxdepth: 1
 
+   cluster/ambari
    cluster/ceph
    cluster/clustershell
    cluster/glusterfs
