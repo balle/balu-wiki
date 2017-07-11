@@ -30,7 +30,7 @@ Configure cluster
 =================
 
 * Edit ``/etc/elasticsearch/elasticsearch.yml``
-* Set cluster.name, node.name and network.host
+* Set cluster.name, node.name, network.host and discovery.zen.ping.unicast.hosts
 * Make sure TCP port 9300 is open
 
 
@@ -57,12 +57,27 @@ Cluster autodiscovery is not working
   discovery.zen.ping.unicast.hosts: ["node1.example.com"]
 
 
-Add security to Elasticsearch
-=============================
+Add authentication to Elasticsearch
+===================================
 
-* Need user and rights management or encryption and authentication?
-* Install the plugin shield
-* https://www.elastic.co/products/shield
+* Does not work in cluster mode
+
+.. code-block:: bash
+
+  bin/plugin install license
+  bin/plugin install shield
+
+* Edit elasticsearch.yml
+
+.. code-block:: bash
+
+  action.auto_create_index: .security
+
+* Restart elasticsearch and add a user
+
+.. code-block:: bash
+
+  bin/shield/esusers useradd admin -r admin
 
 
 Insert data manually
