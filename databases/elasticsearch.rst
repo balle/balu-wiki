@@ -13,7 +13,7 @@ Install browser plugin
 
 .. code-block:: bash
 
-  /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head
+  /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
 
 * Now point your browser to http://localhost:9200/_plugin/head/
 
