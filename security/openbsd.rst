@@ -151,6 +151,21 @@ WPA enterprise
   wpa_supplicant -B -c /etc/wpa_supplicant.conf -D openbsd -i urtwn0
 
 
+Connect to a Cisco Anyconnect VPN
+==================================
+
+* Install vpnc
+* Edit /etc/vpnc/my.conf
+
+.. code-block:: bash
+
+  IPSec gateway vpn-gw-name
+  IPSec ID groupname
+  IPSec secret grouppassword
+  Xauth username your-username
+  Xauth password your-password
+
+  
 UTF-8 system-wide
 =================
 
