@@ -171,8 +171,8 @@ Adjust max memory size
   :datasize-cur=1024M:\
 
 * Or set `infinity:` as value
-  
-		      
+
+
 NTFS
 ====
 
@@ -273,7 +273,7 @@ Ksh config
 .. code-block:: bash
 
   export ENV=~/.kshrc
-  
+
 
 Which program is listening on port x?
 =====================================
@@ -328,3 +328,33 @@ Building images for cloud and embedded devices
 ===============================================
 
 * Read http://stable.rcesoftware.com/resflash/
+
+
+Login using Google authenticator or freeotp
+============================================
+
+.. code-block:: bash
+
+  pkg_add login_oath
+
+* Edit `/etc/login.conf`
+
+.. code-block:: bash
+
+  otp:\
+        :auth=-totp-and-pwd:\
+        :tc=default:
+
+* Change users login class
+
+.. code-block:: bash
+
+  usermod -L otp username
+
+* Generate random key
+
+.. code-block:: bash
+
+  openssl rand -base64 20 > ~/.totp-key
+  chmod 700 /home/username
+  chmod 700 /home/username/.totp-key
