@@ -120,3 +120,11 @@ Import CSV
 .. code-block:: bash
 
   copy table from '/some'file' with csv header;
+
+
+Change output format
+====================
+
+.. code-block:: bash
+
+  \x on
