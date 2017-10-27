@@ -66,26 +66,32 @@ SSL config
 
 .. code-block:: bash
 
+  listen 443 ssl;
   ssl on;
-  ssl_certificate /etc/nginx/mycert.pem;
-  ssl_certificate_key /etc/nginx/mycert.pem;
+  ssl_certificate /etc/ssl/nginx-selfsigned.crt;
+  ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+  ssl_dhparam /etc/ssl/dhparam.pem;
 
-  # avoid BEAST attack
-  ssl_ciphers RC4:HIGH:!aNULL:!MD5;
+  ssl_protocols TLSv1.1 TLSv1.2;
   ssl_prefer_server_ciphers on;
+  ssl_ciphers "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH";
+  ssl_ecdh_curve secp384r1;
+  ssl_session_cache shared:SSL:10m;
+  ssl_session_tickets off;
+  ssl_stapling_verify on;
+  add_header Strict-Transport-Security "max-age=15552000; includeSubDomains";
 
-  # cache ssl sessions
-  ssl_session_cache    shared:SSL:10m;
-  ssl_session_timeout  10m;
 
 
-Redirect
-=========
+Redirect http to https
+=======================
 
 .. code-block:: bash
 
-  location / {
-     return       301 https://www.ccc.de$request_uri;
+  server {
+        listen 80;
+        server_name whatever;
+        return 301 https://$host$request_uri;
   }
 
 
