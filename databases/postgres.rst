@@ -149,6 +149,16 @@ Backup / Restore
   echo "SET CONSTRAINTS ALL IMMEDIATE;" | psql
 
 
+Import SQL file
+================
+
+* Beside `psql < sqlfile` there is the possibility to use
+
+.. code-block:: bash
+
+  \i sqlfile
+
+
 Change output format
 ====================
 
