@@ -121,6 +121,33 @@ Import CSV
 
   copy table from '/some'file' with csv header;
 
+Backup / Restore
+================
+
+* Backup in binary format
+
+.. code-block:: bash
+
+  pg_dump -F c -b -U user database > backup.dump
+
+* Restore
+
+.. code-block:: bash
+
+  pg_restore --disable-triggers -U user -d database backup.dump
+
+* If you want to disable all constraints for data import
+
+.. code-block:: bash
+
+  echo "SET CONSTRAINTS ALL DEFERRED;" | psql
+
+* And to enable contraints
+
+.. code-block:: bash
+
+  echo "SET CONSTRAINTS ALL IMMEDIATE;" | psql
+
 
 Change output format
 ====================
