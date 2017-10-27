@@ -47,6 +47,7 @@ Tools
    tools/rrd
    tools/sar
    tools/screen
+   tools/sed
    tools/smartmon
    tools/tmux
    tools/zsh
