@@ -272,7 +272,7 @@ Connect to an existing console
   ssh user@remote -f -N -L 61947:127.0.0.1:61947
 
 * or append `--ssh user@remote` to the ipython console command
-* The kernel.json file can be found in ``~/.ipython/profile_default/security``
+* The kernel.json file can be found in ``/run/user/0/jupyter/`` or ``~/.ipython/profile_default/security``
 
 * To manually create all ssh tunnels
 
