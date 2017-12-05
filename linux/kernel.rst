@@ -2,6 +2,18 @@
 Kernel
 ######
 
+Disable bios network names
+==========================
+
+* Edit /etc/default/grub and add the following to GRUB_CMDLINE_LINUX
+
+.. code-block:: bash
+
+  net.ifnames=0 biosdevname=0
+
+* Run the command update-grub
+  
+  
 USB shuts itself down
 =====================
 

@@ -2,7 +2,7 @@
 OpenBSD
 ########
 
-What's missing (in mid 2016)?
+What's missing (end of 2017)?
 =============================
 
 * Bluetooth
@@ -228,35 +228,6 @@ Automatically adjust cpufreq
 .. code-block:: bash
 
   apmd_flags="-A"
-
-
-Linux compatibility (untested yet)
-==================================
-
-* Currently only works on i386!
-* You may need to build a custom kernel
-
-.. code-block:: bash
-
-  cd /usr/src/sys/arch/$(uname -m)/conf
-  cp GENERIC.MP MYKERNEL
-  echo "option COMPAT_LINUX" >> MYKERNEL
-  config MYKERNEL
-  cd ../compile/MYKERNEL
-  make depend
-  make
-  make install
-  reboot
-
-* Now you can activate it with
-
-.. code-block:: bash
-
-  sysctl kern.emul.linux = 1
-
-* And start your Linux program
-* If it is dynamically linked you need to provide all libs under /emul/linux (easiest way is to unzip a base package e.g. fedorabase there)
-* For more information see http://www.openbsd.org/papers/slack2k11-on_compat_linux.pdf
 
 
 List all available disks
