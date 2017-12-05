@@ -149,6 +149,36 @@ Backup / Restore
   echo "SET CONSTRAINTS ALL IMMEDIATE;" | psql
 
 
+Show all trigger of a table or view
+===================================
+
+.. code-block:: bash
+
+  select * from pg_trigger where tgrelid = 'schema.table'::regclass;
+
+* Schema name can be looked up in output of `\d`
+
+* To get the source code of a trigger use
+
+.. code-block:: bash
+
+  select p.prosrc from pg_trigger t join pg_proc p on p.oid=t.tgfoid where t.tgname = 'RI_ConstraintTrigger_a_130239';
+
+* Or all together
+
+.. code-block:: bash
+
+  select t.*, p.prosrc from pg_trigger t join pg_proc p on p.oid=t.tgfoid where t.tgrelid = 'schema.table'::regclass;
+
+
+Show all functions
+==================
+
+.. code-block:: bash
+
+  \df+
+
+
 Import SQL file
 ================
 
