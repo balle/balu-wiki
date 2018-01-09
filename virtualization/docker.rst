@@ -151,6 +151,7 @@ Get a shell on a running container
 ==================================
 
 .. code-block:: bash
+
   docker exec -it <container_id> bash
 
 
