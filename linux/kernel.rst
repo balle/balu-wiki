@@ -111,6 +111,14 @@ Hotplug CPUs
   echo 1 > /sys/devices/system/cpu/cpu<No>/online
 
 
+Reload CPU microcode without reboot
+===================================
+
+.. code-block:: bash
+
+  echo 1 > /sys/devices/system/cpu/microcode/reload
+
+
 Check if virtualization is enabled
 ==================================
 
