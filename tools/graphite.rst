@@ -43,7 +43,7 @@ Send data to graphite
 
 .. code:: bash
 
-  echo "localhost.hello.world `ps ax | wc -l` `date +%s`" | nc <graphite-srv> 2003
+  echo "localhost.hello.world `ps ax | wc -l` `date +%s`" | nc -q0 <graphite-srv> 2003
 
 * For windows systems use SSC Serv
 
