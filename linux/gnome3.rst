@@ -71,6 +71,16 @@ Reload Gnome config
 * Alt+F2 r
 
 
+Disable automount
+=================
+
+.. code-block:: bash
+
+  gsettings set org.gnome.desktop.media-handling automount false
+  gsettings set org.gnome.desktop.media-handling automount-open false
+  systemctl restart gdm.service
+
+
 Install extensions
 ==================
 
