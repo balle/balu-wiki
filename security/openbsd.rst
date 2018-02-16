@@ -48,7 +48,7 @@ Ports and packages
   cd /usr/ports/<portname>
   make update
 
-* Possible binary updates through packages from https://stable.mtier.org/
+* Possible binary updates through packages from https://stable.mtier.org/ and https://mtier.org/solutions/apps/openup/
 
 
 Update base system
