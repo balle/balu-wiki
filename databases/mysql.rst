@@ -129,6 +129,12 @@ Add index
 
   create index <name> on <table> (<column>);
 
+Change output format
+====================
+
+* To display column names as keys in a list append \G at the end of the query
+
+
 Delete entries older than 30 days
 =================================
 
