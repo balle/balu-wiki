@@ -71,7 +71,7 @@ Selective backup
 
 .. code-block:: sql
 
-  select * into dumpfile "backup.sql" from table where foo="bar";
+  select * into outfile "backup.sql" from table where foo="bar";
 
 
 Create database with utf-8 charset
