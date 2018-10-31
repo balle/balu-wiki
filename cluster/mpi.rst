@@ -6,12 +6,26 @@ Overview
 ========
 
 * MPI is an parallel programming API to execute processes over multiple cores / computers
-* You must install mpich2 and run ``mpd``
-* Remote processes are usually executed via ssh
+* Possible implementations are openmpi or mpich2
+* Remote processes can be e.g. executed via torque, slurm or ssh
+
+.. code-block:: bash
+
+  mpirun --hostfile my_hostfile -np 4 my_parallel_application
+
+* http://mpitutorial.com/tutorials/
 
 
-Source sample
-=============
+Terminology
+============
+
+* A communicator defines a group of processes
+* Each process in a group has a unique rank
+* An optional tag can be used to uniquely identify a message 
+
+  
+Python source sample
+=====================
 
 * pip install mpi4py
 * Run with ``mpiexec -n 4 ./test.py``
