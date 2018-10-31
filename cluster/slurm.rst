@@ -1,11 +1,11 @@
 ######
-Torque
+Slurm
 ######
 
 Overview
 ========
 
-image:: ../images/slurm-arch.gif
+.. image:: ../images/slurm-arch.gif
 
 Setup munge authentication service on controller node
 =====================================================
