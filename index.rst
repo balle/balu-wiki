@@ -131,6 +131,7 @@ Cluster
    cluster/mpi
    cluster/openstack
    cluster/pacemaker
+   cluster/slurm
    cluster/spark
    cluster/torque
 
