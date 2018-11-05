@@ -11,7 +11,7 @@ Setup munge authentication service on controller node
 =====================================================
 
 .. code-block:: bash
-		
+
   apt install munge
   systemctl enable munge
   systemctl start munge
@@ -36,7 +36,7 @@ Setup Slurmdbd on controller node
 * Start mysql and create slurm user
 
 .. code-block:: bash
-  
+
   systemctl enable mysql
   systemctl start mysql
   echo "create database slurm" | mysql
@@ -57,7 +57,7 @@ Setup Slurmdbd on controller node
   systemctl enable slurmdbd
   systemctl start slurmdbd
 
-  
+
 Setup Slurmctld on controller node
 ==================================
 
@@ -88,6 +88,12 @@ Setup Slurmctld on controller node
   # Partition Configurations
   #
   PartitionName=mypart Nodes=my-nodes-[1-42] Default=YES MaxTime=INFINITE State=UP
+
+* To get the number of CPUs, Cores, RealMemory etc for above configuraton
+
+.. code-block:: bash
+
+  slurmd -C
 
 * Start slurmctld
 
@@ -125,7 +131,7 @@ Setup Slurmd on compute node
 
   systemctl enable munge
   systemctl start munge
-  
+
   systemctl enable slurmd
   systemctl start slurmd
 
@@ -146,4 +152,3 @@ Submit a test batch job and show job queue
 
   echo -en '#!/bin/bash\n\nsleep 10\nhostname\n' > test.sh; chmod a+rx test.sh; sbatch ./test.sh
   squeue
-
