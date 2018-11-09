@@ -142,16 +142,26 @@ Merging
 
 .. code-block:: bash
 
-  git checkout <branch>
-  git merge master
-  git checkout master
-  git push origin <branch>
+  git checkout <target-branch>
+  git merge <source-branch>
 
 * Merge just one commit
 
 .. code-block:: bash
 
   git cherry-pick <commit-id>
+
+* Checkout a file from another branch
+
+.. code-block:: bash
+
+  git checkout <branch> <file>
+
+* Show all merge conflicts
+
+.. code-block:: bash
+
+  git status --short | grep "^UU "
 
 
 Tagging
