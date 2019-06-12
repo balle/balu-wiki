@@ -2,7 +2,7 @@
 OpenBSD
 ########
 
-What's missing (end of 2017)?
+What's missing (mid of 2019)?
 =============================
 
 * Bluetooth
@@ -237,6 +237,46 @@ List all available disks
 
   sysctl hw.disknames
 
+
+List all open files
+===================
+
+* For a PID
+
+.. code-block:: bash
+
+  fstat -p <PID>
+
+* For a user
+
+.. code-block:: bash
+
+  fstat -u <user>
+
+  
+Which program is using a specific port
+======================================
+
+.. code-block:: bash
+
+  fstat | grep ':22'
+
+
+Display current network connections
+===================================
+
+.. code-block:: bash
+
+  systat netstat
+
+
+Display I/O throughput
+=======================
+
+.. code-block:: bash
+
+  systat iostat
+  
 
 Ksh config
 ==========
