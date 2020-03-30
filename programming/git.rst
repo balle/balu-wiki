@@ -311,6 +311,15 @@ Sign commits
         gpgsign = true
 
 
+Have a different git config per directory
+=========================================
+
+.. code-block:: bash
+
+    [includeIf "gitdir:~/src/some/dir/"]
+        path = ~/.gitconfig_some_dir
+
+
 Ignore existing file (if gitignore doesnt ignore)
 =================================================
 
