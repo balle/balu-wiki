@@ -34,6 +34,15 @@ What is load?
 * field 4 = number of currently runnable kernel scheduling entities (processes, threads) / number of kernel scheduling entities that currently exist on the system
 * field 5 PID of the process that was most recently created on the system
 
+Hide other users processes
+==========================
+
+* Add hidepid=2 to fstab mount options
+
+.. code-block:: bash
+
+  proc                    /proc                   proc    nosuid,noexec,nodev,hidepid=2 0 0
+  
 
 Find out which driver is in use
 ===============================
