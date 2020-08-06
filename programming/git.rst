@@ -296,6 +296,30 @@ Handling remote repositories
   git remote show origin
 
 
+Sign commits
+============
+
+* Edit ~/.gitconfig
+
+.. code-block:: bash
+
+  [user]
+        name = Bastian Ballmann
+        email = balle@codekid.net
+        signingkey = 0xcodedeadbeef
+  [commit]
+        gpgsign = true
+
+
+Have a different git config per directory
+=========================================
+
+.. code-block:: bash
+
+    [includeIf "gitdir:~/src/some/dir/"]
+        path = ~/.gitconfig_some_dir
+
+
 Ignore existing file (if gitignore doesnt ignore)
 =================================================
 
