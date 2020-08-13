@@ -5,6 +5,8 @@ Basics
 Overview
 ========
 
+* To get information about a function ``(documentation 'foo 'function)'' for a variable use ``'variable''
+* To find documentation about whatever you can eval ``(apropos "whatever")''
 * (print "Hello world")
 * (format "%s" "Hello world")
 * create a global variable with ``defvar`` or ``defparameter``
