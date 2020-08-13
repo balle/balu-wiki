@@ -304,11 +304,9 @@ Ksh config
 Which program is listening on port x?
 =====================================
 
-* Install lsof
-
 .. code-block:: bash
 
-  lsof -i :<port>
+  fstat | grep internet | grep <port>
 
 
 Readmes for packages
