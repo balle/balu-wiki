@@ -24,3 +24,12 @@ Location      Description
 /Volumes      Local mount points
 /Cores        Core dumps
 ============= ==========
+
+
+View APFS metadata
+===================
+
+.. code-block:: bash
+
+  ls -l@
+  xattr -xl

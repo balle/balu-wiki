@@ -35,6 +35,7 @@ MacOS
    macos/disk
    macos/logging
    macos/launchctl
+   macos/network
    macos/security
 
 
