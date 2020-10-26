@@ -32,6 +32,7 @@ MacOS
    :maxdepth: 1
 
    macos/boot
+   macos/disk
    macos/logging
    macos/launchctl
    macos/security
