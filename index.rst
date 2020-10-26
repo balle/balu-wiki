@@ -25,6 +25,15 @@ Linux
    linux/xorg
 
 
+MacOS
+=====
+
+.. toctree::
+   :maxdepth 1
+
+   macos/boot
+
+
 Tools
 =====
 
