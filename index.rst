@@ -33,6 +33,7 @@ MacOS
 
    macos/boot
    macos/logging
+   macos/security
 
 
 Tools

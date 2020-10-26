@@ -38,7 +38,7 @@ Log locations
 =============
 
 ==================== ============
-Path     Description
+Path                 Description
 -------------------- ------------
 /var/log/system.log  System Log 
 /Library/Logs System Application Logs
