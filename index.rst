@@ -32,6 +32,7 @@ MacOS
    :maxdepth: 1
 
    macos/boot
+   macos/logging
 
 
 Tools
