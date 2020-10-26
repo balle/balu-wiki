@@ -37,10 +37,11 @@ Either use the GUI tool Console.app or
 Log locations
 =============
 
-======== ============
+==================== ============
 Path     Description
--------- ------------
-/var/log/system.log System Log 
+-------------------- ------------
+/var/log/system.log  System Log 
 /Library/Logs System Application Logs
-~/Library/Logs User Application Logs
-======== ============
+~/Library/Logs User  Application Logs
+==================== ============
+
