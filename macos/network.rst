@@ -40,3 +40,14 @@ View bluetooth information
 
   system_profiler SPBluetoothDataType
 
+
+List active network connections
+===============================
+
+* And the corresponding processes
+
+.. code-block:: bash
+
+  lsof -i
+
+ 

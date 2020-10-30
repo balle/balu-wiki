@@ -33,6 +33,8 @@ MacOS
 
    macos/boot
    macos/disk
+   macos/forensics
+   macos/general
    macos/logging
    macos/launchctl
    macos/network
