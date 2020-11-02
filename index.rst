@@ -161,6 +161,7 @@ Databases
    databases/mysql
    databases/postgres
    databases/redis
+   databases/sqlite
 
 
 Virtualization
