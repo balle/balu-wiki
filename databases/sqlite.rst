@@ -28,6 +28,14 @@ Dump database or table
   sqlite> .dump
   sqlite> .dump <table>
 
+
+Convert timestamps
+==================
+
+.. code-block:: bash
+
+  sqlite> SELECT datetime(time_column, 'localtime') from <table>
+  
   
 Internal structure
 ==================
