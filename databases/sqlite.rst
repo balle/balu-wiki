@@ -11,6 +11,24 @@ Show tables and databases
   sqlite> .databases
 
 
+Table schema
+============
+
+.. code-block:: bash
+
+  sqlite> .schema <table>
+  
+
+Dump database or table
+======================
+
+.. code-block:: bash
+
+  sqlite> .output /some/path/dump.sql
+  sqlite> .dump
+  sqlite> .dump <table>
+
+  
 Internal structure
 ==================
 
