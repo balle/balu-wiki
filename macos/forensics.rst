@@ -12,6 +12,16 @@ RAM dump
   osxpmem /path/to/memdump.bin
 
 
+Syscall tracing
+================
+
+* You may have to disable system integrity protection to get the desired results
+  
+.. code-block:: bash
+
+  dtruss -f -p <pid> -t <syscall>
+
+
 Disk image
 ==========
 
