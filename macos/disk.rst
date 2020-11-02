@@ -13,17 +13,18 @@ List all disks
 Important Filesystem Locations
 ==============================
 
-============= ==========
-Location      Description
-------------- -----------
-/Applications User installed applications
-/Library      System Libraries
-/Network      Network mountpoints
-/System       System binaries
-/Users        User home directories
-/Volumes      Local mount points
-/Cores        Core dumps
-============= ==========
+=============== ==========
+Location        Description
+--------------- -----------
+/Applications   User installed applications
+/Library        System Libraries
+/Network        Network mountpoints
+/private/var/db System databases and caches
+/System         System binaries
+/Users          User home directories
+/Volumes        Local mount points
+/Cores          Core dumps
+=============== ==========
 
 
 View APFS metadata
