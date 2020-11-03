@@ -43,3 +43,14 @@ Attach APFS container image
   hdiutil attach -nomount container.img
   mount -o rdonly,noexec,noowners /dev/diskX /Volumes/Container
 
+
+Known wifi networks
+===================
+
+And their last connection timestamp can be found in /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist
+
+To display the stored password
+
+.. code-block:: bash
+
+  security find-generic-password -ga <SSID_or_MAC_OF_ACCESS_POINT>
