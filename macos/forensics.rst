@@ -11,6 +11,9 @@ RAM dump
 
   osxpmem /path/to/memdump.bin
 
+* Another tool in Memoryze https://www.fireeye.com/services/freeware/memoryze.html
+* To analyze a memory dump use Volatility https://www.volatilityfoundation.org
+
 
 Syscall tracing
 ================
