@@ -38,4 +38,5 @@ Attach APFS container image
 .. code-block:: bash
 
   hdiutil attach -nomount container.img
+  mount -o rdonly,noexec,noowners /dev/diskX /Volumes/Container
 
