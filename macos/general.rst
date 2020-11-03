@@ -10,6 +10,12 @@ Take a screenshot
 * Single window ``shift + cmd + 4 + space``
 
 
+Lock screen
+===========
+
+with keyboard shortcut cmd + ctrl + q
+
+
 Property list files
 ====================
 
