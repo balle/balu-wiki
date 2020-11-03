@@ -2,8 +2,8 @@
 Forensics
 ##########
 
-RAM dump
-=========
+RAM dump and analysis
+=====================
 
 * Use OSXPMem (only working till macOS 10.13 due to kernel extension)
 
@@ -11,7 +11,7 @@ RAM dump
 
   osxpmem /path/to/memdump.bin
 
-* Another tool in Memoryze https://www.fireeye.com/services/freeware/memoryze.html
+* Another tool is Memoryze https://www.fireeye.com/services/freeware/memoryze.html (officially supports macos up to 10.8)
 * To analyze a memory dump use Volatility https://www.volatilityfoundation.org
 
 
