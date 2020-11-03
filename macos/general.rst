@@ -16,6 +16,21 @@ Lock screen
 with keyboard shortcut cmd + ctrl + q
 
 
+Safari keyboard shortcuts
+==========================
+
+================== ==============
+Shortcut           Description
+------------------ --------------
+crtl + tab         Next tab
+ctrl + shift + tab Previous tab
+cmd + 1-9          Jump to tab 1-9
+cmd + [            Go url backwards
+cmd + ]            Go url forward
+cmd + option + u   Show source code
+================== ==============
+
+
 Property list files
 ====================
 
