@@ -54,3 +54,17 @@ To display the stored password
 .. code-block:: bash
 
   security find-generic-password -ga <SSID_or_MAC_OF_ACCESS_POINT>
+
+
+Known bluetooth devices
+=======================
+
+.. code-block:: bash
+
+  plutil -p /Library/Preferences/com.apple.Bluetooth.plist
+
+* Link keys can be found with
+
+.. code-block:: bash
+
+  plutil -p /private/var/root/Library/Preferences/com.apple.bluetoothd.plist
