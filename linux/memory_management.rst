@@ -67,3 +67,4 @@ Memory dump for forensics
 
 * Microsoft AVML (Acquire Volatile Memory for Linux)
 * Linux Memory Extractor LiME https://github.com/504ensicsLabs/LiME
+* A tutorial on how to use avml and volatility framework to analyze the dump can be found here https://youtu.be/6Frec5cGzOg
