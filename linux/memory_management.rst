@@ -62,3 +62,9 @@ Configs
 * vfs_cache_pressure - wenn 0 gibt nach möglichkeit keinen vfs cache frei wenn 100 oder mehr gib lieber vfs cache frei
 
 
+Memory dump for forensics
+=========================
+
+* Microsoft AVML (Acquire Volatile Memory for Linux)
+* Linux Memory Extractor LiME https://github.com/504ensicsLabs/LiME
+* A tutorial on how to use avml and volatility framework to analyze the dump can be found here https://youtu.be/6Frec5cGzOg
