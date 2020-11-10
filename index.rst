@@ -38,6 +38,7 @@ MacOS
    macos/logging
    macos/launchctl
    macos/network
+   macos/performance
    macos/security
 
 
