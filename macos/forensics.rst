@@ -24,6 +24,12 @@ Syscall tracing
 
   dtruss -f -p <pid> -t <syscall>
 
+* The following command enables system integrity protection without disabling dtrace used by dtruss 
+
+.. code-block:: bash
+
+  crsutil enable --without dtrace
+  
 
 Disk image
 ==========
