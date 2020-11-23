@@ -22,18 +22,16 @@ Filesystem tweaks
   <duid> /home ffs rw,nodev,nosuid,noatime,softdep 1 2
 
 
-Ports and packages
-==================
+Ports
+=====
 
-* Packages dont get security updates!
-* Therefore configure ports to use packages if possible
-* And follow the stable ports branch
+* Checkout stable ports branch
 
 .. code-block:: bash
 
   echo "FETCH_PACKAGES=yes" >> /etc/mk.conf
   cd /usr
-  cvs -qd anoncvs@anoncvs.ca.openbsd.org:/cvs get -rOPENBSD_5_9 -P ports
+  cvs -qd anoncvs@anoncvs.ca.openbsd.org:/cvs get -rOPENBSD_6_8 -P ports
 
 * Which packages / ports need to be updated?
 
@@ -54,31 +52,21 @@ Ports and packages
 Update base system
 ==================
 
-* Follow patch branch
-
 .. code-block:: bash
 
-  cd /usr
-  cvs -qd anoncvs@anoncvs.ca.openbsd.org:/cvs get -rOPENBSD_5_9 -P src
-  cd /usr/src/sys/arch/$(uname -m)/conf
-  config GENERIC
-  cd /usr/src/sys/arch/$(uname -m)/compile/GENERIC
-  make clean && make
-  make install
-  reboot
-  rm -rf /usr/obj/*
-  cd /usr/src
-  make obj
-  cd /usr/src/etc && env DESTDIR=/ make distrib-dirs
-  cd /usr/src
-  make build
-
+  syspatch
+  
 
 Upgrade to a new release
 =========================
 
-* Refer to the upgrade documentation e.g. http://www.openbsd.org/faq/upgrade59.html
-* If you cannot upgrade by CD / USB / PXE use the ``Upgrade without the Install Kernel`` documentation
+* Refer to the upgrade documentation e.g. http://www.openbsd.org/faq/upgrade68.html
+
+.. code-block:: bash
+
+  sysupgrade
+
+* If you cannot or dont want to upgrade by CD / USB / PXE / sysupgrade use the ``Upgrade without the Install Kernel`` documentation
 
 
 Set clock to localtime
