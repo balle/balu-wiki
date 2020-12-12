@@ -5,7 +5,7 @@ Network
 List available wifi networks 
 =============================
 
-.. code-block::
+.. code-block:: bash
 
   airport -s
 
