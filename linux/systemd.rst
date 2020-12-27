@@ -364,7 +364,7 @@ Disable Resolved
   systemctl disable systemd-resolved
   systemctl stop systemd-resolved
 
-* Edit /etc/NetworkManager/NetworkManager.conf and add `dns=default`
+* Edit /etc/NetworkManager/NetworkManager.conf and add `dns=default` in the `[main]` section
 
 .. code-block:: bash
 
