@@ -297,6 +297,14 @@ Which program is listening on port x?
   fstat | grep internet | grep <port>
 
 
+Ignore wifi deauth packets
+==========================
+
+.. code-block:: bash
+
+  ifconfig urtwn0 nwflag stayauth
+
+  
 Readmes for packages
 ====================
 
