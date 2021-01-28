@@ -36,6 +36,7 @@ OpenBSD
    openbsd/software
    openbsd/disk
    openbsd/network
+   openbsd/pf
 
 
 MacOS
@@ -123,7 +124,6 @@ Security
    security/honeypot
    security/iptables
    security/openssl
-   security/pf
    security/selinux
 
 

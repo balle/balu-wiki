@@ -1,26 +1,6 @@
-############
-PF (OpenBSD)
-############
-
-PF the BSD Firewall 
-====================
-
-All you will find here may as well work on freeBSD or netBSD but some thinks may work on ''openBSD''  only.
-
-To let the openBSD a firewall between 2 or more networks you first have to set it up to forward traffic like defined in the routing table this is must off the time referred  as a gateway or router. 
-
-Exec the following commands to enable IP Forwarding temporarily.
-
-.. code-block:: bash
-
- sysctl net.inet.ip.forwarding=1
-
-To make this setting permanent add the following line to the file /etc/sysctl.conf
-
-.. code-block:: bash
-
- net.inet.ip.forwarding=1
-
+#####################
+PF (Packet Filtering)
+#####################
 
 pfctl 
 =====
@@ -35,6 +15,7 @@ This utility is provided with every PF installation and controls the PF demon. T
  pfctl -v # verbose output
  pfctf -nf <file-name> # compiles PF ruleset but do not load them (got for testing)
 
+ 
 PF boot up 
 ==========
 
@@ -44,6 +25,7 @@ To start PF at boot up you have to add the following lines to the ''/etc/rc.conf
 
  pf=YES
 
+ 
 PF reload 
 ==========
 
@@ -53,6 +35,7 @@ To restart, stop or start PF in a running system use:
  
  /etc/rc.dpf restart
 
+ 
 PF Debugging 
 ============
 
@@ -61,11 +44,13 @@ PF could be simply debugged via the pflog0 interface that behaves as a normal in
 .. code-block:: bash
  
  tcpdump -netttti pflog0 
+
  
 pf rules 
 ========
 
 If not defined other in the ''/etc/rc.conf.locale'' the PF ruleset is configured in the file ''/etc/pf.conf'' 
+
 
 processing the rules 
 ====================
@@ -76,6 +61,7 @@ Since version 4.2 die Option ''set rulset-optimization'' is set to ''basic'' whi
  * put rules together for easy handling
  * resort the quick rules for better passing
 If this Option is set to “profile” PF will use the loaded ruleset as a profile for the real network traffic to set the order for the quick rules to be most effective. 
+
 
 simple client rule set
 ======================
@@ -88,6 +74,7 @@ From the client point of view the simplest ruleset would be to allow everything 
  pass out all keep state
 
 You could even leave the ''keep state'' option away, because the PF firewall is keeping the state of the connections in default mode.
+
 
 lists, macros and tables 
 ========================
@@ -107,8 +94,9 @@ To see the input in a table of a running PF firewall use:
 
 .. code-block:: bash
 
- sudo pfctl -t clients -T -T show
+ doas pfctl -t clients -T -T show
 
+ 
 keep it simple (IN ON, OUT ON or ALL) 
 =====================================
 
@@ -131,6 +119,7 @@ To make your configuration more simple at this point you could define the follow
  pass proto tcp from server1:network to server2:network
 
 For every rule part that is not defined PF will set in ALL, that could be tricky at some times. SO be careful where and when to reduce you rules.
+
 
 first small network rule set 
 =============================
@@ -158,6 +147,7 @@ first small network rule set
  # allow traceroute to pass
  pass out on $ext_if inet proto udp port 33433 >< 33626 # opens the udp ports between 334433 and 33626 from the local network
 
+ 
 shaping and bandwidth spliting queues 
 =====================================
 
@@ -234,6 +224,7 @@ To enable it over an reboot you will have to enable it in the /etc/sysctl.conf.
 
  net.inet.carp.allow=1
 
+ 
 Passiv Active Mode 
 ==================
 
@@ -243,6 +234,7 @@ IF you do not have a console based access to each maschine you should first of a
 
 For the following exaples we assume that we have the internal IP frame 192.168.0/24 and the external IP Frame 10.10.10/24. We will configure the IPs 192.168.0.1 as the internal CARP address and the IPs 10.10.10.1 as the external CARP address. To be able to communicate with the maschines we will give the active firewall the IP 192.168.0.2 and the passiv maschine the IP 192.168.0.3. The external interface we will just give an CARP IP to share between each other. For the pfsync connection we will configure 2 more Interfaces with the IPs 172.16.0.1/30 and 172.16.0.2/30. 
 
+
 Setup pysikal internal interfaces 
 =================================
 
@@ -250,18 +242,18 @@ To set up the IPs for the internal physikal interface add the following line in 
 
 .. code-block:: bash
 
- zile /etc/hostname.bnx1
+ mg /etc/hostname.bnx1
  up description external interface
- zile /etc/hostname.bnx2
+ mg /etc/hostname.bnx2
  192.168.0.2/24 description internal communication 
  
 On the other maschien we do the same with the other ip
 
 .. code-block:: bash
 
- zile /etc/hostname.bnx1
+ mg /etc/hostname.bnx1
  up description external interface
- zile /etc/hostname.bnx2
+ mg /etc/hostname.bnx2
  192.168.0.3/24 description internal communication 
  
 
@@ -272,6 +264,7 @@ To activate the interface execute the following command on both maschienes.
  /etc/netstart 
 
 If you do not specify the interface name all interfaces will be configured as discribed in the /etc/hostname.* files.  You could also configure all interfaces via the ifconfig command but then the configration will be lost after an reboot.
+
 
 Setup the CARP virtual interfaces 
 =================================
@@ -287,23 +280,24 @@ With all this parameters the external and internal carp interface could be confi
 
 .. code-block:: bash
 
- zile /etc/hostname.carp1 
+ mg /etc/hostname.carp1 
  10.10.10.1/24 vhid 2 advskew 20 carpdev bnx1  pass ppppp
  description external carp master
- zile /etc/hostname.carp2 
+ mg /etc/hostname.carp2 
  192.168.0.1/24 vhid 1 advskew 20 carpdev bnx2 pass PPPPP
  description internal carp master
 
- zile /etc/hostname.carp1 
+ mg /etc/hostname.carp1 
  10.10.10.1/24 vhid 2 advskew 120 carpdev bnx1 pass ppppp
  description external carp backup
- zile /etc/hostanme.carp2 
+ mg /etc/hostanme.carp2 
  192.168.0.1/24 vhid 1 advskew 120 carpdev bnx2 pass PPPPP
  description internal carp backup
 
 To up this interfaces we need again to execute the command /etc/netstart
 
 With this config the master is sending ist helo pakets each 1,20 secounds and the backend is sending the helo packet every 2,20 secounds.
+
 
 State Synchronization (pfsync) 
 ==============================
@@ -312,13 +306,14 @@ To have a pf state-table synchronization, you will only need to configure a pysi
 
 .. code-block:: bash
 
- zile /etc/hostname.bnx0
+ mg /etc/hostname.bnx0
  172.16.0.1/30
  description pysical sync interface
- zile /etc/hostname.pfsync0
+ mg /etc/hostname.pfsync0
  up syncdev bnx0 syncpeer 172.16.0.1
 
 If you put a syncpeer option in the syncdev configuration the sync device will only exapte traffic from this ip and send the sync traffic to this IP. BUt this is only possible if you have only 1 backup maschie in your carp group. A other way to protect your sync traffic if to create a ipsec tunnel between the servers and run the sync traffic over it.
+
 
 PF Rule Set 
 ============

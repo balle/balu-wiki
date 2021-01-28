@@ -70,6 +70,22 @@ Connect to a Cisco Anyconnect VPN
   Xauth password your-password
 
 
+Enable IP forwarding
+====================
+
+To make the system route packets, execute
+
+.. code-block:: bash
+
+ sysctl net.inet.ip.forwarding=1
+
+For a permanent configuration, edit  /etc/sysctl.conf and add
+
+.. code-block:: bash
+
+ net.inet.ip.forwarding=1
+
+
 Which program is using a specific port
 ======================================
 
