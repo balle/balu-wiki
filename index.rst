@@ -25,6 +25,19 @@ Linux
    linux/xorg
 
 
+OpenBSD
+=======
+
+.. toctree::
+   :maxdepth: 1
+
+   openbsd/base
+   openbsd/kernel
+   openbsd/software
+   openbsd/disk
+   openbsd/network
+
+
 MacOS
 =====
 
@@ -109,7 +122,6 @@ Security
    security/grsecurity
    security/honeypot
    security/iptables
-   security/openbsd
    security/openssl
    security/pf
    security/selinux
