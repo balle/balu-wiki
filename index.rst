@@ -37,6 +37,7 @@ OpenBSD
    openbsd/disk
    openbsd/network
    openbsd/pf
+   openbsd/xorg
 
 
 MacOS
