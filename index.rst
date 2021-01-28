@@ -38,6 +38,7 @@ OpenBSD
    openbsd/network
    openbsd/pf
    openbsd/xorg
+   openbsd/multimedia
 
 
 MacOS
