@@ -6,7 +6,6 @@ What's missing (mid of 2019)?
 =============================
 
 * Bluetooth
-* TRIM support for SSDs
 * Adobe Flash
 
 
@@ -264,8 +263,18 @@ Display I/O throughput
 .. code-block:: bash
 
   systat iostat
-  
 
+
+Create an encrypted image file
+===============================
+
+.. code-block:: bash
+
+  dd if=/dev/zero of=my_encrypted.img bs=1m count=1024
+  vnconfig -k /dev/vnd0c my_encrypted.img
+  newfs /dev/vnd0
+
+  
 Ksh config
 ==========
 
@@ -274,7 +283,7 @@ Ksh config
 .. code-block:: bash
 
   export PS1='\[\t\] \u@\h:\w\$ '
-  export EDITOR=/usr/local/bin/zile
+  export EDITOR=/usr/bin/mg
 
   set -o emacs
 
