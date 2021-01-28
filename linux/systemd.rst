@@ -356,6 +356,22 @@ Power management
   systemctl hibernate
 
 
+Disable Resolved
+================
+
+.. code-block:: bash
+
+  systemctl disable systemd-resolved
+  systemctl stop systemd-resolved
+
+* Edit /etc/NetworkManager/NetworkManager.conf and add `dns=default` in the `[main]` section
+
+.. code-block:: bash
+
+  rm /etc/resolv.conf
+  systemctl restart NetworkManager
+  
+  
 Use systemd as inetd
 ====================
 
