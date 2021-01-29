@@ -10,15 +10,6 @@ Set clock to localtime
   ln -sf /usr/share/zoneinfo/right/CET /etc/localtime
   rdate -ncv time.fu-berlin.de
 
-
-Increase / derease volumne
-===========================
-
-.. code-block:: bash
-
-  mixerctl outputs.master=100,100
-
-
   
 UTF-8 system-wide
 =================
