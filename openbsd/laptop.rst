@@ -23,4 +23,4 @@ Do not suspend on lid close
 
 .. code-block:: bash
 
-  sysctl hw.lidsuspend=0
+  sysctl machdep.lidaction=0
