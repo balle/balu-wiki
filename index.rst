@@ -39,6 +39,7 @@ OpenBSD
    openbsd/pf
    openbsd/xorg
    openbsd/multimedia
+   openbsd/laptop
 
 
 MacOS
