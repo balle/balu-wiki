@@ -50,6 +50,14 @@ Add a new wifi connection
   nmcli con modify MyNet wifi-sec.key-mgmt wpa-psk
   nmcli con modify MyNet wifi-sec.psk 'password'
 
+
+Add OpenVPN config file
+========================
+
+.. code-block:: bash
+
+  nmcli connection import type openvpn file /etc/openvpn/client/crb.conf
+  
   
 Applet
 ======
