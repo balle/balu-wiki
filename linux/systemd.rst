@@ -356,8 +356,36 @@ Power management
   systemctl hibernate
 
 
-Disable Resolved
-================
+Using Resolved
+===============
+
+* List interfaces and their attached dns server
+
+.. code-block:: bash
+
+  resolvectl dns
+
+* List interfaces and their dns search domain(s)
+
+.. code-block:: bash
+
+  resolvectl domain
+
+* Do a DNS query
+
+.. code-block:: bash
+
+  resolvectl query <host>
+
+* Debugging
+
+.. code-block:: bash
+
+  resolvectl log-level debug
+
+
+Disabling Resolved
+===================
 
 .. code-block:: bash
 
