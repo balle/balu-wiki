@@ -98,7 +98,7 @@ Build your own CA
 
 .. code-block:: bash
 
-  openssl genrsa -aes256  -out client.ket 4096
+  openssl genrsa -aes256  -out client.key 4096
   openssl req -new -key client.key -out client.csr
 
 * Sign the CSR
