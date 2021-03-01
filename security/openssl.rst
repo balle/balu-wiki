@@ -47,6 +47,13 @@ Basic stuff
 
   openssl rsa -in <key_file> -check
 
+* Check that private key matches certificate (both hashes must match)
+
+.. code-block:: bash
+
+  openssl rsa -noout -modulus -in /etc/pki/tls/private/my-private.key | openssl sha512
+  openssl x509 -noout -modulus -in /etc/pki/tls/certs/my-cert.pem | openssl sha512
+  
 * Remove password from a private key
 
 .. code-block:: bash
@@ -79,8 +86,30 @@ Basic stuff
   openssl verify -crl_check -CApath /etc/ssl/certs cert.pem
 
 
-CA stuff
-=========
+Build your own CA
+==================
+
+.. code-block:: bash
+
+  openssl genrsa -aes256 -out ca.key 4096
+  openssl req -x509 -new -key ca.key -days 1825 -out ca-root.crt -sha512
+
+* Create a new key and certificate signing request
+
+.. code-block:: bash
+
+  openssl genrsa -aes256  -out client.ket 4096
+  openssl req -new -key client.key -out client.csr
+
+* Sign the CSR
+
+.. code-block:: bash
+
+  openssl x509 -req -days 365 -in client.csr -signkey ca.key -out client.crt
+  
+
+Usage of CA.pl
+===============
 
 * Build your own CA
 
@@ -101,6 +130,10 @@ CA stuff
 .. code-block:: bash
 
   /usr/lib/ssl/misc/CA.pl -sign
+
+
+More CA stuff
+==============
 
 * Create a Certificate Revocation List (CRL)
 
