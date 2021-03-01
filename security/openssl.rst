@@ -105,7 +105,7 @@ Build your own CA
 
 .. code-block:: bash
 
-  openssl x509 -req -days 365 -in client.csr -signkey ca.key -out client.crt
+  openssl x509 -req -days 365 -in client.csr -CA ca-root.crt -CAkey ca.key -CAcreateserial -out client.crt
   
 
 Usage of CA.pl
