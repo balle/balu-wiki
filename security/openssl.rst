@@ -53,6 +53,12 @@ Basic stuff
 
   openssl rsa -noout -modulus -in /etc/pki/tls/private/my-private.key | openssl sha512
   openssl x509 -noout -modulus -in /etc/pki/tls/certs/my-cert.pem | openssl sha512
+
+* Check cert signature with CA cert
+
+.. code-block:: bash
+
+  openssl verify -CAfile ca.pem client.pem
   
 * Remove password from a private key
 
