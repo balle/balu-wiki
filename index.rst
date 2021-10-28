@@ -58,6 +58,15 @@ MacOS
    macos/performance
    macos/security
 
+Windows
+=======
+
+.. toctree::
+   :maxdepth: 1
+
+   windows/general
+   windows/powershell 
+
 
 Tools
 =====
