@@ -58,3 +58,20 @@ Loop
 .. code-block:: powershell
 
   Get Process -Name msedge | ForEach-Object { $_.Kill() }
+
+
+Recursive directory actions
+===========================
+
+.. code-block:: powershell
+
+  get-childitem -Recurse C:\Users | foreach-object { S_.Name }
+
+
+File Operations
+===============
+
+* Copy-Item
+* Move-Item
+* Rename-Item
+* Remove-Item
