@@ -64,6 +64,7 @@ Windows
 .. toctree::
    :maxdepth: 1
 
+   windows/forensics
    windows/general
    windows/powershell 
 
