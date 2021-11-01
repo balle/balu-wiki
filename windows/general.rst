@@ -23,5 +23,5 @@ Logs
 ====
 
 * Open Event Log app
-
+* To log stuff like failed login attempts open local security policy app -> local policies -> audit
 
