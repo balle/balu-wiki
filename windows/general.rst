@@ -6,7 +6,7 @@ Ansible on Windows
 ==================
 
 * Install Cygwin with Git and Ansible
-* Install OpenSSH Server via "Additional Features" app
+* Install OpenSSH Server via Settings -> Apps -> Apps and Features -> Optional Features -> Add a feature
 * Edit C:\ProgramData\ssh\sshd_config to change ListenAddress to 127.0.0.1
 * Start service via services app
 
