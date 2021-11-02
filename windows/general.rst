@@ -7,7 +7,32 @@ Package Manager
 
 * https://chocolatey.org/
 
-  
+
+Logs
+====
+
+* Open Event Log app
+* To log stuff like failed login attempts open local security policy app -> local policies -> audit
+
+
+Keyboard shortcuts
+==================
+
+===================== ==============
+Shortcut              Description
+--------------------- --------------
+Windows + A           Infocenter
+Windows + D           Show desktop
+Windows + E           Explorer
+Windows + I           Settings
+Windows + K           Connect
+Windows + L           Lock screen
+Windows + R           Execute
+Windows + V           Clipboard
+Windows + left/right  Split desktop
+Strg + Shift + Enter  Execute seleted programm as administrator
+
+
 Ansible on Windows
 ==================
 
@@ -16,10 +41,4 @@ Ansible on Windows
 * Edit C:\ProgramData\ssh\sshd_config to change ListenAddress to 127.0.0.1
 * Start service via services app
 
-
-Logs
-====
-
-* Open Event Log app
-* To log stuff like failed login attempts open local security policy app -> local policies -> audit
 
