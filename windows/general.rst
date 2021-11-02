@@ -2,6 +2,12 @@
 General
 #######
 
+Package Manager
+===============
+
+* https://chocolatey.org/
+
+  
 Ansible on Windows
 ==================
 
