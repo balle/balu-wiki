@@ -7,24 +7,26 @@ Dynamically create a menu
 
 * Create menu.py with following content
 
-from menus.base import NavigationNode
-from cms.menu_bases import CMSAttachMenu
-from menus.menu_pool import menu_pool
-from django.core.urlresolvers import reverse
-from myapp.models import Category
+.. code-block:: python
 
-class CategorieMenu(CMSAttachMenu):
-    name = "Categories Menu"
+  from menus.base import NavigationNode
+  from cms.menu_bases import CMSAttachMenu
+  from menus.menu_pool import menu_pool
+  from django.core.urlresolvers import reverse
+  from myapp.models import Category
 
-    def get_nodes(self, request):
-        nodes = []
+  class CategorieMenu(CMSAttachMenu):
+      name = "Categories Menu"
 
-        for category in Category.objects.all():
-            nodes.append(NavigationNode(category.name,
-                                        reverse("category_list", kwargs={"category": category.name}),
-                                        category.pk,
-                                    ))
+      def get_nodes(self, request):
+          nodes = []
 
-        return nodes
+          for category in Category.objects.all():
+              nodes.append(NavigationNode(category.name,
+                                          reverse("category_list", kwargs={"category": category.name}),
+                                          category.pk,
+                                      ))
 
-menu_pool.register_menu(CategorieMenu)
+          return nodes
+
+  menu_pool.register_menu(CategorieMenu)

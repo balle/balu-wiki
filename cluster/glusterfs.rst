@@ -235,7 +235,7 @@ Troubleshooting
   gluster volume heal <volname> info
 
 
-* `{path} or a prefix of it is already part of a volume ` -> you forgot to remove the brick before deleting the volume
+* ``{path} or a prefix of it is already part of a volume`` -> you forgot to remove the brick before deleting the volume
 
 .. code-block:: bash
 
