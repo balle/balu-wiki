@@ -343,7 +343,7 @@ Firewall config
 
 * First install firewall module
 
-.. code-block::
+.. code-block:: bash
 
   puppet module install puppetlabs-firewall
 
