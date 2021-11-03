@@ -69,6 +69,7 @@ Windows
 
    windows/forensics
    windows/general
+   windows/logging
    windows/network
    windows/powershell
    windows/security
