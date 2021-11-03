@@ -24,6 +24,7 @@ Windows + R           Execute
 Windows + V           Clipboard
 Windows + left/right  Split desktop
 Strg + Shift + Enter  Execute seleted programm as administrator
+===================== ==============
 
 
 Ansible on Windows
