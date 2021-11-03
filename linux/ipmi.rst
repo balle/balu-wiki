@@ -145,7 +145,7 @@ Configure user
 Get serial console
 ==================
 
-.. code-block::
+.. code-block:: bash
 
   ipmiconsole -h $host -u $user -P
 
