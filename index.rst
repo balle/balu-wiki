@@ -58,6 +58,7 @@ MacOS
    macos/performance
    macos/security
 
+
 Windows
 =======
 
@@ -67,7 +68,8 @@ Windows
    windows/forensics
    windows/general
    windows/network
-   windows/powershell 
+   windows/powershell
+   windows/security
 
 
 Tools
