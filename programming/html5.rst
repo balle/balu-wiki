@@ -5,7 +5,7 @@ HTML5
 Basics
 =======
 
-.. code-block:: html5
+.. code-block:: html
 
   <!DOCTYPE html>
   <html>
@@ -15,7 +15,7 @@ Basics
     <body>
       <header>Dies ist die &UUml;berschrift</header>
       <nav><a>Link1|</a><a>Link2</a></nav>
-    
+
       <section>
         <header>Artikel&uuml;berschrift</header>
         <p>Ganz viel tolles Bla Bla</p>
@@ -30,7 +30,7 @@ Basics
 Forms
 =====
 
-.. code-block:: html5
+.. code-block:: html
 
     <form>
       <fieldset>
@@ -54,7 +54,7 @@ Forms
 Audio
 =====
 
-.. code-block:: html5
+.. code-block:: html
 
   <audio controls>
     <source src="track.mp3" type="audio/mpeg" />
@@ -64,7 +64,7 @@ Audio
 Video
 =====
 
-.. code-block:: html5
+.. code-block:: html
 
   <video controls>
     <source src="movie.mp4" />

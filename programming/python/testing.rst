@@ -127,7 +127,7 @@ Mocking
 
 * Using mock without nose
 
-.. code-python:: Python
+.. code-block:: python
 
   from mock import Mock
 
@@ -136,6 +136,6 @@ Mocking
 
 * Using flexmock
 
-.. code-python:: Python
+.. code-block:: python
 
   flexmock(SomeObject).should_receive('some_method').and_return('some', 'values')
