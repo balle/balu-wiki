@@ -9,7 +9,7 @@ Lisp
    lisp/clos
    lisp/database
    lisp/date
-   lisp/debugging
+   lisp/debug
    lisp/elisp
    lisp/filesystem
    lisp/input-output

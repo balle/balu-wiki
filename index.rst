@@ -20,7 +20,9 @@ Linux
    linux/lvm
    linux/memory_management
    linux/pandora
+   linux/policykit
    linux/redhat
+   linux/sudo
    linux/systemd
    linux/xorg
 

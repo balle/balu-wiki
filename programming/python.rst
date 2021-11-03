@@ -21,11 +21,13 @@ Python
    python/metaprogramming
    python/misc
    python/multiprocessing
+   python/networking
    python/pandas
    python/performance
    python/pip
    python/pygraphviz
    python/pylint
+   python/qt
    python/shell
    python/soap
    python/string
