@@ -2,36 +2,34 @@
 Memory Management
 #################
 
-What is the Linux Page Cache 
+What is the Linux Page Cache
 =============================
 
 * http://www.linux-tutorial.info/modules.php?name=MContent&pageid=310
 
-Page cache and swap config 
+Page cache and swap config
 ===========================
 
 * http://www.westnet.com/~gsmith/content/linux-pdflush.htm
 
-Large page support 
+Large page support
 ===================
 
 * http://linuxgazette.net/155/krishnakumar.html
 
-choosing an i/o scheduler 
+choosing an i/o scheduler
 ==========================
 
 * http://www.redhat.com/magazine/008jun05/features/schedulers/
 
-Misc 
+Misc
 =====
 
-* openbook: understanding the linux virtual memory manager
-http://www.kernel.org/doc/gorman/html/understand/
-
+* openbook: understanding the linux virtual memory manager http://www.kernel.org/doc/gorman/html/understand/
 * die anzeige bei cached steht für den disk cache
 
 
-Page cache 
+Page cache
 ===========
 
 * To free pagecache:
@@ -52,7 +50,7 @@ Page cache
 
   echo 3 > /proc/sys/vm/drop_caches
 
-Configs 
+Configs
 ========
 
 * /proc/sys/vm/dirty_writeback_centisecs 500 - 5 sekunden wann der disk cache aufgeräumt wird

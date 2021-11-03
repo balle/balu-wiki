@@ -37,5 +37,4 @@ WYSIWYG-TextField-Editor
     theme_advanced_buttons3 : ""
   });
 
-* In the template remember to use |safe filter
-
+* In the template remember to use `|safe` filter
