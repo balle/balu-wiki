@@ -5,17 +5,18 @@ Wireshark
 Shortcuts
 =========
 
-============ ============
-Shortcut Description
-============ ============
-ctrl+k       Capture dialog
-ctrl+e       Start / stop capture
-alt+a        Analyze menu
-alt+s        Statistics menu
-ctrl+m       Mark packet
-shift+ctrl+n Next marked packet
-shift+ctrl+b Previous marked packet
-============ ============
+============= ============
+Shortcut      Description
+============= ============
+ctrl+k        Capture dialog
+ctrl+e        Start / stop capture
+alt+a         Analyze menu
+alt+s         Statistics menu
+ctrl+m        Mark packet
+shift+ctrl+n  Next marked packet
+shift+ctrl+b  Previous marked packet
+============= ============
+
 
 
 Wifi

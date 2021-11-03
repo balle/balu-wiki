@@ -36,7 +36,7 @@ Import-Hook
 
 
 Inrospect imports with compiler
-==============================
+===============================
 
 .. code-block:: Python
 
