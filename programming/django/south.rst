@@ -6,7 +6,7 @@ copy one field to another
 =========================
 
 * django-admin.py datamigration app migration_name
-*. edit migration
+* edit migration
 
 .. code-block:: python
 
@@ -20,5 +20,3 @@ copy one field to another
     def backwards(self, orm):
         "Write your backwards methods here."
         raise RuntimeError("Cannot reverse this migration.")
-
-

@@ -3,11 +3,10 @@ Cisco
 ######
 
 
- Allgemeines 
-=============
+Allgemeines
+============
 
 * com2usb linux driver pl2303.ko
-
 * running config mit passwörtern anzeigen
 
 .. code-block:: bash
@@ -32,8 +31,8 @@ Cisco
   show mem
 
 
- Grundconfiguration 
-================
+Grundconfiguration
+===================
 
 * hostname lalala
 * domain-name schwubs.tld
@@ -103,7 +102,7 @@ Cisco
 
 
 
-Routing 
+Routing
 ========
 
 * Default Gateway setzen (device ip mask gateway)
@@ -125,8 +124,8 @@ Routing
   ip verify reverse-path interface <iface>
 
 
- VLAN 
-=======
+VLAN
+======
 
 * trunk port = port der in mehreren vlans hängt
 
@@ -148,8 +147,8 @@ Routing
   sh vlan
 
 
- ARP 
-======
+ARP
+=====
 
 * ARP Cache anzeigen lassen
 
@@ -159,8 +158,8 @@ Routing
 
 
 
- NAT 
-=====
+NAT
+====
 
 * nat-control (alle connections müssen eine nat rule haben)
 * alles was aus external raus geht nimm per default die adresse vom external device
@@ -189,8 +188,8 @@ Routing
   static (axxion,external) 192.168.103.93 192.168.109.215 netmask 255.255.255.255
 
 
- Logging und Debugging 
-=======================
+Logging und Debugging
+======================
 
 .. code-block:: bash
 
@@ -206,8 +205,8 @@ Routing
   term monitor
 
 
- Packet Filtering / Access lists 
-=================================
+Packet Filtering / Access lists
+================================
 
 * Access list anlegen
 
@@ -226,8 +225,8 @@ Routing
 * bei genatteten verbindung brauch man nur die nat ip erlauben das weiterleiten wird dann automatisch erlaubt
 
 
- Packet Capturing 
-===================
+Packet Capturing
+=================
 
 * Alles was durch die Access-List gelassen wird, wird aufgezeichnet
 
@@ -255,8 +254,8 @@ Routing
   access-list CAP interface external
 
 
- Failover 
-==========
+Failover
+=========
 
 * Die Failover IP für LAN muss in einem anderen Netz sein als das für State
 
@@ -287,8 +286,8 @@ Routing
   failover reload-standby
 
 
- Firewall Desaster Recovery 
-=============================
+Firewall Desaster Recovery
+===========================
 
 * Es muss sichergestellt sein, dass Ethernet 0/2 auf beiden ASA das aktive Interface ist
 
@@ -298,14 +297,14 @@ Routing
   redundant-interface Redundant 1 active-member Ethernet 0/2
 
 
- IPSec / VPN 
-==============
+IPSec / VPN
+============
 
 * crypto isakmp enable <interface>
 * crypto isakmp identity address
 
 * Phase 1 (control connection definieren)
-  * sh crypto isakmp sa detail
+* sh crypto isakmp sa detail
 
 .. code-block:: bash
 
@@ -317,29 +316,29 @@ Routing
   lifetime 3600
 
 * Phase 2 (data connection definieren)
-  * sh crypto ipsec sa peer <$VPN_PEER>
-  * Transform Set definieren (Name für Verschlüsselung / Hashing Optionen für die wirklichen Datentunnel)
+* sh crypto ipsec sa peer <$VPN_PEER>
+* Transform Set definieren (Name für Verschlüsselung / Hashing Optionen für die wirklichen Datentunnel)
 
 .. code-block:: bash
 
   crypto ipsec transform-set ESP-AES-256-MD5 esp-aes-256 esp-md5-hmac
   crypto ipsec transform-set ESP-3DES-MD5 esp-3des esp-md5-hmac
 
-  * Optional maximale Timeouts für das Rekeying definieren
+* Optional maximale Timeouts für das Rekeying definieren
 
 .. code-block:: bash
 
   crypto ipsec security-association lifetime seconds 28800
   crypto ipsec security-association lifetime kilobytes 4608000
 
-  * Name für VPN Peer anlegen
+* Name für VPN Peer anlegen
 
 .. code-block:: bash
 
   name 213.23.72.194 VPN_PEER_TEST
 
-  * Welcher Traffic getunnelt werden soll, wird über eine Accesslist (CMAP_$VPN_MAP) definiert
-  * Die Src muss immer dem Netz der Firewall entsprechen
+* Welcher Traffic getunnelt werden soll, wird über eine Accesslist (CMAP_$VPN_MAP) definiert
+* Die Src muss immer dem Netz der Firewall entsprechen
 
 .. code-block:: bash
 
@@ -422,11 +421,10 @@ Routing
 
 
 
- Switch Config 
-================
+Switch Config
+==============
 
 * ip domain-name patronas.int
-
 * user spass
 
 .. code-block:: bash
@@ -480,11 +478,10 @@ Routing
   channel-group 1 mode active
 
 
- Firmware update on a Cisco device 
-====================================
+Firmware update on a Cisco device
+==================================
 
-* Setup a TFTP server in the same IP range as the Cisco device to backup
-the configs, IOS image and also for later to upload the new IOS image.
+* Setup a TFTP server in the same IP range as the Cisco device to backup the configs, IOS image and also for later to upload the new IOS image.
 
 .. code-block:: bash
 
@@ -516,13 +513,9 @@ the configs, IOS image and also for later to upload the new IOS image.
 
 
 
- How to repair a Cisco with erased flash 
-==========================================
+How to repair a Cisco with erased flash
+========================================
 
 * copy xmodem: flash:flash_filename
-* now from the "transfer" dropdown menu on the hyperterminal,
-select "send file" and choose "xmodem" in the subsequent dialog box
-and browse for the flash_filename (the downloaded IOS bn file) and send.
-
+* now from the "transfer" dropdown menu on the hyperterminal, select "send file" and choose "xmodem" in the subsequent dialog box and browse for the flash_filename (the downloaded IOS bn file) and send.
 * boot flash:flash_filename
-

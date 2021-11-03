@@ -153,9 +153,9 @@ Befehle finden
 
 * type acroread -> zeigt das Verzeichnis vom Adobe Reader an
 * which firefox -> "" von Firefox
-* whence -M '*fg' -> gibt alle Befehle die auf fg-enden mit vollen Pfad  aus
-* ls *.{c,h,o} -> gibt alle Dateien aus die auf c, h oder o enden
-* echo {1..10} -> gibt alle Zahlen von 1 bis 10 aus
+* whence -M `*fg` -> gibt alle Befehle die auf fg-enden mit vollen Pfad  aus
+* `ls *.{c,h,o}` -> gibt alle Dateien aus die auf c, h oder o enden
+* `echo {1..10}` -> gibt alle Zahlen von 1 bis 10 aus
 
 
 Pattern Matching
@@ -163,7 +163,7 @@ Pattern Matching
 
 * Dateien finden & Pattern Matching (ls ist doch Befehle wie chmod, print oder echo etc. ersetzbar)
 * ls * 	 -> alle Dateien und Verzeichnisse in diesem Verzeichnis (0 bis n Zeichen) ausgeschlossen sind . Dateien!
-* ls **/	 -> alle Dateien und Verzeichnisse in diesem Verzeichnis und allen Unterverzeichnissen ausgenommen . Dateien
+* `ls **/` -> alle Dateien und Verzeichnisse in diesem Verzeichnis und allen Unterverzeichnissen ausgenommen . Dateien
 * ls */**/ -> -> alle Dateien und Verzeichnisse in allen Unterverzeichnissen ausgenommen . Dateien
 * ls .*	 -> listet alle .Dateien diese Verzeichnisses
 

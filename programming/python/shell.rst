@@ -2,8 +2,7 @@
 Python Shell
 ############
 
-* Attach python console to a running process with [http://code.google.com/p/rfoo/|rconsole]
-
+* Attach python console to a running process with `rconsole <http://code.google.com/p/rfoo/>`
 * Stop a running process by signal and let it drop you to a python console
 
 .. code-block:: bash

@@ -21,13 +21,14 @@ Dynamically create a new class
 .. code-block:: python
 
   classobj = type("MyClass", (object,), {})
+
 * Show all attributes and their values of an Python object
 
 
 Respond to every method call
 ============================
 
-..code-block:: python
+.. code-block:: python
 
   import functools
 
@@ -36,6 +37,3 @@ Respond to every method call
       def handleattr(attrname, args):
           print "Hi I am attribute ", attrname, " with arguments ", args
       return functools.partial(handleattr, name)
-
-
-

@@ -5,8 +5,8 @@ Basics
 Overview
 ========
 
-* To get information about a function ``(documentation 'foo 'function)'' for a variable use ``'variable''
-* To find documentation about whatever you can eval ``(apropos "whatever")''
+* To get information about a function ``(documentation 'foo 'function)`` for a variable use ``'variable``
+* To find documentation about whatever you can eval ``(apropos "whatever")``
 * (print "Hello world")
 * (format "%s" "Hello world")
 * create a global variable with ``defvar`` or ``defparameter``
@@ -21,7 +21,7 @@ Overview
 * use ``let*`` if vars must know each other during declaration
 * var returns the value of var
 * 'var returns a reference (the symbol) of var
-* symbols are always treated like uppercase 
+* symbols are always treated like uppercase
 * quote or ' suspresses evaluation
 * ` suspresses evaluation for all expression but prefixed with ,
 
@@ -169,7 +169,7 @@ control structures
 
 * there is also a switch case
 
-.. code-block:: lisp 
+.. code-block:: lisp
 
   (case person
       ((hans)
@@ -190,9 +190,9 @@ control structures
        '(run away screaming))
     (otherwise
        '(be cool)))
-     
 
-	   
+
+
 
 Loops
 =====
@@ -339,4 +339,3 @@ Links
 
 * http://ghostopera.org/blog/2012/06/24/the-newbie-guide-to-common-lisp/
 * http://psg.com/~dlamkins/sl/contents.html - Successful lisp
-

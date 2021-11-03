@@ -5,14 +5,14 @@ Debugging
 Overview
 ========
 
-* To turn on debug code in general insert the following to ``~/.sbclrc''
+* To turn on debug code in general insert the following to ``~/.sbclrc``
 
 .. code-block:: lisp
 
   (sb-ext:restrict-compiler-policy 'debug 3)
 
-* In debugger mode type ``?'' to get a list of available commands
-  
+* In debugger mode type ``?`` to get a list of available commands
+
 
 Trace function calls
 ====================
@@ -26,7 +26,7 @@ Trace function calls
 .. code-block:: lisp
 
   (untrace function)
-  
+
 
 Step through a function
 =======================
@@ -38,15 +38,15 @@ Step through a function
   (declaim (optimize (debug 3)))
 
 * Now run
-  
+
 .. code-block:: lisp
 
   (step (function args))
 
-* And use the command ``:step'' to step into NOT ``:next'' note the ``'""!
+* And use the command ``:step`` to step into NOT ``:next`` note the ``'``!
 
-* With ``source 10'' you can see the source 10 levels (parantheses) deep
-  
+* With ``source 10`` you can see the source 10 levels (parantheses) deep
+
 
 Invoke debugger at specific conditions
 ======================================
@@ -61,7 +61,7 @@ Invoke debugger at specific conditions
 Breakpoints
 ===========
 
-* Insert ``(break)'' at the specific code lines
+* Insert ``(break)`` at the specific code lines
 
 
 Measure time of code execution

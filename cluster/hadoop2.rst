@@ -460,12 +460,12 @@ Configure High Availability
     <name>dfs.nameservices</name>
     <value>mycluster</value>
   </property>
-  
+
   <property>
     <name>dfs.ha.namenodes.mycluster</name>
     <value>nn1,nn2</value>
   </property>
-  
+
   <property>
     <name>dfs.namenode.rpc-address.mycluster.nn1</name>
     <value>hadoop_master:8020</value>
@@ -488,7 +488,7 @@ Configure High Availability
     <name>dfs.namenode.shared.edits.dir</name>
     <value>qjournal://hadoop_master:8485;hadoop_master2:8485/mycluster</value>
   </property>
-  
+
   <property>
     <name>dfs.client.failover.proxy.provider.mycluster</name>
     <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
@@ -503,7 +503,7 @@ Configure High Availability
     <name>dfs.ha.fencing.ssh.private-key-files</name>
     <value>/opt/hadoop/.ssh/id_rsa</value>
   </property>
-  
+
   <property>
     <name>dfs.ha.automatic-failover.enabled</name>
     <value>true</value>
@@ -586,7 +586,7 @@ Configure High Availability
   bin/yarn rmadmin -getServiceState rm1
   bin/yarn rmadmin -getServiceState rm2
 
-  
+
 Convert single namenode to HA
 =============================
 
@@ -595,7 +595,7 @@ Convert single namenode to HA
   /opt/hadoop/bin/hdfs namenode -bootstrapStandby
   /opt/hadoop/bin/hdfs namenode -initializeSharedEdits
 
-  
+
 Configure Capacity Scheduler
 ============================
 
