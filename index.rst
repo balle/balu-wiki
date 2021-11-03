@@ -61,20 +61,6 @@ MacOS
    macos/security
 
 
-Windows
-=======
-
-.. toctree::
-   :maxdepth: 1
-
-   windows/forensics
-   windows/general
-   windows/logging
-   windows/network
-   windows/powershell
-   windows/security
-
-
 Tools
 =====
 
