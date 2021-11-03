@@ -56,10 +56,12 @@ processing the rules
 ====================
 
 Since version 4.2 die Option ''set rulset-optimization'' is set to ''basic'' which activates PF to optimize the ruleset when loading it into the kernel.
+
  * remove duplicate rules
  * remove shadowing rules
  * put rules together for easy handling
  * resort the quick rules for better passing
+
 If this Option is set to “profile” PF will use the loaded ruleset as a profile for the real network traffic to set the order for the quick rules to be most effective.
 
 
