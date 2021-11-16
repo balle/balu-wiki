@@ -27,3 +27,35 @@ ctrl d                       select current word
 !                            execute emmet template
 ctrl shift p, live server    show html in browser
 ============================ ==============
+
+
+Installed extensions
+====================
+
+* alefragnani.Bookmarks
+* CoenraadS.bracket-pair-colorizer
+* cweijan.vscode-mysql-client2
+* eamodio.gitlens
+* ecmel.vscode-html-css
+* esbenp.prettier-vscode
+* firefox-devtools.vscode-firefox-debug
+* formulahendry.auto-rename-tag
+* golang.go
+* ms-azuretools.vscode-docker
+* ms-python.python
+* ms-python.vscode-pylance
+* ms-toolsai.jupyter
+* ms-toolsai.jupyter-keymap
+* ms-toolsai.jupyter-renderers
+* ms-vscode.js-debug-nightly
+* ms-vscode.live-server
+* mtxr.sqltools
+* patbenatar.advanced-new-file
+* pranaygp.vscode-css-peek
+* redhat.java
+* VisualStudioExptTeam.vscodeintellicode
+* vscjava.vscode-java-debug
+* vscjava.vscode-java-dependency
+* vscjava.vscode-java-pack
+* vscjava.vscode-java-test
+* vscjava.vscode-maven
