@@ -97,6 +97,7 @@ Tools
    tools/sed
    tools/smartmon
    tools/tmux
+   tools/vscode
    tools/zsh
 
 

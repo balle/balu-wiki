@@ -17,6 +17,8 @@ ctrl shift f                 find over whole project
 ctrl shift g                 goto source Control
 ctrl shift d                 goto debug
 ctrl ,                       goto settings
+ctrl space                   IntelliSense
+ctrl shift p insert snippet  Show all snippets for current file
 ctrl alt n                   new file
 ctrl w                       close file
 ctrl tab, ctrl shift tab     switch file tabs
