@@ -17,12 +17,15 @@ ctrl shift f                 find over whole project
 ctrl shift g                 goto source Control
 ctrl shift d                 goto debug
 ctrl ,                       goto settings
+f12                          goto definition
+ctrl f12                     goto implementation
 ctrl space                   IntelliSense
 ctrl shift p insert snippet  Show all snippets for current file
 ctrl alt n                   new file
 ctrl w                       close file
 ctrl tab, ctrl shift tab     switch file tabs
 ctrl p                       search file in project
+ctrl k d                     show unsaved changes
 ctrl right / left            jump word forward / backward
 alt up / down                move line upwards / downwards
 ctrl d                       select current word
