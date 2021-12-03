@@ -75,3 +75,10 @@ File Operations
 * Move-Item
 * Rename-Item
 * Remove-Item
+
+Get product id of an app
+========================
+
+.. code-block:: bash
+
+  get-wmiobject Win32_Product | Format-Table IdentifyingNumber, Name -AutoSize
