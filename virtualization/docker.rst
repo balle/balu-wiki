@@ -181,6 +181,23 @@ Example docker file
   ENTRYPOINT ["/usr/sbin/httpd"]
 
 
+Image from scratch
+==================
+
+.. code-block:: bash
+
+  debootstrap bullseye bullseye
+  tar -C bullseye -c . | docker import - mydebian
+
+* Or via Dockerfile
+
+.. code-block:: bash
+
+  FROM scratch
+  COPY some_static_binary /
+  ENTRYPOINT ["/some_static_binary"]
+
+
 Troubleshooting
 ===============
 
