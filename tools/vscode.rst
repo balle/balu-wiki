@@ -9,6 +9,8 @@ Keyboard shortcuts
 Shortcut                     Description
 ---------------------------- --------------
 ctrl shift p                 open command palette
+ctrl p                       goto file
+ctrl g                       goto line
 ctrl b                       display / hide sidebar
 ctrl shift p, type zen mode  remove everythin but edition window
 ctrl shift p, type minimap   switch off mini map
@@ -17,6 +19,8 @@ ctrl shift f                 find over whole project
 ctrl shift g                 goto source Control
 ctrl shift d                 goto debug
 ctrl ,                       goto settings
+ctrl `                       goto terminal
+ctrl 1                       goto editor
 f12                          goto definition
 ctrl f12                     goto implementation
 ctrl space                   IntelliSense
