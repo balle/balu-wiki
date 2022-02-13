@@ -35,6 +35,7 @@ alt up / down                move line upwards / downwards
 ctrl d                       select current word
 !                            execute emmet template
 ctrl shift p, live server    show html in browser
+alt shift down / up          create multiple cursors
 ============================ ==============
 
 
