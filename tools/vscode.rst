@@ -12,6 +12,7 @@ ctrl shift p                 open command palette
 ctrl p                       goto file
 ctrl g                       goto line
 ctrl b                       display / hide sidebar
+ctrl j                       display / hide terminal
 ctrl shift p, type zen mode  remove everythin but edition window
 ctrl shift p, type minimap   switch off mini map
 ctrl shift e                 goto explorer
@@ -36,6 +37,8 @@ ctrl d                       select current word
 !                            execute emmet template
 ctrl shift p, live server    show html in browser
 alt shift down / up          create multiple cursors
+ctrl k ctrl s                show keyboard shortcuts
+ctrl k z                     toggle editor fullscreen
 ============================ ==============
 
 
