@@ -26,8 +26,10 @@ f12                          goto definition
 ctrl f12                     goto implementation
 ctrl shift \                 goto matching element
 f8                           goto next error
+ctrl alt -                   goto last cursor positon
 ctrl space                   IntelliSense
 ctrl .                       Quickfix
+ctrl /                       Comment out line
 ctrl shift p insert snippet  Show all snippets for current file
 ctrl alt n                   new file
 ctrl w                       close file
