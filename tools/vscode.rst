@@ -24,7 +24,10 @@ ctrl `                       goto terminal
 ctrl 1                       goto editor
 f12                          goto definition
 ctrl f12                     goto implementation
+ctrl shift \                 goto matching element
+f8                           goto next error
 ctrl space                   IntelliSense
+ctrl .                       Quickfix
 ctrl shift p insert snippet  Show all snippets for current file
 ctrl alt n                   new file
 ctrl w                       close file
