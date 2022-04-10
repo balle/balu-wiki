@@ -37,6 +37,7 @@ ctrl tab, ctrl shift tab     switch file tabs
 ctrl p                       search file in project
 ctrl k d                     show unsaved changes
 ctrl right / left            jump word forward / backward
+ctrl backspace / delete      delete word left / right
 alt up / down                move line upwards / downwards
 ctrl d                       select current word
 !                            execute emmet template
