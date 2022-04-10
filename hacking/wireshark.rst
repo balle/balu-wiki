@@ -12,11 +12,31 @@ ctrl+k        Capture dialog
 ctrl+e        Start / stop capture
 alt+a         Analyze menu
 alt+s         Statistics menu
+ctrl+.        Next packet in conversation
+ctrl+,        Previous packet in conversation
 ctrl+m        Mark packet
 shift+ctrl+n  Next marked packet
 shift+ctrl+b  Previous marked packet
 ============= ============
 
+
+TCP stuff
+=========
+
+* Show tcp problems
+
+.. code-block:: bash
+
+  tcp.analysis.flags
+
+* Show tcp buffering problems
+
+.. code-block:: bash
+
+  tcp.analysis.window_full
+
+* Out-of-Orders indicate packet loss on the remote side
+* TCP retransmission occurs when you have packet loss on the local end
 
 
 Wifi
