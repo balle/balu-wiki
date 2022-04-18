@@ -45,8 +45,30 @@ ctrl shift p, live server    show html in browser
 alt shift down / up          create multiple cursors
 ctrl k ctrl s                show keyboard shortcuts
 ctrl k z                     toggle editor fullscreen
+ctrl shift g c               git commit
+ctrl shift g s               git status
+ctrl shift g p               git push
 ============================ ==============
 
+To get the above git shortcut paste the following in your keyboard shortcuts
+
+.. code-block:: bash
+
+  [
+      {
+              "key": "ctrl+shift+g c",
+	      "command": "-gitlens.showQuickCommitFileDetails",
+	      "when": "editorTextFocus && !gitlens:disabled && config.gitlens.keymap == 'chorded'"
+	},
+	{
+	      "key": "ctrl+shift+g c",
+	      "command": "git.commit"
+	},
+	{
+	      "key": "ctrl+shift+g p",
+	      "command": "git.push"
+	}
+  ]
 
 Installed extensions
 ====================
