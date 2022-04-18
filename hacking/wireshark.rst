@@ -120,6 +120,12 @@ Detect ARP storms
 * Preferences -> Protocols -> ARP -> Detect ARP request storms
 
 
+Grep through payload
+====================
+
+Use filter `tcp contains what_you_like_to_grep`
+
+
 Macros
 ======
 
