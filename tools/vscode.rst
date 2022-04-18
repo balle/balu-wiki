@@ -21,6 +21,7 @@ ctrl shift g                 goto source Control
 ctrl shift d                 goto debug
 ctrl ,                       goto settings
 ctrl `                       goto terminal
+ctrl k ctrl h                goto output window
 ctrl 1                       goto editor
 f12                          goto definition
 ctrl f12                     goto implementation
@@ -45,6 +46,7 @@ ctrl shift p, live server    show html in browser
 alt shift down / up          create multiple cursors
 ctrl k ctrl s                show keyboard shortcuts
 ctrl k z                     toggle editor fullscreen
+ctrl shift g g               git uncommited changes
 ctrl shift g c               git commit
 ctrl shift g s               git status
 ctrl shift g p               git push
