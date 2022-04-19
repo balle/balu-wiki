@@ -50,6 +50,7 @@ ctrl shift g g               git uncommited changes
 ctrl shift g c               git commit
 ctrl shift g s               git status
 ctrl shift g p               git push
+ctrl shift g f               git pull
 ============================ ==============
 
 To get the above git shortcut paste the following in your keyboard shortcuts
@@ -69,6 +70,10 @@ To get the above git shortcut paste the following in your keyboard shortcuts
 	{
 	      "key": "ctrl+shift+g p",
 	      "command": "git.push"
+	},
+        {
+              "key": "ctrl+shift+g f",
+	      "command": "gitlens.pullRepositories"
 	}
   ]
 
