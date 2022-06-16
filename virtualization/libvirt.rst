@@ -2,12 +2,22 @@
 Libvirt
 #######
 
-Installation
-============
+Shared folder
+=============
+
+* In virt-viewer add hardware type filesystem (type: mount, mode: mapped, target: tagname)
+* In the vm
 
 .. code-block:: bash
 
-  yum install libvirt libvirtd python-virtinst qemu-kvm
+  mount -t 9p -o trans=virtio tagname /path/to/mount_point
+
+* Or add following to fstab
+
+.. code-block:: bash
+
+  tagname	/path/to/mount_point	9p	trans=virtio	0 0
+
 
 Set up bridged network for direct access
 ========================================
