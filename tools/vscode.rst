@@ -12,7 +12,8 @@ ctrl shift p                 open command palette
 ctrl p                       goto file
 ctrl g                       goto line
 ctrl b                       display / hide sidebar
-ctrl j                       display / hide terminal
+ctrl j                       new terminal
+alt t                        focus terminal
 ctrl shift p, type zen mode  remove everythin but edition window
 ctrl shift p, type minimap   switch off mini map
 ctrl shift e                 goto explorer
@@ -46,6 +47,8 @@ ctrl shift p, live server    show html in browser
 alt shift down / up          create multiple cursors
 ctrl k ctrl s                show keyboard shortcuts
 ctrl k z                     toggle editor fullscreen
+ctrl k ctrl e                save open editors
+ctrl k w                     close all open editors
 ctrl shift g g               git uncommited changes
 ctrl shift g c               git commit
 ctrl shift g s               git status
