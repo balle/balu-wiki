@@ -49,6 +49,8 @@ ctrl k ctrl s                show keyboard shortcuts
 ctrl k z                     toggle editor fullscreen
 ctrl k ctrl e                save open editors
 ctrl k w                     close all open editors
+ctrl alt k                   toggle bookmark
+ctrl alt l                   jump to next bookmark
 ctrl shift g g               git uncommited changes
 ctrl shift g c               git commit
 ctrl shift g s               git status
