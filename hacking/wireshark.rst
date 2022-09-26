@@ -36,8 +36,8 @@ TCP stuff
   tcp.analysis.window_full
 
 * Out-of-Orders indicate packet loss on the remote side
-* TCP retransmission occurs when you have packet loss on the local end
-
+* TCP retransmission occurs when the server retransmits a packet
+* TCP Dup ACK occurs when the client retransmits a packet
 
 Wifi
 ====
@@ -204,7 +204,7 @@ HTTP
   http.request.method
   http.host
   http.user_agent
-  http.referer contains 
+  http.referer contains
   http.content_type
   http.cookie
   http contains "password"
