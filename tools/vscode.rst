@@ -42,6 +42,7 @@ ctrl right / left            jump word forward / backward
 ctrl backspace / delete      delete word left / right
 alt up / down                move line upwards / downwards
 ctrl d                       select current word
+alt shift                    rectangular edit
 !                            execute emmet template
 ctrl shift p, live server    show html in browser
 alt shift down / up          create multiple cursors
