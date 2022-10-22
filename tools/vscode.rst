@@ -14,6 +14,7 @@ ctrl g                       goto line
 ctrl b                       display / hide sidebar
 ctrl j                       new terminal
 alt t                        focus terminal
+ctrl 1                       focus current editor
 ctrl shift p, type zen mode  remove everythin but edition window
 ctrl shift p, type minimap   switch off mini map
 ctrl shift e                 goto explorer
