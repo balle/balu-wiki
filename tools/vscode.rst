@@ -16,6 +16,7 @@ ctrl j                       new terminal
 alt t                        focus terminal
 ctrl shift p, type zen mode  remove everythin but edition window
 ctrl shift p, type minimap   switch off mini map
+ctrl b                       toggle sidebar
 ctrl shift e                 goto explorer
 ctrl shift f                 find over whole project
 ctrl shift g                 goto source Control
@@ -29,9 +30,11 @@ ctrl f12                     goto implementation
 ctrl shift \                 goto matching element
 f8                           goto next error
 ctrl alt -                   goto last cursor positon
+ctrl shift space             Show documentation
 ctrl space                   IntelliSense
 ctrl .                       Quickfix
 ctrl /                       Comment out line
+f2                           Rename symbol in all files
 ctrl shift p insert snippet  Show all snippets for current file
 ctrl alt n                   new file
 ctrl w                       close file
@@ -46,6 +49,7 @@ alt shift                    rectangular edit
 !                            execute emmet template
 ctrl shift p, live server    show html in browser
 alt shift down / up          create multiple cursors
+alt click                    create multiple cursors
 ctrl k ctrl s                show keyboard shortcuts
 ctrl k z                     toggle editor fullscreen
 ctrl k ctrl e                save open editors
