@@ -17,7 +17,6 @@ alt t                        focus terminal
 ctrl 1                       focus current editor
 ctrl shift p, type zen mode  remove everythin but edition window
 ctrl shift p, type minimap   switch off mini map
-ctrl b                       toggle sidebar
 ctrl shift e                 goto explorer
 ctrl shift f                 find over whole project
 ctrl shift g                 goto source Control
@@ -30,6 +29,7 @@ f12                          goto definition
 ctrl f12                     goto implementation
 ctrl shift \                 goto matching element
 f8                           goto next error
+ctrl q                       goto last edit position
 ctrl alt -                   goto last cursor positon
 ctrl shift space             Show documentation
 ctrl space                   IntelliSense
@@ -92,29 +92,61 @@ Installed extensions
 ====================
 
 * alefragnani.Bookmarks
-* CoenraadS.bracket-pair-colorizer
+* batisteo.vscode-django
+* cirlorm.mobileview
+* codista.vscode-autosave
+* cschlosser.doxdocgen
 * cweijan.vscode-mysql-client2
+* dineug.vuerd-vscode
+* E-Jacques.pytestersuits
 * eamodio.gitlens
 * ecmel.vscode-html-css
 * esbenp.prettier-vscode
 * firefox-devtools.vscode-firefox-debug
 * formulahendry.auto-rename-tag
 * golang.go
+* Gruntfuggly.todo-tree
+* HoangKimLai.ipython
+* jeff-hykin.better-cpp-syntax
+* jorol.perl-completions
+* josetr.cmake-language-support-vscode
+* krizzdewizz.goto-last-edit-location
 * ms-azuretools.vscode-docker
+* ms-dotnettools.vscode-dotnet-runtime
 * ms-python.python
 * ms-python.vscode-pylance
-* ms-toolsai.jupyter
-* ms-toolsai.jupyter-keymap
-* ms-toolsai.jupyter-renderers
+* ms-vscode-remote.remote-containers
+* ms-vscode.cmake-tools
+* ms-vscode.cpptools
+* ms-vscode.cpptools-extension-pack
+* ms-vscode.cpptools-themes
 * ms-vscode.js-debug-nightly
 * ms-vscode.live-server
+* ms-vscode.makefile-tools
 * mtxr.sqltools
-* patbenatar.advanced-new-file
+* mtxr.sqltools-driver-mysql
+* mtxr.sqltools-driver-pg
+* mtxr.sqltools-driver-sqlite
+* PierreQuemard.macro
 * pranaygp.vscode-css-peek
+* redhat.ansible
+* redhat.fabric8-analytics
 * redhat.java
+* redhat.vscode-community-server-connector
+* redhat.vscode-rsp-ui
+* redhat.vscode-server-connector
+* redhat.vscode-yaml
+* richterger.perl
+* ritwickdey.LiveServer
+* theumletteam.umlet
+* tushortz.python-extended-snippets
+* twxs.cmake
+* VisualStudioExptTeam.intellicode-api-usage-examples
 * VisualStudioExptTeam.vscodeintellicode
 * vscjava.vscode-java-debug
 * vscjava.vscode-java-dependency
 * vscjava.vscode-java-pack
 * vscjava.vscode-java-test
 * vscjava.vscode-maven
+* wsds.theme-hacker
+* xabikos.JavaScriptSnippets
