@@ -16,7 +16,6 @@ ctrl j                       new terminal
 alt t                        focus terminal
 ctrl shift p, type zen mode  remove everythin but edition window
 ctrl shift p, type minimap   switch off mini map
-ctrl b                       toggle sidebar
 ctrl shift e                 goto explorer
 ctrl shift f                 find over whole project
 ctrl shift g                 goto source Control
@@ -44,6 +43,7 @@ ctrl k d                     show unsaved changes
 ctrl right / left            jump word forward / backward
 ctrl backspace / delete      delete word left / right
 alt up / down                move line upwards / downwards
+alt shift up / down          copy line upwards / downwards
 ctrl d                       select current word
 alt shift                    rectangular edit
 !                            execute emmet template
