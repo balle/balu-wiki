@@ -58,6 +58,8 @@ ctrl k ctrl e                save open editors
 ctrl k w                     close all open editors
 ctrl alt k                   toggle bookmark
 ctrl alt l                   jump to next bookmark
+alt q alt w                  jump to end of a word
+alt q alt q                  jump to start of a word
 ctrl shift g g               git uncommited changes
 ctrl shift g c               git commit
 ctrl shift g s               git status
