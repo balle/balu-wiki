@@ -57,3 +57,22 @@ Cracking
 * For possible default password generators
 ** https://hashcat.net/forum/thread-6170.html
 ** https://deadcode.me/blog/2016/07/01/UPC-UBEE-EVW3226-WPA2-Reversing.html
+
+* And to generate a wordlist depending on a homepage
+
+.. code-block:: bash
+
+  cewl -d 4 -m 8 <url> -w wordlist.txt
+
+
+Automated security check
+========================
+
+* wifite is your friend
+* but manual checks are still better ;)
+
+
+Man in the middle
+=================
+
+* Use wifiphisher
