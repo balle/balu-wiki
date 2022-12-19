@@ -1,5 +1,5 @@
 .. BaLu Wiki documentation master file
-   
+
 Linux
 =====
 
@@ -158,7 +158,7 @@ Hacking
    hacking/scapy
    hacking/tcpdump
    hacking/web_security
-   hacking/wireless
+   hacking/wifi
    hacking/wireshark
 
 
