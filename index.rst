@@ -112,6 +112,7 @@ Network
    network/bridging
    network/gns3
    network/iproute
+   network/ipv6
    network/irssi
    network/ldap
    network/mdns
