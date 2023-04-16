@@ -52,6 +52,13 @@ Filter objects
   Get-PSDrive | Where-Object { $_.free -gt 1 }
   
 
+Count lines
+===========
+
+.. code-block:: powershell
+
+  netstat -an | findstr /s LISTEN | Measure-Object -line
+
 Loop
 ====
 
