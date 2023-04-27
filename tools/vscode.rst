@@ -26,7 +26,7 @@ ctrl `                       goto terminal
 ctrl k ctrl h                goto output window
 ctrl 1                       goto editor
 f12                          goto definition
-ctrl shift o                 goto function or method name
+ctrl shift o                 goto symbol or method name
 ctrl f12                     goto implementation
 ctrl shift \                 goto matching element
 f8                           goto next error
