@@ -51,7 +51,7 @@ ctrl d                       select current word
 alt shift arrow              rectangular edit
 !                            execute emmet template
 ctrl shift p, live server    show html in browser
-alt shift down / up          create multiple cursors
+ctrl alt shift down / up     create multiple cursors
 alt click                    create multiple cursors
 ctrl k ctrl s                show keyboard shortcuts
 ctrl k z                     toggle editor fullscreen
