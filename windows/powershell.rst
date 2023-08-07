@@ -17,12 +17,19 @@ Read manual page
 
   Get-Help <command> -Examples
 
-Tail -f
-========
+Show end of file with continuos entries
+=======================================
 
 .. code-block:: powershell
 
   Get-Content -Tail 10 -Wait <Filename>
+
+List directory sorted by last updated timestamp
+===============================================
+
+.. code-block:: powershell
+
+  Get-ChildItem | Sort-Object LastWriteTime
 
 List running processes
 ======================
