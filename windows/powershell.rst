@@ -17,6 +17,12 @@ Read manual page
 
   Get-Help <command> -Examples
 
+Tail -f
+========
+
+.. code-block:: powershell
+
+  Get-Content -Tail 10 -Wait <Filename>
 
 List running processes
 ======================
