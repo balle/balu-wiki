@@ -13,6 +13,7 @@ Keyboard shortcuts for Powershell and Windows Terminal App
 * ALT+up/down switch panes
 * CTRL+Shift+W close focused pane
 * CTRL+left/right jump word back-/forwards
+* CTRL+Backspace delete word
 
 Profile handling
 =================
