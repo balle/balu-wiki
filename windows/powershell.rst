@@ -14,6 +14,21 @@ Keyboard shortcuts for Powershell and Windows Terminal App
 * CTRL+Shift+W close focused pane
 * CTRL+left/right jump word back-/forwards
 
+Profile handling
+=================
+
+* Edit profile
+
+.. code-block:: powershell
+
+  notepad.exe $profile
+
+* Reload profile
+
+.. code-block:: powershell
+
+  &$profile
+
 Find a command
 ==============
 
