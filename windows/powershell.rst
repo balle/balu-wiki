@@ -2,6 +2,18 @@
 Powershell
 ###########
 
+Keyboard shortcuts for Powershell and Windows Terminal App
+===========================================================
+
+* Normal shortcuts like CTRL+A / CTRL+C / CTRL+V 
+* CTRL+Shift+T new tab
+* ALT+- new pane
+* CTRL+TAB to switch tabs
+* CTRL+ALT+1 goto first tab
+* ALT+up/down switch panes
+* CTRL+Shift+W close focused pane
+* CTRL+left/right jump word back-/forwards
+
 Find a command
 ==============
 
