@@ -66,6 +66,12 @@ List running processes
 
   Get-Process
 
+Measure execution time of a command
+===================================
+
+.. code-block:: powershell
+
+  Measure-Command {some.exe param1 param2}
   
 Start a service
 ===============
