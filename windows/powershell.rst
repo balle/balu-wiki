@@ -81,6 +81,19 @@ Start a service
   Start-Service -Name "sshd"
   Set-Service -Name "sshd" -StartupType Automatic
 
+Show Routing table
+==================
+
+.. code-block:: powershell
+
+  Get-NetRoute
+
+Show IP adresses
+================
+
+.. code-block:: powershell
+
+  Get-NetIPAddress
 
 List all member (methods and properties) of an object
 =====================================================
