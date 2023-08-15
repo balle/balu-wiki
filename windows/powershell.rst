@@ -66,6 +66,13 @@ List running processes
 
   Get-Process
 
+List logged in users
+====================
+
+.. code-block:: powershell
+
+  query user /server:$SERVER
+
 Measure execution time of a command
 ===================================
 
