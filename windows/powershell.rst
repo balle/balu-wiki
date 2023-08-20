@@ -79,7 +79,21 @@ Measure execution time of a command
 .. code-block:: powershell
 
   Measure-Command {some.exe param1 param2}
-  
+
+Get current user
+================
+
+.. code-block:: powershell
+
+  env:username
+
+Print all environment variables
+===============================
+
+.. code-block:: powershell
+
+  Get-ChildItem env:
+
 Start a service
 ===============
 
