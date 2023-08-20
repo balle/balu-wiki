@@ -37,6 +37,11 @@ Find a command
 
   Get-Command -Noun <search_string>
 
+* To find it's location
+
+.. code-block:: powershell
+
+  Get-Command <cmd>
   
 Read manual page
 ================
@@ -72,6 +77,21 @@ List logged in users
 .. code-block:: powershell
 
   query user /server:$SERVER
+
+Run command as another user
+===========================
+
+* As normal user 
+
+.. code-block:: powershell
+
+  Start-Process -FilePath "path\to\exe" -ArgumentList "parameter1", "parameter2" -Verb RunAs -Credential <username>
+
+* As administrator
+
+.. code-block:: powershell
+
+  Start-Process -FilePath "path\to\exe" -ArgumentList "parameter1", "parameter2" -Verb RunAs
 
 Measure execution time of a command
 ===================================
