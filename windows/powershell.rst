@@ -93,6 +93,13 @@ Run command as another user
 
   Start-Process -FilePath "path\to\exe" -ArgumentList "parameter1", "parameter2" -Verb RunAs
 
+Run command every x seconds
+===========================
+
+.. code-block:: powershell
+
+  while($true) { Get-Process | findstr /s foo; Start-Sleep -Seconds 10 }
+
 Measure execution time of a command
 ===================================
 
