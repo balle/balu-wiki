@@ -8,7 +8,7 @@ Special addresses
 ================== ================================================
 Address            Description
 ================== ================================================
-::                 Any address / Whole net
+\:\:                 Any address / Whole net
 ::1                Loopback
 2000::/3           Global unicast addresses (like public ipv4 addresses, can start with a 2 or 3)
 fe80::/10          Link local address (not routable, mostly based on devices mac)
