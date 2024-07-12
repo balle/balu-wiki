@@ -51,8 +51,8 @@ List active network connections
   lsof -i
   nettop
  
- Pf logging
- ===========
+Pf logging
+===========
 
  .. code-block:: bash
 
