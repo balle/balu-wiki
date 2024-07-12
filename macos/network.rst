@@ -51,3 +51,11 @@ List active network connections
   lsof -i
   nettop
  
+ Pf logging
+ ===========
+
+ .. code-block:: bash
+
+    sudo ifconfig pflog0 create 
+    sudo tcpdump -n -e -ttt -i pflog0
+    
