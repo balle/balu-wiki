@@ -49,5 +49,5 @@ List active network connections
 .. code-block:: bash
 
   lsof -i
-
+  nettop
  
