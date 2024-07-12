@@ -58,4 +58,5 @@ List active network connections
 
     sudo ifconfig pflog0 create 
     sudo tcpdump -n -e -ttt -i pflog0
+    sudo ifconfig pflog0 destroy
     
