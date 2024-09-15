@@ -60,6 +60,13 @@ MacOS
    macos/performance
    macos/security
 
+Android
+=======
+
+.. toctree::
+   :maxdepth: 1
+
+   android/tools
 
 Windows
 =======
