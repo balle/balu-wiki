@@ -1,5 +1,5 @@
 .. BaLu Wiki documentation master file
-   
+
 Linux
 =====
 
@@ -60,6 +60,13 @@ MacOS
    macos/performance
    macos/security
 
+Android
+=======
+
+.. toctree::
+   :maxdepth: 1
+
+   android/tools
 
 Windows
 =======
@@ -112,6 +119,7 @@ Network
    network/bridging
    network/gns3
    network/iproute
+   network/ipv6
    network/irssi
    network/ldap
    network/mdns
@@ -158,7 +166,7 @@ Hacking
    hacking/scapy
    hacking/tcpdump
    hacking/web_security
-   hacking/wireless
+   hacking/wifi
    hacking/wireshark
 
 

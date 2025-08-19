@@ -49,5 +49,14 @@ List active network connections
 .. code-block:: bash
 
   lsof -i
-
+  nettop
  
+Pf logging
+===========
+
+ .. code-block:: bash
+
+    sudo ifconfig pflog0 create 
+    sudo tcpdump -n -e -ttt -i pflog0
+    sudo ifconfig pflog0 destroy
+    
