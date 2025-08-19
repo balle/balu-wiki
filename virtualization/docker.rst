@@ -2,6 +2,18 @@
 Docker
 ######
 
+Search for images
+=================
+
+* Goto `https://hub.docker.com`
+
+* Or run
+
+.. code-block:: bash
+
+  docker search <whatever>
+  
+
 Install a new image
 ===================
 
@@ -27,22 +39,49 @@ Run image
   docker start -i <container_id>
 
 
-List installed images
-=====================
+List images
+===========
 
+* All
+  
 .. code-block:: bash
 
   docker images
 
+* All without container
 
-List running containers
-=======================
+.. code-block:: bash
 
+  docker images -f "dangling=true"
+
+List containers
+===============
+
+* Only running
+  
 .. code-block:: bash
 
   docker ps
 
+* All
+  
+.. code-block:: bash
 
+  docker ps -a
+
+* All container for one image
+
+.. code-block:: bash
+		
+  docker ps -a -q --filter "ancestor=<image-id-or-name>"
+
+* All not running
+
+.. code-block:: bash
+
+  docker ps -a -q --filter "status=exited"
+
+  
 Save changes
 ============
 
@@ -75,6 +114,39 @@ Update images
 
   docker images | awk '{print $1}' | xargs -L1 docker pull
 
+
+Delete images and containers
+============================
+
+* A specific ontainer
+
+.. code-block:: bash
+
+  docker rm <container_id>
+
+* All container for one image
+
+.. code-block:: bash
+		
+  docker rm -f $(docker ps -a -q --filter "ancestor=<image-id-or-name>")
+
+* All not running containers
+
+.. code-block:: bash
+
+  docker rm $(docker ps -a -q --filter "status=exited")
+
+* All images without a container
+
+.. code-block:: bash
+
+  docker image prune -a
+  
+* A specific image
+  
+.. code-block:: bash
+
+  docker rmi <image_id>
 
 Port forward
 ============
@@ -154,6 +226,12 @@ Get a shell on a running container
 
   docker exec -it <container_id> bash
 
+Show layers of image
+====================
+
+.. code-block:: bash
+
+  docker historty <image_id>
 
 Example docker file
 ===================
