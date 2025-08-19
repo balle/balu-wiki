@@ -82,8 +82,8 @@ List containers
   docker ps -a -q --filter "status=exited"
 
   
-Save changes
-============
+Save changes done in an container
+==================================
 
 .. code-block:: bash
 
@@ -99,7 +99,7 @@ Export images
   docker load -i <archive_file>
 
 
-Update images
+Upgrade images
 =============
 
 * Only one
@@ -134,7 +134,7 @@ Delete images and containers
 
 .. code-block:: bash
 
-  docker rm $(docker ps -a -q --filter "status=exited")
+  docker container prune
 
 * All images without a container
 
@@ -275,6 +275,13 @@ Image from scratch
   COPY some_static_binary /
   ENTRYPOINT ["/some_static_binary"]
 
+Tag an image
+============
+
+.. code-block:: bash
+
+  docker image tag <tag_name_or_image_id> <new_tag_name>
+  docker image tag example-app:latest example-app:1.0
 
 Troubleshooting
 ===============
