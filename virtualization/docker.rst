@@ -195,7 +195,19 @@ Share directory between host and container
 
   -v /path/on/host:/path/in/container
 
+* Or by volume name automatically created by docker
 
+.. code-block:: bash
+
+  -v my-volume:/path/in/container
+
+* To automatically map the current source code directory as /code directory in the container to see code updates immediately
+
+.. code-block:: bash
+
+  docker run -d --name dev-container -v $(pwd):/code <image_name_or_id>
+
+  
 Allow docker container to access DISPLAY
 ========================================
 
