@@ -136,17 +136,29 @@ Delete images and containers
 
   docker container prune
 
+* All containers
+
+.. code-block:: bash
+
+  docker rm -f $(docker container ls -q)
+
+* A specific image
+  
+.. code-block:: bash
+
+  docker rmi <image_id>
+
 * All images without a container
 
 .. code-block:: bash
 
   docker image prune -a
   
-* A specific image
-  
+* All containers
+
 .. code-block:: bash
 
-  docker rmi <image_id>
+  docker rmi $(docker image ls -q)
 
 Port forward
 ============
